@@ -6,6 +6,8 @@ signal look_requested(relative_motion: Vector2)
 
 var move_intent: Vector2 = Vector2.ZERO
 var aim_intent: bool = false
+var fire_intent: bool = false
+var pickup_intent: bool = false
 
 
 func _ready() -> void:
@@ -19,6 +21,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	move_intent = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	aim_intent = Input.is_action_pressed("aim")
+	fire_intent = Input.is_action_pressed("fire")
+	pickup_intent = Input.is_action_just_pressed("recover")
 
 
 func _input(event: InputEvent) -> void:
@@ -40,3 +44,5 @@ func _notification(what: int) -> void:
 func clear_intent() -> void:
 	move_intent = Vector2.ZERO
 	aim_intent = false
+	fire_intent = false
+	pickup_intent = false

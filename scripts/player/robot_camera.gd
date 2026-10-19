@@ -3,6 +3,7 @@ extends Node3D
 ## Owns camera yaw/pitch; follows the body's translation through scene parenting.
 
 @export var mouse_sensitivity: float = 0.0025
+@export var shoulder_offset: float = 1.0
 @export_range(-89.0, 0.0) var minimum_pitch_degrees: float = -60.0
 @export_range(0.0, 89.0) var maximum_pitch_degrees: float = 25.0
 
@@ -16,6 +17,18 @@ func _ready() -> void:
 	spring_arm.add_excluded_object(robot.get_rid())
 	var input_adapter := robot.get_node("Input") as RobotInput
 	input_adapter.look_requested.connect(apply_look)
+	process_physics_priority = 5
+
+
+func _physics_process(_delta: float) -> void:
+	# Keep the shoulder pivot on this side of walls before the rear arm sweeps.
+	var desired := global_position + global_basis.x * shoulder_offset
+	var query := PhysicsRayQueryParameters3D.create(global_position, desired, 1)
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+	var offset := shoulder_offset
+	if not hit.is_empty():
+		offset = maxf(0.0, global_position.distance_to(hit.position) - 0.25)
+	pitch_pivot.position.x = offset
 
 
 func apply_look(relative_motion: Vector2) -> void:

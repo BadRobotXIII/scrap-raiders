@@ -41,6 +41,15 @@ pause={
 "events": [Object(InputEventKey,"physical_keycode":4194305)]
 }
 
+recover={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":69)]
+}
+restart={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":82)]
+}
+
 [rendering]
 renderer/rendering_method="forward_plus"
 environment/defaults/default_clear_color=Color(0.055, 0.075, 0.10, 1)

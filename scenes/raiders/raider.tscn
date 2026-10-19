@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/raider.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/components/health.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/loot/material_drop.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/components/hit_reaction.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/components/death_tumble.gd" id="5"]
+
+[sub_resource type="CapsuleShape3D" id="Shape"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Material"]
+albedo_color = Color(0.65, 0.45, 0.25, 1)
+
+[sub_resource type="CapsuleMesh" id="Body"]
+material = SubResource("Material")
+radius = 0.3
+height = 1.3
+
+[sub_resource type="SphereMesh" id="Head"]
+radius = 0.22
+height = 0.44
+
+[sub_resource type="BoxMesh" id="Pack"]
+size = Vector3(0.5, 0.6, 0.35)
+
+[node name="Raider" type="CharacterBody3D"]
+collision_layer = 1
+collision_mask = 3
+floor_snap_length = 0.25
+script = ExtResource("1")
+loot_scene = ExtResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("Shape")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0, 0.8, 0)
+mesh = SubResource("Body")
+
+[node name="Head" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0, 1.6, 0)
+mesh = SubResource("Head")
+
+[node name="Backpack" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0, 1, 0.35)
+mesh = SubResource("Pack")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="HitReaction" type="Node" parent="." node_paths=PackedStringArray("health", "visuals")]
+script = ExtResource("4")
+health = NodePath("../Health")
+visuals = NodePath("../Visuals")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+path_desired_distance = 0.3
+target_desired_distance = 0.5
+radius = 0.4
+
+[node name="DeathTumble" type="Node" parent="." node_paths=PackedStringArray("health", "visuals", "body_collision")]
+script = ExtResource("5")
+health = NodePath("../Health")
+visuals = NodePath("../Visuals")
+body_collision = NodePath("../CollisionShape3D")
+
+[node name="Label3D" type="Label3D" parent="."]
+position = Vector3(0, 2.3, 0)
+billboard = 1
+font_size = 40
+pixel_size = 0.005

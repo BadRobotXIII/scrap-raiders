@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 	move_and_slide()
 
-	var facing := camera_rig.aim_direction() if input_adapter.aim_intent else direction
+	var facing := camera_rig.aim_direction() if input_adapter.aim_intent or input_adapter.fire_intent else direction
 	if facing.length_squared() > 0.0001:
 		var target_yaw := atan2(-facing.x, -facing.z)
 		visuals.rotation.y = rotate_toward(visuals.rotation.y, target_yaw, turn_speed * delta)
