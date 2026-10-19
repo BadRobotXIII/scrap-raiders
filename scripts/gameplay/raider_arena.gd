@@ -39,13 +39,32 @@ func _ready() -> void:
 	var ids: Array[int] = []
 	for index in range(raider_count):
 		ids.append(index + 1)
-	ledger = MaterialLedger.new(stock, ids)
+	ledger = MaterialLedger.new(stock, ids, initial_ground_stock())
+	setup_extractions()
+	$NavigationRegion3D.bake_navigation_mesh(false)
+	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
+	deploy_raiders()
+	if mission.is_finished():
+		return
+	status.text = "Intercept %d Raiders. Prevent theft or recover dropped cargo. F3: diagnostics." % raider_count
+	refresh_hud()
+	var arrival := DEPLOYMENT_EFFECT.instantiate() as Node3D
+	arrival.position = robot.position
+	add_child(arrival)
+
+
+func initial_ground_stock() -> Dictionary:
+	return {}
+
+
+func setup_extractions() -> void:
 	extraction_points.append($Extraction)
 	$Extraction2.visible = dynamic_ai
 	if dynamic_ai:
 		extraction_points.append($Extraction2)
-	$NavigationRegion3D.bake_navigation_mesh(false)
-	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
+
+
+func deploy_raiders() -> void:
 	var spawns := $RaiderSpawns.get_children()
 	var positions: Array[Vector3] = []
 	for index in range(raider_count):
@@ -57,28 +76,28 @@ func _ready() -> void:
 			return
 		positions.append(position)
 	for index in range(raider_count):
-		var actor := RAIDER_SCENE.instantiate() as Raider
-		actor.name = "Raider" if index == 0 else "Raider%d" % (index + 1)
-		actor.raider_id = index + 1
-		actor.ledger = ledger
-		actor.dynamic_ai = dynamic_ai
-		actor.profile = PROFILES[index % PROFILES.size()]
-		actor.select_extraction = choose_extraction
-		actor.robot = robot
-		actor.select_salvage = choose_salvage
-		actor.salvage = choose_salvage(actor.raider_id)
-		actor.extraction = $Extraction
-		actor.position = to_local(positions[index])
-		raiders[actor.raider_id] = actor
-		actor.collection_requested.connect(_on_collection_requested.bind(actor))
-		actor.defeated.connect(_on_defeated.bind(actor))
-		actor.extracted.connect(_on_extracted.bind(actor))
-		add_child(actor)
-	status.text = "Intercept %d Raiders. Prevent theft or recover dropped cargo. F3: diagnostics." % raider_count
-	refresh_hud()
-	var arrival := DEPLOYMENT_EFFECT.instantiate() as Node3D
-	arrival.position = robot.position
-	add_child(arrival)
+		spawn_raider(index + 1, positions[index])
+
+
+func spawn_raider(id: int, world_position: Vector3) -> Raider:
+	var actor := RAIDER_SCENE.instantiate() as Raider
+	actor.name = "Raider" if id == 1 else "Raider%d" % id
+	actor.raider_id = id
+	actor.ledger = ledger
+	actor.dynamic_ai = dynamic_ai
+	actor.profile = PROFILES[(id - 1) % PROFILES.size()]
+	actor.select_extraction = choose_extraction
+	actor.robot = robot
+	actor.select_salvage = choose_salvage
+	actor.salvage = choose_salvage(id)
+	actor.extraction = extraction_points[0]
+	actor.position = to_local(world_position)
+	raiders[id] = actor
+	actor.collection_requested.connect(_on_collection_requested.bind(actor))
+	actor.defeated.connect(_on_defeated.bind(actor))
+	actor.extracted.connect(_on_extracted.bind(actor))
+	add_child(actor)
+	return actor
 
 
 func spawn_is_clear(position: Vector3, other_positions: Array[Vector3] = []) -> bool:
@@ -214,16 +233,21 @@ func _on_defeated(_reported_amount: int, actor: Raider) -> void:
 	if drop_id < 0:
 		return
 	if drop_id > 0:
-		var drop := DROP_SCENE.instantiate() as MaterialDrop
-		drop.ledger = ledger
-		drop.drop_id = drop_id
-		drop.position = to_local(actor.global_position)
-		drops[drop_id] = drop
-		add_child(drop)
+		var drop := present_drop(drop_id, actor.global_position)
 		status.text = "%d materials dropped by R%02d. Approach the cyan cube and press E." % [drop.materials, actor.raider_id]
 	else:
 		status.text = "R%02d stopped empty; other Raiders and cargo remain active." % actor.raider_id
 	after_event()
+
+
+func present_drop(id: int, world_position: Vector3) -> MaterialDrop:
+	var drop := DROP_SCENE.instantiate() as MaterialDrop
+	drop.ledger = ledger
+	drop.drop_id = id
+	drop.position = to_local(world_position)
+	drops[id] = drop
+	add_child(drop)
+	return drop
 
 
 func _on_extracted(_reported_amount: int, actor: Raider) -> void:

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Recovery"
+raider_count = 2
+materials_per_point = 2
+entry_times = PackedFloat32Array(8, 16)
+duration = 150.0
+seed = 9187
+ground_stacks = 3
+materials_per_stack = 2
+exits = PackedStringArray("Extraction2")

@@ -37,11 +37,17 @@ var active_raiders: int:
 		return count
 
 
-func _init(stock: Dictionary = {}, raider_ids: Array[int] = []) -> void:
+func _init(stock: Dictionary = {}, raider_ids: Array[int] = [], initial_ground: Dictionary = {}) -> void:
 	for point_id in stock:
 		assert(int(stock[point_id]) >= 0)
 		_stock[StringName(point_id)] = int(stock[point_id])
 		_total += int(stock[point_id])
+	for drop_id in initial_ground:
+		assert(int(drop_id) > 0 and int(initial_ground[drop_id]) > 0)
+		_ground[int(drop_id)] = int(initial_ground[drop_id])
+		_drop_sources[int(drop_id)] = 0 # Mission stock, not Raider cargo.
+		_total += int(initial_ground[drop_id])
+		_next_drop_id = maxi(_next_drop_id, int(drop_id) + 1)
 	for id in raider_ids:
 		assert(not _cargo.has(id) and id > 0)
 		_cargo[id] = 0

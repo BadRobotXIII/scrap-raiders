@@ -6,11 +6,13 @@ Internal working title for an original comedic third-person PvE game. The player
 
 - Windows x64, Godot **4.7.2 Standard**, GDScript, Forward+ renderer.
 - Vulkan-capable graphics device; no external assets, frameworks, services, or networking.
-- Blender is installed according to the director; its model/animation pipeline remains unvalidated and is outside Stage A.
+- Blender is installed according to the director; detailed models and animations remain outside this phase.
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/test_arena.tscn` now runs **three profiled Raiders, three salvage points, nine materials**, and two extraction choices. The existing 32 m primitive arena, obstacles, shoulder camera, hitscan weapon, target practice objects, audio, hit effects, cargo cues, destruction tumbles, and deployment effect remain.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 to deploy Intercept, Swarm, or Recovery. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
+
+The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
 For the original one-Raider/three-material regression scenario:
 
@@ -18,7 +20,7 @@ For the original one-Raider/three-material regression scenario:
 godot --path . res://scenes/levels/single_raider_arena.tscn
 ```
 
-Both scenes use the same code. The inherited regression scene overrides Raider count and salvage-point count to one and sets `dynamic_ai = false`, preserving the original behavior and original exit. Stage A tests also explicitly disable dynamic AI. Restart reloads the scene you launched.
+The arenas share the same simulation code. The inherited single-Raider scene overrides Raider count and salvage-point count to one and sets `dynamic_ai = false`, preserving the original behavior and original exit. Stage A tests also explicitly disable dynamic AI. Restart preserves the selected scene/scenario and creates fresh runtime state.
 
 | Control | Action |
 | --- | --- |
@@ -30,12 +32,13 @@ Both scenes use the same code. The inherited regression scene overrides Raider c
 | Escape / click | Release / capture mouse |
 | R or Restart button | Restart after mission completion |
 | F3 | Toggle developer diagnostics independently of gameplay prompts |
+| F6 / F7 / F8 | Deploy Intercept / Swarm / Recovery in the expanded arena |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
 ## Stage A scope and configuration
 
-Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. Stage B adds the dynamic AI described below. Armed Raiders, random/delayed spawns, a larger map, mission presets, and multiplayer remain outside this checkpoint.
+Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. Stage B adds dynamic AI. Stage C adds the expanded arena, scheduled entries, and mission presets below. Armed Raiders and multiplayer remain outside this checkpoint.
 
 Arena Inspector parameters:
 
@@ -71,9 +74,29 @@ Objective scoring uses actual reachable navigation paths, path length, remaining
 
 Navigation watches physical progress at 1.5-second intervals while travelling. No progress first requests a repath; a repeated stall excludes that objective and selects an alternate salvage point or exit. If no exit is available, the Raider enters STRANDED with an explicit label and retries after two seconds. Failed-route exclusions are cleared on that retry so temporary obstructions can recover. The Raider remains unresolved with its exact cargo allocation until it escapes, dies, or the mission deadline ends deployment. There is no teleport or artificial extraction. The watchdog interval is configurable per Raider; these are simple recovery rules, not dynamic crowd avoidance.
 
-F3 diagnostics include seed, personality, state, salvage, destination, cargo, threat visibility/memory, navigation status, and material conservation. Gameplay labels show profile names and brief actions separately. Gunfire/death awareness remains Stage D work. Arena expansion, delayed/random entries, and mission presets remain Stage C work.
+F3 diagnostics include seed, personality, state, salvage, destination, cargo, threat visibility/memory, navigation status, and material conservation. Gameplay labels show profile names and brief actions separately. Gunfire/death awareness remains Stage D work.
 
 Legacy behavior detects the robot within 8 m with line of sight and commits to the original exit when threatened. Both modes retain three-second scavenging/extraction dwell times and independent state, navigation, velocity, health, task timer, and objective per Raider. IDs appear in labels and transition logs.
+
+## Stage C arena and mission variety
+
+`mission_arena.tscn` inherits the existing arena and adds a 48 m floor/boundary, separated routes around tall sight blockers, low cover near an open central/southern area, a narrower west-central passage, and a raised east-side lookout reached by a shallow ramp. Ramp guards prevent navigation shortcuts up edges that CharacterBody movement cannot step over. All enabled salvage, spawn and exit locations are connected by the baked navigation mesh. The original arenas retain their geometry and immediate-entry behavior.
+
+Three shared `MissionConfig` resources under `resources/missions/` define quantities, duration, ordered entry times, allowed spawn marker names, available exits, seed, and starting ground cargo:
+
+| Scenario / key | Raiders / entry times (seconds) | Protected / initial ground | Deadline | Exits |
+| --- | --- | --- | --- | --- |
+| Intercept / F6 | 3 / 0, 4, 8 | 9 / 0 | 180 s | Both |
+| Swarm / F7 | 5 / 0, 0, 2, 4, 6 | 15 / 0 | 180 s | Both |
+| Recovery / F8 | 2 / 8, 16 | 6 / 6 (three stacks of two) | 150 s | B only |
+
+F6/F7/F8 replace the current deployment immediately, including after its summary. This is a debug selector: switching discards that run, and R restarts the selected scenario. There is no saved progression or menu framework. The scene's `scenario_index` Inspector property chooses its initial preset; edit the mission resource to tune that preset. All presets use the same Raider profiles and mission outcome rules.
+
+The mission arena owns pending entry IDs and the schedule. Every scheduled Raider is registered in the ledger at setup, so unresolved counts include pending entries and early kills cannot complete the deployment before later entries. F3 shows pending IDs and entry/retry status; the gameplay HUD shows pending count separately. The deadline stops entry, preserves all material categories, and reports Raiders that never entered.
+
+Each mission seed shuffles the authored marker order with a local RNG. Each due Raider tries that stable order with an ID offset; blocked markers fall back to another valid candidate. Entry validation checks the capsule against geometry/actors, same-tick actor positions, supported ground, navigation proximity, and paths to enabled salvage and an enabled exit. A completely blocked entry stays pending and retries every 0.5 s until clear or the deadline. Entries never teleport, mint materials, or silently count as extracted. Identical seeds and world state reproduce entry choices; player obstruction and physics can change actual admission timing.
+
+Recovery's initial ground allocations are part of the ledger's initial total, with source ID zero (mission stock). Physical cubes are only views of those allocations. Later death drops receive IDs beyond the initial stacks. Existing E eligibility, prompts, accounting, recovery-only phase, and deadline distinctions apply unchanged.
 
 ## Ownership and material conservation
 
@@ -118,6 +141,8 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 - `scripts/gameplay/material_ledger.gd`: authoritative material transfers, identity, actor resolution, invariants.
 - `scripts/gameplay/mission_rules.gd`: mission phase and outcome policy.
 - `scripts/gameplay/raider_arena.gd`: composition, registration, event validation, spawn validation, interaction, and HUD/summary wiring.
+- `scripts/gameplay/mission_arena.gd`: Stage C entry scheduling, admission validation, and debug scenario selection using shared arena composition.
+- `scripts/gameplay/mission_config.gd`, `resources/missions/`: mission definitions, with no mutable runtime mission state.
 - `scripts/ai/raider.gd`: common per-instance state machine and physical movement using NavigationAgent3D.
 - `scripts/gameplay/material_drop.gd`: ledger-backed world presentation.
 - `scripts/player/`: input, CharacterBody3D movement, independent camera orbit, combat presentation.
@@ -145,6 +170,7 @@ godot --headless --path . --script res://tests/mission_test.gd
 godot --headless --path . --script res://tests/destruction_test.gd
 godot --headless --path . --script res://tests/multi_raider_test.gd
 godot --headless --path . --script res://tests/dynamic_ai_test.gd
+godot --headless --path . --script res://tests/mission_variety_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -165,7 +191,13 @@ Stage A was accepted in commit `49cf442`. Stage B tests cover profile-specific r
 
 Stage B validation (2026-10-18): the five original regression suites, Stage A suite, and new Stage B suite passed. Godot 4.7.2 import/parsing and bounded Forward+ startup passed without reported errors. Simulation checks are automated; profile feel and navigation recovery in player-created congestion still require manual play-testing.
 
-Stop at **Checkpoint B** for director review. Do not advance automatically.
+Stage B, including the stationary-threat investigation fix (`ee3159b`), has been accepted by the director.
+
+Stage C coverage includes configuration validation, initial ground stock and unique IDs, timed entries, pending-entry completion guards, collision/support/navigation checks, blocked-entry retry, same-tick separation, seeded replay, restricted exits, normal recovery, deadline accounting, scenario switching, restart, reachable map locations, physical ramp traversal, and natural resolution of all three presets. Manual review should cover interception distances and timing, five-Raider congestion, camera behavior in passages/on the ramp, cover readability, and Recovery pickup routes.
+
+Stage C validation (2026-10-18): all eight automated suites passed, including the seven existing regression suites and `mission_variety_test.gd`. Godot 4.7.2 import/parsing, bounded headless startup, and Vulkan Forward+ graphical startup passed without reported errors. Manual Stage C play-testing remains pending; automated runs establish simulation behavior rather than encounter feel or typical-PC performance.
+
+Stop at **Checkpoint C** for director review. Do not advance automatically.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.
