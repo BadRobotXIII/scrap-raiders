@@ -12,6 +12,14 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [input]
+jump={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":32)]
+}
+boost={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194325)]
+}
 move_forward={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"physical_keycode":87)]

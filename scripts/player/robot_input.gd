@@ -3,12 +3,15 @@ extends Node
 ## Translates devices into intent. Movement execution never reads Input directly.
 
 signal look_requested(relative_motion: Vector2)
+signal intents_cleared
 
 var move_intent: Vector2 = Vector2.ZERO
 var aim_intent: bool = false
 var fire_intent: bool = false
 var pickup_intent: bool = false
 var recover_held: bool = false
+var jump_requested: bool = false
+var boost_requested: bool = false
 
 
 func _ready() -> void:
@@ -25,6 +28,8 @@ func _physics_process(_delta: float) -> void:
 	fire_intent = Input.is_action_pressed("fire")
 	pickup_intent = Input.is_action_just_pressed("recover")
 	recover_held = Input.is_action_pressed("recover")
+	jump_requested = Input.is_action_just_pressed("jump")
+	boost_requested = Input.is_action_just_pressed("boost")
 
 
 func _input(event: InputEvent) -> void:
@@ -49,3 +54,6 @@ func clear_intent() -> void:
 	fire_intent = false
 	pickup_intent = false
 	recover_held = false
+	jump_requested = false
+	boost_requested = false
+	intents_cleared.emit()

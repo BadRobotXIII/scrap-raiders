@@ -17,6 +17,7 @@ extends Resource
 @export var death_flares: bool = false
 @export var player_extraction: bool = false
 @export var machine_ecosystem: bool = false
+@export var experimental_traversal: bool = false
 
 
 func validation_error() -> String:

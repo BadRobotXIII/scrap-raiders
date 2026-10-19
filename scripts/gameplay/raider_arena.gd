@@ -476,6 +476,7 @@ func finish_mission() -> void:
 	if flare_director != null:
 		flare_director.stop()
 	robot.input_adapter.clear_intent()
+	robot.stop_traversal()
 	robot.input_adapter.set_physics_process(false)
 	robot.input_adapter.set_process_input(false)
 	robot.set_physics_process(false)

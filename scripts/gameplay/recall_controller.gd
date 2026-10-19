@@ -67,6 +67,8 @@ func cancel() -> void:
 func can_channel() -> bool:
 	var input: RobotInput = arena.robot.input_adapter
 	var velocity := Vector2(arena.robot.velocity.x, arena.robot.velocity.z)
+	if arena.robot.traversal_enabled and (input.jump_requested or input.boost_requested or not arena.robot.is_on_floor() or arena.robot.boost_state == RobotController.BoostState.BOOSTING):
+		return false
 	return eligible() and input.recover_held and not input.fire_intent and input.move_intent.is_zero_approx() and velocity.length() <= 0.1 and arena.selected_drop() == null and arena.flare_director.selected_drop() == null
 
 

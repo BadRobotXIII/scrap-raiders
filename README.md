@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, **F12 selects Recall Deployment with extraction and persistent rewards**, and **F4 selects Machine Ecosystem**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, **F12 selects Recall Deployment with extraction and persistent rewards**, **F4 selects Machine Ecosystem**, and **F2 selects Traversal Experiment**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -37,6 +37,7 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F10 | Deploy Loot Pressure (Stage F); hold E for equipment |
 | F12 | Deploy Recall Deployment (Stage G); hold E at the Recall Dock for five seconds |
 | F4 | Deploy Machine Ecosystem (Stage H); scout and guard support with recall |
+| F2 | Deploy Traversal Experiment (Stage I); Space jumps, Shift boosts |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
@@ -208,6 +209,17 @@ Armed Raiders use the existing common FSM, cover logic and shot executor to hunt
 
 The ecosystem ledger starts with **11 total materials: nine salvage plus one installed component per support machine**. Installed components count as protected stock until destruction transfers them to an identified ground stack. No actor or loot mesh creates materials. Raiders score component drops alongside salvage and collect through validated scavenging requests; their death drops or extraction retain normal ledger accounting. Players recover components with E and bank them through recall as ordinary materials; there is no separate crafting currency. Every accepted transfer checks conservation. Surviving installed components do not block completion, and terminal deployment stops support movement and fire.
 
+## Stage I traversal experiment
+
+Press **F2**, or launch `godot --path . res://scenes/levels/traversal_arena.tscn`. This separate preset uses the existing armed recall mission with three scheduled Raiders, flares and loot. Its experimental controller option is disabled in all previous presets, including Machine Ecosystem. Restart retains the experiment; switching presets restores that preset's movement configuration.
+
+- **Space:** a grounded jump with approximately 1.5 m apex above the starting floor. Requests in midair are discarded; holding Space does not repeat jumps.
+- **Shift:** a 0.25-second horizontal burst at 16 m/s, followed by a 1.5-second cooldown. WASD determines its camera-relative direction; without WASD it uses camera forward. Diagonal input has the same speed. The chosen direction stays fixed during the burst while the camera remains free to orbit. Boost works on the ground or in the air and preserves gravity/jump velocity. Normal acceleration/braking resumes when the burst ends. Holding Shift does not automatically repeat boosts.
+- The lower-left HUD shows ready, boosting and remaining recharge time. Jump and boost retain normal aiming/firing, collision and camera spring-arm behavior. There is no teleport, invulnerability or boost damage.
+- Releasing the mouse or losing focus clears pending requests and cancels an active boost into cooldown. Existing movement braking and gravity continue. Jumping, airborne movement and boosting prevent recall; nonlethal incoming damage still permits recall as accepted in Stage G. Terminal mission shutdown stops traversal and clears velocity.
+
+`RobotInput` produces requests; `RobotController` consumes them in physics and is the only writer of physical velocity and boost state/timer. The camera owns orbit and aim direction independently. `traversal_feedback.gd` only reads controller state. There is no new chassis, attack, upgrade economy or persistent movement unlock in this experiment. Tuning lives in the controller's exported jump height, boost speed, duration and cooldown.
+
 ## Code boundaries
 
 - `scripts/gameplay/material_ledger.gd`: authoritative material transfers, identity, actor resolution, invariants.
@@ -259,6 +271,7 @@ godot --headless --path . --script res://tests/hostile_combat_test.gd
 godot --headless --path . --script res://tests/flare_loot_test.gd
 godot --headless --path . --script res://tests/extraction_test.gd
 godot --headless --path . --script res://tests/machine_ecosystem_test.gd
+godot --headless --path . --script res://tests/traversal_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -311,7 +324,13 @@ Stage H tests cover independent patrol physics, real machine-to-machine shots, d
 
 Stage H validation (2026-10-19): all thirteen suites passed, including the twelve regressions. Godot 4.7.2 editor import/parsing and bounded headless/Forward+ ecosystem startup passed without reported errors. Parallel regression runs reported two ObjectDB cleanup warnings in each of the flare/recall suites; separate reruns passed without those warnings. No Stage H test or startup errors remain. Generated `.godot/` data and builds remain ignored; script `.uid` files are tracked.
 
-Stop at **Checkpoint H** for director review. Stage I requires separate approval. Manual review should assess patrol routes and congestion, scout visibility, threat warning readability, target switching, guard usefulness versus danger, component pickup placement after aerial deaths, and recall under machine combat.
+Stage H (`c1abc5d`) was accepted by the director. The focused Stage I jump/boost experiment was approved separately. Stage H's patrol congestion, warning readability, guard balance, targeting and component pickup placement remain useful ongoing play-test checks.
+
+Stage I automated checks cover physical key mappings, grounded jump height and landing, rejection of midair jumps, low ceiling collision, immediate camera-relative boost, fixed direction, diagonal normalization, cooldown rejection/recovery, braking, airborne boost/aiming, camera independence, mouse-release cancellation, boundary/obstacle collision, ramp traversal, recall cancellation, death shutdown, restart, isolated saves and return to the baseline preset.
+
+Stage I validation (2026-10-19): all fourteen suites passed, including all thirteen existing regressions. Godot 4.7.2 editor import/parsing, bounded default headless startup, and bounded headless/Forward+ traversal startup passed without reported errors. The known two-instance ObjectDB cleanup warning appeared in the parallel flare-suite run and did not recur on its separate verbose rerun. Generated test/save data remains ignored under `.godot/stage_i_tests/`; the tests do not alter the player's stash. Automated validation establishes simulation behavior; movement feel and combat balance remain manual review items.
+
+Stop at **Checkpoint I** for director review. Manual play-testing must establish jump/boost feel, midair control, landing and slope behavior, camera comfort near cover, cooldown feedback, escape difficulty under fire, and whether these abilities belong in the main controller. Further mechanics and progression require a new agreed scope.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.
