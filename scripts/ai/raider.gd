@@ -32,6 +32,7 @@ var task_elapsed: float = 0.0
 var decision_remaining: float = 0.0
 var threat_visible: bool = false
 var threat_remaining: float = 0.0
+var threat_source: String = "none"
 var last_threat_position: Vector3
 var investigation_position: Vector3
 var _investigated_threat_position: Vector3 = Vector3.INF
@@ -101,6 +102,8 @@ func _choose_exit() -> bool:
 
 
 func decide() -> void:
+	if state in [State.DEAD, State.EXTRACTED]:
+		return
 	threat_visible = detects_robot()
 	if not dynamic_ai:
 		if state == State.SCAVENGING and (not is_instance_valid(salvage) or ledger.available(salvage.name) == 0):
@@ -116,8 +119,10 @@ func decide() -> void:
 	if threat_visible:
 		threat_remaining = profile.threat_memory
 		last_threat_position = robot.global_position
+		threat_source = "sight"
 	elif threat_remaining <= 0.0:
 		_investigated_threat_position = Vector3.INF
+		threat_source = "none"
 	if state == State.STRANDED:
 		if _retry_remaining <= 0.0:
 			blocked_exits.clear()
@@ -133,10 +138,7 @@ func decide() -> void:
 	elif state == State.FLEEING and threat_remaining <= 0 and carried_materials < profile.cargo_target:
 		transition(State.SELECTING)
 	elif threat_visible and profile.investigates and state == State.SCAVENGING and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
-		var away := (global_position - last_threat_position).normalized()
-		# Arrival allows 0.8 m tolerance; stay clear of the close-threat threshold.
-		investigation_position = last_threat_position + away * (profile.flee_distance + 1.25)
-		transition(State.INVESTIGATING)
+		begin_investigation()
 	if state == State.SELECTING:
 		salvage = select_salvage.call(raider_id) if carried_materials < profile.cargo_target else null
 		if salvage != null:
@@ -147,6 +149,41 @@ func decide() -> void:
 		transition(State.SELECTING)
 	elif state == State.FLEEING and is_instance_valid(extraction) and global_position.distance_to(extraction.global_position) < 0.8:
 		transition(State.EXTRACTING)
+
+
+func begin_investigation() -> void:
+	var target := Vector3(last_threat_position.x, global_position.y, last_threat_position.z)
+	var away := (global_position - target).normalized()
+	# Arrival allows 0.8 m tolerance; stay clear of the close-threat threshold.
+	investigation_position = target + away * (profile.flee_distance + 1.25)
+	transition(State.INVESTIGATING)
+
+
+func hear_gunfire(origin: Vector3) -> bool:
+	if not dynamic_ai or state in [State.DEAD, State.EXTRACTED] or is_queued_for_deletion() or not ledger.is_active(raider_id):
+		return false
+	if global_position.distance_to(origin) > profile.hearing_radius:
+		return false
+	var already_alerted := threat_remaining > 0.0
+	# Sound gives a last-known source, never continuous tracking through cover.
+	if threat_remaining <= 0.0 and not threat_visible:
+		_investigated_threat_position = Vector3.INF
+	if not threat_visible:
+		last_threat_position = Vector3(origin.x, global_position.y, origin.z)
+		threat_source = "gunfire"
+	threat_remaining = maxf(threat_remaining, profile.threat_memory)
+	# Damage/flight retain priority; repeated shots must not restart task clocks.
+	if state in [State.FLEEING, State.STRANDED]:
+		return true
+	if state == State.EXTRACTING and already_alerted:
+		return true
+	if profile.flees_from_gunfire or global_position.distance_to(origin) <= profile.flee_distance:
+		if _choose_exit():
+			transition(State.FLEEING)
+	elif profile.investigates and state in [State.SCAVENGING, State.SELECTING] and carried_materials < profile.cargo_target and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
+		begin_investigation()
+	update_label()
+	return true
 
 
 func _physics_process(delta: float) -> void:
@@ -262,6 +299,7 @@ func _on_damaged(_amount: float) -> void:
 		if dynamic_ai:
 			threat_remaining = profile.threat_memory + 2.0
 			last_threat_position = robot.global_position
+			threat_source = "damage"
 			if not _choose_exit():
 				return
 		transition(State.FLEEING)

@@ -8,3 +8,5 @@ detection_radius = 12.0
 flee_distance = 12.0
 cargo_target = 3
 route_risk_weight = 6.0
+hearing_radius = 18.0
+flees_from_gunfire = true

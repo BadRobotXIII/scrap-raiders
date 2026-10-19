@@ -9,3 +9,4 @@ flee_distance = 3.0
 cargo_target = 3
 route_risk_weight = 0.5
 investigates = true
+hearing_radius = 16.0

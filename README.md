@@ -74,7 +74,7 @@ Objective scoring uses actual reachable navigation paths, path length, remaining
 
 Navigation watches physical progress at 1.5-second intervals while travelling. No progress first requests a repath; a repeated stall excludes that objective and selects an alternate salvage point or exit. If no exit is available, the Raider enters STRANDED with an explicit label and retries after two seconds. Failed-route exclusions are cleared on that retry so temporary obstructions can recover. The Raider remains unresolved with its exact cargo allocation until it escapes, dies, or the mission deadline ends deployment. There is no teleport or artificial extraction. The watchdog interval is configurable per Raider; these are simple recovery rules, not dynamic crowd avoidance.
 
-F3 diagnostics include seed, personality, state, salvage, destination, cargo, threat visibility/memory, navigation status, and material conservation. Gameplay labels show profile names and brief actions separately. Gunfire/death awareness remains Stage D work.
+F3 diagnostics include seed, personality, state, salvage, destination, cargo, threat source/visibility/memory, navigation status, and material conservation. Gameplay labels show profile names and brief actions separately. Stage D adds the gunfire reactions below.
 
 Legacy behavior detects the robot within 8 m with line of sight and commits to the original exit when threatened. Both modes retain three-second scavenging/extraction dwell times and independent state, navigation, velocity, health, task timer, and objective per Raider. IDs appear in labels and transition logs.
 
@@ -97,6 +97,16 @@ The mission arena owns pending entry IDs and the schedule. Every scheduled Raide
 Each mission seed shuffles the authored marker order with a local RNG. Each due Raider tries that stable order with an ID offset; blocked markers fall back to another valid candidate. Entry validation checks the capsule against geometry/actors, same-tick actor positions, supported ground, navigation proximity, and paths to enabled salvage and an enabled exit. A completely blocked entry stays pending and retries every 0.5 s until clear or the deadline. Entries never teleport, mint materials, or silently count as extracted. Identical seeds and world state reproduce entry choices; player obstruction and physics can change actual admission timing.
 
 Recovery's initial ground allocations are part of the ledger's initial total, with source ID zero (mission stock). Physical cubes are only views of those allocations. Later death drops receive IDs beyond the initial stacks. Existing E eligibility, prompts, accounting, recovery-only phase, and deadline distinctions apply unchanged.
+
+## Stage D awareness and readability
+
+The arena forwards the existing weapon `fired` event to entered, living Raiders while deployment is active. Accepted hits and misses both produce gunfire awareness; cooldown-rejected triggers produce no event. Weapon damage, cadence, health, and material accounting retain their original owners.
+
+Hearing uses distance to the shot's muzzle origin: Greedy 12 m, Cowardly 18 m, Aggressive 16 m. This deliberately simple radius rule allows hearing through cover without sound propagation or impact/near-miss simulation. An unseen shot records a last-known source and refreshes three-second threat memory; it never grants sight or tracks subsequent unseen player movement.
+
+Cowardly retreats from audible shots, Greedy continues scavenging unless the source is within its close-threat distance, and under-target Aggressive can investigate the heard source. Existing close-range and damage retreat take priority. Stationary repeated shots retain the investigation re-arm guard; they refresh memory without restarting an active retreat or extraction task. Empty fleeing Raiders can resume scavenging after memory expires. Loaded Raiders continue toward extraction, and unreachable investigation routes retain the existing watchdog fallback. The inherited single-Raider regression mode keeps its original behavior.
+
+World feedback reads simulation state: `?` marks investigation and `!` marks alertness; `GUNFIRE` identifies an audible source. Indicators clear with threat memory and stop at mission completion. Loaded backpacks become gold with a subtle emission; empty packs stay dark. Depleted salvage hides its crate and displays `DEPLETED`. Existing nearest-drop highlight and E eligibility remain shared. `raider_feedback.gd` owns presentation only and cannot advance task clocks, change health, or transfer cargo. Detailed state and threat diagnostics remain behind F3.
 
 ## Ownership and material conservation
 
@@ -171,6 +181,7 @@ godot --headless --path . --script res://tests/destruction_test.gd
 godot --headless --path . --script res://tests/multi_raider_test.gd
 godot --headless --path . --script res://tests/dynamic_ai_test.gd
 godot --headless --path . --script res://tests/mission_variety_test.gd
+godot --headless --path . --script res://tests/awareness_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -197,7 +208,11 @@ Stage C coverage includes configuration validation, initial ground stock and uni
 
 Stage C validation (2026-10-18): all eight automated suites passed, including the seven existing regression suites and `mission_variety_test.gd`. Godot 4.7.2 import/parsing, bounded headless startup, and Vulkan Forward+ graphical startup passed without reported errors. Manual Stage C play-testing remains pending; automated runs establish simulation behavior rather than encounter feel or typical-PC performance.
 
-Stop at **Checkpoint C** for director review. Do not advance automatically.
+Stage C (`e9d6e48`) has been accepted by the director.
+
+Stage D automated coverage includes actual missed-shot dispatch, cooldown suppression, independent profile reactions, hearing through cover, out-of-range rejection, last-known-position memory, investigation re-arming, damage priority, repeated-shot task preservation, return to scavenging, feedback ownership/cleanup, depleted salvage, terminal events, and legacy behavior. All nine suites, Godot 4.7.2 import/parsing, bounded headless startup, and Forward+ graphical startup passed on 2026-10-18. Manual review remains necessary for hearing distances, sustained-fire behavior, alert/cargo readability, and clutter with five Raiders.
+
+Stop at **Checkpoint D** for director review. Do not advance automatically.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.

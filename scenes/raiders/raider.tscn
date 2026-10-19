@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/raider.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/components/hit_reaction.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/components/death_tumble.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/presentation/raider_feedback.gd" id="6"]
 
 [sub_resource type="CapsuleShape3D" id="Shape"]
 radius = 0.35
@@ -73,3 +74,13 @@ position = Vector3(0, 2.3, 0)
 billboard = 1
 font_size = 40
 pixel_size = 0.005
+
+[node name="Alert" type="Label3D" parent="."]
+visible = false
+position = Vector3(0, 2.9, 0)
+billboard = 1
+font_size = 48
+pixel_size = 0.005
+
+[node name="RaiderFeedback" type="Node" parent="."]
+script = ExtResource("6")

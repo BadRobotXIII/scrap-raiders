@@ -43,6 +43,7 @@ func _ready() -> void:
 	setup_extractions()
 	$NavigationRegion3D.bake_navigation_mesh(false)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
+	$Robot/Weapon.fired.connect(_on_weapon_fired)
 	deploy_raiders()
 	if mission.is_finished():
 		return
@@ -55,6 +56,14 @@ func _ready() -> void:
 
 func initial_ground_stock() -> Dictionary:
 	return {}
+
+
+func _on_weapon_fired(origin: Vector3, _endpoint: Vector3, _damaged_target: bool) -> void:
+	if mission.is_finished():
+		return
+	for actor in raiders.values():
+		if is_instance_valid(actor):
+			actor.hear_gunfire(origin)
 
 
 func setup_extractions() -> void:
@@ -331,6 +340,11 @@ func refresh_hud() -> void:
 	for point in salvage_points:
 		if is_instance_valid(point):
 			point.get_node("Label3D").text = "%s\n%d materials" % [point.name, ledger.available(point.name)]
+			var available := ledger.available(point.name) > 0
+			point.get_node("Crate").visible = available
+			point.get_node("Label3D").modulate = Color(1, 0.85, 0.35) if available else Color(0.6, 0.65, 0.7)
+			if not available:
+				point.get_node("Label3D").text = "%s\nDEPLETED" % point.name
 	$Overlay/DebugStatus.visible = debug_visible
 	if debug_visible:
 		var lines := PackedStringArray(["STAGE B | seed %d | conservation %s | transfers %d" % [debug_seed, ledger.is_conserved(), ledger.accepted_transfers]])
@@ -339,7 +353,9 @@ func refresh_hud() -> void:
 			if is_instance_valid(actor):
 				var target := str(actor.salvage.name) if is_instance_valid(actor.salvage) else "none"
 				var destination := target if actor.state == Raider.State.SCAVENGING else (str(actor.extraction.name) if is_instance_valid(actor.extraction) else "none")
-				lines.append("R%02d %s %s | target %s | dest %s | cargo %d | threat %s/%.1fs | %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], target, destination, actor.carried_materials, actor.threat_visible, actor.threat_remaining, actor.navigation_status])
+				if actor.state == Raider.State.INVESTIGATING:
+					destination = str(actor.investigation_position)
+				lines.append("R%02d %s %s | target %s | dest %s | cargo %d | threat %s/%s/%.1fs | %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], target, destination, actor.carried_materials, actor.threat_source, actor.threat_visible, actor.threat_remaining, actor.navigation_status])
 		$Overlay/DebugStatus.text = "\n".join(lines)
 
 
@@ -356,6 +372,7 @@ func finish_mission() -> void:
 	for actor in raiders.values():
 		if is_instance_valid(actor):
 			actor.set_physics_process(false)
+			actor.get_node("RaiderFeedback").stop()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var title := "MISSION SUCCESS" if mission.phase == MissionRules.Phase.SUCCEEDED else "MISSION FAILED"
 	$Overlay/Summary/Content/Report.text = "%s\n\n%s\n\nProtected: %d   Recovered: %d   Lost: %d\nUnrecovered ground: %d   Raider cargo: %d\nTotal: %d   Elapsed: %.1f seconds\n\nPress R or click Restart to deploy again." % [
