@@ -24,6 +24,7 @@ func frames(count: int) -> void:
 func create_arena(count: int = 3) -> Node3D:
 	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
 	arena.raider_count = count
+	arena.dynamic_ai = false
 	root.add_child(arena)
 	current_scene = arena
 	arena.get_node("Robot/Input").set_physics_process(false)

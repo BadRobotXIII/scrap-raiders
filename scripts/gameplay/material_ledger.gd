@@ -70,9 +70,9 @@ func is_active(raider_id: int) -> bool:
 
 
 func collect(raider_id: int, point_id: StringName, capacity: int) -> int:
-	if _sealed or not is_active(raider_id) or cargo_for(raider_id) != 0 or capacity <= 0:
+	if _sealed or not is_active(raider_id) or capacity <= cargo_for(raider_id):
 		return 0
-	var amount := mini(capacity, available(point_id))
+	var amount := mini(capacity - cargo_for(raider_id), available(point_id))
 	if amount <= 0:
 		return 0
 	_stock[point_id] -= amount

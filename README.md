@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/test_arena.tscn` now runs **three Raiders, three salvage points, nine materials**, and one shared exit. The existing 32 m primitive arena, obstacles, shoulder camera, hitscan weapon, target practice objects, audio, hit effects, cargo cues, destruction tumbles, and deployment effect remain.
+The default `scenes/levels/test_arena.tscn` now runs **three profiled Raiders, three salvage points, nine materials**, and two extraction choices. The existing 32 m primitive arena, obstacles, shoulder camera, hitscan weapon, target practice objects, audio, hit effects, cargo cues, destruction tumbles, and deployment effect remain.
 
 For the original one-Raider/three-material regression scenario:
 
@@ -18,7 +18,7 @@ For the original one-Raider/three-material regression scenario:
 godot --path . res://scenes/levels/single_raider_arena.tscn
 ```
 
-Both scenes use the same code. The inherited regression scene overrides Raider count and salvage-point count to one. Restart reloads the scene you launched.
+Both scenes use the same code. The inherited regression scene overrides Raider count and salvage-point count to one and sets `dynamic_ai = false`, preserving the original behavior and original exit. Stage A tests also explicitly disable dynamic AI. Restart reloads the scene you launched.
 
 | Control | Action |
 | --- | --- |
@@ -35,7 +35,7 @@ Escape releases controls without pausing simulation. Losing application focus al
 
 ## Stage A scope and configuration
 
-Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. It does not add personalities, advanced planning, armed Raiders, random/delayed spawns, multiple exits, a larger map, mission presets, or multiplayer. Those belong to later approved stages.
+Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. Stage B adds the dynamic AI described below. Armed Raiders, random/delayed spawns, a larger map, mission presets, and multiplayer remain outside this checkpoint.
 
 Arena Inspector parameters:
 
@@ -44,12 +44,34 @@ Arena Inspector parameters:
 - `materials_per_point`: default 3; total material stock is derived from enabled points.
 - `mission_duration`: default 180 seconds.
 - `pickup_distance`: default 1.8 m.
+- `dynamic_ai`: true by default; false retains Stage A selection/behavior and the original exit.
+- `debug_seed`: default 4711; controls deterministic local score tie-breaks, without changing global random state or spawning.
 
 Five authored spawn markers live under `RaiderSpawns`. All configured Raiders enter immediately. Spawns are checked against geometry, actors, and already selected positions. Invalid deployment stops with an explicit setup error. No automatic teleport is used.
 
-Salvage assignment is stable and cyclic by Raider ID. Raiders initially target different points where possible. A point is not reserved: the first validated collection request transfers available stock atomically. A competing Raider cannot duplicate it; it selects the next available point or heads for extraction if none remain. Each Raider collects once, up to the configured per-point amount, then extracts. Selection scoring and personality behavior are deferred.
+With dynamic AI disabled, salvage assignment is stable and cyclic by Raider ID and each Raider collects once. A point is not reserved: the first validated collection request transfers available stock atomically. A competing Raider cannot duplicate it; it selects another available point or heads for extraction if none remain. Dynamic AI instead uses scored selection and a profile cargo target; repeated collections debit finite stock only up to the remaining target capacity.
 
-A Raider detects the robot within 8 m with line of sight, or reacts to damage, and commits to fleeing toward the exit. Scavenging/extraction dwell times remain three seconds. State, navigation, velocity, health, task timer, and objective are independent per Raider. Instance IDs appear in labels and transition logs. F3 shows state, selected salvage, destination, cargo, and conservation diagnostics.
+## Stage B dynamic AI
+
+Three shared resources in `resources/enemies/` parameterize one common FSM:
+
+| Profile | Visible threat range / flee distance | Cargo target | Behavior |
+| --- | --- | --- | --- |
+| Greedy (gold body) | 8 m / 3 m | 6 | Tolerates distant danger and seeks additional finite salvage |
+| Cowardly (blue body) | 12 m / 12 m | 3 | Retreats early and strongly penalizes dangerous routes |
+| Aggressive (red body) | 10 m / 3 m | 3 | Investigates a last-seen position for up to two seconds before resuming objectives |
+
+No Raider weapons are implemented. Damage always interrupts the current task and causes flight; lethal damage remains terminal. An empty/under-target fleeing Raider can resume scavenging after three seconds without visible danger (damage adds two seconds of memory). Raiders at their cargo target continue extraction. Threats still use line of sight; only observed or damage-revealed threat positions influence route risk.
+
+The common FSM adds SELECTING, INVESTIGATING, and STRANDED to the existing states. Raider-specific state, timers, failed objectives, and sensor memory remain per instance. Profile resources are shared read-only definitions. `HitReaction`, death tumbles, weapon damage/cooldown, recovery, and mission outcome policy retain their existing ownership.
+
+Objective scoring uses actual reachable navigation paths, path length, remaining stock, other Raiders targeting the location, known route danger, and a small seeded tie-break. Exit scoring uses reachable path length and known danger weighted by profile. Off-map/disconnected destinations are rejected. Decisions wait for usable navigation geometry, not merely a nonzero map iteration. Seeded scores reproduce choices for the same state; this does not promise bitwise deterministic physics.
+
+Navigation watches physical progress at 1.5-second intervals while travelling. No progress first requests a repath; a repeated stall excludes that objective and selects an alternate salvage point or exit. If no exit is available, the Raider enters STRANDED with an explicit label and retries after two seconds. Failed-route exclusions are cleared on that retry so temporary obstructions can recover. The Raider remains unresolved with its exact cargo allocation until it escapes, dies, or the mission deadline ends deployment. There is no teleport or artificial extraction. The watchdog interval is configurable per Raider; these are simple recovery rules, not dynamic crowd avoidance.
+
+F3 diagnostics include seed, personality, state, salvage, destination, cargo, threat visibility/memory, navigation status, and material conservation. Gameplay labels show profile names and brief actions separately. Gunfire/death awareness remains Stage D work. Arena expansion, delayed/random entries, and mission presets remain Stage C work.
+
+Legacy behavior detects the robot within 8 m with line of sight and commits to the original exit when threatened. Both modes retain three-second scavenging/extraction dwell times and independent state, navigation, velocity, health, task timer, and objective per Raider. IDs appear in labels and transition logs.
 
 ## Ownership and material conservation
 
@@ -103,7 +125,7 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 
 Health, weapon damage/cadence, movement, camera ownership, and physics presentation retain their existing boundaries. The blaster deals 25 damage at 0.2 s intervals over 80 m. The center camera ray chooses aim; the muzzle ray checks cover, extending 5 cm past the surface hit to avoid curved-collider rounding misses.
 
-Navigation bakes synchronously once from the small arena's tagged collision geometry, including practice targets. Agent path height offset remains 0.5 m for this bake. Destroyed targets leave conservative footprints until restart. There is no dynamic avoidance or advanced blocked-path recovery yet. Crowding and player obstruction remain manual testing priorities, especially with five Raiders. Repath targets change only when destinations change; perception decisions remain on a 0.15 s interval.
+Navigation bakes synchronously once from the small arena's tagged collision geometry, including practice targets. Agent path height offset remains 0.5 m for this bake. Destroyed targets leave conservative footprints until restart. There is no dynamic crowd avoidance. Crowding and player obstruction remain manual testing priorities, especially with five Raiders. Path targets change when destinations change or the watchdog explicitly retries; perception decisions remain on a 0.15 s interval. Path scoring runs during objective/exit selection, not every render frame.
 
 All visual/audio assets are engine primitives or original generated PCM. Cosmetic tumble bodies have collision layer zero: gameplay shots, movement, perception, and pickup queries ignore them. Cargo stays stationary and recoverable after the tumble expires.
 
@@ -120,6 +142,7 @@ godot --headless --path . --script res://tests/raider_test.gd
 godot --headless --path . --script res://tests/mission_test.gd
 godot --headless --path . --script res://tests/destruction_test.gd
 godot --headless --path . --script res://tests/multi_raider_test.gd
+godot --headless --path . --script res://tests/dynamic_ai_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -136,7 +159,11 @@ Stage A validation on 2026-10-18: all five adapted regression suites and the new
 
 The accepted primitive prototype was preserved in baseline commit `d51acfd` before this refactor. Stage A is committed separately after validation. Work remains on the existing `master` branch; no remote is configured or changed. Generated `.godot/` state and builds are ignored; script `.uid` files are tracked.
 
-Stop at **Checkpoint A** for director review. Do not advance automatically.
+Stage A was accepted in commit `49cf442`. Stage B tests cover profile-specific reactions, investigation interruption, resuming scavenging, seeded scoring, reachable/safe exit choice, finite two-location cargo accumulation, repath/alternate/stranded transitions, a physical no-progress watchdog, and natural three/five-Raider resolution. Manual Stage B review remains necessary for personality differences, investigation readability, retreat/resume pacing, route choices, and congestion recovery.
+
+Stage B validation (2026-10-18): the five original regression suites, Stage A suite, and new Stage B suite passed. Godot 4.7.2 import/parsing and bounded Forward+ startup passed without reported errors. Simulation checks are automated; profile feel and navigation recovery in player-created congestion still require manual play-testing.
+
+Stop at **Checkpoint B** for director review. Do not advance automatically.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.

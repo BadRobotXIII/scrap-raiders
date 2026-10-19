@@ -5,3 +5,4 @@
 [node name="TestArena" instance=ExtResource("1")]
 raider_count = 1
 salvage_point_count = 1
+dynamic_ai = false

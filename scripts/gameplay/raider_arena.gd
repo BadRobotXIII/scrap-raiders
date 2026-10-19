@@ -4,18 +4,22 @@ extends Node3D
 const DEPLOYMENT_EFFECT := preload("res://scenes/effects/deployment_effect.tscn")
 const RAIDER_SCENE := preload("res://scenes/raiders/raider.tscn")
 const DROP_SCENE := preload("res://scenes/loot/material_drop.tscn")
+const PROFILES: Array[RaiderProfile] = [preload("res://resources/enemies/greedy.tres"), preload("res://resources/enemies/cowardly.tres"), preload("res://resources/enemies/aggressive.tres")]
 
 @export_range(1, 5) var raider_count: int = 3
 @export_range(1, 3) var salvage_point_count: int = 3
 @export_range(1, 99) var materials_per_point: int = 3
 @export var mission_duration: float = 180.0
 @export var pickup_distance: float = 1.8
+@export var dynamic_ai: bool = true
+@export var debug_seed: int = 4711
 var ledger: MaterialLedger
 var mission := MissionRules.new()
 var elapsed: float = 0.0
 var raiders: Dictionary[int, Raider] = {}
 var drops: Dictionary[int, MaterialDrop] = {}
 var salvage_points: Array[Node3D] = []
+var extraction_points: Array[Node3D] = []
 var debug_visible: bool = false
 @onready var robot: RobotController = $Robot
 @onready var status: Label = $Overlay/RaiderStatus
@@ -36,6 +40,10 @@ func _ready() -> void:
 	for index in range(raider_count):
 		ids.append(index + 1)
 	ledger = MaterialLedger.new(stock, ids)
+	extraction_points.append($Extraction)
+	$Extraction2.visible = dynamic_ai
+	if dynamic_ai:
+		extraction_points.append($Extraction2)
 	$NavigationRegion3D.bake_navigation_mesh(false)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
 	var spawns := $RaiderSpawns.get_children()
@@ -53,6 +61,9 @@ func _ready() -> void:
 		actor.name = "Raider" if index == 0 else "Raider%d" % (index + 1)
 		actor.raider_id = index + 1
 		actor.ledger = ledger
+		actor.dynamic_ai = dynamic_ai
+		actor.profile = PROFILES[index % PROFILES.size()]
+		actor.select_extraction = choose_extraction
 		actor.robot = robot
 		actor.select_salvage = choose_salvage
 		actor.salvage = choose_salvage(actor.raider_id)
@@ -85,12 +96,78 @@ func spawn_is_clear(position: Vector3, other_positions: Array[Vector3] = []) -> 
 
 
 func choose_salvage(id: int) -> Node3D:
-	# Stable cyclic assignment, no scoring/planning/personality system in Stage A.
+	var actor := raiders.get(id) as Raider
+	if dynamic_ai and is_instance_valid(actor):
+		var selected: Node3D
+		var best := INF
+		for index in range(salvage_points.size()):
+			var point := salvage_points[index]
+			if not is_instance_valid(point) or ledger.available(point.name) <= 0 or actor.blocked_salvage.has(point.name):
+				continue
+			var cost := route_cost(actor, point)
+			if is_inf(cost):
+				continue
+			for other in raiders.values():
+				if is_instance_valid(other) and other != actor and other.state == Raider.State.SCAVENGING and other.salvage == point:
+					cost += 4.0
+			cost -= minf(ledger.available(point.name), actor.profile.cargo_target - actor.carried_materials) * 0.25
+			cost += selection_jitter(id, index)
+			if cost < best:
+				best = cost
+				selected = point
+		return selected
 	for offset in range(salvage_points.size()):
 		var point := salvage_points[(id - 1 + offset) % salvage_points.size()]
 		if is_instance_valid(point) and ledger.available(point.name) > 0:
 			return point
 	return null
+
+
+func selection_jitter(id: int, candidate_index: int) -> float:
+	var random := RandomNumberGenerator.new()
+	random.seed = debug_seed + id * 997 + candidate_index * 101
+	return random.randf_range(-0.1, 0.1)
+
+
+func choose_extraction(id: int) -> Node3D:
+	if not dynamic_ai:
+		return $Extraction
+	var actor := raiders.get(id) as Raider
+	if not is_instance_valid(actor):
+		return $Extraction
+	var selected: Node3D
+	var best := INF
+	for index in range(extraction_points.size()):
+		var point := extraction_points[index]
+		if not is_instance_valid(point) or actor.blocked_exits.has(point.name):
+			continue
+		var cost := route_cost(actor, point) + selection_jitter(id, index)
+		if cost < best:
+			best = cost
+			selected = point
+	return selected
+
+
+func route_cost(actor: Raider, point: Node3D) -> float:
+	var map: RID = $NavigationRegion3D.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(map) == 0:
+		return INF
+	var closest := NavigationServer3D.map_get_closest_point(map, point.global_position)
+	if closest.distance_to(point.global_position) > 1.0:
+		return INF
+	var path := NavigationServer3D.map_get_path(map, actor.global_position, closest, true)
+	if path.is_empty() or path[path.size() - 1].distance_to(closest) > 0.8:
+		return INF
+	var cost := 0.0
+	var risk := 0.0
+	var previous := actor.global_position
+	for position in path:
+		cost += previous.distance_to(position)
+		if actor.threat_visible or actor.threat_remaining > 0:
+			var near := Geometry3D.get_closest_point_to_segment(actor.last_threat_position, previous, position)
+			risk = maxf(risk, 8.0 - near.distance_to(actor.last_threat_position))
+		previous = position
+	return cost + risk * actor.profile.route_risk_weight
 
 
 func _physics_process(delta: float) -> void:
@@ -123,7 +200,8 @@ func _on_collection_requested(actor: Raider) -> void:
 		return
 	if actor.task_elapsed < actor.scavenge_seconds or actor.global_position.distance_to(actor.salvage.global_position) >= 0.8:
 		return
-	var amount := ledger.collect(actor.raider_id, actor.salvage.name, materials_per_point)
+	var target := actor.profile.cargo_target if actor.dynamic_ai else materials_per_point
+	var amount := ledger.collect(actor.raider_id, actor.salvage.name, target)
 	if amount > 0:
 		status.text = "R%02d carrying %d materials. Stop it before extraction." % [actor.raider_id, amount]
 	after_event()
@@ -231,13 +309,13 @@ func refresh_hud() -> void:
 			point.get_node("Label3D").text = "%s\n%d materials" % [point.name, ledger.available(point.name)]
 	$Overlay/DebugStatus.visible = debug_visible
 	if debug_visible:
-		var lines := PackedStringArray(["STAGE A | conservation %s | transfers %d" % [ledger.is_conserved(), ledger.accepted_transfers]])
+		var lines := PackedStringArray(["STAGE B | seed %d | conservation %s | transfers %d" % [debug_seed, ledger.is_conserved(), ledger.accepted_transfers]])
 		for id in raiders:
 			var actor := raiders[id]
 			if is_instance_valid(actor):
 				var target := str(actor.salvage.name) if is_instance_valid(actor.salvage) else "none"
-				var destination := target if actor.state == Raider.State.SCAVENGING else str(actor.extraction.name)
-				lines.append("R%02d %s | salvage %s | destination %s | cargo %d" % [id, Raider.State.keys()[actor.state], target, destination, actor.carried_materials])
+				var destination := target if actor.state == Raider.State.SCAVENGING else (str(actor.extraction.name) if is_instance_valid(actor.extraction) else "none")
+				lines.append("R%02d %s %s | target %s | dest %s | cargo %d | threat %s/%.1fs | %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], target, destination, actor.carried_materials, actor.threat_visible, actor.threat_remaining, actor.navigation_status])
 		$Overlay/DebugStatus.text = "\n".join(lines)
 
 
