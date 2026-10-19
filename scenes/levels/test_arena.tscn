@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=3]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
+sky_top_color = Color(0.16, 0.25, 0.36, 1)
+sky_horizon_color = Color(0.65, 0.73, 0.78, 1)
+ground_bottom_color = Color(0.13, 0.16, 0.19, 1)
+ground_horizon_color = Color(0.65, 0.73, 0.78, 1)
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMaterial")
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 3
+ambient_light_color = Color(0.72, 0.81, 0.95, 1)
+ambient_light_energy = 0.65
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.22, 0.28, 0.30, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+material = SubResource("FloorMaterial")
+size = Vector3(32, 1, 32)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.37, 0.43, 0.47, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+material = SubResource("WallMaterial")
+size = Vector3(32, 2, 1)
+
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(32, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="ObstacleMaterial"]
+albedo_color = Color(0.88, 0.48, 0.16, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="ObstacleMesh"]
+material = SubResource("ObstacleMaterial")
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxShape3D" id="ObstacleShape"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="LabelSettings" id="OverlaySettings"]
+font_size = 20
+font_color = Color(0.94, 0.97, 1, 1)
+outline_size = 6
+outline_color = Color(0.035, 0.045, 0.06, 1)
+
+[node name="TestArena" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+light_color = Color(1, 0.91, 0.78, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, -0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Floor"]
+mesh = SubResource("FloorMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Floor"]
+shape = SubResource("FloorShape")
+
+[node name="NorthWall" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, 1, -15.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/NorthWall"]
+mesh = SubResource("WallMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/NorthWall"]
+shape = SubResource("WallShape")
+
+[node name="SouthWall" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, 1, 15.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/SouthWall"]
+mesh = SubResource("WallMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/SouthWall"]
+shape = SubResource("WallShape")
+
+[node name="WestWall" type="StaticBody3D" parent="Geometry"]
+position = Vector3(-15.5, 1, 0)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestWall"]
+mesh = SubResource("WallMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WestWall"]
+shape = SubResource("WallShape")
+
+[node name="EastWall" type="StaticBody3D" parent="Geometry"]
+position = Vector3(15.5, 1, 0)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/EastWall"]
+mesh = SubResource("WallMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/EastWall"]
+shape = SubResource("WallShape")
+
+[node name="ObstacleA" type="StaticBody3D" parent="Geometry"]
+position = Vector3(-7, 1, -5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/ObstacleA"]
+mesh = SubResource("ObstacleMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/ObstacleA"]
+shape = SubResource("ObstacleShape")
+
+[node name="ObstacleB" type="StaticBody3D" parent="Geometry"]
+position = Vector3(6, 1, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/ObstacleB"]
+mesh = SubResource("ObstacleMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/ObstacleB"]
+shape = SubResource("ObstacleShape")
+
+[node name="ObstacleC" type="StaticBody3D" parent="Geometry"]
+position = Vector3(8, 1, 5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/ObstacleC"]
+mesh = SubResource("ObstacleMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/ObstacleC"]
+shape = SubResource("ObstacleShape")
+
+[node name="OverviewCamera" type="Camera3D" parent="."]
+position = Vector3(23, 27, 30)
+rotation_degrees = Vector3(-35.5, 37.5, 0)
+current = true
+fov = 60.0
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="FoundationStatus" type="Label" parent="Overlay"]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 760.0
+offset_bottom = 110.0
+mouse_filter = 2
+text = "SCRAP RAIDERS | FOUNDATION ARENA
+Milestone 1: static environment and input configuration
+Robot controls arrive in Milestone 2."
+label_settings = SubResource("OverlaySettings")

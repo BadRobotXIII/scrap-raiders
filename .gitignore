@@ -1,0 +1,6 @@
+# Godot generated imports and editor state. Track source assets and .uid files.
+.godot/
+export.cfg
+export_credentials.cfg
+builds/
+*.tmp
