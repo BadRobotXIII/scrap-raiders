@@ -79,6 +79,30 @@ func cargo_for(raider_id: int) -> int:
 	return _cargo.get(raider_id, 0)
 
 
+func release_source(point_id: StringName) -> int:
+	if _sealed or available(point_id) <= 0:
+		return 0
+	var id := _next_drop_id
+	_next_drop_id += 1
+	_ground[id] = _stock[point_id]
+	_stock[point_id] = 0
+	_drop_sources[id] = 0
+	_verify_transfer()
+	return id
+
+
+func collect_ground(raider_id: int, drop_id: int, capacity: int) -> int:
+	if _sealed or not is_active(raider_id) or capacity <= cargo_for(raider_id):
+		return 0
+	var amount := mini(capacity - cargo_for(raider_id), ground_for(drop_id))
+	if amount <= 0:
+		return 0
+	_ground[drop_id] -= amount
+	_cargo[raider_id] += amount
+	_verify_transfer()
+	return amount
+
+
 func ground_for(drop_id: int) -> int:
 	return _ground.get(drop_id, 0)
 

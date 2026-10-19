@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, and **F12 selects Recall Deployment with extraction and persistent rewards**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, **F12 selects Recall Deployment with extraction and persistent rewards**, and **F4 selects Machine Ecosystem**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -36,6 +36,7 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F9 | Deploy armed Survival (Stage E) |
 | F10 | Deploy Loot Pressure (Stage F); hold E for equipment |
 | F12 | Deploy Recall Deployment (Stage G); hold E at the Recall Dock for five seconds |
+| F4 | Deploy Machine Ecosystem (Stage H); scout and guard support with recall |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
@@ -195,6 +196,18 @@ Materials still protected at their original salvage points **do not block comple
 
 At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still-Raider-carried cargo remains carried. The summary reports material categories separately; F12 additionally settles player cargo as forfeited. Terminal completion seals transfers, stops all live actors and player combat/movement input, releases the cursor, and shows the restart control. Cosmetic cleanup can continue. Restart creates fresh deployment ledgers, actors, drops, timers, and outcomes; Stage G's persistent stash survives separately, without a global mission singleton.
 
+## Stage H machine ecosystem
+
+F4 or `godot --path . res://scenes/levels/ecosystem_arena.tscn` deploys three armed Raiders at 0/4/8 seconds, one blue flying scout and one green ground guard. The 180-second mission includes existing flares, equipment, recall and persistent rewards. Original scenarios keep their existing configurations.
+
+Each support machine owns its health, state, movement and destruction. The scout has 50 hull, patrols authored aerial waypoints at 2.5 m/s, and observes Raiders within 20 m with physical line of sight. The ground guard has 80 hull, follows navigation at 2.5 m/s, detects within 12 m and engages within 10 m. Its defensive pulse deals 5 damage every 1.2 seconds after a 0.5-second aim warning; green tracers show actual shots. Cover blocks shots, and allied machines block guard fire without taking damage. Support machines have cosmetic death tumbles and do not launch human death flares. They remain expendable and cannot replace player combat.
+
+Sensors scan every 0.25 seconds. The mission-local awareness board stores each source's latest position snapshot for three seconds, removes a destroyed source's report, and returns detached observations. The guard independently investigates reported positions when it cannot engage a visible Raider. Player warnings expire with their reports. Shared awareness never controls another actor's movement or tracks an unseen Raider's live position.
+
+Armed Raiders use the existing common FSM, cover logic and shot executor to hunt visible eligible machines. They choose the nearest visible machine, with a 30% distance-score preference for their current target to limit switching. Switching restarts the aim warning. Destroyed targets are discarded safely, and all firing still requires fresh visibility. F3 shows each Raider's current target.
+
+The ecosystem ledger starts with **11 total materials: nine salvage plus one installed component per support machine**. Installed components count as protected stock until destruction transfers them to an identified ground stack. No actor or loot mesh creates materials. Raiders score component drops alongside salvage and collect through validated scavenging requests; their death drops or extraction retain normal ledger accounting. Players recover components with E and bank them through recall as ordinary materials; there is no separate crafting currency. Every accepted transfer checks conservation. Surviving installed components do not block completion, and terminal deployment stops support movement and fire.
+
 ## Code boundaries
 
 - `scripts/gameplay/material_ledger.gd`: authoritative material transfers, identity, actor resolution, invariants.
@@ -214,6 +227,9 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 - `scripts/presentation/death_flare.gd`: cosmetic launch, lingering signal, and audio.
 - `scripts/gameplay/recall_controller.gd`: extraction eligibility/channel, reward commit and terminal player-cargo settlement.
 - `scripts/gameplay/persistent_stash.gd`: versioned persistent inventory, receipt validation, atomic replacement and backup recovery.
+- `scripts/gameplay/machine_ecosystem.gd`: support composition, visible machine target selection and ledger-backed component drop wiring.
+- `scripts/gameplay/machine_awareness.gd`: expiring mission-local observation snapshots.
+- `scripts/ai/support_machine.gd`: independent scout/guard FSM, sensors, health and physics.
 - `scripts/components/`: health, visual hit reaction, cosmetic death tumble.
 - `scripts/presentation/`, `scenes/effects/`: self-contained deployment presentation.
 
@@ -242,6 +258,7 @@ godot --headless --path . --script res://tests/awareness_test.gd
 godot --headless --path . --script res://tests/hostile_combat_test.gd
 godot --headless --path . --script res://tests/flare_loot_test.gd
 godot --headless --path . --script res://tests/extraction_test.gd
+godot --headless --path . --script res://tests/machine_ecosystem_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -288,7 +305,13 @@ Stage G tests use unique isolated saves under ignored `.godot/stage_g_tests/`; t
 
 Stage G validation (2026-10-19): all twelve suites passed, including the eleven existing regressions. Godot 4.7.2 import/parsing and bounded headless/Forward+ Recall Deployment startup passed without reported errors. Save tests were isolated from the real stash; gameplay feel and real-session retention still require manual play-testing.
 
-Stop at **Checkpoint G** for director review. Stages H-I remain planned and require separate approval.
+Stage G and the refinement allowing recall through nonlethal damage (`6c9dcfd`) were accepted by the director. Stage H's machine ecosystem implementation was approved separately.
+
+Stage H tests cover independent patrol physics, real machine-to-machine shots, defensive cadence, scout observations, detached snapshots and expiry, player warnings, target switching and destroyed target cleanup, one-time component release, validated Raider collection, normal player recovery, conservation, isolated saves, restart and terminal shutdown. Save tests use unique ignored `.godot/stage_h_tests/` directories and never bank into the player's stash.
+
+Stage H validation (2026-10-19): all thirteen suites passed, including the twelve regressions. Godot 4.7.2 editor import/parsing and bounded headless/Forward+ ecosystem startup passed without reported errors. Parallel regression runs reported two ObjectDB cleanup warnings in each of the flare/recall suites; separate reruns passed without those warnings. No Stage H test or startup errors remain. Generated `.godot/` data and builds remain ignored; script `.uid` files are tracked.
+
+Stop at **Checkpoint H** for director review. Stage I requires separate approval. Manual review should assess patrol routes and congestion, scout visibility, threat warning readability, target switching, guard usefulness versus danger, component pickup placement after aerial deaths, and recall under machine combat.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.

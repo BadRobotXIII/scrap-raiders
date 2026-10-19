@@ -82,7 +82,7 @@ func decide() -> bool:
 	if owns_state() and actor.threat_remaining <= 0:
 		actor.transition(Raider.State.SELECTING)
 		return false
-	if actor.threat_visible and actor.global_position.distance_to(actor.robot.global_position) <= profile.engagement_range:
+	if actor.threat_visible and actor.global_position.distance_to(actor.current_target().global_position) <= profile.engagement_range:
 		if actor.state != Raider.State.ENGAGING:
 			actor.transition(Raider.State.ENGAGING)
 		return true
@@ -120,10 +120,10 @@ func tick(delta: float) -> void:
 		aim_elapsed = 0
 		return
 	# Recheck visibility at firing time, not just the slower perception interval.
-	if not actor.detects_robot() or actor.global_position.distance_to(actor.robot.global_position) > profile.engagement_range:
+	if not actor.detects_robot() or actor.global_position.distance_to(actor.current_target().global_position) > profile.engagement_range:
 		aim_elapsed = 0
 		return
-	var facing := actor.robot.global_position - actor.global_position
+	var facing := actor.current_target().global_position - actor.global_position
 	actor.visuals.rotation.y = atan2(-facing.x, -facing.z)
 	aim_elapsed += delta
 	reposition_elapsed += delta
@@ -133,7 +133,7 @@ func tick(delta: float) -> void:
 			return
 	if aim_elapsed < profile.warning_time or weapon.cooldown > 0:
 		return
-	var aim := actor.robot.global_position + Vector3.UP
+	var aim := actor.target_point(actor.current_target())
 	var distance := weapon.muzzle.global_position.distance_to(aim)
 	var spread := tan(deg_to_rad(profile.spread_degrees)) * distance
 	aim += Vector3(random.randf_range(-spread, spread), random.randf_range(-spread, spread), random.randf_range(-spread, spread))

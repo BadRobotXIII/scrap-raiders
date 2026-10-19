@@ -22,6 +22,9 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVEST
 var dynamic_ai: bool = false
 var profile: RaiderProfile
 var combat: RaiderCombat
+var combat_target: Node3D
+var select_machine_target: Callable
+var available_stock: Callable
 var is_flare_responder: bool = false
 var ledger: MaterialLedger
 var raider_id: int = 0
@@ -84,13 +87,31 @@ func transition(next: State) -> void:
 	update_label()
 
 
-func detects_robot() -> bool:
-	if global_position.distance_to(robot.global_position) > detection_range:
+func current_target() -> Node3D:
+	return combat_target if is_instance_valid(combat_target) else robot
+
+
+func target_point(target: Node3D) -> Vector3:
+	return target.get_aim_position() if target.has_method("get_aim_position") else target.global_position + Vector3.UP
+
+
+func detects_machine(target: Node3D) -> bool:
+	if not is_instance_valid(target) or target.get_node("Health").current <= 0 or global_position.distance_to(target.global_position) > detection_range:
 		return false
 	var query := PhysicsRayQueryParameters3D.create(
-		global_position + Vector3.UP, robot.global_position + Vector3.UP, 3, [get_rid()])
+		global_position + Vector3.UP, target_point(target), 3, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	return not hit.is_empty() and hit.collider == robot
+	return not hit.is_empty() and hit.collider == target
+
+
+func detects_robot() -> bool:
+	return detects_machine(current_target())
+
+
+func salvage_available() -> int:
+	if not is_instance_valid(salvage):
+		return 0
+	return available_stock.call(salvage) if available_stock.is_valid() else ledger.available(salvage.name)
 
 
 func _choose_exit() -> bool:
@@ -106,9 +127,20 @@ func _choose_exit() -> bool:
 func decide() -> void:
 	if state in [State.DEAD, State.EXTRACTED]:
 		return
+	if select_machine_target.is_valid():
+		var selected: Node3D = select_machine_target.call(self)
+		if is_instance_valid(selected) and selected != combat_target:
+			combat_target = selected
+			if combat != null:
+				combat.aim_elapsed = 0
+				if combat.owns_state():
+					transition(State.SELECTING)
+		elif is_instance_valid(combat_target) and combat_target.get_node("Health").current <= 0:
+			combat_target = null
+			threat_remaining = 0
 	threat_visible = detects_robot()
 	if not dynamic_ai:
-		if state == State.SCAVENGING and (not is_instance_valid(salvage) or ledger.available(salvage.name) == 0):
+		if state == State.SCAVENGING and salvage_available() == 0:
 			salvage = select_salvage.call(raider_id)
 			task_elapsed = 0.0
 			if salvage == null:
@@ -120,7 +152,7 @@ func decide() -> void:
 		return
 	if threat_visible:
 		threat_remaining = profile.threat_memory
-		last_threat_position = robot.global_position
+		last_threat_position = current_target().global_position
 		threat_source = "sight"
 	elif threat_remaining <= 0.0:
 		_investigated_threat_position = Vector3.INF
@@ -136,7 +168,7 @@ func decide() -> void:
 			elif _choose_exit():
 				transition(State.EXTRACTING)
 		return
-	if threat_visible and global_position.distance_to(robot.global_position) <= profile.flee_distance:
+	if threat_visible and global_position.distance_to(current_target().global_position) <= profile.flee_distance:
 		if state != State.FLEEING and _choose_exit():
 			transition(State.FLEEING)
 	elif state == State.FLEEING and threat_remaining <= 0 and carried_materials < profile.cargo_target:
@@ -149,7 +181,7 @@ func decide() -> void:
 			transition(State.SCAVENGING)
 		elif _choose_exit():
 			transition(State.EXTRACTING)
-	elif state == State.SCAVENGING and (not is_instance_valid(salvage) or ledger.available(salvage.name) == 0):
+	elif state == State.SCAVENGING and salvage_available() == 0:
 		transition(State.SELECTING)
 	elif state == State.FLEEING and is_instance_valid(extraction) and global_position.distance_to(extraction.global_position) < 0.8:
 		transition(State.EXTRACTING)
@@ -341,7 +373,7 @@ func _on_damaged(_amount: float) -> void:
 		task_elapsed = 0
 		if dynamic_ai:
 			threat_remaining = profile.threat_memory + 2.0
-			last_threat_position = robot.global_position
+			last_threat_position = health.last_damage_origin if select_machine_target.is_valid() and health.last_damage_origin.is_finite() else robot.global_position
 			threat_source = "damage"
 			if combat != null:
 				combat.on_damaged()

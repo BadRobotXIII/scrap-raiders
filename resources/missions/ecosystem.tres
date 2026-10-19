@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+display_name = "Machine Ecosystem"
+raider_count = 3
+entry_times = PackedFloat32Array(0, 4, 8)
+duration = 180.0
+seed = 61017
+armed = true
+death_flares = true
+player_extraction = true
+machine_ecosystem = true

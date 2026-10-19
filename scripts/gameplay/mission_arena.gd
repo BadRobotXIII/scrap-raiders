@@ -1,8 +1,8 @@
 extends "res://scripts/gameplay/raider_arena.gd"
 ## Owns scheduled entry and scenario selection; Raiders retain their shared FSM.
 
-const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres")]
-@export_range(0, 5) var scenario_index: int = 0
+const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres"), preload("res://resources/missions/ecosystem.tres")]
+@export_range(0, 6) var scenario_index: int = 0
 var config: MissionConfig
 var pending_ids: Array[int] = []
 var spawn_order: Array[Node3D] = []
@@ -22,8 +22,9 @@ func _ready() -> void:
 	combat_profile = preload("res://resources/enemies/armed_scavenger.tres") if config.armed else null
 	flare_rules = preload("res://resources/missions/death_flare_rules.tres") if config.death_flares else null
 	recall_enabled = config.player_extraction
+	ecosystem_enabled = config.machine_ecosystem
 	super._ready()
-	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF6-8: Unarmed | F9: Survival | F10: Loot Pressure | F12: Extraction | F3: debug" % config.display_name
+	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF4: Ecosystem | F6-8: Unarmed | F9: Survival | F10: Loot | F12: Recall | F3: debug" % config.display_name
 	if not mission.is_finished():
 		for index in range(config.ground_stacks):
 			present_drop(index + 1, $GroundCargo.get_child(index).global_position)
@@ -146,11 +147,21 @@ func refresh_hud() -> void:
 		objectives.text = objectives.text.replace("Intercept Raiders and recover dropped cargo.", "Recover loot, survive, and extract at the Recall Dock.")
 	if flare_director != null:
 		objectives.text += "\nEquipment ground %d | Recovered %d | Response budget %d/%d" % [flare_director.equipment.ground_count(), flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.committed, flare_rules.reinforcement_budget]
+	if ecosystem != null:
+		var reports := ecosystem.awareness.observations(elapsed)
+		if not reports.is_empty() and not mission.is_finished():
+			$Overlay/RaiderStatus.text = "Machine report: R%02d last seen near (%.0f, %.0f)" % [reports[0].target_id, reports[0].position.x, reports[0].position.z]
+		elif $Overlay/RaiderStatus.text.begins_with("Machine report:"):
+			$Overlay/RaiderStatus.text = ""
 	if debug_visible:
 		$Overlay/DebugStatus.text = $Overlay/DebugStatus.text.replace("STAGE B", "STAGE C")
 		$Overlay/DebugStatus.text += "\nSTAGE C | %s | pending %s | %s" % [config.display_name, pending_ids, entry_status]
 		if flare_director != null:
 			$Overlay/DebugStatus.text += "\nFLARES %d | local jobs %d | reinforcement tickets %d | equipment invariant %s" % [flare_director.handled_deaths.size(), flare_director.local_jobs.size(), flare_director.tickets.size(), flare_director.equipment.is_valid()]
+		if ecosystem != null:
+			for actor in raiders.values():
+				if is_instance_valid(actor):
+					$Overlay/DebugStatus.text += "\nR%02d target %s" % [actor.raider_id, actor.current_target().name]
 
 
 func finish_mission() -> void:
@@ -162,6 +173,10 @@ func finish_mission() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_F4:
+			get_viewport().set_input_as_handled()
+			select_scenario.call_deferred(6)
+			return
 		var index := [KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F12].find(event.physical_keycode)
 		if index >= 0:
 			get_viewport().set_input_as_handled()

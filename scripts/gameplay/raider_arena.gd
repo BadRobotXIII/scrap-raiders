@@ -19,6 +19,8 @@ var flare_director: FlareDirector
 @export var recall_enabled: bool = false
 @export var stash_path: String = "user://stash.json"
 var recall: RecallController
+@export var ecosystem_enabled: bool = false
+var ecosystem: MachineEcosystem
 var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
@@ -46,6 +48,9 @@ func _ready() -> void:
 	var ids: Array[int] = []
 	for index in range(raider_count):
 		ids.append(index + 1)
+	if ecosystem_enabled:
+		stock[&"ScoutComponents"] = 1
+		stock[&"GuardComponents"] = 1
 	ledger = MaterialLedger.new(stock, ids, initial_ground_stock())
 	if flare_rules != null:
 		flare_director = FlareDirector.new()
@@ -61,6 +66,11 @@ func _ready() -> void:
 		recall.setup()
 	setup_extractions()
 	$NavigationRegion3D.bake_navigation_mesh(false)
+	if ecosystem_enabled:
+		ecosystem = MachineEcosystem.new()
+		ecosystem.arena = self
+		add_child(ecosystem)
+		ecosystem.setup()
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
 	$Robot/Weapon.fired.connect(_on_weapon_fired)
 	$Robot/Health.died.connect(_on_player_destroyed)
@@ -123,6 +133,9 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	actor.select_extraction = choose_extraction
 	actor.robot = robot
 	actor.select_salvage = choose_salvage
+	actor.available_stock = available_salvage
+	if ecosystem != null:
+		actor.select_machine_target = ecosystem.choose_target
 	actor.salvage = choose_salvage(id)
 	actor.extraction = extraction_points[0]
 	actor.position = to_local(world_position)
@@ -167,7 +180,7 @@ func reserve_cover(id: int) -> Node3D:
 		query.from = peek.global_position + Vector3.UP
 		query.collision_mask = 3
 		hit = get_world_3d().direct_space_state.intersect_ray(query)
-		if not hit.is_empty() and hit.collider != robot:
+		if not hit.is_empty() and hit.collider != actor.current_target():
 			continue
 		var cost := route_cost(actor, point) + route_cost(actor, peek)
 		if cost < best:
@@ -197,9 +210,12 @@ func choose_salvage(id: int) -> Node3D:
 	if dynamic_ai and is_instance_valid(actor):
 		var selected: Node3D
 		var best := INF
-		for index in range(salvage_points.size()):
-			var point := salvage_points[index]
-			if not is_instance_valid(point) or ledger.available(point.name) <= 0 or actor.blocked_salvage.has(point.name):
+		var candidates: Array[Node3D] = salvage_points.duplicate()
+		if ecosystem != null:
+			candidates.append_array(ecosystem.component_drops())
+		for index in range(candidates.size()):
+			var point := candidates[index]
+			if not is_instance_valid(point) or available_salvage(point) <= 0 or actor.blocked_salvage.has(point.name):
 				continue
 			var cost := route_cost(actor, point)
 			if is_inf(cost):
@@ -207,7 +223,7 @@ func choose_salvage(id: int) -> Node3D:
 			for other in raiders.values():
 				if is_instance_valid(other) and other != actor and other.state == Raider.State.SCAVENGING and other.salvage == point:
 					cost += 4.0
-			cost -= minf(ledger.available(point.name), actor.profile.cargo_target - actor.carried_materials) * 0.25
+			cost -= minf(available_salvage(point), actor.profile.cargo_target - actor.carried_materials) * 0.25
 			cost += selection_jitter(id, index)
 			if cost < best:
 				best = cost
@@ -218,6 +234,10 @@ func choose_salvage(id: int) -> Node3D:
 		if is_instance_valid(point) and ledger.available(point.name) > 0:
 			return point
 	return null
+
+
+func available_salvage(point: Node3D) -> int:
+	return ledger.ground_for(point.drop_id) if point is MaterialDrop else ledger.available(point.name)
 
 
 func selection_jitter(id: int, candidate_index: int) -> float:
@@ -298,7 +318,14 @@ func _on_collection_requested(actor: Raider) -> void:
 	if actor.task_elapsed < actor.scavenge_seconds or actor.global_position.distance_to(actor.salvage.global_position) >= 0.8:
 		return
 	var target := actor.profile.cargo_target if actor.dynamic_ai else materials_per_point
-	var amount := ledger.collect(actor.raider_id, actor.salvage.name, target)
+	var amount: int
+	if actor.salvage is MaterialDrop:
+		amount = ledger.collect_ground(actor.raider_id, actor.salvage.drop_id, target)
+		if actor.salvage.materials == 0:
+			drops.erase(actor.salvage.drop_id)
+			actor.salvage.queue_free()
+	else:
+		amount = ledger.collect(actor.raider_id, actor.salvage.name, target)
 	if amount > 0:
 		status.text = "R%02d carrying %d materials. Stop it before extraction." % [actor.raider_id, amount]
 	after_event()
@@ -444,6 +471,8 @@ func finish_mission() -> void:
 	if recall != null:
 		recall.settle_failure()
 	ledger.seal()
+	if ecosystem != null:
+		ecosystem.stop()
 	if flare_director != null:
 		flare_director.stop()
 	robot.input_adapter.clear_intent()
