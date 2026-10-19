@@ -22,6 +22,7 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVEST
 var dynamic_ai: bool = false
 var profile: RaiderProfile
 var combat: RaiderCombat
+var is_flare_responder: bool = false
 var ledger: MaterialLedger
 var raider_id: int = 0
 var select_salvage: Callable
@@ -160,6 +161,30 @@ func begin_investigation() -> void:
 	# Arrival allows 0.8 m tolerance; stay clear of the close-threat threshold.
 	investigation_position = target + away * (profile.flee_distance + 1.25)
 	transition(State.INVESTIGATING)
+
+
+func investigate_flare(position: Vector3) -> bool:
+	if state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or health.current <= health.maximum * 0.3:
+		return false
+	if detects_robot() or (combat != null and combat.owns_state()):
+		return false
+	if state == State.EXTRACTING and carried_materials >= profile.cargo_target:
+		return false
+	var map := agent.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(map) == 0:
+		return false
+	var closest := NavigationServer3D.map_get_closest_point(map, position)
+	var path := NavigationServer3D.map_get_path(map, global_position, closest, true)
+	if closest.distance_to(position) > 1 or path.is_empty() or path[path.size() - 1].distance_to(closest) > 0.8:
+		return false
+	if investigation_position.distance_to(position) > 0.5:
+		task_elapsed = 0.0
+	investigation_position = position
+	last_threat_position = position
+	threat_source = "flare"
+	threat_remaining = maxf(threat_remaining, profile.threat_memory)
+	transition(State.INVESTIGATING)
+	return true
 
 
 func hear_gunfire(origin: Vector3) -> bool:
@@ -373,4 +398,6 @@ func update_label() -> void:
 			activity = "REPOSITIONING"
 	label.modulate = color
 	var identity := "R%02d %s" % [raider_id, profile.display_name] if dynamic_ai else "R%02d" % raider_id
+	if is_flare_responder:
+		identity = "R%02d RESPONDER" % raider_id
 	label.text = "%s %s\nHP %d | CARGO %d" % [identity, activity, health.current, carried_materials]

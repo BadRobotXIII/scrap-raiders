@@ -14,6 +14,8 @@ const PROFILES: Array[RaiderProfile] = [preload("res://resources/enemies/greedy.
 @export var dynamic_ai: bool = true
 @export var debug_seed: int = 4711
 @export var combat_profile: RaiderCombatProfile
+@export var flare_rules: FlareConfig
+var flare_director: FlareDirector
 var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
@@ -42,6 +44,12 @@ func _ready() -> void:
 	for index in range(raider_count):
 		ids.append(index + 1)
 	ledger = MaterialLedger.new(stock, ids, initial_ground_stock())
+	if flare_rules != null:
+		flare_director = FlareDirector.new()
+		flare_director.arena = self
+		flare_director.rules = flare_rules
+		add_child(flare_director)
+		flare_director.setup()
 	setup_extractions()
 	$NavigationRegion3D.bake_navigation_mesh(false)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
@@ -121,6 +129,9 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 		actor.combat.release_cover = release_cover
 		actor.combat.setup(actor, combat_profile, debug_seed)
 		actor.detection_range = combat_profile.engagement_range
+	if flare_director != null:
+		actor.is_flare_responder = flare_director.responder_ids.has(id)
+		flare_director.register_actor(actor)
 	return actor
 
 
@@ -252,7 +263,7 @@ func _physics_process(delta: float) -> void:
 		return
 	elapsed += delta
 	if elapsed >= mission_duration:
-		mission.evaluate(ledger, true)
+		evaluate_mission(true)
 		finish_mission()
 		return
 	if robot.input_adapter.pickup_intent:
@@ -295,6 +306,8 @@ func _on_defeated(_reported_amount: int, actor: Raider) -> void:
 		status.text = "%d materials dropped by R%02d. Approach the cyan cube and press E." % [drop.materials, actor.raider_id]
 	else:
 		status.text = "R%02d stopped empty; other Raiders and cargo remain active." % actor.raider_id
+	if flare_director != null:
+		flare_director.accepted_death(actor)
 	after_event()
 
 
@@ -313,15 +326,21 @@ func _on_extracted(_reported_amount: int, actor: Raider) -> void:
 		return
 	var amount := ledger.cargo_for(actor.raider_id)
 	if ledger.extract(actor.raider_id):
+		if flare_director != null:
+			flare_director.equipment.resolve(actor.raider_id, true)
 		status.text = "R%02d extracted with %d materials. Continue intercepting/recovering." % [actor.raider_id, amount]
 		after_event()
 
 
 func after_event() -> void:
-	mission.evaluate(ledger)
+	evaluate_mission()
 	refresh_hud()
 	if mission.is_finished():
 		finish_mission()
+
+
+func evaluate_mission(deadline: bool = false) -> void:
+	mission.evaluate(ledger, deadline, flare_director.tickets.size() if flare_director != null else 0, flare_director.equipment.ground_count() if flare_director != null else 0)
 
 
 func eligible_drop(drop: MaterialDrop) -> bool:
@@ -414,6 +433,8 @@ func finish_mission() -> void:
 	if not mission.is_finished() or summary.visible:
 		return
 	ledger.seal()
+	if flare_director != null:
+		flare_director.stop()
 	robot.input_adapter.clear_intent()
 	robot.input_adapter.set_physics_process(false)
 	robot.input_adapter.set_process_input(false)
@@ -433,6 +454,8 @@ func finish_mission() -> void:
 		title, mission.reason, ledger.protected_materials, ledger.recovered_materials,
 		ledger.lost_materials, ledger.dropped_materials, ledger.carried_materials, ledger.total_materials, elapsed]
 	summary.show()
+	if flare_director != null:
+		$Overlay/Summary/Content/Report.text += "\nEquipment recovered: %d | Ground: %d | Value recovered: %d\nEquipment carried: %d | Extracted: %d\nResponses pending: %d | Budget used: %d/%d" % [flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.ground_count(), flare_director.equipment.value_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.count_at(EquipmentLedger.Location.CARRIED), flare_director.equipment.count_at(EquipmentLedger.Location.EXTRACTED), flare_director.tickets.size(), flare_director.committed, flare_rules.reinforcement_budget]
 	refresh_hud()
 
 

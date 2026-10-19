@@ -68,4 +68,6 @@ func refresh() -> void:
 		alert.text = "! AIMING" if actor.combat.aim_elapsed < actor.combat.profile.warning_time else "! FIRING"
 	if actor.threat_source == "gunfire":
 		alert.text += " GUNFIRE"
+	elif actor.threat_source == "flare":
+		alert.text += " FLARE"
 	alert.modulate = Color(1, 0.8, 0.3) if investigating else Color(1, 0.45, 0.25)

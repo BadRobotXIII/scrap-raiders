@@ -8,6 +8,7 @@ var move_intent: Vector2 = Vector2.ZERO
 var aim_intent: bool = false
 var fire_intent: bool = false
 var pickup_intent: bool = false
+var recover_held: bool = false
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _physics_process(_delta: float) -> void:
 	aim_intent = Input.is_action_pressed("aim")
 	fire_intent = Input.is_action_pressed("fire")
 	pickup_intent = Input.is_action_just_pressed("recover")
+	recover_held = Input.is_action_pressed("recover")
 
 
 func _input(event: InputEvent) -> void:
@@ -46,3 +48,4 @@ func clear_intent() -> void:
 	aim_intent = false
 	fire_intent = false
 	pickup_intent = false
+	recover_held = false

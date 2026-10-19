@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 for the accepted unarmed Intercept, Swarm, and Recovery scenarios; **F9 deploys armed Survival**. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 for the accepted unarmed Intercept, Swarm, and Recovery scenarios; **F9 deploys armed Survival** and **F10 deploys Loot Pressure with death flares and equipment recovery**. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -34,6 +34,7 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F3 | Toggle developer diagnostics independently of gameplay prompts |
 | F6 / F7 / F8 | Deploy Intercept / Swarm / Recovery in the expanded arena |
 | F9 | Deploy armed Survival (Stage E) |
+| F10 | Deploy Loot Pressure (Stage F); hold E for equipment |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
@@ -121,7 +122,23 @@ The initial combat resource uses 10 damage, 0.8-second shot interval, 24 m physi
 
 The common Raider FSM adds ENGAGING, TAKING_COVER, and REPOSITIONING. `RaiderCombat` supplies decisions and aim timing through that FSM; CharacterBody3D retains movement/velocity. Authored cover slots include a protected position and peek position. The arena validates cover against the last-known threat, clear peek sightlines, navigation reachability, and exclusive actor reservations. Cover dwell is one second, followed by physical movement to the peek position and a fresh warning. Fighters also attempt repositioning after three seconds of engagement. Reservations are released on disengagement, retreat, death, extraction, or mission shutdown. No valid cover falls back to investigation or retreat; stalled cover routes use the existing navigation watchdog. This is basic squad coordination through cover allocation, with no shared movement controller or tactical squad framework.
 
-Player destruction is a distinct mission reason, separate from deadline expiration and Raider material outcomes. At this temporary Stage E boundary, **all material categories are preserved exactly and sealed**: protected, carried, ground, recovered, and extracted/lost. Death does not relabel cargo as extracted loss or create persistent inventory consequences. Flare response, equipment loot, player extraction, and persistence remain outside Stage E.
+Player destruction is a distinct mission reason, separate from deadline expiration and Raider material outcomes. At this temporary Stage E boundary, **all material categories are preserved exactly and sealed**: protected, carried, ground, recovered, and extracted/lost. Death does not relabel cargo as extracted loss or create persistent inventory consequences. Stage F adds flare/equipment pressure in a separate preset below. Player extraction and persistence remain Stage G work.
+
+## Phase 3, Stage F death flares and loot pressure
+
+Use **F10**, or `godot --path . res://scenes/levels/loot_pressure_arena.tscn`. This preset has three armed Raiders entering immediately, nine materials, two exits, seed 41017, and a 180-second deadline. F6-F9 retain their accepted behavior. Restart preserves the selected preset and resets every response, item allocation, world drop, and flare.
+
+Every accepted Raider death in Loot Pressure launches exactly one original primitive flare with a rising tone. It climbs for 0.8 seconds and lingers for 20 seconds. It also drops equipment even when the Raider carried no mission material. Survivors do not launch flares voluntarily. Dead responders still produce flares and low-value loot.
+
+`death_flare_rules.tres` configures a 20 m alert radius, two-second local response delay, eight-second reinforcement delay, two additional Raiders per deployment, five living Raiders maximum, and 1.5-second equipment hold time. Each death snapshots nearby existing actors for delayed notification. Their own FSM can investigate the death location, while active combat, retreat, low health, and loaded extraction retain priority. A flare does not reveal subsequent unseen player movement.
+
+The first two deaths each commit at most one reinforcement ticket. Local notifications are processed before reinforcement admission; reinforcement delay is constrained to exceed local delay. Due tickets use the existing seeded marker order, collision/support checks, and reachable routes to salvage, exits, and the flare. Blocked entries and the active cap defer admission with no teleport. Tickets retry every 0.5 seconds until admitted or deployment ends. Responder deaths cannot replenish the budget, so response chains are finite. F3 shows local jobs, pending tickets, budget use, and ownership validity.
+
+`EquipmentLedger` is the sole writer of equipment ownership. Every item receives a unique deployment-local identity and exactly one location: Raider-carried, ground, recovered, or extracted. Ordinary loadouts contain a rifle (prototype value 4) and electronics kit (2); a responder carries a worn rifle (1). These values describe relative loot desirability, with no currency, equipping, sale, or persistent progression yet. Only admitted actors receive allocations. Physical purple cases are read-only views; duplicate death/recovery, unknown ownership, and transfers after sealing are rejected. Ownership validity is checked after every accepted allocation or transfer.
+
+Material accounting stays separate: reinforcing actor registration adds zero cargo and cannot increase the finite material total. Cyan material stacks retain immediate E recovery. An eligible cyan stack takes priority; holding E then recovers nearby equipment once it is cleared. The nearest eligible purple case highlights and uses the same identity, distance, and unobstructed-access check as hold completion. Releasing E, movement input, moving more than 0.25 m, firing, losing access, changing target, or receiving damage cancels equipment progress. Cursor/focus handling clears held intent through `RobotInput`.
+
+Committed tickets keep the hunt active even when no current Raider survives. With all Raiders resolved and no tickets, either ground materials or equipment enter recovery-only. Once both are recovered, existing success/extraction-loss policy applies; untouched salvage does not block completion. Death and the deadline stop response/interaction work and seal both ledgers, retaining all categories. Summaries distinguish equipment carried, ground, recovered, and extracted separately from mission materials. Leaving the flare area is always allowed; no stationary-defense objective or persistent inventory is introduced.
 
 ## Ownership and material conservation
 
@@ -175,6 +192,9 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 - `scripts/gameplay/shot_executor.gd`: shared shot execution, cooldown, physical obstruction and damage.
 - `scripts/ai/raider_combat.gd`, `raider_combat_profile.gd`: armed decision/aim intent and combat tuning, using the common Raider FSM.
 - `scripts/player/player_damage_feedback.gd`: hull, incoming damage, directional feedback and destruction presentation.
+- `scripts/gameplay/flare_director.gd`, `flare_config.gd`: bounded mission-local response tickets, local notification and equipment hold interaction.
+- `scripts/gameplay/equipment_ledger.gd`, `equipment_drop.gd`: authoritative item ownership and read-only world representation.
+- `scripts/presentation/death_flare.gd`: cosmetic launch, lingering signal, and audio.
 - `scripts/components/`: health, visual hit reaction, cosmetic death tumble.
 - `scripts/presentation/`, `scenes/effects/`: self-contained deployment presentation.
 
@@ -201,6 +221,7 @@ godot --headless --path . --script res://tests/dynamic_ai_test.gd
 godot --headless --path . --script res://tests/mission_variety_test.gd
 godot --headless --path . --script res://tests/awareness_test.gd
 godot --headless --path . --script res://tests/hostile_combat_test.gd
+godot --headless --path . --script res://tests/flare_loot_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -235,7 +256,13 @@ Stage D (`9f21ae8`) and Phase 2 were accepted by the director. Phase 3 Stage E w
 
 Stage E coverage includes real hostile hits and a lethal shot, warning/cadence/range, physical cover obstruction, visibility interruption, distinct cover reservations, damage interruption, retreat/extraction, return to scavenging, independent attackers, one-time player death, terminal shutdown, exact material categories, seeded restart, cosmetic destruction, and natural firing/cover/peek physics. All ten automated suites passed on 2026-10-18, including the nine existing regression suites. Godot 4.7.2 import/parsing and bounded headless/Forward+ Survival startup passed without reported errors. Manual survival testing must establish incoming damage readability, warning fairness, accuracy, cover choices/congestion, difficulty against multiple attackers, and restart behavior.
 
-Stop at **Checkpoint E** for director review. Stages F-I remain planned and require separate approval.
+Stage E (`c8d6686`) has been accepted by the director. Stage F's implementation plan and initial timings/limits were approved separately.
+
+Stage F tests cover duplicate/simultaneous deaths, empty-cargo equipment, unique ownership, low responder loot value, delayed local response before reinforcements, blocked entry retry, active caps, finite reinforcement chains, equipment-only completion, hold interruption/eligibility, deadline sealing, restart, and natural physics response timing. Manual review must establish flare/audio readability, looting-window fairness, responder routes and congestion, overlapping material/equipment prompts, and the ability to disengage.
+
+Stage F validation (2026-10-19): all eleven automated suites passed, including the ten existing regressions. Godot 4.7.2 import/parsing, bounded headless Loot Pressure startup, and Forward+ graphical startup passed without reported errors. Manual play-testing remains pending.
+
+Stop at **Checkpoint F** for director review. Stages G-I remain planned and require separate approval.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.

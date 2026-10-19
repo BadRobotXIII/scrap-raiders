@@ -21,15 +21,15 @@ func is_finished() -> bool:
 	return phase in [Phase.SUCCEEDED, Phase.FAILED]
 
 
-func evaluate(ledger: MaterialLedger, deadline_expired: bool = false) -> void:
+func evaluate(ledger: MaterialLedger, deadline_expired: bool = false, pending_responses: int = 0, ground_equipment: int = 0) -> void:
 	if is_finished():
 		return
 	if deadline_expired:
 		phase = Phase.FAILED
 		reason = "Deployment time expired. Ground cargo remains unrecovered, not extracted."
-	elif ledger.active_raiders > 0:
+	elif ledger.active_raiders > 0 or pending_responses > 0:
 		phase = Phase.HUNTING
-	elif ledger.dropped_materials > 0:
+	elif ledger.dropped_materials > 0 or ground_equipment > 0:
 		phase = Phase.RECOVERING
 	elif ledger.lost_materials > 0:
 		phase = Phase.FAILED

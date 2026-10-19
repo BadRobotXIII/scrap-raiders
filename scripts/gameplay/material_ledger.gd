@@ -59,6 +59,15 @@ func available(point_id: StringName) -> int:
 	return _stock.get(point_id, 0)
 
 
+func register_raider(id: int) -> bool:
+	if _sealed or id <= 0 or _cargo.has(id):
+		return false
+	_cargo[id] = 0
+	_outcomes[id] = Outcome.ACTIVE
+	_verify_transfer()
+	return true
+
+
 func cargo_for(raider_id: int) -> int:
 	return _cargo.get(raider_id, 0)
 
