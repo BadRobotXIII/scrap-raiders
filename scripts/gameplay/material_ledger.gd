@@ -1,0 +1,151 @@
+class_name MaterialLedger
+extends RefCounted
+## Sole writer of material quantities/locations. No mission success/failure policy.
+
+enum Outcome { ACTIVE, DEFEATED, EXTRACTED }
+
+var _stock: Dictionary[StringName, int] = {}
+var _cargo: Dictionary[int, int] = {}
+var _outcomes: Dictionary[int, Outcome] = {}
+var _ground: Dictionary[int, int] = {}
+var _drop_sources: Dictionary[int, int] = {}
+var _next_drop_id: int = 1
+var _recovered: int = 0
+var _lost: int = 0
+var _total: int = 0
+var _sealed: bool = false
+var accepted_transfers: int = 0
+
+var total_materials: int:
+	get: return _total
+var protected_materials: int:
+	get: return _sum(_stock)
+var carried_materials: int:
+	get: return _sum(_cargo)
+var dropped_materials: int:
+	get: return _sum(_ground)
+var recovered_materials: int:
+	get: return _recovered
+var lost_materials: int:
+	get: return _lost
+var active_raiders: int:
+	get:
+		var count := 0
+		for id in _outcomes:
+			if _outcomes[id] == Outcome.ACTIVE:
+				count += 1
+		return count
+
+
+func _init(stock: Dictionary = {}, raider_ids: Array[int] = []) -> void:
+	for point_id in stock:
+		assert(int(stock[point_id]) >= 0)
+		_stock[StringName(point_id)] = int(stock[point_id])
+		_total += int(stock[point_id])
+	for id in raider_ids:
+		assert(not _cargo.has(id) and id > 0)
+		_cargo[id] = 0
+		_outcomes[id] = Outcome.ACTIVE
+	assert(is_conserved())
+
+
+func available(point_id: StringName) -> int:
+	return _stock.get(point_id, 0)
+
+
+func cargo_for(raider_id: int) -> int:
+	return _cargo.get(raider_id, 0)
+
+
+func ground_for(drop_id: int) -> int:
+	return _ground.get(drop_id, 0)
+
+
+func drop_source(drop_id: int) -> int:
+	return _drop_sources.get(drop_id, 0)
+
+
+func is_active(raider_id: int) -> bool:
+	return _outcomes.has(raider_id) and _outcomes[raider_id] == Outcome.ACTIVE
+
+
+func collect(raider_id: int, point_id: StringName, capacity: int) -> int:
+	if _sealed or not is_active(raider_id) or cargo_for(raider_id) != 0 or capacity <= 0:
+		return 0
+	var amount := mini(capacity, available(point_id))
+	if amount <= 0:
+		return 0
+	_stock[point_id] -= amount
+	_cargo[raider_id] += amount
+	_verify_transfer()
+	return amount
+
+
+func defeat(raider_id: int) -> int:
+	# -1 rejected, 0 empty death, positive value = unique new ground stack ID.
+	if _sealed or not is_active(raider_id):
+		return -1
+	var amount := cargo_for(raider_id)
+	_cargo[raider_id] = 0
+	_outcomes[raider_id] = Outcome.DEFEATED
+	var drop_id := 0
+	if amount > 0:
+		drop_id = _next_drop_id
+		_next_drop_id += 1
+		_ground[drop_id] = amount
+		_drop_sources[drop_id] = raider_id
+	_verify_transfer()
+	return drop_id
+
+
+func extract(raider_id: int) -> bool:
+	if _sealed or not is_active(raider_id):
+		return false
+	_lost += cargo_for(raider_id)
+	_cargo[raider_id] = 0
+	_outcomes[raider_id] = Outcome.EXTRACTED
+	_verify_transfer()
+	return true
+
+
+func recover(drop_id: int) -> int:
+	if _sealed or ground_for(drop_id) <= 0:
+		return 0
+	var amount := _ground[drop_id]
+	_ground[drop_id] = 0
+	_recovered += amount
+	_verify_transfer()
+	return amount
+
+
+func seal() -> void:
+	_sealed = true
+
+
+func is_conserved() -> bool:
+	if protected_materials + carried_materials + dropped_materials + _recovered + _lost != _total:
+		return false
+	for records in [_stock, _cargo, _ground]:
+		for amount in records.values():
+			if amount < 0:
+				return false
+	for id in _outcomes:
+		if not is_active(id) and cargo_for(id) != 0:
+			return false
+	return _recovered >= 0 and _lost >= 0
+
+
+func _verify_transfer() -> void:
+	accepted_transfers += 1
+	# Execute validation in release builds too; assert adds debug diagnostics.
+	var valid := is_conserved()
+	if not valid:
+		push_error("Material conservation invariant violated")
+	assert(valid, "Material conservation invariant violated")
+
+
+func _sum(records: Dictionary) -> int:
+	var result := 0
+	for id in records:
+		result += int(records[id])
+	return result

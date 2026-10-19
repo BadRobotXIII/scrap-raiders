@@ -1,13 +1,22 @@
 extends Node3D
-## Scene wiring and presentation. MissionRules owns outcomes and accounting.
+## Coordinates scene objects and presentation. Ledger owns materials; rules own outcomes.
 
 const DEPLOYMENT_EFFECT := preload("res://scenes/effects/deployment_effect.tscn")
+const RAIDER_SCENE := preload("res://scenes/raiders/raider.tscn")
+const DROP_SCENE := preload("res://scenes/loot/material_drop.tscn")
 
+@export_range(1, 5) var raider_count: int = 3
+@export_range(1, 3) var salvage_point_count: int = 3
+@export_range(1, 99) var materials_per_point: int = 3
 @export var mission_duration: float = 180.0
 @export var pickup_distance: float = 1.8
+var ledger: MaterialLedger
 var mission := MissionRules.new()
 var elapsed: float = 0.0
-var cargo_drop: MaterialDrop
+var raiders: Dictionary[int, Raider] = {}
+var drops: Dictionary[int, MaterialDrop] = {}
+var salvage_points: Array[Node3D] = []
+var debug_visible: bool = false
 @onready var robot: RobotController = $Robot
 @onready var status: Label = $Overlay/RaiderStatus
 @onready var objectives: Label = $Overlay/MissionStatus
@@ -16,16 +25,72 @@ var cargo_drop: MaterialDrop
 
 func _ready() -> void:
 	process_physics_priority = 20
+	var stock := {}
+	var candidates: Array[Node3D] = [$Salvage, $Salvage2, $Salvage3]
+	for index in range(candidates.size()):
+		candidates[index].visible = index < salvage_point_count
+		if index < salvage_point_count:
+			salvage_points.append(candidates[index])
+			stock[candidates[index].name] = materials_per_point
+	var ids: Array[int] = []
+	for index in range(raider_count):
+		ids.append(index + 1)
+	ledger = MaterialLedger.new(stock, ids)
 	$NavigationRegion3D.bake_navigation_mesh(false)
-	$Raider.cargo_collected.connect(_on_cargo_collected)
-	$Raider.defeated.connect(_on_defeated)
-	$Raider.extracted.connect(_on_extracted)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
-	status.text = "Intercept the Raider. Stop theft, or recover its cargo before time expires."
+	var spawns := $RaiderSpawns.get_children()
+	var positions: Array[Vector3] = []
+	for index in range(raider_count):
+		var position: Vector3 = spawns[index].global_position
+		if not spawn_is_clear(position, positions):
+			mission.fail_setup("Invalid Raider spawn %d; deployment aborted." % (index + 1))
+			push_error(mission.reason)
+			finish_mission()
+			return
+		positions.append(position)
+	for index in range(raider_count):
+		var actor := RAIDER_SCENE.instantiate() as Raider
+		actor.name = "Raider" if index == 0 else "Raider%d" % (index + 1)
+		actor.raider_id = index + 1
+		actor.ledger = ledger
+		actor.robot = robot
+		actor.select_salvage = choose_salvage
+		actor.salvage = choose_salvage(actor.raider_id)
+		actor.extraction = $Extraction
+		actor.position = to_local(positions[index])
+		raiders[actor.raider_id] = actor
+		actor.collection_requested.connect(_on_collection_requested.bind(actor))
+		actor.defeated.connect(_on_defeated.bind(actor))
+		actor.extracted.connect(_on_extracted.bind(actor))
+		add_child(actor)
+	status.text = "Intercept %d Raiders. Prevent theft or recover dropped cargo. F3: diagnostics." % raider_count
 	refresh_hud()
 	var arrival := DEPLOYMENT_EFFECT.instantiate() as Node3D
 	arrival.position = robot.position
 	add_child(arrival)
+
+
+func spawn_is_clear(position: Vector3, other_positions: Array[Vector3] = []) -> bool:
+	for other in other_positions:
+		if other.distance_to(position) < 0.9:
+			return false
+	var shape := CapsuleShape3D.new()
+	shape.radius = 0.35
+	shape.height = 1.8
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = shape
+	query.transform = Transform3D(Basis.IDENTITY, position + Vector3(0, 0.9, 0))
+	query.collision_mask = 3
+	return get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty()
+
+
+func choose_salvage(id: int) -> Node3D:
+	# Stable cyclic assignment, no scoring/planning/personality system in Stage A.
+	for offset in range(salvage_points.size()):
+		var point := salvage_points[(id - 1 + offset) % salvage_points.size()]
+		if is_instance_valid(point) and ledger.available(point.name) > 0:
+			return point
+	return null
 
 
 func _physics_process(delta: float) -> void:
@@ -33,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		return
 	elapsed += delta
 	if elapsed >= mission_duration:
-		mission.expire()
+		mission.evaluate(ledger, true)
 		finish_mission()
 		return
 	if robot.input_adapter.pickup_intent:
@@ -42,102 +107,158 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if mission.is_finished() and event.is_action_pressed("restart"):
+	if event.is_action_pressed("debug_hud"):
+		debug_visible = not debug_visible
+		refresh_hud()
+		get_viewport().set_input_as_handled()
+	elif mission.is_finished() and event.is_action_pressed("restart"):
 		get_viewport().set_input_as_handled()
 		restart_mission()
 
 
-func _on_cargo_collected(amount: int) -> void:
-	if not mission.scavenge(amount):
-		push_error("Rejected inconsistent scavenging event")
+func _on_collection_requested(actor: Raider) -> void:
+	if mission.is_finished() or raiders.get(actor.raider_id) != actor or not ledger.is_active(actor.raider_id):
 		return
-	status.text = "Raider carrying %d materials. Stop it before extraction to drop cargo." % amount
-	refresh_hud()
-
-
-func _on_defeated(amount: int) -> void:
-	if not mission.defeat(amount):
-		push_error("Rejected inconsistent Raider defeat event")
+	if actor.state != Raider.State.SCAVENGING or actor.health.current <= 0 or not is_instance_valid(actor.salvage):
 		return
+	if actor.task_elapsed < actor.scavenge_seconds or actor.global_position.distance_to(actor.salvage.global_position) >= 0.8:
+		return
+	var amount := ledger.collect(actor.raider_id, actor.salvage.name, materials_per_point)
 	if amount > 0:
-		for drop in get_tree().get_nodes_in_group("material_drops"):
-			if drop.get_parent() == self and drop is MaterialDrop and drop.materials == amount:
-				cargo_drop = drop
-				break
-		status.text = "%d materials dropped. Approach the cyan cube and press E to recover." % amount
+		status.text = "R%02d carrying %d materials. Stop it before extraction." % [actor.raider_id, amount]
+	after_event()
+
+
+func _on_defeated(_reported_amount: int, actor: Raider) -> void:
+	if raiders.get(actor.raider_id) != actor or actor.state != Raider.State.DEAD or actor.health.current > 0:
+		return
+	var drop_id := ledger.defeat(actor.raider_id)
+	if drop_id < 0:
+		return
+	if drop_id > 0:
+		var drop := DROP_SCENE.instantiate() as MaterialDrop
+		drop.ledger = ledger
+		drop.drop_id = drop_id
+		drop.position = to_local(actor.global_position)
+		drops[drop_id] = drop
+		add_child(drop)
+		status.text = "%d materials dropped by R%02d. Approach the cyan cube and press E." % [drop.materials, actor.raider_id]
 	else:
-		status.text = "Raider stopped before scavenging. No materials were stolen."
+		status.text = "R%02d stopped empty; other Raiders and cargo remain active." % actor.raider_id
+	after_event()
+
+
+func _on_extracted(_reported_amount: int, actor: Raider) -> void:
+	if raiders.get(actor.raider_id) != actor or actor.state != Raider.State.EXTRACTED or not ledger.is_active(actor.raider_id):
+		return
+	var amount := ledger.cargo_for(actor.raider_id)
+	if ledger.extract(actor.raider_id):
+		status.text = "R%02d extracted with %d materials. Continue intercepting/recovering." % [actor.raider_id, amount]
+		after_event()
+
+
+func after_event() -> void:
+	mission.evaluate(ledger)
 	refresh_hud()
 	if mission.is_finished():
 		finish_mission()
 
 
-func _on_extracted(amount: int) -> void:
-	if not mission.extract(amount):
-		push_error("Rejected inconsistent Raider extraction event")
-		return
-	finish_mission()
-
-
-func can_recover() -> bool:
-	if mission.phase != MissionRules.Phase.RECOVERING or not is_instance_valid(cargo_drop):
+func eligible_drop(drop: MaterialDrop) -> bool:
+	if mission.is_finished() or not is_instance_valid(drop):
 		return false
-	if cargo_drop.materials != mission.dropped_materials or cargo_drop.materials <= 0:
+	if drop.is_queued_for_deletion() or drop.ledger != ledger or drops.get(drop.drop_id) != drop or drop.materials <= 0:
 		return false
-	if robot.global_position.distance_to(cargo_drop.global_position) > pickup_distance:
+	if robot.global_position.distance_to(drop.global_position) > pickup_distance:
 		return false
 	var query := PhysicsRayQueryParameters3D.create(
-		robot.global_position + Vector3.UP, cargo_drop.global_position + Vector3(0, 0.3, 0), 1)
+		robot.global_position + Vector3.UP, drop.global_position + Vector3(0, 0.3, 0), 1)
+	query.hit_from_inside = true
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 
+func selected_drop() -> MaterialDrop:
+	var selected: MaterialDrop
+	var distance := INF
+	for id in drops:
+		var drop := drops[id]
+		if not eligible_drop(drop):
+			continue
+		var candidate := robot.global_position.distance_squared_to(drop.global_position)
+		if candidate < distance - 0.000001 or (absf(candidate - distance) <= 0.000001 and (selected == null or id < selected.drop_id)):
+			distance = candidate
+			selected = drop
+	return selected
+
+
+func can_recover() -> bool:
+	return selected_drop() != null
+
+
 func try_recover() -> bool:
-	if not can_recover():
+	var drop := selected_drop()
+	if drop == null:
 		return false
-	var amount := cargo_drop.consume()
-	# Perform the state change outside assert (assertions are omitted in release).
-	var accepted := mission.recover(amount)
-	assert(accepted, "World cargo and mission ledger must agree")
-	finish_mission()
-	return accepted
+	var amount := ledger.recover(drop.drop_id)
+	if amount <= 0:
+		return false
+	drops.erase(drop.drop_id)
+	drop.queue_free()
+	status.text = "Recovered %d materials." % amount
+	after_event()
+	return true
 
 
 func refresh_hud() -> void:
-	# Presentation uses the same range/cover rule as actual pickup.
-	var pickup_available := can_recover() and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
-	$Overlay/PickupPrompt.visible = pickup_available
-	if pickup_available:
-		$Overlay/PickupPrompt.text = "[E] Recover %d materials" % cargo_drop.materials
-	if is_instance_valid(cargo_drop):
-		cargo_drop.set_pickup_available(pickup_available)
-	var objective := "Prevent theft or intercept stolen cargo."
+	var selected := selected_drop()
+	$Overlay/PickupPrompt.visible = selected != null
+	if selected != null:
+		$Overlay/PickupPrompt.text = "[E] Recover %d materials" % selected.materials
+	for drop in drops.values():
+		if is_instance_valid(drop):
+			drop.set_pickup_available(drop == selected)
+	var objective := "Intercept Raiders and recover dropped cargo."
 	if mission.is_finished():
 		objective = "Deployment complete. See mission summary."
 	elif mission.phase == MissionRules.Phase.RECOVERING:
-		objective = "Press E to recover cargo." if can_recover() else "Reach the cyan cargo drop."
-	objectives.text = "%s\nProtected %d | Carried %d | Ground %d | Recovered %d | Lost %d | Time %ds" % [
-		objective, mission.protected_materials, mission.carried_materials,
-		mission.dropped_materials, mission.recovered_materials, mission.lost_materials,
+		objective = "All Raiders resolved. Recover remaining ground cargo."
+	objectives.text = "%s\nActive %d | Protected %d | Carried %d | Ground %d | Recovered %d | Lost %d | Time %ds" % [
+		objective, ledger.active_raiders, ledger.protected_materials, ledger.carried_materials,
+		ledger.dropped_materials, ledger.recovered_materials, ledger.lost_materials,
 		ceili(maxf(0.0, mission_duration - elapsed))]
+	for point in salvage_points:
+		if is_instance_valid(point):
+			point.get_node("Label3D").text = "%s\n%d materials" % [point.name, ledger.available(point.name)]
+	$Overlay/DebugStatus.visible = debug_visible
+	if debug_visible:
+		var lines := PackedStringArray(["STAGE A | conservation %s | transfers %d" % [ledger.is_conserved(), ledger.accepted_transfers]])
+		for id in raiders:
+			var actor := raiders[id]
+			if is_instance_valid(actor):
+				var target := str(actor.salvage.name) if is_instance_valid(actor.salvage) else "none"
+				var destination := target if actor.state == Raider.State.SCAVENGING else str(actor.extraction.name)
+				lines.append("R%02d %s | salvage %s | destination %s | cargo %d" % [id, Raider.State.keys()[actor.state], target, destination, actor.carried_materials])
+		$Overlay/DebugStatus.text = "\n".join(lines)
 
 
 func finish_mission() -> void:
 	if not mission.is_finished() or summary.visible:
 		return
+	ledger.seal()
 	robot.input_adapter.clear_intent()
 	robot.input_adapter.set_physics_process(false)
 	robot.input_adapter.set_process_input(false)
 	robot.set_physics_process(false)
 	robot.get_node("Weapon").set_physics_process(false)
 	robot.get_node("CombatHUD").hide()
-	var raider := get_node_or_null("Raider")
-	if raider != null:
-		raider.set_physics_process(false)
+	for actor in raiders.values():
+		if is_instance_valid(actor):
+			actor.set_physics_process(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var title := "MISSION SUCCESS" if mission.phase == MissionRules.Phase.SUCCEEDED else "MISSION FAILED"
-	$Overlay/Summary/Content/Report.text = "%s\n\n%s\n\nProtected: %d   Recovered: %d   Lost: %d\nUnrecovered: %d   Raider cargo: %d\nElapsed: %.1f seconds\n\nPress R or click Restart to deploy again." % [
-		title, mission.reason, mission.protected_materials, mission.recovered_materials,
-		mission.lost_materials, mission.dropped_materials, mission.carried_materials, elapsed]
+	$Overlay/Summary/Content/Report.text = "%s\n\n%s\n\nProtected: %d   Recovered: %d   Lost: %d\nUnrecovered ground: %d   Raider cargo: %d\nTotal: %d   Elapsed: %.1f seconds\n\nPress R or click Restart to deploy again." % [
+		title, mission.reason, ledger.protected_materials, ledger.recovered_materials,
+		ledger.lost_materials, ledger.dropped_materials, ledger.carried_materials, ledger.total_materials, elapsed]
 	summary.show()
 	refresh_hud()
 

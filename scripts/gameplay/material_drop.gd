@@ -1,22 +1,19 @@
 class_name MaterialDrop
 extends Node3D
-## Owns this world's stack; consuming it is a one-time synchronous transfer.
+## Visual representation of a ledger stack. Cannot create, consume, or credit stock.
 
-@export var materials: int = 0
+var ledger: MaterialLedger
+var drop_id: int = 0
+var materials: int:
+	get:
+		return ledger.ground_for(drop_id) if ledger != null else 0
 
 
 func _ready() -> void:
-	$Label3D.text = "%d RECOVERABLE MATERIALS" % materials
+	assert(ledger != null and materials > 0 and drop_id > 0)
 	set_pickup_available(false)
 
 
 func set_pickup_available(available: bool) -> void:
 	$PickupHighlight.visible = available
 	$Label3D.text = "[E] RECOVER %d MATERIALS" % materials if available else "%d RECOVERABLE MATERIALS" % materials
-
-
-func consume() -> int:
-	var amount := materials
-	materials = 0
-	queue_free()
-	return amount

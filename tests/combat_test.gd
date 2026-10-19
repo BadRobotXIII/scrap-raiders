@@ -33,7 +33,7 @@ func run() -> void:
 	check(not health.apply_damage(1) and deaths == 1, "Death emitted once; dead health rejects damage")
 	health.queue_free()
 
-	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
+	var arena := load("res://scenes/levels/single_raider_arena.tscn").instantiate() as Node3D
 	root.add_child(arena)
 	current_scene = arena
 	var robot := arena.get_node("Robot") as RobotController

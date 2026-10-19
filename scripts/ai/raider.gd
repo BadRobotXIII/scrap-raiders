@@ -5,6 +5,7 @@ extends CharacterBody3D
 signal state_changed(previous: State, next: State)
 signal extracted(materials: int)
 signal cargo_collected(materials: int)
+signal collection_requested
 signal defeated(dropped_materials: int)
 
 enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED }
@@ -12,14 +13,18 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED }
 @export var robot: Node3D
 @export var salvage: Node3D
 @export var extraction: Node3D
-@export var loot_scene: PackedScene
+var ledger: MaterialLedger
+var raider_id: int = 0
+var select_salvage: Callable
 @export var scavenge_seconds: float = 3.0
 @export var extraction_seconds: float = 3.0
 @export var detection_range: float = 8.0
 @export var walk_speed: float = 3.0
 @export var flee_speed: float = 4.5
 var state: State = State.SCAVENGING
-var carried_materials: int = 0
+var carried_materials: int:
+	get:
+		return ledger.cargo_for(raider_id) if ledger != null else 0
 var task_elapsed: float = 0.0
 var decision_remaining: float = 0.0
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
@@ -29,7 +34,9 @@ var decision_remaining: float = 0.0
 
 
 func _ready() -> void:
-	assert(robot != null and salvage != null and extraction != null and loot_scene != null)
+	assert(robot != null and extraction != null and ledger != null and select_salvage.is_valid())
+	if salvage == null:
+		transition(State.EXTRACTING)
 	health.died.connect(_on_died)
 	health.damaged.connect(_on_damaged)
 	update_label()
@@ -41,7 +48,7 @@ func transition(next: State) -> void:
 	var previous := state
 	state = next
 	task_elapsed = 0.0
-	print("Raider: %s -> %s" % [State.keys()[previous], State.keys()[next]])
+	print("R%02d: %s -> %s" % [raider_id, State.keys()[previous], State.keys()[next]])
 	state_changed.emit(previous, next)
 	update_label()
 
@@ -63,6 +70,11 @@ func _physics_process(delta: float) -> void:
 	decision_remaining -= delta
 	if decision_remaining <= 0.0:
 		decision_remaining = 0.15
+		if state == State.SCAVENGING and (not is_instance_valid(salvage) or ledger.available(salvage.name) == 0):
+			salvage = select_salvage.call(raider_id)
+			task_elapsed = 0.0
+			if salvage == null:
+				transition(State.EXTRACTING)
 		if state == State.SCAVENGING and detects_robot():
 			transition(State.FLEEING)
 		elif state == State.FLEEING and global_position.distance_to(extraction.global_position) < 1.0:
@@ -73,13 +85,18 @@ func _physics_process(delta: float) -> void:
 	if arrived:
 		task_elapsed += delta
 		if state == State.SCAVENGING and task_elapsed >= scavenge_seconds:
-			carried_materials = 3
-			cargo_collected.emit(carried_materials)
-			transition(State.EXTRACTING)
+			collection_requested.emit()
+			if carried_materials > 0:
+				cargo_collected.emit(carried_materials)
+				transition(State.EXTRACTING)
+			else:
+				salvage = select_salvage.call(raider_id)
+				task_elapsed = 0.0
+				if salvage == null:
+					transition(State.EXTRACTING)
 			return
 		elif state == State.EXTRACTING and task_elapsed >= extraction_seconds:
 			var amount := carried_materials
-			carried_materials = 0
 			transition(State.EXTRACTED)
 			extracted.emit(amount)
 			queue_free()
@@ -117,14 +134,7 @@ func _on_damaged(_amount: float) -> void:
 func _on_died() -> void:
 	transition(State.DEAD)
 	velocity = Vector3.ZERO
-	var dropped_materials := carried_materials
-	if carried_materials > 0:
-		var loot := loot_scene.instantiate() as Node3D
-		loot.set("materials", carried_materials)
-		get_parent().add_child(loot)
-		loot.global_position = global_position
-		carried_materials = 0
-	defeated.emit(dropped_materials)
+	defeated.emit(carried_materials)
 	queue_free()
 
 
@@ -150,4 +160,4 @@ func update_label() -> void:
 			else:
 				activity = "ESCAPING WITH CARGO" if carried_materials > 0 else "RETREATING EMPTY"
 	label.modulate = color
-	label.text = "%s\nHP %d | CARGO %d" % [activity, health.current, carried_materials]
+	label.text = "R%02d %s\nHP %d | CARGO %d" % [raider_id, activity, health.current, carried_materials]

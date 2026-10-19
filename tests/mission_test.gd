@@ -15,8 +15,8 @@ func check(condition: bool, description: String) -> void:
 		push_error(description)
 
 
-func conserved(rules: MissionRules) -> bool:
-	return rules.protected_materials + rules.carried_materials + rules.dropped_materials + rules.recovered_materials + rules.lost_materials == 3
+func conserved(ledger: MaterialLedger) -> bool:
+	return ledger.is_conserved() and ledger.total_materials == 3
 
 
 func frames(count: int) -> void:
@@ -26,7 +26,7 @@ func frames(count: int) -> void:
 
 
 func create_arena() -> Node3D:
-	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
+	var arena := load("res://scenes/levels/single_raider_arena.tscn").instantiate() as Node3D
 	root.add_child(arena)
 	current_scene = arena
 	arena.get_node("Robot/Input").set_physics_process(false)
@@ -35,28 +35,42 @@ func create_arena() -> Node3D:
 
 
 func run() -> void:
+	var ledger := MaterialLedger.new({&"Salvage": 3}, [1])
 	var rules := MissionRules.new()
-	check(not rules.scavenge(-1) and not rules.scavenge(4) and not rules.recover(3), "Invalid/out-of-phase material transfers rejected")
-	check(rules.scavenge(3) and conserved(rules), "Scavenging transfers protected stock to carried cargo")
-	check(not rules.scavenge(3) and not rules.defeat(2), "Duplicate scavenging and inconsistent death amounts rejected")
-	check(rules.defeat(3) and rules.phase == MissionRules.Phase.RECOVERING and conserved(rules), "Loaded defeat waits for cargo recovery")
-	check(not rules.extract(3) and not rules.defeat(3), "Resolved Raider cannot produce a second outcome")
-	check(rules.recover(3) and rules.recovered_materials == 3 and conserved(rules), "Recovery credits mission inventory exactly once")
-	check(not rules.recover(3) and not rules.extract(3), "Completed mission rejects late transfers")
-	rules.expire()
+	check(ledger.collect(1, &"Salvage", -1) == 0 and ledger.collect(1, &"missing", 3) == 0 and ledger.recover(1) == 0, "Invalid/out-of-phase material transfers rejected")
+	check(ledger.collect(1, &"Salvage", 3) == 3 and conserved(ledger), "Scavenging transfers protected stock to carried cargo")
+	check(ledger.collect(1, &"Salvage", 3) == 0 and ledger.defeat(99) == -1, "Duplicate scavenging and unknown actor rejected")
+	var drop_id := ledger.defeat(1)
+	rules.evaluate(ledger)
+	check(rules.phase == MissionRules.Phase.RECOVERING and conserved(ledger), "Loaded defeat waits for cargo recovery")
+	check(not ledger.extract(1) and ledger.defeat(1) == -1, "Resolved Raider cannot produce a second outcome")
+	check(ledger.recover(drop_id) == 3 and ledger.recovered_materials == 3 and conserved(ledger), "Recovery credits mission inventory exactly once")
+	rules.evaluate(ledger)
+	check(ledger.recover(drop_id) == 0 and not ledger.extract(1), "Completed transfers reject duplicates")
+	rules.evaluate(ledger, true)
 	check(rules.phase == MissionRules.Phase.SUCCEEDED, "Timeout cannot overwrite success")
+	ledger = MaterialLedger.new({&"Salvage": 3}, [1])
+	ledger.defeat(1)
 	rules = MissionRules.new()
-	check(rules.defeat(0) and rules.protected_materials == 3 and rules.is_finished(), "Stopping an empty Raider protects all stock")
+	rules.evaluate(ledger)
+	check(ledger.protected_materials == 3 and rules.is_finished(), "Stopping an empty Raider protects all stock")
+	ledger = MaterialLedger.new({&"Salvage": 3}, [1])
+	ledger.extract(1)
 	rules = MissionRules.new()
-	check(rules.extract(0) and rules.phase == MissionRules.Phase.SUCCEEDED, "Empty extraction loses no materials")
+	rules.evaluate(ledger)
+	check(rules.phase == MissionRules.Phase.SUCCEEDED, "Empty extraction loses no materials")
+	ledger = MaterialLedger.new({&"Salvage": 3}, [1])
+	ledger.collect(1, &"Salvage", 3)
+	ledger.extract(1)
 	rules = MissionRules.new()
-	rules.scavenge(3)
-	check(rules.extract(3) and rules.lost_materials == 3 and rules.phase == MissionRules.Phase.FAILED and conserved(rules), "Loaded extraction records loss and failure")
+	rules.evaluate(ledger)
+	check(ledger.lost_materials == 3 and rules.phase == MissionRules.Phase.FAILED and conserved(ledger), "Loaded extraction records loss and failure")
+	ledger = MaterialLedger.new({&"Salvage": 3}, [1])
+	ledger.collect(1, &"Salvage", 3)
+	ledger.defeat(1)
 	rules = MissionRules.new()
-	rules.scavenge(3)
-	rules.defeat(3)
-	rules.expire()
-	check(rules.phase == MissionRules.Phase.FAILED and rules.dropped_materials == 3 and conserved(rules), "Timeout preserves unrecovered cargo accounting")
+	rules.evaluate(ledger, true)
+	check(rules.phase == MissionRules.Phase.FAILED and ledger.dropped_materials == 3 and conserved(ledger), "Timeout preserves unrecovered cargo accounting")
 
 	var arena := create_arena()
 	var raider := arena.get_node("Raider") as Raider
@@ -68,7 +82,7 @@ func run() -> void:
 	await frames(2)
 	check(arena.mission.phase == MissionRules.Phase.RECOVERING and not arena.get_node("Overlay/Summary").visible, "Loaded kill keeps gameplay active until pickup")
 	check(not arena.try_recover(), "Distant pickup rejected")
-	var drop := arena.cargo_drop as MaterialDrop
+	var drop := arena.drops.values()[0] as MaterialDrop
 	robot.position = drop.position + Vector3(0, 0, 1)
 	var cover := StaticBody3D.new()
 	var collision := CollisionShape3D.new()
@@ -85,8 +99,8 @@ func run() -> void:
 	check(arena.can_recover(), "Nearby unobstructed cargo is recoverable")
 	robot.input_adapter.pickup_intent = true
 	await frames(2)
-	check(arena.mission.recovered_materials == 3 and arena.mission.phase == MissionRules.Phase.SUCCEEDED, "Logical E intent transfers world stack into recovered inventory")
-	check(not arena.try_recover() and arena.mission.recovered_materials == 3, "Repeated pickup does not duplicate credit")
+	check(arena.ledger.recovered_materials == 3 and arena.mission.phase == MissionRules.Phase.SUCCEEDED, "Logical E intent transfers world stack into recovered inventory")
+	check(not arena.try_recover() and arena.ledger.recovered_materials == 3, "Repeated pickup does not duplicate credit")
 	check(not is_instance_valid(drop) and get_nodes_in_group("material_drops").is_empty(), "Recovered world stack removed")
 	check(arena.get_node("Overlay/Summary").visible and arena.get_node("Overlay/Summary/Content/Report").text.contains("Recovered: 3"), "Success summary reports recovered materials")
 	check(not robot.is_physics_processing() and not robot.get_node("Weapon").is_physics_processing() and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE, "Mission end stops controls/combat and releases cursor")
@@ -94,14 +108,14 @@ func run() -> void:
 	arena.get_node("Overlay/Summary/Content/Restart").pressed.emit()
 	await frames(5)
 	arena = current_scene
-	check(arena != null and arena.mission.phase == MissionRules.Phase.HUNTING and arena.mission.protected_materials == 3 and arena.mission.recovered_materials == 0, "Restart creates a fresh mission ledger")
+	check(arena != null and arena.mission.phase == MissionRules.Phase.HUNTING and arena.ledger.protected_materials == 3 and arena.ledger.recovered_materials == 0, "Restart creates a fresh mission ledger")
 	check(arena.get_node("Raider/Health").current == 100 and not arena.get_node("Overlay/Summary").visible and get_nodes_in_group("material_drops").is_empty(), "Restart restores Raider, HUD, and clean world")
 	arena.get_node("Robot/Input").set_physics_process(false)
 	arena.get_node("Robot/Input").set_process_input(false)
 	raider = arena.get_node("Raider") as Raider
 	raider.health.apply_damage(1000)
 	await frames(2)
-	check(arena.mission.phase == MissionRules.Phase.SUCCEEDED and arena.mission.protected_materials == 3, "Early interception succeeds without requiring nonexistent loot")
+	check(arena.mission.phase == MissionRules.Phase.SUCCEEDED and arena.ledger.protected_materials == 3, "Early interception succeeds without requiring nonexistent loot")
 	var restart_event := InputEventAction.new()
 	restart_event.action = "restart"
 	restart_event.pressed = true
@@ -123,7 +137,7 @@ func run() -> void:
 	raider.position = arena.get_node("Extraction").position
 	raider.extraction_seconds = 0.1
 	await frames(20)
-	check(arena.mission.phase == MissionRules.Phase.FAILED and arena.mission.lost_materials == 3, "Real Raider extraction signal records lost materials")
+	check(arena.mission.phase == MissionRules.Phase.FAILED and arena.ledger.lost_materials == 3, "Real Raider extraction signal records lost materials")
 	check(arena.get_node("Overlay/Summary/Content/Report").text.contains("Lost: 3"), "Failure summary reports extracted materials")
 	arena.queue_free()
 	await frames(3)

@@ -22,7 +22,7 @@ func frames(count: int) -> void:
 
 
 func run() -> void:
-	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
+	var arena := load("res://scenes/levels/single_raider_arena.tscn").instantiate() as Node3D
 	root.add_child(arena)
 	current_scene = arena
 	arena.get_node("Robot/Input").set_physics_process(false)
@@ -57,7 +57,7 @@ func run() -> void:
 	var drops := get_nodes_in_group("material_drops")
 	check(bodies.size() == 1 and bodies[0].find_children("*", "MeshInstance3D", true, false).size() == 3, "Raider physics copy includes body, head, and backpack")
 	check(drops.size() == 1 and drops[0].materials == 3 and drops[0].global_position.is_equal_approx(death_position), "Cargo remains separate and stationary at the death position")
-	check(arena.mission.phase == MissionRules.Phase.RECOVERING and arena.mission.dropped_materials == 3, "Destruction presentation preserves mission state and material totals")
+	check(arena.mission.phase == MissionRules.Phase.RECOVERING and arena.ledger.dropped_materials == 3, "Destruction presentation preserves mission state and material totals")
 	arena.restart_mission()
 	await frames(5)
 	check(get_nodes_in_group("death_tumbles").is_empty() and get_nodes_in_group("material_drops").is_empty(), "Restart clears both cosmetic bodies and previous cargo")

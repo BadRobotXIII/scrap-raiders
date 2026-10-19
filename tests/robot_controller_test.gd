@@ -23,7 +23,7 @@ func frames(count: int) -> void:
 
 
 func run() -> void:
-	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
+	var arena := load("res://scenes/levels/single_raider_arena.tscn").instantiate() as Node3D
 	root.add_child(arena)
 	var robot := arena.get_node("Robot") as RobotController
 	var adapter := robot.input_adapter

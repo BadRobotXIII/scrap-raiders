@@ -1,132 +1,145 @@
 # SCRAP Raiders
 
-Internal working title for an original, comedic third-person PvE prototype. The player will control a machine intercepting human scavengers and recovering stolen technology.
+Internal working title for an original comedic third-person PvE game. The player controls a machine protecting its technology from human scavengers.
 
 ## Requirements and running
 
-- Windows x64, Godot **4.7.2 Standard**, GDScript.
-- No external dependencies, assets, or services.
-- Blender is installed for future modeling/animation work (director reported); it is not required to run this primitive prototype and its asset pipeline has not yet been validated.
-- From this directory, run `godot --editor --path .` to open the project. Press F6 with the test arena open or F5 to run the configured main scene.
-- Run `godot --path .` for a standalone launch.
+- Windows x64, Godot **4.7.2 Standard**, GDScript, Forward+ renderer.
+- Vulkan-capable graphics device; no external assets, frameworks, services, or networking.
+- Blender is installed according to the director; its model/animation pipeline remains unvalidated and is outside Stage A.
 
-The project uses the Forward+ renderer and a 1280 × 720 reference viewport. A Vulkan-capable graphics device is required. All arena geometry and materials are built-in primitives.
+Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-## Current scope: Milestone 6 — interaction and combat feedback
+The default `scenes/levels/test_arena.tscn` now runs **three Raiders, three salvage points, nine materials**, and one shared exit. The existing 32 m primitive arena, obstacles, shoulder camera, hitscan weapon, target practice objects, audio, hit effects, cargo cues, destruction tumbles, and deployment effect remain.
 
-Each deployment/restart now plays a brief low-opacity dust burst and expanding cyan ground ring at the robot's initial position. The effect is self-contained in `scenes/effects/deployment_effect.tscn`, cleans itself up after 1.3 seconds, and has no collision or effect on controls, AI, or the mission clock. It uses built-in CPU particles and primitive meshes; the dust remains at the spawn location if the robot moves immediately. Visual timing/readability require manual review.
+For the original one-Raider/three-material regression scenario:
 
-Milestone 5 pickup, material totals, mission outcomes, and restart have been manually accepted. Recoverable cargo now displays a gold ring, an overhead `[E]` label, and a prompt beneath the crosshair when within pickup range with clear access and captured mouse controls. The cue disappears when leaving range, moving behind cover, releasing the mouse, recovering cargo, or ending the mission. The arena computes availability from the same rule used by pickup; the drop only renders the cue.
+```powershell
+godot --path . res://scenes/levels/single_raider_arena.tscn
+```
 
-Pickup cues have also been manually accepted. Combat feedback now adds a short muzzle flash/light, a synthesized blaster sound per shot, and a distinct confirmation tone only when damage is applied. Original mono PCM audio is generated once on scene startup; there are no external sound assets or licenses. Shot/hit volume can be tuned on `Robot/CombatHUD/Feedback`. Audio currently uses non-spatial playback for the player's weapon and hit confirmation. Manual listening and flash readability review are pending.
+Both scenes use the same code. The inherited regression scene overrides Raider count and salvage-point count to one. Restart reloads the scene you launched.
 
-The Raider flashes briefly and visually squashes on nonlethal hits, recovering its normal scale/appearance over 0.12 seconds. `HitReaction` owns visual scale and material overlays only; the Raider controller still owns facing, velocity, and state. Shots retain their accepted damage, range, cadence, and aiming.
-
-Raider intent labels now distinguish seeking salvage, scavenging progress, fleeing empty, fleeing with cargo, and travelling to the exit. The extraction dwell displays remaining seconds. Colors reinforce these labels: gold for scavenging, orange for danger/stolen cargo, green for an empty retreat. The text reads the existing authoritative task timer and never changes behavior. Salvage has a gold ring/crate marker; extraction has a green ring marking the existing 0.8 m arrival radius. Marker meshes are visual guides without collision or navigation effects. Review readability and timing in play.
-
-Muzzle flash, audio, and nonlethal reactions were manually accepted. Destruction now spawns a cosmetic RigidBody3D mesh copy of the Raider or practice target, with a small fixed upward launch and spin. It tumbles against the environment and disappears after four seconds. `DeathTumble` listens to health death events and copies only meshes/collision shape, never actor scripts, health, labels, navigation, or cargo. Its collision layer is zero, so movement, hitscan, perception, and pickup queries ignore it. Cargo remains a separate stationary pickup at the death position. Restart removes all tumble bodies. This is a single-body placeholder reaction, not a skeletal ragdoll; launch velocity/lifetime can be tuned on each actor's DeathTumble component. Visual comedy and cleanup still require manual review.
-
-The arena contains the robot, three destructible practice targets, and one AI human scavenger. The Raider travels to SALVAGE, spends three seconds collecting three materials, then heads to RAIDER EXIT and takes three seconds to extract. Approach within 8 m with clear line of sight or damage it to trigger fleeing toward the exit. It does not fight back. Killing it after scavenging leaves a cyan cargo drop; killing it before scavenging drops no materials. Recover cargo with E within 1.8 m and with no cover blocking access. The mission tracks protected, carried, dropped, recovered, and lost materials and ends with a summary and restart. Player damage/death, persistent progression, and multiplayer are not implemented.
-
-Mission rules for this short one-Raider slice:
-
-- Stop an empty Raider: success, three materials protected, no pickup required.
-- Raider flees/extracts empty: success, three materials protected.
-- Kill a loaded Raider: mission continues until its dropped cargo is recovered.
-- Recover the three dropped materials: success, three materials credited to mission inventory.
-- Loaded Raider extracts: failure, three materials lost.
-- The 180-second deployment limit expires: failure; summary retains exact material locations/counts.
-
-Press R or click Restart on the summary to reset the entire scene, Raider, targets, inventory, and timer. Mission completion disables movement, firing, and orbit input, hides the combat reticle, and releases the cursor. No global pause is used. The limit and pickup distance are Inspector properties on the arena. Missions are deliberately shorter than the eventual 10–15 minute target; there is no base-return step or persistent save yet.
-
-The mouse is captured on startup. Escape releases it and clears movement/aim intent; click inside the game to recapture. Losing application focus also releases it. Escape does not pause the simulation.
-
-| Action | Binding |
+| Control | Action |
 | --- | --- |
-| move_forward / move_backward | Physical W / S |
-| move_left / move_right | Physical A / D |
-| Camera orbit | Mouse movement |
-| aim | Hold right mouse button |
-| fire | Hold left mouse button |
-| pause | Escape (currently releases mouse) |
-| recover | E, when close to the dropped cargo |
-| restart | R, on the mission summary |
+| Physical WASD | Camera-relative movement |
+| Mouse | Camera orbit |
+| Hold RMB | Aim-facing |
+| Hold LMB | Fire |
+| E | Recover nearest eligible cargo |
+| Escape / click | Release / capture mouse |
+| R or Restart button | Restart after mission completion |
+| F3 | Toggle developer diagnostics independently of gameplay prompts |
 
-## Organization and ownership
+Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
-- `scenes/levels/`: level composition, currently `test_arena.tscn`.
-- `scenes/player/robot.tscn`: robot composition, primitive mesh, and camera rig.
-- `scripts/player/`: input adapter, character controller, and camera control.
-- `tests/robot_controller_test.gd`: physics integration checks in the arena.
-- `scripts/components/health.gd`: authoritative target health and damage/death signals.
-- `scripts/gameplay/`: hitscan weapon, weapon definition, and target behavior.
-- `resources/weapons/prototype_blaster.tres`: damage, cadence, and range tuning.
-- `scenes/targets/practice_target.tscn`: destructible target composition.
-- `tests/combat_test.gd`: combat and health integration checks.
-- `scripts/ai/raider.gd`: authoritative Raider state, cargo, and physical movement.
-- `scenes/raiders/raider.tscn`: placeholder human, health, and navigation agent.
-- `scripts/gameplay/raider_arena.gd`: startup navigation bake, mission wiring, pickup validation, and HUD/summary.
-- `scripts/gameplay/mission_rules.gd`: explicit mission phases and authoritative material ledger.
-- `scenes/loot/material_drop.tscn`: world cargo stack, consumed once on recovery.
-- `tests/raider_test.gd`: navigation, state, cargo, and camera-framing checks.
-- `tests/mission_test.gd`: isolated accounting/outcome checks plus scene pickup, timeout, and restart integration.
-- `AGENTS.md`: development conventions.
-- `project.godot`: application settings and logical input map.
+## Stage A scope and configuration
 
-Add other directories when they contain an implemented system.
+Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. It does not add personalities, advanced planning, armed Raiders, random/delayed spawns, multiple exits, a larger map, mission presets, or multiplayer. Those belong to later approved stages.
 
-`RobotInput` samples physical actions before the controller's physics step and emits raw mouse look deltas. `RobotController` alone owns velocity and calls `move_and_slide()`. Movement follows camera yaw, with bounded acceleration/braking (7 m/s top speed, 45 m/s² acceleration, 60 m/s² braking). Movement faces its travel direction; holding aim faces camera yaw, including while strafing or reversing. Only the visual pivot rotates, keeping the body and camera independent.
+Arena Inspector parameters:
 
-`RobotCamera` owns yaw and pitch, with immediate mouse response and pitch limits of -60 to +25 degrees. Its pivot follows the body through parenting; robot visual turns do not change orbit. The camera now sits 1 m over the right shoulder at a 1.8 m pivot height, initially pitched down 8 degrees, clearing the robot from the center reticle. A lateral ray shortens shoulder offset near walls; a 5 m SpringArm3D with a sphere sweep handles rear obstruction, excluding the robot. Body facing uses camera yaw while aiming or firing; the weapon uses the full camera ray including pitch. Inspector exports expose shoulder offset, sensitivity, pitch limits, and controller tuning. Camera arm length and FOV are scene properties. No jump or zoom is implemented.
+- `raider_count`: 1–5, default 3.
+- `salvage_point_count`: 1–3, default 3.
+- `materials_per_point`: default 3; total material stock is derived from enabled points.
+- `mission_duration`: default 180 seconds.
+- `pickup_distance`: default 1.8 m.
 
-`HitscanWeapon` owns firing cadence and shot resolution, running after character movement. A center-screen camera ray selects the aim point; a second ray from the visible muzzle checks intervening cover and applies damage. Shots exclude the shooter and stop at the first environment/target body. The blaster deals 25 damage every 0.2 seconds with an 80 m range; targets have 100 health. Firing works with or without RMB, without spread, ammunition, reload, or recoil. Target health labels update on damage; lethal hits remove the target. Restart the scene (F8 then F5 in the editor) to restore targets.
+Five authored spawn markers live under `RaiderSpawns`. All configured Raiders enter immediately. Spawns are checked against geometry, actors, and already selected positions. Invalid deployment stops with an explicit setup error. No automatic teleport is used.
 
-`Health` alone changes current health and emits damage/death signals, rejecting invalid damage and repeated damage after death. Target presentation listens to those signals. Combat feedback listens to weapon signals for short-lived tracers and hit markers; it does not apply damage. No player health UI is present because there are no incoming attacks yet.
+Salvage assignment is stable and cyclic by Raider ID. Raiders initially target different points where possible. A point is not reserved: the first validated collection request transfers available stock atomically. A competing Raider cannot duplicate it; it selects the next available point or heads for extraction if none remain. Each Raider collects once, up to the configured per-point amount, then extracts. Selection scoring and personality behavior are deferred.
 
-Collision layer 1 is environment; layer 2 is the robot. Robot movement and the spring arm query layer 1.
+A Raider detects the robot within 8 m with line of sight, or reacts to damage, and commits to fleeing toward the exit. Scavenging/extraction dwell times remain three seconds. State, navigation, velocity, health, task timer, and objective are independent per Raider. Instance IDs appear in labels and transition logs. F3 shows state, selected salvage, destination, cargo, and conservation diagnostics.
 
-`Raider` owns one enum-based state machine: SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED. All transitions go through `transition()`; terminal states cannot be exited. Threat decisions run every 0.15 s, with distance and physics line-of-sight checks. Damage causes fleeing; death cancels active behavior. Fleeing commits to the exit rather than resuming looting. EXTRACTING includes travel to the exit and the extraction dwell. Health remains a separate component. NavigationAgent3D supplies waypoints; the Raider CharacterBody3D owns velocity and collision movement. Labels show state, goal, health, and cargo; transitions print to the Godot output. The Raider emits cargo/death/extraction events; the arena passes these into the mission rules and displays the resulting state.
+## Ownership and material conservation
 
-The small arena's NavigationRegion3D bakes synchronously once at startup from collision geometry in the `navigation_geometry` group, including practice targets. The agent path height offset (0.5 m) matches the default bake voxel elevation above the floor. This is a primitive-arena setup, not a production level pipeline. Destroyed targets leave conservative navigation footprints until restart; moving geometry is not supported by this bake. The robot can physically block the Raider. There are no attacks, perception personalities, dynamic avoidance, or generative AI dependencies.
+`MaterialLedger` is the sole writer of all material quantities and locations:
 
-The Raider owns cargo until extraction or death. Extraction emits the amount and removes the Raider; death transfers the exact amount into one world drop, then removes the Raider. Empty Raiders produce no drop. `MissionRules` owns HUNTING, RECOVERING, SUCCEEDED, and FAILED phases plus a conserved three-material ledger. Gameplay events request transfers; invalid amounts, duplicate events, and transfers after completion are rejected. `MaterialDrop.consume()` zeroes its stack synchronously before queuing removal. The arena validates phase, amount, range, and line of sight before consuming the drop and crediting recovered inventory. This is per-mission inventory; restarting clears it.
+```text
+Protected + Carried + Ground + Recovered + Lost = Total Mission Materials
+```
 
-For a cargo-drop test, stay away until the HUD says "Raider carrying 3 materials", then intercept it. Approaching or shooting before it finishes scavenging causes it to flee empty. The HUD explicitly reports empty deaths or the amount dropped. Regression coverage includes default spawn-to-scavenging behavior followed by four actual blaster hits, verifying the cargo amount, world position, and persistent visible mesh. The muzzle ray extends 5 cm beyond the camera's surface hit (within weapon range) to avoid floating-point misses on the Raider's capsule.
+- Protected: remaining stock indexed by salvage location ID.
+- Carried: stock indexed by registered Raider ID.
+- Ground: stacks indexed by unique mission-local drop ID, retaining their source Raider ID.
+- Recovered: mission inventory credited by accepted recovery transfers.
+- Lost: materials that actually left through Raider extraction.
+
+The ledger derives aggregate totals from its records and validates nonnegative quantities and conservation after **every accepted transfer**, including empty death/extraction resolution. Validation executes in release builds too; debug assertions add diagnostics. Unknown IDs, duplicate resolutions/recovery, depleted stock, and transfers after the ledger is sealed are rejected without mutation.
+
+Raiders request collection and report death/extraction. They read cargo from the ledger; they cannot mint cargo. The arena validates the requesting actor, state, timing, and location before requesting a collection transfer. On death it asks the ledger to move that Raider's cargo into a new drop allocation, then creates its physical representation. Empty deaths create no drop.
+
+`MaterialDrop` only exposes its ledger stack and renders its highlight/label. It cannot independently consume, create, or credit materials. Recovery credits the ledger once and removes that physical stack. Duplicate/stale drop IDs retain no recoverable quantity.
+
+The same eligibility function drives candidate selection, highlight, prompt, and pickup: active mission, registered drop identity, positive ledger allocation, distance, and unobstructed access. Choose the nearest eligible stack; equal distances within a small numerical tolerance break by lower drop ID. Only that stack highlights. Mouse capture governs physical input; eligibility remains a spatial/gameplay rule. Recovering cargo is allowed while other Raiders are active.
+
+## Mission outcome policy
+
+`MissionRules` is separate from the ledger. It reads material totals and the number of unresolved Raiders; it never transfers materials.
+
+| Condition | Outcome |
+| --- | --- |
+| Any Raider remains active | HUNTING: intercept and recover simultaneously |
+| All Raiders resolved, ground cargo remains | RECOVERING: player retains controls until recovery or deadline |
+| All Raiders resolved, no ground cargo, no extraction loss | SUCCEEDED |
+| All Raiders resolved, no ground cargo, extraction loss exists | FAILED |
+| Deployment deadline expires | FAILED; preserve every material category as it stands |
+
+Materials still protected at their original salvage points **do not block completion**. One death/extraction cannot end the other Raiders' simulation. An early extraction loss is recorded immediately, but the mission remains playable while other Raiders or ground cargo remain.
+
+At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still-carried cargo also remains carried. The summary reports protected, recovered, extracted/lost, unrecovered ground, carried, total, and elapsed time separately. Terminal completion seals transfers, stops all live actors and player combat/movement input, releases the cursor, and shows the restart control. Cosmetic tumble/particle cleanup can continue. Restart creates a fresh ledger, actors, drops, timer, and outcomes; there is no persistent progression or global mission singleton.
+
+## Code boundaries
+
+- `scripts/gameplay/material_ledger.gd`: authoritative material transfers, identity, actor resolution, invariants.
+- `scripts/gameplay/mission_rules.gd`: mission phase and outcome policy.
+- `scripts/gameplay/raider_arena.gd`: composition, registration, event validation, spawn validation, interaction, and HUD/summary wiring.
+- `scripts/ai/raider.gd`: common per-instance state machine and physical movement using NavigationAgent3D.
+- `scripts/gameplay/material_drop.gd`: ledger-backed world presentation.
+- `scripts/player/`: input, CharacterBody3D movement, independent camera orbit, combat presentation.
+- `scripts/gameplay/hitscan_weapon.gd`, `resources/weapons/`: weapon cadence/resolution and tuning.
+- `scripts/components/`: health, visual hit reaction, cosmetic death tumble.
+- `scripts/presentation/`, `scenes/effects/`: self-contained deployment presentation.
+
+Health, weapon damage/cadence, movement, camera ownership, and physics presentation retain their existing boundaries. The blaster deals 25 damage at 0.2 s intervals over 80 m. The center camera ray chooses aim; the muzzle ray checks cover, extending 5 cm past the surface hit to avoid curved-collider rounding misses.
+
+Navigation bakes synchronously once from the small arena's tagged collision geometry, including practice targets. Agent path height offset remains 0.5 m for this bake. Destroyed targets leave conservative footprints until restart. There is no dynamic avoidance or advanced blocked-path recovery yet. Crowding and player obstruction remain manual testing priorities, especially with five Raiders. Repath targets change only when destinations change; perception decisions remain on a 0.15 s interval.
+
+All visual/audio assets are engine primitives or original generated PCM. Cosmetic tumble bodies have collision layer zero: gameplay shots, movement, perception, and pickup queries ignore them. Cargo stays stationary and recoverable after the tumble expires.
 
 ## Validation
 
-Run from the project root:
+Run the editor import before the script tests:
 
 ```powershell
 godot --version
 godot --headless --path . --editor --quit
-godot --headless --path . --quit-after 120
 godot --headless --path . --script res://tests/robot_controller_test.gd
 godot --headless --path . --script res://tests/combat_test.gd
 godot --headless --path . --script res://tests/raider_test.gd
 godot --headless --path . --script res://tests/mission_test.gd
 godot --headless --path . --script res://tests/destruction_test.gd
+godot --headless --path . --script res://tests/multi_raider_test.gd
+godot --headless --path . --quit-after 180
+godot --path . --quit-after 180
 ```
 
-The editor command validates imports, scripts, and resources; the runtime command checks a bounded main-scene launch. The integration script exercises floor contact, camera-relative movement, braking, pitch limits, aim facing, camera independence, obstacle/boundary collision, and spring-arm retraction/recovery using logical intent. It does not emulate physical keyboard/mouse input.
+The five original suites use the inherited single-Raider scene to preserve movement, combat, scavenging, extraction, loot, mission outcomes, restart, and cosmetic cleanup coverage. Accounting unit checks now address the separate ledger and policy.
 
-Manual review is still required: movement and turning feel, diagonal/strafe response, mouse sensitivity, pitch limits, camera framing and wall/corner obstruction, visible rendering, focus loss and mouse recapture. Try holding RMB while moving in every direction. Verify the robot cannot pass through walls or orange blocks. Close using normal window controls. Parsing, automated physics checks, and startup are separate from manual play-testing.
+Stage A coverage includes contested/partial salvage, accepted-transfer invariants, duplicate events, same-frame deaths, independent actor state, identified overlapping drops, deterministic selection, recovery during active interception, recovery-only controls, mixed losses, deadline categories, sealing, untouched protected stock, and multi-actor restart. Natural bounded navigation runs exercise three and five Raiders without teleporting them; these runs accelerate simulation time for test duration. Other setup-specific interaction tests place actors near objectives to isolate transitions.
 
-Milestone 2: movement and camera manually accepted by the director. Milestone 3 automated checks cover invalid damage, health clamping, single death emission, hits, misses, cadence, muzzle-side cover obstruction, target destruction, and fire intent clearing. The 14 controller checks remain regression coverage. Manual combat review must confirm reticle alignment at different pitches/ranges, aiming and firing while moving, close-wall obstruction, readable hit flashes/markers/tracers, and target destruction after four hits. These checks do not establish weapon feel or verify physical input.
+Automated tests and graphical startup do not establish gameplay feel, visual readability, or performance on typical gaming PCs. Manual Stage A review should cover competing interception choices, crowding at salvage/exit, multiple kills and pickups, nearest-stack prompts around cover, F3 readability, deadline summary distinctions, and restart.
 
-## Roadmap
+Stage A validation on 2026-10-18: all five adapted regression suites and the new multi-Raider suite passed, including actual independent hitscan kills and bounded three/five-Raider navigation runs. Godot 4.7.2 editor import/parsing, bounded headless startup, and Vulkan Forward+ graphical startup passed without reported errors. Manual Stage A play-testing is pending.
 
-1. Foundation: project, arena, input, conventions, import and launch validation.
-2. Robot controller: camera-relative movement, orbit camera, aiming orientation, collisions; manual feel review.
-3. Combat: one hitscan weapon, health, damage, destruction, and feedback.
-4. Raider: navigation, scavenging, threat detection, fleeing, extraction, death, and loot.
-5. Mission loop: material accounting, explicit success/failure conditions, restart, and summary.
-6. Refinement after core play-testing: feedback, reactions, and physics comedy.
+## Review checkpoints and Git
 
-Milestone 3 hitscan, damage, and markers were manually accepted, with camera framing corrected in Milestone 4. The Raider test checks actual obstacle-crossing navigation/extraction, detection and cover, fleeing, scavenged cargo, death/drop ownership, terminal states, and reticle clearance against the robot capsule across four pitches. Automated clearance is not a visual framing acceptance test. Manually review shoulder aim alignment and close-wall behavior, Raider route/readability, interruption while looting, escape timing, and cyan drops after killing a loaded Raider.
+The accepted primitive prototype was preserved in baseline commit `d51acfd` before this refactor. Stage A is committed separately after validation. Work remains on the existing `master` branch; no remote is configured or changed. Generated `.godot/` state and builds are ignored; script `.uid` files are tracked.
 
-Milestone 4 cargo drops were manually confirmed after scavenging. Milestone 5 checks cover conserved accounting, invalid/duplicate events, early interception, empty and loaded extraction, timeout, blocked/distant pickup, exactly-once credit, summary presentation state, disabled controls at completion, and clean scene reload through both restart paths. Manual review remains necessary for the physical E/R keys, button interaction, HUD readability, pickup distance/feedback, and end-to-end mission pacing.
+Stop at **Checkpoint A** for director review. Do not advance automatically.
 
-Milestone 6 pickup cues, combat sound/flash, placeholder tumble feel, and Raider progress/objective markers have been manually accepted. Deployment presentation is the latest addition awaiting visual review. The original six-milestone primitive prototype is implemented; this is a short test loop, not the eventual 10–15 minute vertical slice or a production art pass.
+- Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
+- Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.
+- Stage D: gunfire awareness and additional gameplay feedback.
 
-Recommended next stage (design approval before implementation): retain this arena for regression testing and build one separate industrial blockout map with the existing robot, one Raider, one salvage location, and one exit. Use a few cover routes to test interception and camera clearance before introducing extra Raiders, combat AI, or final models. Validate a single Blender-to-Godot asset pipeline separately once the map proportions and visual direction are agreed. Keep further changes incremental and discuss substantial gameplay/architecture changes. Multiplayer and progression remain deferred. Git is local; commits require director authorization and no remote is configured. Dropbox synchronization should not be used for simultaneous editing across machines.
+Keep networking, progression, detailed Blender models, and final art outside this stage.
