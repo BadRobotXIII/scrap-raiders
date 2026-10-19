@@ -37,6 +37,8 @@ func _on_died() -> void:
 		source_meshes.append(visuals)
 	for node in source_meshes:
 		var original := node as MeshInstance3D
+		if not original.is_visible_in_tree():
+			continue
 		var copy := MeshInstance3D.new()
 		copy.mesh = original.mesh
 		copy.material_override = original.material_override

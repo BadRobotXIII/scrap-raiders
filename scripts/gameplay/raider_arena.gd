@@ -13,6 +13,8 @@ const PROFILES: Array[RaiderProfile] = [preload("res://resources/enemies/greedy.
 @export var pickup_distance: float = 1.8
 @export var dynamic_ai: bool = true
 @export var debug_seed: int = 4711
+@export var combat_profile: RaiderCombatProfile
+var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
 var elapsed: float = 0.0
@@ -44,6 +46,7 @@ func _ready() -> void:
 	$NavigationRegion3D.bake_navigation_mesh(false)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
 	$Robot/Weapon.fired.connect(_on_weapon_fired)
+	$Robot/Health.died.connect(_on_player_destroyed)
 	deploy_raiders()
 	if mission.is_finished():
 		return
@@ -56,6 +59,11 @@ func _ready() -> void:
 
 func initial_ground_stock() -> Dictionary:
 	return {}
+
+
+func _on_player_destroyed() -> void:
+	mission.fail_player_destroyed()
+	finish_mission()
 
 
 func _on_weapon_fired(origin: Vector3, _endpoint: Vector3, _damaged_target: bool) -> void:
@@ -106,7 +114,48 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	actor.defeated.connect(_on_defeated.bind(actor))
 	actor.extracted.connect(_on_extracted.bind(actor))
 	add_child(actor)
+	if combat_profile != null:
+		actor.combat = RaiderCombat.new()
+		actor.add_child(actor.combat)
+		actor.combat.reserve_cover = reserve_cover
+		actor.combat.release_cover = release_cover
+		actor.combat.setup(actor, combat_profile, debug_seed)
+		actor.detection_range = combat_profile.engagement_range
 	return actor
+
+
+func release_cover(id: int) -> void:
+	cover_reservations.erase(id)
+
+
+func reserve_cover(id: int) -> Node3D:
+	release_cover(id)
+	var actor := raiders.get(id) as Raider
+	var group := get_node_or_null("CoverPoints")
+	if not is_instance_valid(actor) or group == null:
+		return null
+	var selected: Node3D
+	var best := INF
+	for point: Node3D in group.get_children():
+		if cover_reservations.values().has(point) or point.global_position.distance_to(actor.global_position) > 18:
+			continue
+		var peek := point.get_node("Peek") as Node3D
+		var query := PhysicsRayQueryParameters3D.create(point.global_position + Vector3.UP, actor.last_threat_position + Vector3.UP, 1, [actor.get_rid()])
+		var hit := get_world_3d().direct_space_state.intersect_ray(query)
+		if hit.is_empty() or not hit.collider is StaticBody3D:
+			continue
+		query.from = peek.global_position + Vector3.UP
+		query.collision_mask = 3
+		hit = get_world_3d().direct_space_state.intersect_ray(query)
+		if not hit.is_empty() and hit.collider != robot:
+			continue
+		var cost := route_cost(actor, point) + route_cost(actor, peek)
+		if cost < best:
+			best = cost
+			selected = point
+	if selected != null:
+		cover_reservations[id] = selected
+	return selected
 
 
 func spawn_is_clear(position: Vector3, other_positions: Array[Vector3] = []) -> bool:
@@ -355,6 +404,8 @@ func refresh_hud() -> void:
 				var destination := target if actor.state == Raider.State.SCAVENGING else (str(actor.extraction.name) if is_instance_valid(actor.extraction) else "none")
 				if actor.state == Raider.State.INVESTIGATING:
 					destination = str(actor.investigation_position)
+				if actor.combat != null and is_instance_valid(actor.combat.destination):
+					destination = str(actor.combat.destination.global_position)
 				lines.append("R%02d %s %s | target %s | dest %s | cargo %d | threat %s/%s/%.1fs | %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], target, destination, actor.carried_materials, actor.threat_source, actor.threat_visible, actor.threat_remaining, actor.navigation_status])
 		$Overlay/DebugStatus.text = "\n".join(lines)
 
@@ -368,10 +419,13 @@ func finish_mission() -> void:
 	robot.input_adapter.set_process_input(false)
 	robot.set_physics_process(false)
 	robot.get_node("Weapon").set_physics_process(false)
+	robot.get_node("Weapon").enabled = false
 	robot.get_node("CombatHUD").hide()
 	for actor in raiders.values():
 		if is_instance_valid(actor):
 			actor.set_physics_process(false)
+			if actor.combat != null:
+				actor.combat.stop()
 			actor.get_node("RaiderFeedback").stop()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var title := "MISSION SUCCESS" if mission.phase == MissionRules.Phase.SUCCEEDED else "MISSION FAILED"

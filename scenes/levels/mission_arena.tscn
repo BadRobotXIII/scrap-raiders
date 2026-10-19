@@ -215,3 +215,59 @@ position = Vector3(13, 0.05, 3)
 
 [node name="Cargo3" type="Marker3D" parent="GroundCargo"]
 position = Vector3(-12, 0.05, -9)
+
+[node name="CoverPoints" type="Node3D" parent="."]
+
+[node name="WestNorth" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-8, 0, -3)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/WestNorth"]
+position = Vector3(-2, 0, 0)
+
+[node name="WestSouth" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-8, 0, 9)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/WestSouth"]
+position = Vector3(-2, 0, 0)
+
+[node name="WestSide" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-9.5, 0, 3)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/WestSide"]
+position = Vector3(0, 0, 6)
+
+[node name="WestInside" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-6.5, 0, 3)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/WestInside"]
+position = Vector3(0, 0, 6)
+
+[node name="EastSide" type="Marker3D" parent="CoverPoints"]
+position = Vector3(9.5, 0, 0)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/EastSide"]
+position = Vector3(0, 0, 6.5)
+
+[node name="EastInside" type="Marker3D" parent="CoverPoints"]
+position = Vector3(6.5, 0, 0)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/EastInside"]
+position = Vector3(0, 0, 6.5)
+
+[node name="SouthLow" type="Marker3D" parent="CoverPoints"]
+position = Vector3(4, 0, 8.5)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/SouthLow"]
+position = Vector3(4, 0, 0)
+
+[node name="SouthFront" type="Marker3D" parent="CoverPoints"]
+position = Vector3(4, 0, 11.5)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/SouthFront"]
+position = Vector3(4, 0, 0)
+
+[node name="WestInside2" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-6.5, 0, 5.5)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/WestInside2"]
+position = Vector3(0, 0, 5)

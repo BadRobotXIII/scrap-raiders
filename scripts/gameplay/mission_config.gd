@@ -13,6 +13,7 @@ extends Resource
 @export var seed: int = 4711
 @export_range(0, 3) var ground_stacks: int = 0
 @export_range(1, 99) var materials_per_stack: int = 3
+@export var armed: bool = false
 
 
 func validation_error() -> String:

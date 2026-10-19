@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+display_name = "Survival"
+raider_count = 3
+entry_times = PackedFloat32Array(0, 5, 10)
+spawn_markers = PackedStringArray("Spawn2", "Spawn3", "Spawn5")
+duration = 180.0
+seed = 32017
+armed = true

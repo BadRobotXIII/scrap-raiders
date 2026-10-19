@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 to deploy Intercept, Swarm, or Recovery. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 for the accepted unarmed Intercept, Swarm, and Recovery scenarios; **F9 deploys armed Survival**. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -33,12 +33,13 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | R or Restart button | Restart after mission completion |
 | F3 | Toggle developer diagnostics independently of gameplay prompts |
 | F6 / F7 / F8 | Deploy Intercept / Swarm / Recovery in the expanded arena |
+| F9 | Deploy armed Survival (Stage E) |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
 ## Stage A scope and configuration
 
-Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. Stage B adds dynamic AI. Stage C adds the expanded arena, scheduled entries, and mission presets below. Armed Raiders and multiplayer remain outside this checkpoint.
+Stage A implements multiple independent Raiders, finite shared salvage, aggregate accounting, and multiple recoverable drops. Stage B adds dynamic AI. Stage C adds the expanded arena, scheduled entries, and mission presets below. Stage E adds armed combat in a separate Survival preset; multiplayer remains outside scope.
 
 Arena Inspector parameters:
 
@@ -64,7 +65,7 @@ Three shared resources in `resources/enemies/` parameterize one common FSM:
 | Cowardly (blue body) | 12 m / 12 m | 3 | Retreats early and strongly penalizes dangerous routes |
 | Aggressive (red body) | 10 m / 3 m | 3 | Investigates a last-seen position for up to two seconds before resuming objectives |
 
-No Raider weapons are implemented. Damage always interrupts the current task and causes flight; lethal damage remains terminal. An empty/under-target fleeing Raider can resume scavenging after three seconds without visible danger (damage adds two seconds of memory). Raiders at their cargo target continue extraction. Threats still use line of sight; only observed or damage-revealed threat positions influence route risk.
+In the unarmed scenarios, damage interrupts the current task and causes flight; lethal damage remains terminal. An empty/under-target fleeing Raider can resume scavenging after three seconds without visible danger (damage adds two seconds of memory). Raiders at their cargo target continue extraction. Threats still use line of sight; only observed or damage-revealed threat positions influence route risk. Armed Survival uses the combat behavior below.
 
 Aggressive investigates once per observed threat position, then resumes objectives while the robot remains stationary. Investigation re-arms after the robot moves at least 2 m from that position, or after lost visibility outlasts threat memory. Its investigation standoff includes an arrival margin outside the close-threat flee distance; close approaches and damage still cause retreat.
 
@@ -107,6 +108,20 @@ Hearing uses distance to the shot's muzzle origin: Greedy 12 m, Cowardly 18 m, A
 Cowardly retreats from audible shots, Greedy continues scavenging unless the source is within its close-threat distance, and under-target Aggressive can investigate the heard source. Existing close-range and damage retreat take priority. Stationary repeated shots retain the investigation re-arm guard; they refresh memory without restarting an active retreat or extraction task. Empty fleeing Raiders can resume scavenging after memory expires. Loaded Raiders continue toward extraction, and unreachable investigation routes retain the existing watchdog fallback. The inherited single-Raider regression mode keeps its original behavior.
 
 World feedback reads simulation state: `?` marks investigation and `!` marks alertness; `GUNFIRE` identifies an audible source. Indicators clear with threat memory and stop at mission completion. Loaded backpacks become gold with a subtle emission; empty packs stay dark. Depleted salvage hides its crate and displays `DEPLETED`. Existing nearest-drop highlight and E eligibility remain shared. `raider_feedback.gd` owns presentation only and cannot advance task clocks, change health, or transfer cargo. Detailed state and threat diagnostics remain behind F3.
+
+## Phase 3, Stage E hostile combat
+
+Launch with F9, or directly with `godot --path . res://scenes/levels/survival_arena.tscn`. Survival uses three armed scavengers entering at 0/5/10 seconds, nine materials, both exits, a 180-second deadline, and seed 32017. The three original presets remain unarmed. This checkpoint uses their existing mission completion policy; player extraction and persistent rewards are Stage G work.
+
+Player hull starts at 100. `Health` remains the sole writer of current health and records the accepted impact origin. A separate player HUD shows hull, a brief red border and directional indicator, and an original synthesized impact tone. Destruction creates a cosmetic tumble, hides the robot visuals, and reports explicit deployment failure. Controls, player and enemy weapons, pending entry, and transfers stop. Restart resets health, outcomes, cover reservations, random streams, and the ledger while preserving scenario selection.
+
+`ShotExecutor` owns cooldown, range clamping, muzzle obstruction, accepted damage, and the existing shot event for both sides. `HitscanWeapon` adapts the player's camera aim/input to it. Enemy intent comes from `RaiderCombat`, with no camera or player-input dependency. Environment and other Raiders block hostile shots; friendly Raiders take no damage from those shots. Cosmetic tracers and rifle audio live in `RaiderFeedback`.
+
+The initial combat resource uses 10 damage, 0.8-second shot interval, 24 m physical range, 18 m engagement range, 2-degree seeded aim spread, and a 0.65-second visible aim warning. Each actor has its own RNG and shot cooldown. Visibility and engagement range are checked again immediately before firing. Losing sight or changing combat state resets the warning. Armed scavengers engage visible threats, return to salvage when danger is forgotten, seek cover after damage, and retreat at or below 30% health. Their existing personality resource still controls noncombat decisions.
+
+The common Raider FSM adds ENGAGING, TAKING_COVER, and REPOSITIONING. `RaiderCombat` supplies decisions and aim timing through that FSM; CharacterBody3D retains movement/velocity. Authored cover slots include a protected position and peek position. The arena validates cover against the last-known threat, clear peek sightlines, navigation reachability, and exclusive actor reservations. Cover dwell is one second, followed by physical movement to the peek position and a fresh warning. Fighters also attempt repositioning after three seconds of engagement. Reservations are released on disengagement, retreat, death, extraction, or mission shutdown. No valid cover falls back to investigation or retreat; stalled cover routes use the existing navigation watchdog. This is basic squad coordination through cover allocation, with no shared movement controller or tactical squad framework.
+
+Player destruction is a distinct mission reason, separate from deadline expiration and Raider material outcomes. At this temporary Stage E boundary, **all material categories are preserved exactly and sealed**: protected, carried, ground, recovered, and extracted/lost. Death does not relabel cargo as extracted loss or create persistent inventory consequences. Flare response, equipment loot, player extraction, and persistence remain outside Stage E.
 
 ## Ownership and material conservation
 
@@ -157,6 +172,9 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 - `scripts/gameplay/material_drop.gd`: ledger-backed world presentation.
 - `scripts/player/`: input, CharacterBody3D movement, independent camera orbit, combat presentation.
 - `scripts/gameplay/hitscan_weapon.gd`, `resources/weapons/`: weapon cadence/resolution and tuning.
+- `scripts/gameplay/shot_executor.gd`: shared shot execution, cooldown, physical obstruction and damage.
+- `scripts/ai/raider_combat.gd`, `raider_combat_profile.gd`: armed decision/aim intent and combat tuning, using the common Raider FSM.
+- `scripts/player/player_damage_feedback.gd`: hull, incoming damage, directional feedback and destruction presentation.
 - `scripts/components/`: health, visual hit reaction, cosmetic death tumble.
 - `scripts/presentation/`, `scenes/effects/`: self-contained deployment presentation.
 
@@ -182,6 +200,7 @@ godot --headless --path . --script res://tests/multi_raider_test.gd
 godot --headless --path . --script res://tests/dynamic_ai_test.gd
 godot --headless --path . --script res://tests/mission_variety_test.gd
 godot --headless --path . --script res://tests/awareness_test.gd
+godot --headless --path . --script res://tests/hostile_combat_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -212,7 +231,11 @@ Stage C (`e9d6e48`) has been accepted by the director.
 
 Stage D automated coverage includes actual missed-shot dispatch, cooldown suppression, independent profile reactions, hearing through cover, out-of-range rejection, last-known-position memory, investigation re-arming, damage priority, repeated-shot task preservation, return to scavenging, feedback ownership/cleanup, depleted salvage, terminal events, and legacy behavior. All nine suites, Godot 4.7.2 import/parsing, bounded headless startup, and Forward+ graphical startup passed on 2026-10-18. Manual review remains necessary for hearing distances, sustained-fire behavior, alert/cargo readability, and clutter with five Raiders.
 
-Stop at **Checkpoint D** for director review. Do not advance automatically.
+Stage D (`9f21ae8`) and Phase 2 were accepted by the director. Phase 3 Stage E was approved separately with temporary death accounting that preserves ledger categories.
+
+Stage E coverage includes real hostile hits and a lethal shot, warning/cadence/range, physical cover obstruction, visibility interruption, distinct cover reservations, damage interruption, retreat/extraction, return to scavenging, independent attackers, one-time player death, terminal shutdown, exact material categories, seeded restart, cosmetic destruction, and natural firing/cover/peek physics. All ten automated suites passed on 2026-10-18, including the nine existing regression suites. Godot 4.7.2 import/parsing and bounded headless/Forward+ Survival startup passed without reported errors. Manual survival testing must establish incoming damage readability, warning fairness, accuracy, cover choices/congestion, difficulty against multiple attackers, and restart behavior.
+
+Stop at **Checkpoint E** for director review. Stages F-I remain planned and require separate approval.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.

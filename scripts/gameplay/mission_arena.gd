@@ -1,8 +1,8 @@
 extends "res://scripts/gameplay/raider_arena.gd"
 ## Owns scheduled entry and scenario selection; Raiders retain their shared FSM.
 
-const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres")]
-@export_range(0, 2) var scenario_index: int = 0
+const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres")]
+@export_range(0, 3) var scenario_index: int = 0
 var config: MissionConfig
 var pending_ids: Array[int] = []
 var spawn_order: Array[Node3D] = []
@@ -19,8 +19,9 @@ func _ready() -> void:
 	mission_duration = config.duration
 	debug_seed = config.seed
 	dynamic_ai = true
+	combat_profile = preload("res://resources/enemies/armed_scavenger.tres") if config.armed else null
 	super._ready()
-	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF6: Intercept | F7: Swarm | F8: Recovery | F3: diagnostics" % config.display_name
+	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF6: Intercept | F7: Swarm | F8: Recovery | F9: Survival | F3: diagnostics" % config.display_name
 	if not mission.is_finished():
 		for index in range(config.ground_stacks):
 			present_drop(index + 1, $GroundCargo.get_child(index).global_position)
@@ -150,7 +151,7 @@ func finish_mission() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
-		var index := [KEY_F6, KEY_F7, KEY_F8].find(event.physical_keycode)
+		var index := [KEY_F6, KEY_F7, KEY_F8, KEY_F9].find(event.physical_keycode)
 		if index >= 0:
 			get_viewport().set_input_as_handled()
 			select_scenario.call_deferred(index)

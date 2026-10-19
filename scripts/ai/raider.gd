@@ -8,7 +8,7 @@ signal cargo_collected(materials: int)
 signal collection_requested
 signal defeated(dropped_materials: int)
 
-enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVESTIGATING, STRANDED }
+enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVESTIGATING, STRANDED, ENGAGING, TAKING_COVER, REPOSITIONING }
 
 @export var robot: Node3D
 @export var salvage: Node3D
@@ -21,6 +21,7 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVEST
 @export var navigation_stall_seconds: float = 1.5
 var dynamic_ai: bool = false
 var profile: RaiderProfile
+var combat: RaiderCombat
 var ledger: MaterialLedger
 var raider_id: int = 0
 var select_salvage: Callable
@@ -123,6 +124,8 @@ func decide() -> void:
 	elif threat_remaining <= 0.0:
 		_investigated_threat_position = Vector3.INF
 		threat_source = "none"
+	if combat != null and combat.decide():
+		return
 	if state == State.STRANDED:
 		if _retry_remaining <= 0.0:
 			blocked_exits.clear()
@@ -172,6 +175,8 @@ func hear_gunfire(origin: Vector3) -> bool:
 		last_threat_position = Vector3(origin.x, global_position.y, origin.z)
 		threat_source = "gunfire"
 	threat_remaining = maxf(threat_remaining, profile.threat_memory)
+	if combat != null:
+		return true # Combat decides its response on the normal perception interval.
 	# Damage/flight retain priority; repeated shots must not restart task clocks.
 	if state in [State.FLEEING, State.STRANDED]:
 		return true
@@ -195,6 +200,10 @@ func _physics_process(delta: float) -> void:
 		return
 	threat_remaining = maxf(0, threat_remaining - delta)
 	_retry_remaining = maxf(0, _retry_remaining - delta)
+	if combat != null:
+		combat.tick(delta)
+		if not combat.weapon.enabled:
+			return
 	decision_remaining -= delta
 	if decision_remaining <= 0:
 		decision_remaining = 0.15
@@ -203,6 +212,10 @@ func _physics_process(delta: float) -> void:
 	var position_target := global_position
 	if state == State.INVESTIGATING:
 		position_target = investigation_position
+	elif state == State.ENGAGING:
+		position_target = global_position
+	elif state in [State.TAKING_COVER, State.REPOSITIONING] and combat != null and is_instance_valid(combat.destination):
+		position_target = combat.destination.global_position
 	elif state not in [State.SELECTING, State.STRANDED] and is_instance_valid(destination):
 		position_target = destination.global_position
 	elif state not in [State.SELECTING, State.STRANDED]:
@@ -211,6 +224,8 @@ func _physics_process(delta: float) -> void:
 	var arrived := global_position.distance_to(position_target) < 0.8
 	if arrived:
 		task_elapsed += delta
+		if combat != null and combat.owns_state():
+			combat.on_arrived(delta)
 		if state == State.SCAVENGING and task_elapsed >= scavenge_seconds:
 			collection_requested.emit()
 			if carried_materials > 0:
@@ -285,6 +300,9 @@ func recover_navigation(destination: Vector3) -> void:
 		transition(State.SELECTING)
 	elif state == State.INVESTIGATING:
 		transition(State.SELECTING)
+	elif combat != null and combat.owns_state():
+		combat.release()
+		transition(State.SELECTING)
 	else:
 		if is_instance_valid(extraction):
 			blocked_exits[extraction.name] = true
@@ -300,6 +318,9 @@ func _on_damaged(_amount: float) -> void:
 			threat_remaining = profile.threat_memory + 2.0
 			last_threat_position = robot.global_position
 			threat_source = "damage"
+			if combat != null:
+				combat.on_damaged()
+				return
 			if not _choose_exit():
 				return
 		transition(State.FLEEING)
@@ -341,6 +362,15 @@ func update_label() -> void:
 		State.STRANDED:
 			activity = "NO ROUTE - RETRYING"
 			color = Color(1, 0.4, 0.4)
+		State.ENGAGING:
+			activity = "AIMING %.1fs" % maxf(0, combat.profile.warning_time - combat.aim_elapsed) if combat != null else "ENGAGING"
+			if combat != null and combat.aim_elapsed >= combat.profile.warning_time:
+				activity = "FIRING"
+			color = Color(1, 0.35, 0.25)
+		State.TAKING_COVER:
+			activity = "SEEKING COVER" if task_elapsed <= 0 else "IN COVER"
+		State.REPOSITIONING:
+			activity = "REPOSITIONING"
 	label.modulate = color
 	var identity := "R%02d %s" % [raider_id, profile.display_name] if dynamic_ai else "R%02d" % raider_id
 	label.text = "%s %s\nHP %d | CARGO %d" % [identity, activity, health.current, carried_materials]

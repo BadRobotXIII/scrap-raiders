@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/robot_controller.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/player/robot_input.gd" id="2"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://scripts/gameplay/hitscan_weapon.gd" id="4"]
 [ext_resource type="Resource" path="res://resources/weapons/prototype_blaster.tres" id="5"]
 [ext_resource type="Script" path="res://scripts/player/combat_feedback.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/components/health.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/components/death_tumble.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/player/player_damage_feedback.gd" id="9"]
 
 [sub_resource type="BoxMesh" id="GunMesh"]
 size = Vector3(0.25, 0.25, 0.75)
@@ -49,6 +52,15 @@ shape = SubResource("BodyShape")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("7")
+
+[node name="DeathTumble" type="Node" parent="." node_paths=PackedStringArray("health", "visuals", "body_collision")]
+script = ExtResource("8")
+health = NodePath("../Health")
+visuals = NodePath("../Visuals")
+body_collision = NodePath("../CollisionShape3D")
 
 [node name="Visuals" type="Node3D" parent="."]
 
@@ -113,3 +125,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("6")
 weapon = NodePath("../../Weapon")
+
+[node name="SurvivalHUD" type="CanvasLayer" parent="."]
+
+[node name="DamageFeedback" type="Control" parent="SurvivalHUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9")

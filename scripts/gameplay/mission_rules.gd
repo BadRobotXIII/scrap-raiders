@@ -6,6 +6,15 @@ enum Phase { HUNTING, RECOVERING, SUCCEEDED, FAILED }
 
 var phase: Phase = Phase.HUNTING
 var reason: String = ""
+var player_destroyed: bool = false
+
+
+func fail_player_destroyed() -> void:
+	if is_finished():
+		return
+	player_destroyed = true
+	phase = Phase.FAILED
+	reason = "Robot destroyed. Deployment failed; material categories are preserved."
 
 
 func is_finished() -> bool:
