@@ -45,7 +45,6 @@ func setup() -> void:
 	stash_label.add_theme_constant_override("outline_size", 4)
 	stash_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	arena.get_node("Overlay").add_child(stash_label)
-	arena.robot.get_node("Health").damaged.connect(func(_amount: float) -> void: cancel())
 	refresh_stash()
 	refresh()
 

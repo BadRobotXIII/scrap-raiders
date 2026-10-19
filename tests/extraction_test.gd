@@ -129,7 +129,7 @@ func run() -> void:
 	recall.step(0)
 	recall.step(2)
 	arena.robot.get_node("Health").apply_damage(10)
-	check(recall.elapsed == 0 and not recall.channeling, "Incoming damage immediately cancels recall")
+	check(recall.elapsed == 2 and recall.channeling, "Nonlethal damage preserves recall progress so the player can risk extracting")
 	recall.step(0)
 	arena.robot.input_adapter.fire_intent = true
 	recall.step(2)
@@ -155,6 +155,8 @@ func run() -> void:
 	recall.step(0)
 	recall.step(4.99)
 	check(not arena.mission.is_finished() and arena.ledger.recovered_materials == 3, "Full five-second channel is required before settlement")
+	arena.robot.get_node("Health").apply_damage(10)
+	check(recall.elapsed == 4.99 and recall.channeling, "A hit immediately before completion does not reset recall")
 	recall.step(0.02)
 	check(arena.mission.player_extracted and arena.mission.phase == MissionRules.Phase.SUCCEEDED and arena.ledger.banked_materials == 3 and arena.ledger.recovered_materials == 0 and arena.ledger.is_conserved(), "Successful recall banks material cargo without changing Raider loss or ground categories")
 	check(arena.flare_director.equipment.count_at(EquipmentLedger.Location.BANKED) == 2 and recall.stash.snapshot().equipment.size() == 2 and recall.stash.snapshot().materials == 3, "Extracted equipment and materials credit the persistent stash exactly once")
@@ -219,8 +221,10 @@ func run() -> void:
 	for index in range(160):
 		if arena.mission.is_finished():
 			break
+		if index > 0 and index % 20 == 0:
+			arena.robot.get_node("Health").apply_damage(10)
 		await frames(1)
-	check(arena.mission.player_extracted and arena.ledger.banked_materials == 3 and arena.recall.stash.snapshot().materials == 3 and arena.ledger.is_conserved(), "Natural five-second recall banks cargo through real physics scheduling")
+	check(arena.mission.player_extracted and arena.robot.get_node("Health").current < 100 and arena.ledger.banked_materials == 3 and arena.recall.stash.snapshot().materials == 3 and arena.ledger.is_conserved(), "Natural five-second recall banks cargo despite repeated nonlethal hits")
 	Engine.time_scale = 1
 	arena.queue_free()
 	await frames(3)
