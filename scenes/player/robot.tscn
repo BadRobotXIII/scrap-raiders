@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/robot_controller.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/player/robot_input.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/player/robot_camera.gd" id="3"]
+
+[sub_resource type="CapsuleShape3D" id="BodyShape"]
+radius = 0.55
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="BodyMaterial"]
+albedo_color = Color(0.18, 0.65, 0.72, 1)
+metallic = 0.35
+roughness = 0.55
+
+[sub_resource type="BoxMesh" id="BodyMesh"]
+material = SubResource("BodyMaterial")
+size = Vector3(1.0, 1.1, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="VisorMaterial"]
+albedo_color = Color(1, 0.8, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="VisorMesh"]
+material = SubResource("VisorMaterial")
+size = Vector3(0.8, 0.22, 0.15)
+
+[sub_resource type="BoxMesh" id="FootMesh"]
+material = SubResource("BodyMaterial")
+size = Vector3(0.35, 0.35, 0.9)
+
+[sub_resource type="SphereShape3D" id="CameraShape"]
+radius = 0.22
+
+[node name="Robot" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 1
+floor_snap_length = 0.25
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("BodyShape")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0, 1.05, 0)
+mesh = SubResource("BodyMesh")
+
+[node name="FrontVisor" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0, 1.3, -0.46)
+mesh = SubResource("VisorMesh")
+
+[node name="LeftFoot" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(-0.32, 0.22, -0.08)
+mesh = SubResource("FootMesh")
+
+[node name="RightFoot" type="MeshInstance3D" parent="Visuals"]
+position = Vector3(0.32, 0.22, -0.08)
+mesh = SubResource("FootMesh")
+
+[node name="CameraRig" type="Node3D" parent="."]
+position = Vector3(0, 1.5, 0)
+script = ExtResource("3")
+
+[node name="Pitch" type="Node3D" parent="CameraRig"]
+rotation_degrees = Vector3(-15, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig/Pitch"]
+spring_length = 5.0
+margin = 0.15
+collision_mask = 1
+shape = SubResource("CameraShape")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/Pitch/SpringArm3D"]
+current = true
+fov = 70.0
+near = 0.05

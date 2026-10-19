@@ -1,4 +1,6 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/robot.tscn" id="1_robot"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
 sky_top_color = Color(0.16, 0.25, 0.36, 1)
@@ -142,11 +144,8 @@ mesh = SubResource("ObstacleMesh")
 [node name="Collision" type="CollisionShape3D" parent="Geometry/ObstacleC"]
 shape = SubResource("ObstacleShape")
 
-[node name="OverviewCamera" type="Camera3D" parent="."]
-position = Vector3(23, 27, 30)
-rotation_degrees = Vector3(-35.5, 37.5, 0)
-current = true
-fov = 60.0
+[node name="Robot" parent="." instance=ExtResource("1_robot")]
+position = Vector3(0, 0.1, 7)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
@@ -156,7 +155,7 @@ offset_top = 20.0
 offset_right = 760.0
 offset_bottom = 110.0
 mouse_filter = 2
-text = "SCRAP RAIDERS | FOUNDATION ARENA
-Milestone 1: static environment and input configuration
-Robot controls arrive in Milestone 2."
+text = "SCRAP RAIDERS | ROBOT CONTROLLER
+WASD: move | Mouse: orbit | Hold RMB: aim
+Esc: release mouse | Click: capture mouse"
 label_settings = SubResource("OverlaySettings")
