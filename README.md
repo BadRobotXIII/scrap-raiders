@@ -10,7 +10,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. Use F6/F7/F8 for the accepted unarmed Intercept, Swarm, and Recovery scenarios; **F9 deploys armed Survival** and **F10 deploys Loot Pressure with death flares and equipment recovery**. Movement, shoulder camera, hitscan combat, practice targets, audio, hit effects, cargo cues, destruction tumbles, and deployment presentation remain shared.
+The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, and **F12 selects Recall Deployment with extraction and persistent rewards**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -35,6 +35,7 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F6 / F7 / F8 | Deploy Intercept / Swarm / Recovery in the expanded arena |
 | F9 | Deploy armed Survival (Stage E) |
 | F10 | Deploy Loot Pressure (Stage F); hold E for equipment |
+| F12 | Deploy Recall Deployment (Stage G); hold E at the Recall Dock for five seconds |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
 
@@ -140,19 +141,33 @@ Material accounting stays separate: reinforcing actor registration adds zero car
 
 Committed tickets keep the hunt active even when no current Raider survives. With all Raiders resolved and no tickets, either ground materials or equipment enter recovery-only. Once both are recovered, existing success/extraction-loss policy applies; untouched salvage does not block completion. Death and the deadline stop response/interaction work and seal both ledgers, retaining all categories. Summaries distinguish equipment carried, ground, recovered, and extracted separately from mission materials. Leaving the flare area is always allowed; no stationary-defense objective or persistent inventory is introduced.
 
+## Phase 3, Stage G Recall Dock and persistent stash
+
+Use **F12**, or `godot --path . res://scenes/levels/extraction_arena.tscn`. Recall Deployment uses three armed Raiders entering at 0/5/10 seconds, nine materials, both Raider exits, death flares, seed 51017, and a 180-second deadline. F6-F10 keep their accepted completion/recovery rules and do not write stash rewards.
+
+The blue Recall Dock is at the southern edge near the robot's initial position, distinct from the green Raider exits. Within 2 m and with unobstructed access, hold E while stationary for five seconds. Releasing E, movement input, residual movement, displacement over 0.25 m, firing, receiving damage, or leaving range cancels the channel. Eligible loot retains E priority before recall. Extraction remains available with Raiders and reinforcement tickets active, so retreating with partial loot is valid. Resolving all Raiders or collecting every drop alone does not end this preset; the player must recall before the deadline.
+
+Recovered materials and equipment are deployment cargo until recall. Successful extraction first saves one identified reward receipt, then moves that deployment's recovered allocations into BANKED records and stops simulation. Those sealed records describe the deployment outcome; the stash owns the persistent inventory. Repeating the same receipt cannot credit twice, and a changed reward for that receipt is rejected. Player destruction and deadline expiration instead move only recovered/player-carried allocations into FORFEITED records. Ground loot, protected stock, Raider cargo, and actual Raider extraction losses keep their original meanings. Previously banked inventory is unchanged by a failed deployment. Summaries explicitly distinguish successful recall, destruction, expiration, banking, and forfeiture.
+
+The local stash lives at **`user://stash.json`** in Godot's application user-data directory, with `.bak` and `.tmp` siblings. A versioned JSON schema stores materials, identified equipment, and deployment receipts; the on-screen stash display shows totals and item counts. A fresh missing stash loads empty without writing a file. Saves validate the reward, write/flush a temporary file, verify its contents, preserve the previous validated primary as backup, and replace the primary with a same-directory rename. A corrupt primary can load the previous valid backup; this is recovery to the previous snapshot, not reconstruction of damaged data. Invalid saves with no usable backup and unsupported versions are preserved and block reward saving. Orphan temporary files grant no rewards.
+
+If saving fails, recall reports the error and leaves the deployment and cargo active for retry; it does not claim extraction or bank loot. The save and settlement path is synchronous within one game instance, with no multiplayer/shared-file writer coordination. Restart and scenario selection reset deployment state and create a new receipt identity while retaining the stash. Crafting, equipping saved items, stash spending, deployment loadouts, and support machines remain outside this checkpoint.
+
 ## Ownership and material conservation
 
 `MaterialLedger` is the sole writer of all material quantities and locations:
 
 ```text
-Protected + Carried + Ground + Recovered + Lost = Total Mission Materials
+Protected + Carried + Ground + Recovered + Lost + Banked + Forfeited = Total Mission Materials
 ```
 
 - Protected: remaining stock indexed by salvage location ID.
 - Carried: stock indexed by registered Raider ID.
 - Ground: stacks indexed by unique mission-local drop ID, retaining their source Raider ID.
-- Recovered: mission inventory credited by accepted recovery transfers.
+- Recovered: mission inventory credited by accepted recovery transfers; at-risk deployment cargo in Recall Deployment.
 - Lost: materials that actually left through Raider extraction.
+- Banked: this deployment's material outflow through successful player extraction; zero in legacy presets.
+- Forfeited: player cargo lost through destruction/expiration; distinct from Raider extraction and zero in legacy presets.
 
 The ledger derives aggregate totals from its records and validates nonnegative quantities and conservation after **every accepted transfer**, including empty death/extraction resolution. Validation executes in release builds too; debug assertions add diagnostics. Unknown IDs, duplicate resolutions/recovery, depleted stock, and transfers after the ledger is sealed are rejected without mutation.
 
@@ -166,6 +181,8 @@ The same eligibility function drives candidate selection, highlight, prompt, and
 
 `MissionRules` is separate from the ledger. It reads material totals and the number of unresolved Raiders; it never transfers materials.
 
+The following table describes F6-F10; F10 also counts pending reinforcement tickets and ground equipment. F12 requires explicit player extraction and applies the Stage G outcome/settlement rules above.
+
 | Condition | Outcome |
 | --- | --- |
 | Any Raider remains active | HUNTING: intercept and recover simultaneously |
@@ -176,7 +193,7 @@ The same eligibility function drives candidate selection, highlight, prompt, and
 
 Materials still protected at their original salvage points **do not block completion**. One death/extraction cannot end the other Raiders' simulation. An early extraction loss is recorded immediately, but the mission remains playable while other Raiders or ground cargo remain.
 
-At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still-carried cargo also remains carried. The summary reports protected, recovered, extracted/lost, unrecovered ground, carried, total, and elapsed time separately. Terminal completion seals transfers, stops all live actors and player combat/movement input, releases the cursor, and shows the restart control. Cosmetic tumble/particle cleanup can continue. Restart creates a fresh ledger, actors, drops, timer, and outcomes; there is no persistent progression or global mission singleton.
+At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still-Raider-carried cargo remains carried. The summary reports material categories separately; F12 additionally settles player cargo as forfeited. Terminal completion seals transfers, stops all live actors and player combat/movement input, releases the cursor, and shows the restart control. Cosmetic cleanup can continue. Restart creates fresh deployment ledgers, actors, drops, timers, and outcomes; Stage G's persistent stash survives separately, without a global mission singleton.
 
 ## Code boundaries
 
@@ -195,6 +212,8 @@ At the deadline, ground cargo remains **unrecovered**, not extracted/lost. Still
 - `scripts/gameplay/flare_director.gd`, `flare_config.gd`: bounded mission-local response tickets, local notification and equipment hold interaction.
 - `scripts/gameplay/equipment_ledger.gd`, `equipment_drop.gd`: authoritative item ownership and read-only world representation.
 - `scripts/presentation/death_flare.gd`: cosmetic launch, lingering signal, and audio.
+- `scripts/gameplay/recall_controller.gd`: extraction eligibility/channel, reward commit and terminal player-cargo settlement.
+- `scripts/gameplay/persistent_stash.gd`: versioned persistent inventory, receipt validation, atomic replacement and backup recovery.
 - `scripts/components/`: health, visual hit reaction, cosmetic death tumble.
 - `scripts/presentation/`, `scenes/effects/`: self-contained deployment presentation.
 
@@ -222,6 +241,7 @@ godot --headless --path . --script res://tests/mission_variety_test.gd
 godot --headless --path . --script res://tests/awareness_test.gd
 godot --headless --path . --script res://tests/hostile_combat_test.gd
 godot --headless --path . --script res://tests/flare_loot_test.gd
+godot --headless --path . --script res://tests/extraction_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -262,10 +282,16 @@ Stage F tests cover duplicate/simultaneous deaths, empty-cargo equipment, unique
 
 Stage F validation (2026-10-19): all eleven automated suites passed, including the ten existing regressions. Godot 4.7.2 import/parsing, bounded headless Loot Pressure startup, and Forward+ graphical startup passed without reported errors. Manual play-testing remains pending.
 
-Stop at **Checkpoint F** for director review. Stages G-I remain planned and require separate approval.
+Stage F (`9cf9be1`) has been accepted by the director. Stage G's Recall Dock, five-second channel, and cargo-forfeiture rules were approved separately.
+
+Stage G tests use unique isolated saves under ignored `.godot/stage_g_tests/`; they do not modify the player's stash. Coverage includes natural physics recall, interruption and stationary checks, active-hostile extraction, terminal ordering, separate banking/forfeiture, unchanged prior inventory on death/timeout, receipt replay/conflict, save reload, backup recovery, invalid/future saves, orphan temporary files, failed-save retry, and restart isolation. Manual review must establish dock visibility, channel fairness under fire, overlapping pickup/recall prompts, summary readability, and stash retention after closing and reopening the game.
+
+Stage G validation (2026-10-19): all twelve suites passed, including the eleven existing regressions. Godot 4.7.2 import/parsing and bounded headless/Forward+ Recall Deployment startup passed without reported errors. Save tests were isolated from the real stash; gameplay feel and real-session retention still require manual play-testing.
+
+Stop at **Checkpoint G** for director review. Stages H-I remain planned and require separate approval.
 
 - Stage B: objective scoring, extraction choices, personalities, threat behavior, navigation recovery.
 - Stage C: expanded graybox, dynamic/configurable entries, three mission presets, scenario selection.
 - Stage D: gunfire awareness and additional gameplay feedback.
 
-Keep networking, progression, detailed Blender models, and final art outside this stage.
+Keep networking, crafting/loadout progression, detailed Blender models, and final art outside this stage.

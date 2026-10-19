@@ -16,6 +16,9 @@ const PROFILES: Array[RaiderProfile] = [preload("res://resources/enemies/greedy.
 @export var combat_profile: RaiderCombatProfile
 @export var flare_rules: FlareConfig
 var flare_director: FlareDirector
+@export var recall_enabled: bool = false
+@export var stash_path: String = "user://stash.json"
+var recall: RecallController
 var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
@@ -50,6 +53,12 @@ func _ready() -> void:
 		flare_director.rules = flare_rules
 		add_child(flare_director)
 		flare_director.setup()
+	if recall_enabled:
+		mission.requires_extraction = true
+		recall = RecallController.new()
+		recall.arena = self
+		add_child(recall)
+		recall.setup()
 	setup_extractions()
 	$NavigationRegion3D.bake_navigation_mesh(false)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
@@ -432,6 +441,8 @@ func refresh_hud() -> void:
 func finish_mission() -> void:
 	if not mission.is_finished() or summary.visible:
 		return
+	if recall != null:
+		recall.settle_failure()
 	ledger.seal()
 	if flare_director != null:
 		flare_director.stop()
@@ -456,6 +467,8 @@ func finish_mission() -> void:
 	summary.show()
 	if flare_director != null:
 		$Overlay/Summary/Content/Report.text += "\nEquipment recovered: %d | Ground: %d | Value recovered: %d\nEquipment carried: %d | Extracted: %d\nResponses pending: %d | Budget used: %d/%d" % [flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.ground_count(), flare_director.equipment.value_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.count_at(EquipmentLedger.Location.CARRIED), flare_director.equipment.count_at(EquipmentLedger.Location.EXTRACTED), flare_director.tickets.size(), flare_director.committed, flare_rules.reinforcement_budget]
+	if recall != null:
+		$Overlay/Summary/Content/Report.text += "\nPLAYER LOOT | Banked materials %d | Forfeited %d\nBanked equipment %d | Forfeited %d" % [ledger.banked_materials, ledger.forfeited_materials, flare_director.equipment.count_at(EquipmentLedger.Location.BANKED), flare_director.equipment.count_at(EquipmentLedger.Location.FORFEITED)]
 	refresh_hud()
 
 

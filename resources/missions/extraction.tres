@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+display_name = "Recall Deployment"
+raider_count = 3
+entry_times = PackedFloat32Array(0, 5, 10)
+duration = 180.0
+seed = 51017
+armed = true
+death_flares = true
+player_extraction = true

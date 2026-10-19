@@ -15,6 +15,7 @@ extends Resource
 @export_range(1, 99) var materials_per_stack: int = 3
 @export var armed: bool = false
 @export var death_flares: bool = false
+@export var player_extraction: bool = false
 
 
 func validation_error() -> String:

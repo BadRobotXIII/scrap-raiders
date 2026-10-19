@@ -11,6 +11,9 @@ var _ground: Dictionary[int, int] = {}
 var _drop_sources: Dictionary[int, int] = {}
 var _next_drop_id: int = 1
 var _recovered: int = 0
+var _banked: int = 0
+var _forfeited: int = 0
+var _player_settled: bool = false
 var _lost: int = 0
 var _total: int = 0
 var _sealed: bool = false
@@ -28,6 +31,10 @@ var recovered_materials: int:
 	get: return _recovered
 var lost_materials: int:
 	get: return _lost
+var banked_materials: int:
+	get: return _banked
+var forfeited_materials: int:
+	get: return _forfeited
 var active_raiders: int:
 	get:
 		var count := 0
@@ -124,7 +131,7 @@ func extract(raider_id: int) -> bool:
 
 
 func recover(drop_id: int) -> int:
-	if _sealed or ground_for(drop_id) <= 0:
+	if _sealed or _player_settled or ground_for(drop_id) <= 0:
 		return 0
 	var amount := _ground[drop_id]
 	_ground[drop_id] = 0
@@ -137,8 +144,25 @@ func seal() -> void:
 	_sealed = true
 
 
+func settle_player(extracted: bool) -> bool:
+	if _sealed or _player_settled:
+		return false
+	_player_settled = true
+	if extracted:
+		_banked += _recovered
+	else:
+		_forfeited += _recovered
+	_recovered = 0
+	_verify_transfer()
+	return true
+
+
+func can_settle_player() -> bool:
+	return not _sealed and not _player_settled
+
+
 func is_conserved() -> bool:
-	if protected_materials + carried_materials + dropped_materials + _recovered + _lost != _total:
+	if protected_materials + carried_materials + dropped_materials + _recovered + _lost + _banked + _forfeited != _total:
 		return false
 	for records in [_stock, _cargo, _ground]:
 		for amount in records.values():
@@ -147,7 +171,7 @@ func is_conserved() -> bool:
 	for id in _outcomes:
 		if not is_active(id) and cargo_for(id) != 0:
 			return false
-	return _recovered >= 0 and _lost >= 0
+	return _recovered >= 0 and _lost >= 0 and _banked >= 0 and _forfeited >= 0
 
 
 func _verify_transfer() -> void:

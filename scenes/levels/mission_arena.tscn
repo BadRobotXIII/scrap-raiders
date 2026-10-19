@@ -271,3 +271,6 @@ position = Vector3(-6.5, 0, 5.5)
 
 [node name="Peek" type="Marker3D" parent="CoverPoints/WestInside2"]
 position = Vector3(0, 0, 5)
+
+[node name="RecallDock" type="Marker3D" parent="."]
+position = Vector3(0, 0, 19)

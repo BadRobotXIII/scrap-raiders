@@ -2,12 +2,13 @@ class_name EquipmentLedger
 extends RefCounted
 ## Sole writer of equipment ownership. Items are not mission material units.
 
-enum Location { CARRIED, GROUND, RECOVERED, EXTRACTED }
+enum Location { CARRIED, GROUND, RECOVERED, EXTRACTED, BANKED, FORFEITED }
 var _items: Dictionary[int, Dictionary] = {}
 var _owners: Dictionary[int, Array] = {}
 var _resolved: Dictionary[int, bool] = {}
 var _next_id: int = 1
 var _sealed: bool = false
+var _player_settled: bool = false
 
 
 func assign_loadout(owner_id: int, responder: bool) -> bool:
@@ -35,7 +36,7 @@ func resolve(owner_id: int, extracted: bool = false) -> bool:
 
 
 func recover(owner_id: int) -> bool:
-	if _sealed or ground_count(owner_id) == 0:
+	if _sealed or _player_settled or ground_count(owner_id) == 0:
 		return false
 	for id in _owners[owner_id]:
 		if _items[id].location == Location.GROUND:
@@ -73,6 +74,29 @@ func value_at(location: Location, owner_id: int = 0) -> int:
 
 func seal() -> void:
 	_sealed = true
+
+
+func recovered_items() -> Array[Dictionary]:
+	var items: Array[Dictionary] = []
+	for id in _items:
+		if _items[id].location == Location.RECOVERED:
+			items.append({"id": id, "name": _items[id].name, "value": _items[id].value})
+	return items
+
+
+func settle_player(extracted: bool) -> bool:
+	if _sealed or _player_settled:
+		return false
+	_player_settled = true
+	for item in _items.values():
+		if item.location == Location.RECOVERED:
+			item.location = Location.BANKED if extracted else Location.FORFEITED
+	_verify()
+	return true
+
+
+func can_settle_player() -> bool:
+	return not _sealed and not _player_settled
 
 
 func is_valid() -> bool:

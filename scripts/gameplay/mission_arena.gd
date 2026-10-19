@@ -1,8 +1,8 @@
 extends "res://scripts/gameplay/raider_arena.gd"
 ## Owns scheduled entry and scenario selection; Raiders retain their shared FSM.
 
-const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres")]
-@export_range(0, 4) var scenario_index: int = 0
+const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres")]
+@export_range(0, 5) var scenario_index: int = 0
 var config: MissionConfig
 var pending_ids: Array[int] = []
 var spawn_order: Array[Node3D] = []
@@ -21,8 +21,9 @@ func _ready() -> void:
 	dynamic_ai = true
 	combat_profile = preload("res://resources/enemies/armed_scavenger.tres") if config.armed else null
 	flare_rules = preload("res://resources/missions/death_flare_rules.tres") if config.death_flares else null
+	recall_enabled = config.player_extraction
 	super._ready()
-	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF6: Intercept | F7: Swarm | F8: Recovery | F9: Survival | F10: Loot Pressure | F3: debug" % config.display_name
+	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF6-8: Unarmed | F9: Survival | F10: Loot Pressure | F12: Extraction | F3: debug" % config.display_name
 	if not mission.is_finished():
 		for index in range(config.ground_stacks):
 			present_drop(index + 1, $GroundCargo.get_child(index).global_position)
@@ -140,6 +141,9 @@ func refresh_hud() -> void:
 		return
 	objectives.text = objectives.text.replace("Active ", "Unresolved ")
 	objectives.text += " | Pending entry %d" % pending_ids.size()
+	if recall != null and not mission.is_finished():
+		objectives.text = objectives.text.replace("All Raiders resolved. Recover remaining ground cargo.", "Raiders resolved. Recover loot or return to Recall Dock.")
+		objectives.text = objectives.text.replace("Intercept Raiders and recover dropped cargo.", "Recover loot, survive, and extract at the Recall Dock.")
 	if flare_director != null:
 		objectives.text += "\nEquipment ground %d | Recovered %d | Response budget %d/%d" % [flare_director.equipment.ground_count(), flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.committed, flare_rules.reinforcement_budget]
 	if debug_visible:
@@ -158,7 +162,7 @@ func finish_mission() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
-		var index := [KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10].find(event.physical_keycode)
+		var index := [KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F12].find(event.physical_keycode)
 		if index >= 0:
 			get_viewport().set_input_as_handled()
 			select_scenario.call_deferred(index)
@@ -170,6 +174,7 @@ func select_scenario(index: int) -> void:
 	# Replace the scene with an explicit configuration; no persistent singleton state.
 	var replacement := load("res://scenes/levels/mission_arena.tscn").instantiate() as Node3D
 	replacement.scenario_index = clampi(index, 0, CONFIGS.size() - 1)
+	replacement.stash_path = stash_path
 	var tree := get_tree()
 	tree.root.remove_child(self)
 	tree.root.add_child(replacement)
