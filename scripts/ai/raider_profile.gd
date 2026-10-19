@@ -9,3 +9,4 @@ extends Resource
 @export var route_risk_weight: float = 2.0
 @export var investigates: bool = false
 @export var threat_memory: float = 3.0
+@export_range(0.5, 20.0) var investigation_rearm_distance: float = 2.0

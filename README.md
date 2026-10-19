@@ -63,6 +63,8 @@ Three shared resources in `resources/enemies/` parameterize one common FSM:
 
 No Raider weapons are implemented. Damage always interrupts the current task and causes flight; lethal damage remains terminal. An empty/under-target fleeing Raider can resume scavenging after three seconds without visible danger (damage adds two seconds of memory). Raiders at their cargo target continue extraction. Threats still use line of sight; only observed or damage-revealed threat positions influence route risk.
 
+Aggressive investigates once per observed threat position, then resumes objectives while the robot remains stationary. Investigation re-arms after the robot moves at least 2 m from that position, or after lost visibility outlasts threat memory. Its investigation standoff includes an arrival margin outside the close-threat flee distance; close approaches and damage still cause retreat.
+
 The common FSM adds SELECTING, INVESTIGATING, and STRANDED to the existing states. Raider-specific state, timers, failed objectives, and sensor memory remain per instance. Profile resources are shared read-only definitions. `HitReaction`, death tumbles, weapon damage/cooldown, recovery, and mission outcome policy retain their existing ownership.
 
 Objective scoring uses actual reachable navigation paths, path length, remaining stock, other Raiders targeting the location, known route danger, and a small seeded tie-break. Exit scoring uses reachable path length and known danger weighted by profile. Off-map/disconnected destinations are rejected. Decisions wait for usable navigation geometry, not merely a nonzero map iteration. Seeded scores reproduce choices for the same state; this does not promise bitwise deterministic physics.

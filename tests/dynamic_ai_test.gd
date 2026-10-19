@@ -110,6 +110,63 @@ func run() -> void:
 	arena.queue_free()
 	await frames(3)
 
+	# Stationary visible threats must not restart the same investigation repeatedly.
+	arena = create_arena()
+	await frames(6)
+	arena.robot.position = Vector3.ZERO
+	aggressive = arena.raiders[3]
+	aggressive.position = Vector3(-3, 0.1, -6)
+	aggressive.transition(Raider.State.SCAVENGING)
+	var entries := {"investigate": 0, "flee": 0}
+	aggressive.state_changed.connect(func(_previous: Raider.State, next: Raider.State) -> void:
+		if next == Raider.State.INVESTIGATING:
+			entries.investigate += 1
+		elif next == Raider.State.FLEEING:
+			entries.flee += 1)
+	await frames(3)
+	Engine.time_scale = 3
+	aggressive.set_physics_process(true)
+	await frames(200)
+	aggressive.set_physics_process(false)
+	Engine.time_scale = 1
+	check(entries.investigate == 1, "Stationary visible robot triggers only one investigation over ten simulated seconds")
+	check(entries.flee == 0, "Investigation arrival tolerance does not accidentally trigger close-range retreat")
+	check(arena.ledger.is_conserved(), "Stable investigation preserves material accounting")
+	# Isolate re-arming while the same visible encounter remains active.
+	arena.queue_free()
+	await frames(3)
+	arena = create_arena()
+	await frames(6)
+	arena.robot.position = Vector3.ZERO
+	aggressive = arena.raiders[3]
+	aggressive.position = Vector3(-3, 0.1, -6)
+	aggressive.transition(Raider.State.SCAVENGING)
+	await frames(3)
+	aggressive.decide()
+	aggressive.investigation_position = aggressive.global_position
+	aggressive.task_elapsed = 1.99
+	aggressive._physics_process(0.02)
+	aggressive.decide()
+	aggressive.decide()
+	check(aggressive.state == Raider.State.SCAVENGING, "Completed investigation remains suppressed while threat position is unchanged")
+	arena.robot.position = Vector3(2.5, 0, 0)
+	await frames(3)
+	aggressive.decide()
+	check(aggressive.state == Raider.State.INVESTIGATING, "Meaningful robot movement re-arms investigation")
+	aggressive.transition(Raider.State.SCAVENGING)
+	arena.robot.position = Vector3(0, 0, 100)
+	aggressive.threat_remaining = 0
+	await frames(3)
+	aggressive.decide()
+	arena.robot.position = Vector3(2.5, 0, 0)
+	await frames(3)
+	aggressive.decide()
+	check(aggressive.state == Raider.State.INVESTIGATING, "Losing threat memory allows a newly spotted encounter to be investigated")
+	aggressive.health.apply_damage(25)
+	check(aggressive.state == Raider.State.FLEEING, "Damage still interrupts a re-armed investigation")
+	arena.queue_free()
+	await frames(3)
+
 	# Real collection requests accumulate cargo from two finite locations.
 	arena = create_arena()
 	await frames(6)

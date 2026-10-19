@@ -34,6 +34,7 @@ var threat_visible: bool = false
 var threat_remaining: float = 0.0
 var last_threat_position: Vector3
 var investigation_position: Vector3
+var _investigated_threat_position: Vector3 = Vector3.INF
 var navigation_status: String = "READY"
 var navigation_failures: int = 0
 var blocked_salvage: Dictionary[StringName, bool] = {}
@@ -69,6 +70,8 @@ func transition(next: State) -> void:
 		return
 	var previous := state
 	state = next
+	if next == State.INVESTIGATING:
+		_investigated_threat_position = last_threat_position
 	task_elapsed = 0.0
 	_progress_elapsed = 0.0
 	_progress_origin = global_position
@@ -113,6 +116,8 @@ func decide() -> void:
 	if threat_visible:
 		threat_remaining = profile.threat_memory
 		last_threat_position = robot.global_position
+	elif threat_remaining <= 0.0:
+		_investigated_threat_position = Vector3.INF
 	if state == State.STRANDED:
 		if _retry_remaining <= 0.0:
 			blocked_exits.clear()
@@ -127,9 +132,10 @@ func decide() -> void:
 			transition(State.FLEEING)
 	elif state == State.FLEEING and threat_remaining <= 0 and carried_materials < profile.cargo_target:
 		transition(State.SELECTING)
-	elif threat_visible and profile.investigates and state == State.SCAVENGING:
+	elif threat_visible and profile.investigates and state == State.SCAVENGING and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
 		var away := (global_position - last_threat_position).normalized()
-		investigation_position = last_threat_position + away * 3.5
+		# Arrival allows 0.8 m tolerance; stay clear of the close-threat threshold.
+		investigation_position = last_threat_position + away * (profile.flee_distance + 1.25)
 		transition(State.INVESTIGATING)
 	if state == State.SELECTING:
 		salvage = select_salvage.call(raider_id) if carried_materials < profile.cargo_target else null
