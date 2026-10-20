@@ -1,6 +1,6 @@
 # Phase 5, Stage P - Dynamic encounter generation plan
 
-Prepared: **2026-10-19**. Stage P scope is authorized. **Implementation-plan review remains pending**, as required by the supplied [Stage P ledger](../ledgers/phase_5_stage_p_dynamic_encounter_generation.md), sections 17-18. No Stage P gameplay implementation has begun. Stage O functionality has been confirmed by the director.
+Prepared: **2026-10-19**. **Approved by the director, implemented and validated for Checkpoint P manual review.** The original proposal below is retained as the approved plan. See the [Stage P delivery report](../reports/stage_p_dynamic_encounters.md) for actual behavior, validation and limits. The [supplied Stage P ledger](../ledgers/phase_5_stage_p_dynamic_encounter_generation.md) is unchanged. Stage O functionality has been confirmed by the director.
 
 ## Goal and minimum change
 

@@ -9,7 +9,7 @@ var component_drop_ids: Array[int] = []
 
 
 func setup() -> void:
-	for definition in [["ScoutComponents", "ScoutRoute", true], ["GuardComponents", "GuardRoute", false]]:
+	for definition in [["ScoutComponents", arena.machine_routes[0], true], ["GuardComponents", arena.machine_routes[1], false]]:
 		var actor := SupportMachine.new()
 		actor.name = definition[0]
 		actor.source_id = StringName(definition[0])

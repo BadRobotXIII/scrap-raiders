@@ -1,14 +1,16 @@
 extends "res://scripts/gameplay/raider_arena.gd"
 ## Owns scheduled entry and scenario selection; Raiders retain their shared FSM.
 
-const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres"), preload("res://resources/missions/ecosystem.tres"), preload("res://resources/missions/traversal.tres"), preload("res://resources/missions/social_rivalry.tres"), preload("res://resources/missions/social_cooperation.tres"), preload("res://resources/missions/social_pressure.tres"), preload("res://resources/missions/social_betrayal.tres"), preload("res://resources/missions/integrated_extraction.tres")]
-@export_range(0, 12) var scenario_index: int = 0
+const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres"), preload("res://resources/missions/ecosystem.tres"), preload("res://resources/missions/traversal.tres"), preload("res://resources/missions/social_rivalry.tres"), preload("res://resources/missions/social_cooperation.tres"), preload("res://resources/missions/social_pressure.tres"), preload("res://resources/missions/social_betrayal.tres"), preload("res://resources/missions/integrated_extraction.tres"), preload("res://resources/missions/emergent_encounters.tres")]
+@export_range(0, 13) var scenario_index: int = 0
 var config: MissionConfig
 var pending_ids: Array[int] = []
 var spawn_order: Array[Node3D] = []
 var entry_log: Array[StringName] = []
 var entry_retry: float = 0.0
 var entry_status: String = "Waiting for navigation"
+var encounter: EncounterSetup
+var seed_override: int = -1
 
 
 func _ready() -> void:
@@ -18,6 +20,14 @@ func _ready() -> void:
 	materials_per_point = config.materials_per_point
 	mission_duration = config.duration
 	debug_seed = config.seed
+	max_active_raiders = config.max_active_raiders
+	if not config.encounter_layouts.is_empty():
+		if seed_override >= 0:
+			debug_seed = seed_override
+		encounter = EncounterSetup.new()
+		encounter.arena = self
+		add_child(encounter)
+		setup_error = encounter.resolve(config, debug_seed)
 	dynamic_ai = true
 	combat_profile = preload("res://resources/enemies/armed_scavenger.tres") if config.armed else null
 	flare_rules = preload("res://resources/missions/death_flare_rules.tres") if config.death_flares else null
@@ -36,6 +46,8 @@ func _ready() -> void:
 	$Overlay/FoundationStatus.text = "SCRAP RAIDERS | %s\nWASD: move | Mouse: orbit | RMB: aim | LMB: fire | E: recover\nF2: Traversal | F4: Machines | F5: Extraction | F6-8: Unarmed | F9: Survival | F10: Loot | F12: Recall | F3: debug" % config.display_name
 	if OS.is_debug_build():
 		$Overlay/FoundationStatus.text += "\nF1: Spectator | F11: Rivalry | Shift+F11: Cooperation | Ctrl+F11: Pressure | Alt+F11: Betrayal"
+	if encounter != null:
+		$Overlay/FoundationStatus.text = "EMERGENT ENCOUNTERS | WASD move | Mouse orbit | LMB fire | E recover\nSpace jump | Shift boost | F1 spectator | F3 diagnostics\nShift+F5: encounter preset | Ctrl+Shift+F5: next seed | Hold E at dock: recall"
 	if not mission.is_finished():
 		for index in range(config.ground_stacks):
 			present_drop(index + 1, $GroundCargo.get_child(index).global_position)
@@ -50,6 +62,11 @@ func initial_ground_stock() -> Dictionary:
 	for index in range(config.ground_stacks):
 		stock[index + 1] = config.materials_per_stack
 	return stock
+
+
+func actor_entered(actor: Raider) -> void:
+	if encounter != null:
+		encounter.register_actor(actor)
 
 
 func setup_extractions() -> void:
@@ -121,8 +138,16 @@ func reaches_any(map: RID, origin: Vector3, points: Array[Node3D]) -> bool:
 func process_entries() -> void:
 	if mission.is_world_finished():
 		return
+	if encounter != null and not encounter.navigation_checked:
+		if NavigationServer3D.map_get_iteration_id($NavigationRegion3D.get_navigation_map()) == 0:
+			return
+		var error := encounter.validate_navigation()
+		if not error.is_empty():
+			mission.fail_setup(error)
+			finish_mission()
+			return
 	for id in pending_ids.duplicate():
-		if flare_director != null and flare_director.living_count() >= flare_rules.active_cap:
+		if not population_has_room():
 			break
 		if elapsed < config.entry_times[id - 1]:
 			continue
@@ -130,6 +155,8 @@ func process_entries() -> void:
 		var choices: Array[Node3D] = spawn_order
 		if not config.preferred_entries.is_empty():
 			choices = [$RaiderSpawns.get_node(NodePath(config.preferred_entries[id - 1]))]
+		if encounter != null:
+			choices = [$RaiderSpawns.get_node(NodePath(encounter.layout.entry_markers[id - 1]))]
 		for offset in range(choices.size()):
 			var marker := choices[(id - 1 + offset) % choices.size()]
 			if entry_is_valid(marker.global_position):
@@ -188,6 +215,8 @@ func refresh_hud() -> void:
 			for actor in raiders.values():
 				if is_instance_valid(actor):
 					$Overlay/DebugStatus.text += "\nR%02d target %s" % [actor.raider_id, actor.current_target().name]
+		if encounter != null and not encounter.snapshot.is_empty():
+			$Overlay/DebugStatus.text = encounter.describe()
 
 
 func finish_mission() -> void:
@@ -201,7 +230,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_F5:
 			get_viewport().set_input_as_handled()
-			select_scenario.call_deferred(12)
+			if event.shift_pressed and OS.is_debug_build():
+				select_scenario.call_deferred(13, debug_seed + 1 if event.ctrl_pressed and encounter != null else -1)
+			else:
+				select_scenario.call_deferred(12)
 			return
 		if event.physical_keycode == KEY_F11 and OS.is_debug_build():
 			get_viewport().set_input_as_handled()
@@ -223,13 +255,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	super._unhandled_input(event)
 
 
-func select_scenario(index: int) -> void:
+func select_scenario(index: int, new_seed: int = -1) -> void:
 	# Replace the scene with an explicit configuration; no persistent singleton state.
 	if mission.player_destroyed and not mission.is_world_finished():
 		mission.stop_world("Deployment replaced.")
 		finish_mission()
-	var replacement := load("res://scenes/levels/mission_arena.tscn").instantiate() as Node3D
+	var scene_path := "res://scenes/levels/emergent_encounters_arena.tscn" if index == 13 else "res://scenes/levels/mission_arena.tscn"
+	var replacement := load(scene_path).instantiate() as Node3D
 	replacement.scenario_index = clampi(index, 0, CONFIGS.size() - 1)
+	replacement.seed_override = new_seed
 	replacement.stash_path = stash_path
 	var tree := get_tree()
 	tree.root.remove_child(self)
@@ -239,4 +273,4 @@ func select_scenario(index: int) -> void:
 
 
 func restart_mission() -> void:
-	select_scenario.call_deferred(scenario_index)
+	select_scenario.call_deferred(scenario_index, debug_seed if encounter != null else -1)

@@ -4,7 +4,7 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Original phase ledgers, completion reports and the current acceptance history are collected in the [development records](docs/development/README.md).
 
-Stages N and O are accepted. Stage P dynamic encounter generation is in [implementation-plan review](docs/development/plans/phase_5_stage_p_dynamic_encounter_plan.md), following the newly supplied ledger; gameplay implementation has not begun.
+Stages N and O are accepted. Stage P dynamic encounter generation is implemented for [Checkpoint P play-testing](docs/development/reports/stage_p_dynamic_encounters.md). The accepted pre-P project is preserved in baseline commit `bac0f6d`.
 
 ## Requirements and running
 
@@ -49,9 +49,25 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F12 | Deploy Recall Deployment (Stage G); hold E at the Recall Dock for five seconds |
 | F4 | Deploy Machine Ecosystem (Stage H); scout and guard support with recall |
 | F5 | Deploy Integrated Extraction (Stage N); combined mission with persistent recall rewards |
+| Shift+F5 (debug builds) | Deploy Emergent Encounters (Stage P) |
+| Ctrl+Shift+F5 (debug builds) | Deploy next encounter seed; restart repeats the current seed |
 | F2 | Deploy Traversal Experiment (Stage I); Space jumps, Shift boosts |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
+
+## Stage P dynamic encounter opportunities
+
+Press **Shift+F5** in the running game, or launch `godot --path . res://scenes/levels/emergent_encounters_arena.tscn`. Plain F5 remains Integrated Extraction. **Ctrl+Shift+F5** advances the runtime encounter seed; restarting repeats it. Source resources are not modified by replay controls. The default seed is **87017**; 87018 selects the other authored arrangement in this Godot version.
+
+The new preset uses two seeded layouts in the existing graybox. Each supplies three finite salvage placements (6, 3 and 3 units), five profiled entries at **0, 0, 35, 70 and 105 seconds**, and authored scout/guard route groups. Two installed components make **14 total material units**; equipment remains separate. Both existing Raider exits and five-second player recall are available within the 180-second deadline.
+
+R1/R2 are explicitly allied, R3 is an independent neutral competitor, and later R4/R5 are allies hostile to R1/R2. Other pairs default to neutral. R1 may betray its ally only under existing conditions. Profiles differ between layouts. Entry/stock/patrol choices establish opportunities; existing actor FSMs independently decide how to scavenge, fight, retreat, loot and extract. No behavior, winner, betrayal or loot reward is forced.
+
+Initial actors and flare responders share a maximum of five live Raiders, with at most two support machines. Five initial IDs plus two possible responders are finite over the deployment. Blocked or capacity-limited entries retry until the world ends. Original ledger ownership, conservation, equipment, flare delays/anti-farming, persistence, traversal, developer free camera and Stage O follow spectating remain in use. Normal post-death UI does not reveal the encounter configuration.
+
+**F3** shows the seed, layout, stock locations, nearby participants, actual objectives/targets/relations and recent events. Area/diagnostic sampling runs every 0.5 seconds, with a 64-entry event history. F1/Tab/F retains the detailed developer inspector. Earlier presets retain their accepted settings and stock; the new layout data is opt-in.
+
+Review both layouts passively, intervene in an encounter, follow actors after death, then compare same-seed restarts and other seeds. Pacing, congestion, late-arrival usefulness and believable variety still require manual acceptance. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) includes the full procedure and current AI limitations; Stage Q is not authorized.
 
 ## Stage N integrated extraction mission
 
@@ -364,6 +380,7 @@ godot --headless --path . --script res://tests/social_cooperation_test.gd
 godot --headless --path . --script res://tests/betrayal_test.gd
 godot --headless --path . --script res://tests/integrated_extraction_test.gd
 godot --headless --path . --script res://tests/post_death_spectator_test.gd
+godot --headless --path . --script res://tests/encounter_generation_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```

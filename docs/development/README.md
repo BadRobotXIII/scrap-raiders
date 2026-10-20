@@ -4,7 +4,9 @@ Last updated: **2026-10-19**. Internal working title: SCRAP Raiders.
 
 ## Current position
 
-The prototype and Phase 2 Stages A–D are complete and accepted. Phase 3 Stages E–I, Stages J–M, the display refinement, Stage N integrated extraction and Stage O post-death spectating are accepted. The latest committed gameplay checkpoint is `ac0bace`. Stage P scope is authorized; its supplied ledger requires implementation-plan review before gameplay changes. The plan is prepared and awaiting that review. Relationships, competition and squad membership remain independent. Changes after Stage I are uncommitted.
+The prototype, Phase 2 Stages A–D, Phase 3 Stages E–I and Stages J–O are accepted. Baseline commit `bac0f6d` preserves all accepted pre-P work and development records. The Stage P implementation plan was approved; seeded encounter opportunities are implemented and validated for Checkpoint P manual review. Relationships, competition and squad membership remain independent. Stage Q is not authorized.
+
+Older stage reports retain their validation-time Git status; their previously uncommitted J–O work is now preserved by the baseline above. Stage P is a separate focused commit containing its report and implementation.
 
 Stage I acceptance: the director confirmed jump and boost work, approved the jump height, and noted that the jump feels floaty. Refinement was explicitly deferred. The original F2-only rollout was superseded by the [post-K availability follow-up](reports/traversal_availability_followup.md): jump and boost now default to enabled across all test scenes, with their tuning unchanged.
 
@@ -24,7 +26,7 @@ The later [Phase 4 Stage J spectator amendment](ledgers/phase_4_stage_j_spectato
 
 ## Reports
 
-Current work: [Stage P ledger](ledgers/phase_5_stage_p_dynamic_encounter_generation.md) and [Stage P implementation plan](plans/phase_5_stage_p_dynamic_encounter_plan.md). No Stage P gameplay changes or commits have begun. The preceding [Stage O report](reports/stage_o_post_death_spectating.md) records the accepted spectator foundation.
+Current work: [Stage P ledger](ledgers/phase_5_stage_p_dynamic_encounter_generation.md), [approved implementation plan](plans/phase_5_stage_p_dynamic_encounter_plan.md) and [delivery/validation report](reports/stage_p_dynamic_encounters.md). Stop at Checkpoint P for passive, active, replay, population and post-death play-testing.
 
 The [Phase 4 social AI plan](plans/phase_4_social_ai_plan.md) records approved K–M scope and the architectural clarification.
 
@@ -40,6 +42,7 @@ The [Phase 4 social AI plan](plans/phase_4_social_ai_plan.md) records approved K
 - [Stage M opportunistic betrayal report](reports/stage_m_opportunistic_betrayal.md): accepted authored opportunity, warning, bounded pair hostility, ordinary combat/loot and display/HUD follow-up.
 - [Stage N integrated extraction report](reports/stage_n_integrated_extraction.md): accepted combined deployment-to-stash mission and nineteen-suite validation.
 - [Stage O post-death spectating report](reports/stage_o_post_death_spectating.md): accepted player/world lifetime separation, restricted follow view and twenty-suite validation.
+- [Stage P dynamic encounters report](reports/stage_p_dynamic_encounters.md): seeded layouts, staggered arrivals, shared limits, twenty-one-suite validation and pending manual acceptance.
 
 Use the [project README](../../README.md) for current launch commands, architecture, tuning and validation instructions. Use these records for historical scope and acceptance. Git commits identify the actual implementation at each checkpoint.
 

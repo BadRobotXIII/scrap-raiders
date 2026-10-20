@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://scenes/levels/mission_arena.tscn" id="1"]
+[node name="EmergentEncountersArena" instance=ExtResource("1")]
+scenario_index = 13
+
+[node name="EncounterSites" type="Node3D" parent="."]
+[node name="North" type="Marker3D" parent="EncounterSites"]
+position = Vector3(-16, 0, -14)
+[node name="East" type="Marker3D" parent="EncounterSites"]
+position = Vector3(16, 0, -2)
+[node name="South" type="Marker3D" parent="EncounterSites"]
+position = Vector3(-14, 0, 13)
+[node name="EncounterNorthEntry" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(-19, 0.1, -10)
+[node name="EncounterSouthEntry" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(-19, 0.1, 10)
+
+[node name="EncounterScoutRoute" type="Node3D" parent="."]
+[node name="Point1" type="Marker3D" parent="EncounterScoutRoute"]
+position = Vector3(18, 3.5, 12)
+[node name="Point2" type="Marker3D" parent="EncounterScoutRoute"]
+position = Vector3(18, 3.5, 2)
+[node name="Point3" type="Marker3D" parent="EncounterScoutRoute"]
+position = Vector3(20, 3.5, -12)
+[node name="Point4" type="Marker3D" parent="EncounterScoutRoute"]
+position = Vector3(6, 3.5, -16)
+[node name="EncounterGuardRoute" type="Node3D" parent="."]
+[node name="Point1" type="Marker3D" parent="EncounterGuardRoute"]
+position = Vector3(-16, 0.1, 9)
+[node name="Point2" type="Marker3D" parent="EncounterGuardRoute"]
+position = Vector3(-16, 0.1, 15)
+[node name="Point3" type="Marker3D" parent="EncounterGuardRoute"]
+position = Vector3(-4, 0.1, 15)
+[node name="Point4" type="Marker3D" parent="EncounterGuardRoute"]
+position = Vector3(-4, 0.1, 9)

@@ -38,6 +38,11 @@ var drops: Dictionary[int, MaterialDrop] = {}
 var salvage_points: Array[Node3D] = []
 var extraction_points: Array[Node3D] = []
 var debug_visible: bool = false
+var setup_error: String = ""
+var salvage_quantities: Dictionary[StringName, int] = {}
+var resolved_profiles: Array[RaiderProfile] = []
+var machine_routes: PackedStringArray = PackedStringArray(["ScoutRoute", "GuardRoute"])
+var max_active_raiders: int = 5
 @onready var robot: RobotController = $Robot
 @onready var status: Label = $Overlay/RaiderStatus
 @onready var objectives: Label = $Overlay/MissionStatus
@@ -52,7 +57,7 @@ func _ready() -> void:
 		candidates[index].visible = index < salvage_point_count
 		if index < salvage_point_count:
 			salvage_points.append(candidates[index])
-			stock[candidates[index].name] = materials_per_point
+			stock[candidates[index].name] = salvage_quantities.get(candidates[index].name, materials_per_point)
 	var ids: Array[int] = []
 	for index in range(raider_count):
 		ids.append(index + 1)
@@ -60,6 +65,10 @@ func _ready() -> void:
 		stock[&"ScoutComponents"] = 1
 		stock[&"GuardComponents"] = 1
 	ledger = MaterialLedger.new(stock, ids, initial_ground_stock())
+	if not setup_error.is_empty():
+		mission.fail_setup(setup_error)
+		finish_mission()
+		return
 	if flare_rules != null:
 		flare_director = FlareDirector.new()
 		flare_director.arena = self
@@ -160,7 +169,7 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	actor.raider_id = id
 	actor.ledger = ledger
 	actor.dynamic_ai = dynamic_ai
-	actor.profile = PROFILES[(id - 1) % PROFILES.size()]
+	actor.profile = resolved_profiles[id - 1] if id <= resolved_profiles.size() else PROFILES[(id - 1) % PROFILES.size()]
 	actor.select_extraction = choose_extraction
 	actor.robot = robot
 	actor.select_salvage = choose_salvage
@@ -193,11 +202,24 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 		flare_director.register_actor(actor)
 	if social != null:
 		social.register_actor(actor)
+	actor_entered(actor)
 	return actor
+
+
+func actor_entered(_actor: Raider) -> void:
+	pass
 
 
 func release_cover(id: int) -> void:
 	cover_reservations.erase(id)
+
+
+func population_has_room() -> bool:
+	var count := 0
+	for actor in raiders.values():
+		if is_instance_valid(actor) and ledger.is_active(actor.raider_id):
+			count += 1
+	return count < mini(max_active_raiders, flare_director.rules.active_cap if flare_director != null else max_active_raiders)
 
 
 func reserve_cover(id: int) -> Node3D:

@@ -22,9 +22,20 @@ extends Resource
 @export var preferred_entries: PackedStringArray = []
 @export var player_start_marker: StringName = &""
 @export var post_death_spectating: bool = false
+@export var encounter_layouts: Array[EncounterLayout] = []
+@export_range(1, 5) var max_active_raiders: int = 5
 
 
 func validation_error() -> String:
+	if max_active_raiders < 1 or max_active_raiders > 5:
+		return "Invalid live Raider limit."
+	var layout_ids := {}
+	for layout in encounter_layouts:
+		if layout == null or not layout.validation_error(self).is_empty():
+			return "Invalid encounter layout definition."
+		if layout_ids.has(layout.layout_id):
+			return "Duplicate encounter layout ID."
+		layout_ids[layout.layout_id] = true
 	if not preferred_entries.is_empty():
 		if preferred_entries.size() != raider_count:
 			return "Preferred entries must identify each Raider."

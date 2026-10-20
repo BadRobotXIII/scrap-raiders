@@ -68,7 +68,7 @@ func process_responses() -> void:
 			actor.investigate_flare(job.position)
 		local_jobs.erase(job)
 	for ticket in tickets.duplicate():
-		if arena.elapsed < ticket.due or living_count() >= rules.active_cap:
+		if arena.elapsed < ticket.due or not arena.population_has_room():
 			continue
 		for offset in range(arena.spawn_order.size()):
 			var marker: Node3D = arena.spawn_order[(int(ticket.id) - 1 + offset) % arena.spawn_order.size()]
