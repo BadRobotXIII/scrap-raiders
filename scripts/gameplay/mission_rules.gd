@@ -3,6 +3,10 @@ extends RefCounted
 ## Outcome policy only. Never writes quantities or transfers materials.
 
 enum Phase { HUNTING, RECOVERING, SUCCEEDED, FAILED }
+enum WorldState { RUNNING, FINISHED }
+var world_state: WorldState = WorldState.RUNNING
+var world_reason: String = ""
+var post_death_spectating: bool = false
 
 var phase: Phase = Phase.HUNTING
 var reason: String = ""
@@ -31,6 +35,26 @@ func fail_player_destroyed() -> void:
 
 func is_finished() -> bool:
 	return phase in [Phase.SUCCEEDED, Phase.FAILED]
+
+
+func is_world_finished() -> bool:
+	return world_state == WorldState.FINISHED or (is_finished() and not (post_death_spectating and player_destroyed))
+
+
+func stop_world(cause: String) -> void:
+	if world_state == WorldState.FINISHED:
+		return
+	world_state = WorldState.FINISHED
+	world_reason = cause
+
+
+func evaluate_world(deadline: bool, actors_remain: bool, pending: int) -> void:
+	if world_state == WorldState.FINISHED or not player_destroyed or not post_death_spectating:
+		return
+	if deadline:
+		stop_world("Deployment deadline reached.")
+	elif not actors_remain and pending == 0:
+		stop_world("No surviving actors or pending entries remain.")
 
 
 func evaluate(ledger: MaterialLedger, deadline_expired: bool = false, pending_responses: int = 0, ground_equipment: int = 0) -> void:

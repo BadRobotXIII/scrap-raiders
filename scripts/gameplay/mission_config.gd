@@ -17,10 +17,24 @@ extends Resource
 @export var death_flares: bool = false
 @export var player_extraction: bool = false
 @export var machine_ecosystem: bool = false
-@export var experimental_traversal: bool = false
+@export var experimental_traversal: bool = true
+@export var social_rules: RaiderSocialConfig
+@export var preferred_entries: PackedStringArray = []
+@export var player_start_marker: StringName = &""
+@export var post_death_spectating: bool = false
 
 
 func validation_error() -> String:
+	if not preferred_entries.is_empty():
+		if preferred_entries.size() != raider_count:
+			return "Preferred entries must identify each Raider."
+		for marker in preferred_entries:
+			if not spawn_markers.has(marker):
+				return "Preferred entry must belong to the spawn marker set."
+	if social_rules != null and not social_rules.opportunist_ids.is_empty() and not armed:
+		return "Betrayal requires an armed encounter."
+	if social_rules != null and not social_rules.validation_error(raider_count).is_empty():
+		return social_rules.validation_error(raider_count)
 	if raider_count < 1 or raider_count > 5 or salvage_point_count < 1 or salvage_point_count > 3 or materials_per_point < 1:
 		return "Invalid Raider or salvage quantities."
 	if not is_finite(duration) or duration <= 0 or entry_times.size() != raider_count or spawn_markers.is_empty() or exits.is_empty():

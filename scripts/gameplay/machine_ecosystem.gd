@@ -54,7 +54,7 @@ func component_drops() -> Array[Node3D]:
 
 func _on_destroyed(machine: SupportMachine) -> void:
 	machines.erase(machine)
-	if arena.mission.is_finished():
+	if arena.mission.is_world_finished():
 		return
 	var id: int = arena.ledger.release_source(machine.source_id)
 	if id <= 0:

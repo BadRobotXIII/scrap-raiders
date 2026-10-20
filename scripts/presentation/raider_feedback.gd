@@ -59,6 +59,11 @@ func refresh() -> void:
 	var loaded := actor.carried_materials > 0
 	cargo_material.albedo_color = Color(1, 0.75, 0.15) if loaded else Color(0.22, 0.25, 0.3)
 	cargo_material.emission = Color(0.25, 0.12, 0.01) if loaded else Color.BLACK
+	if actor.state == Raider.State.ASSESSING_BETRAYAL and actor.betrayal != null and is_instance_valid(actor.betrayal.candidate):
+		alert.show()
+		alert.text = "?! EYEING R%02d CARGO %.1fs" % [actor.betrayal.candidate.raider_id, maxf(0, actor.betrayal.profile.assessment_seconds - actor.betrayal.elapsed)]
+		alert.modulate = Color(1, 0.55, 0.1)
+		return
 	alert.visible = actor.dynamic_ai and actor.ledger.is_active(actor.raider_id) and actor.threat_remaining > 0
 	if not alert.visible:
 		return

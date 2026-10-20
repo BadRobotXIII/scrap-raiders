@@ -46,6 +46,35 @@ func reset_at(point: Vector3) -> void:
 	await frames(8)
 
 
+func verify_preset_traversal(label: String) -> void:
+	robot = arena.robot
+	input = robot.input_adapter
+	input.set_physics_process(false)
+	input.set_process_input(false)
+	arena.set_physics_process(false)
+	if arena.flare_director != null:
+		arena.flare_director.set_physics_process(false)
+	if arena.recall != null:
+		arena.recall.set_physics_process(false)
+	for actor in arena.raiders.values():
+		if is_instance_valid(actor):
+			actor.set_physics_process(false)
+			if actor.combat != null:
+				actor.combat.stop()
+	await frames(10)
+	var origin := robot.position
+	input.jump_requested = true
+	input.boost_requested = true
+	await frames(2)
+	check(robot.traversal_enabled and robot.position.y > origin.y + 0.1 and robot.position.distance_to(origin) > 0.4 and robot.boost_state == RobotController.BoostState.BOOSTING, label + " executes grounded jump and physical boost")
+	var feedback_count := 0
+	for child in arena.get_node("Overlay").get_children():
+		if child.name == "TraversalFeedback":
+			feedback_count += 1
+	check(feedback_count == 1, label + " shows exactly one shared traversal HUD")
+	input.clear_intent()
+
+
 func run() -> void:
 	check(InputMap.action_get_events("jump")[0].physical_keycode == KEY_SPACE and InputMap.action_get_events("boost")[0].physical_keycode == KEY_SHIFT, "Physical Space and Shift map to traversal actions")
 	arena = load("res://scenes/levels/traversal_arena.tscn").instantiate()
@@ -180,12 +209,24 @@ func run() -> void:
 	input = robot.input_adapter
 	input.set_physics_process(false)
 	input.set_process_input(false)
-	check(not robot.traversal_enabled, "Returning to Intercept restores baseline controller configuration")
+	check(robot.traversal_enabled, "Returning to Intercept preserves accepted jump and boost")
 	input.jump_requested = true
 	input.boost_requested = true
 	await frames(2)
-	check(robot.is_on_floor() and robot.boost_state == RobotController.BoostState.READY, "Baseline scenario ignores experimental traversal requests")
+	check(not robot.is_on_floor() and robot.boost_state == RobotController.BoostState.BOOSTING, "Intercept executes jump and boost after scenario switching")
+	for index in range(arena.CONFIGS.size()):
+		arena.select_scenario(index)
+		await frames(2)
+		arena = current_scene
+		await verify_preset_traversal(arena.config.display_name)
 	arena.queue_free()
 	await frames(3)
+	for scene in ["single_raider_arena", "test_arena"]:
+		arena = load("res://scenes/levels/" + scene + ".tscn").instantiate()
+		root.add_child(arena)
+		current_scene = arena
+		await verify_preset_traversal(scene)
+		arena.queue_free()
+		await frames(3)
 	print("Stage I traversal checks complete; failures: ", failures)
 	quit(1 if failures else 0)

@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var acceleration: float = 45.0
 @export var braking: float = 60.0
 @export var turn_speed: float = 18.0
-@export var traversal_enabled: bool = false
+@export var traversal_enabled: bool = true
 @export var jump_height: float = 1.5
 @export var boost_speed: float = 16.0
 @export var boost_duration: float = 0.25
@@ -16,6 +16,7 @@ enum BoostState { READY, BOOSTING, COOLDOWN }
 var boost_state: BoostState = BoostState.READY
 var boost_remaining: float = 0.0
 var boost_direction: Vector3 = Vector3.ZERO
+var debug_movement_locked: bool = false
 
 @onready var input_adapter: RobotInput = $Input
 @onready var camera_rig: RobotCamera = $CameraRig
@@ -49,6 +50,9 @@ func stop_traversal() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if debug_movement_locked:
+		velocity = Vector3.ZERO
+		return
 	var direction := camera_rig.movement_direction(input_adapter.move_intent)
 	var jump := input_adapter.jump_requested
 	var boost := input_adapter.boost_requested

@@ -10,6 +10,7 @@ signal fired(origin: Vector3, endpoint: Vector3, damaged_target: bool)
 @export_flags_3d_physics var damage_mask: int = 3
 var cooldown: float = 0.0
 var enabled: bool = true
+var can_damage_target: Callable
 
 
 func _ready() -> void:
@@ -41,7 +42,7 @@ func try_fire_at(aim_point: Vector3) -> bool:
 	if not hit.is_empty():
 		endpoint = hit.position
 		var target_health := (hit.collider as Node).get_node_or_null("Health") as Health
-		if target_health != null and (hit.collider as CollisionObject3D).collision_layer & damage_mask:
-			damaged_target = target_health.apply_damage(definition.damage, origin)
+		if target_health != null and (hit.collider as CollisionObject3D).collision_layer & damage_mask and (not can_damage_target.is_valid() or can_damage_target.call(hit.collider)):
+			damaged_target = target_health.apply_damage(definition.damage, origin, shooter.get_instance_id())
 	fired.emit(origin, endpoint, damaged_target)
 	return true

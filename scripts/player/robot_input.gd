@@ -12,6 +12,7 @@ var pickup_intent: bool = false
 var recover_held: bool = false
 var jump_requested: bool = false
 var boost_requested: bool = false
+var gameplay_enabled: bool = true
 
 
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+	if not gameplay_enabled or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		clear_intent()
 		return
 	move_intent = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -33,6 +34,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not gameplay_enabled:
+		return
 	if event.is_action_pressed("pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		clear_intent()

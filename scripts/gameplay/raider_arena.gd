@@ -21,6 +21,14 @@ var flare_director: FlareDirector
 var recall: RecallController
 @export var ecosystem_enabled: bool = false
 var ecosystem: MachineEcosystem
+var spectator: DeveloperSpectator
+var spectator_view: SpectatorCamera
+var post_death: PostDeathSpectator
+var player_terminated: bool = false
+var world_shutdown: bool = false
+var death_elapsed: float = 0
+@export var social_rules: RaiderSocialConfig
+var social: SocialEncounter
 var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
@@ -71,14 +79,34 @@ func _ready() -> void:
 		ecosystem.arena = self
 		add_child(ecosystem)
 		ecosystem.setup()
+	if social_rules != null:
+		social = SocialEncounter.new()
+		social.arena = self
+		add_child(social)
+		social.setup(social_rules)
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
 	$Robot/Weapon.fired.connect(_on_weapon_fired)
 	$Robot/Health.died.connect(_on_player_destroyed)
 	deploy_raiders()
+	if OS.is_debug_build() or mission.post_death_spectating:
+		spectator_view = SpectatorCamera.new()
+		add_child(spectator_view)
+	if mission.post_death_spectating:
+		post_death = PostDeathSpectator.new()
+		post_death.arena = self
+		add_child(post_death)
+	if OS.is_debug_build():
+		spectator = preload("res://scripts/debug/developer_spectator.gd").new()
+		spectator.arena = self
+		add_child(spectator)
 	if mission.is_finished():
 		return
 	status.text = "Intercept %d Raiders. Prevent theft or recover dropped cargo. F3: diagnostics." % raider_count
 	refresh_hud()
+	if robot.traversal_enabled:
+		var feedback := preload("res://scripts/presentation/traversal_feedback.gd").new()
+		feedback.robot = robot
+		$Overlay.add_child(feedback)
 	var arrival := DEPLOYMENT_EFFECT.instantiate() as Node3D
 	arrival.position = robot.position
 	add_child(arrival)
@@ -89,6 +117,9 @@ func initial_ground_stock() -> Dictionary:
 
 
 func _on_player_destroyed() -> void:
+	if mission.is_finished():
+		return
+	death_elapsed = elapsed
 	mission.fail_player_destroyed()
 	finish_mission()
 
@@ -135,7 +166,10 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	actor.select_salvage = choose_salvage
 	actor.available_stock = available_salvage
 	if ecosystem != null:
-		actor.select_machine_target = ecosystem.choose_target
+		actor.select_combat_target = ecosystem.choose_target
+	if social != null:
+		actor.select_combat_target = social.choose_target
+		actor.combat_target_allowed = social.eligible.bind(actor)
 	actor.salvage = choose_salvage(id)
 	actor.extraction = extraction_points[0]
 	actor.position = to_local(world_position)
@@ -151,9 +185,14 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 		actor.combat.release_cover = release_cover
 		actor.combat.setup(actor, combat_profile, debug_seed)
 		actor.detection_range = combat_profile.engagement_range
+		if social != null:
+			actor.combat.weapon.damage_mask = 3
+			actor.combat.weapon.can_damage_target = social.eligible.bind(actor)
 	if flare_director != null:
 		actor.is_flare_responder = flare_director.responder_ids.has(id)
 		flare_director.register_actor(actor)
+	if social != null:
+		social.register_actor(actor)
 	return actor
 
 
@@ -213,9 +252,15 @@ func choose_salvage(id: int) -> Node3D:
 		var candidates: Array[Node3D] = salvage_points.duplicate()
 		if ecosystem != null:
 			candidates.append_array(ecosystem.component_drops())
+		if actor.social != null:
+			for drop in actor.social.known_drops():
+				if not candidates.has(drop):
+					candidates.append(drop)
 		for index in range(candidates.size()):
 			var point := candidates[index]
 			if not is_instance_valid(point) or available_salvage(point) <= 0 or actor.blocked_salvage.has(point.name):
+				continue
+			if point is MaterialDrop and actor.social != null and not actor.social.knows_drop(point):
 				continue
 			var cost := route_cost(actor, point)
 			if is_inf(cost):
@@ -288,13 +333,18 @@ func route_cost(actor: Raider, point: Node3D) -> float:
 
 
 func _physics_process(delta: float) -> void:
-	if mission.is_finished():
+	if mission.is_world_finished():
 		return
 	elapsed += delta
 	if elapsed >= mission_duration:
 		evaluate_mission(true)
 		finish_mission()
 		return
+	if mission.player_destroyed:
+		evaluate_mission()
+		if mission.is_world_finished():
+			finish_mission()
+			return
 	if robot.input_adapter.pickup_intent:
 		try_recover()
 	refresh_hud()
@@ -302,7 +352,8 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_hud"):
-		debug_visible = not debug_visible
+		if not (mission.post_death_spectating and mission.player_destroyed):
+			debug_visible = not debug_visible
 		refresh_hud()
 		get_viewport().set_input_as_handled()
 	elif mission.is_finished() and event.is_action_pressed("restart"):
@@ -311,7 +362,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_collection_requested(actor: Raider) -> void:
-	if mission.is_finished() or raiders.get(actor.raider_id) != actor or not ledger.is_active(actor.raider_id):
+	if mission.is_world_finished() or raiders.get(actor.raider_id) != actor or not ledger.is_active(actor.raider_id):
 		return
 	if actor.state != Raider.State.SCAVENGING or actor.health.current <= 0 or not is_instance_valid(actor.salvage):
 		return
@@ -320,6 +371,10 @@ func _on_collection_requested(actor: Raider) -> void:
 	var target := actor.profile.cargo_target if actor.dynamic_ai else materials_per_point
 	var amount: int
 	if actor.salvage is MaterialDrop:
+		if actor.salvage.is_queued_for_deletion() or actor.salvage.ledger != ledger or drops.get(actor.salvage.drop_id) != actor.salvage:
+			return
+		if actor.social != null and (not actor.social.knows_drop(actor.salvage) or not actor.social.sees_drop(actor.salvage)):
+			return
 		amount = ledger.collect_ground(actor.raider_id, actor.salvage.drop_id, target)
 		if actor.salvage.materials == 0:
 			drops.erase(actor.salvage.drop_id)
@@ -377,6 +432,17 @@ func after_event() -> void:
 
 func evaluate_mission(deadline: bool = false) -> void:
 	mission.evaluate(ledger, deadline, flare_director.tickets.size() if flare_director != null else 0, flare_director.equipment.ground_count() if flare_director != null else 0)
+	var actors_remain := false
+	for actor in raiders.values():
+		if is_instance_valid(actor) and actor.health.current > 0 and ledger.is_active(actor.raider_id):
+			actors_remain = true
+	if ecosystem != null and not ecosystem.machines.is_empty():
+		actors_remain = true
+	mission.evaluate_world(deadline, actors_remain, pending_world_entries() + (flare_director.tickets.size() if flare_director != null else 0))
+
+
+func pending_world_entries() -> int:
+	return 0
 
 
 func eligible_drop(drop: MaterialDrop) -> bool:
@@ -450,6 +516,9 @@ func refresh_hud() -> void:
 			if not available:
 				point.get_node("Label3D").text = "%s\nDEPLETED" % point.name
 	$Overlay/DebugStatus.visible = debug_visible
+	$Overlay/FoundationStatus.visible = debug_visible
+	if is_instance_valid(spectator) and spectator.active:
+		spectator.refresh_indicator()
 	if debug_visible:
 		var lines := PackedStringArray(["STAGE B | seed %d | conservation %s | transfers %d" % [debug_seed, ledger.is_conserved(), ledger.accepted_transfers]])
 		for id in raiders:
@@ -463,19 +532,39 @@ func refresh_hud() -> void:
 					destination = str(actor.combat.destination.global_position)
 				lines.append("R%02d %s %s | target %s | dest %s | cargo %d | threat %s/%s/%.1fs | %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], target, destination, actor.carried_materials, actor.threat_source, actor.threat_visible, actor.threat_remaining, actor.navigation_status])
 		$Overlay/DebugStatus.text = "\n".join(lines)
+	if mission.player_destroyed and mission.post_death_spectating:
+		for item in [$Overlay/FoundationStatus, $Overlay/DebugStatus, status, objectives, $Overlay/PickupPrompt]:
+			item.hide()
 
 
 func finish_mission() -> void:
-	if not mission.is_finished() or summary.visible:
+	if not mission.is_finished() or world_shutdown:
 		return
+	if not player_terminated:
+		terminate_player()
+		if not mission.is_world_finished() and post_death != null:
+			post_death.offer()
+			refresh_hud()
+	if not mission.is_world_finished():
+		return
+	world_shutdown = true
+	mission.stop_world("Deployment finished.")
+	if post_death != null:
+		post_death.stop()
+	stop_world_actors()
+	show_summary()
+
+
+func terminate_player() -> void:
+	player_terminated = true
+	if is_instance_valid(spectator):
+		spectator.leave(false)
 	if recall != null:
 		recall.settle_failure()
-	ledger.seal()
-	if ecosystem != null:
-		ecosystem.stop()
-	if flare_director != null:
-		flare_director.stop()
+	elif mission.player_destroyed:
+		ledger.settle_player(false)
 	robot.input_adapter.clear_intent()
+	robot.input_adapter.gameplay_enabled = false
 	robot.stop_traversal()
 	robot.input_adapter.set_physics_process(false)
 	robot.input_adapter.set_process_input(false)
@@ -483,13 +572,31 @@ func finish_mission() -> void:
 	robot.get_node("Weapon").set_physics_process(false)
 	robot.get_node("Weapon").enabled = false
 	robot.get_node("CombatHUD").hide()
+	robot.camera_rig.set_physics_process(false)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$Overlay/PickupPrompt.hide()
+
+
+func stop_world_actors() -> void:
+	ledger.seal()
+	if social != null:
+		social.relations.seal()
+	if ecosystem != null:
+		ecosystem.stop()
+	if flare_director != null:
+		flare_director.stop()
 	for actor in raiders.values():
 		if is_instance_valid(actor):
 			actor.set_physics_process(false)
+			if actor.betrayal != null:
+				actor.betrayal.stop()
 			if actor.combat != null:
 				actor.combat.stop()
 			actor.get_node("RaiderFeedback").stop()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func show_summary() -> void:
 	var title := "MISSION SUCCESS" if mission.phase == MissionRules.Phase.SUCCEEDED else "MISSION FAILED"
 	$Overlay/Summary/Content/Report.text = "%s\n\n%s\n\nProtected: %d   Recovered: %d   Lost: %d\nUnrecovered ground: %d   Raider cargo: %d\nTotal: %d   Elapsed: %.1f seconds\n\nPress R or click Restart to deploy again." % [
 		title, mission.reason, ledger.protected_materials, ledger.recovered_materials,
@@ -499,6 +606,8 @@ func finish_mission() -> void:
 		$Overlay/Summary/Content/Report.text += "\nEquipment recovered: %d | Ground: %d | Value recovered: %d\nEquipment carried: %d | Extracted: %d\nResponses pending: %d | Budget used: %d/%d" % [flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.ground_count(), flare_director.equipment.value_at(EquipmentLedger.Location.RECOVERED), flare_director.equipment.count_at(EquipmentLedger.Location.CARRIED), flare_director.equipment.count_at(EquipmentLedger.Location.EXTRACTED), flare_director.tickets.size(), flare_director.committed, flare_rules.reinforcement_budget]
 	if recall != null:
 		$Overlay/Summary/Content/Report.text += "\nPLAYER LOOT | Banked materials %d | Forfeited %d\nBanked equipment %d | Forfeited %d" % [ledger.banked_materials, ledger.forfeited_materials, flare_director.equipment.count_at(EquipmentLedger.Location.BANKED), flare_director.equipment.count_at(EquipmentLedger.Location.FORFEITED)]
+	if mission.post_death_spectating and mission.player_destroyed:
+		$Overlay/Summary/Content/Report.text += "\nRobot destroyed at %.1fs. World observation ended at %.1fs.\nWorld totals above include later AI activity. %s" % [death_elapsed, elapsed, mission.world_reason]
 	refresh_hud()
 
 

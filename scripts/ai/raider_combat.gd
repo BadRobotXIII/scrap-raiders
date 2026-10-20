@@ -120,7 +120,7 @@ func tick(delta: float) -> void:
 		aim_elapsed = 0
 		return
 	# Recheck visibility at firing time, not just the slower perception interval.
-	if not actor.detects_robot() or actor.global_position.distance_to(actor.current_target().global_position) > profile.engagement_range:
+	if not actor.detects_current_target() or actor.global_position.distance_to(actor.current_target().global_position) > profile.engagement_range:
 		aim_elapsed = 0
 		return
 	var facing := actor.current_target().global_position - actor.global_position

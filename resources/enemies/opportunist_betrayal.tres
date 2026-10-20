@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RaiderBetrayalProfile" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/ai/raider_betrayal_profile.gd" id="1"]
+[resource]
+script = ExtResource("1")
+minimum_victim_cargo = 3
+assessment_seconds = 2.0
+range_limit = 8.0
+minimum_health_fraction = 0.5

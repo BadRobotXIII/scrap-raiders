@@ -49,6 +49,10 @@ func deploy(arena: Node3D) -> void:
 	for actor in arena.raiders.values():
 		actor.set_physics_process(false)
 		actor.combat.weapon.set_physics_process(false)
+	# Grounded recall needs a real floor contact, even in frozen channel fixtures.
+	arena.robot.set_physics_process(true)
+	await frames(8)
+	arena.robot.set_physics_process(false)
 
 
 func recover_load(arena: Node3D) -> void:
@@ -65,7 +69,9 @@ func recover_load(arena: Node3D) -> void:
 	arena.robot.position = arena.get_node("RecallDock").position
 	arena.robot.velocity = Vector3.ZERO
 	arena.robot.input_adapter.recover_held = true
-	await frames(3)
+	arena.robot.set_physics_process(true)
+	await frames(8)
+	arena.robot.set_physics_process(false)
 
 
 func run() -> void:

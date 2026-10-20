@@ -8,7 +8,7 @@ signal cargo_collected(materials: int)
 signal collection_requested
 signal defeated(dropped_materials: int)
 
-enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVESTIGATING, STRANDED, ENGAGING, TAKING_COVER, REPOSITIONING }
+enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVESTIGATING, STRANDED, ENGAGING, TAKING_COVER, REPOSITIONING, ASSESSING_BETRAYAL }
 
 @export var robot: Node3D
 @export var salvage: Node3D
@@ -22,8 +22,13 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVEST
 var dynamic_ai: bool = false
 var profile: RaiderProfile
 var combat: RaiderCombat
+var social: RaiderSocial
+var betrayal: RaiderBetrayal
 var combat_target: Node3D
-var select_machine_target: Callable
+var select_combat_target: Callable
+var combat_target_allowed: Callable
+var squad_id: StringName = &""
+var target_reason: String = "player baseline"
 var available_stock: Callable
 var is_flare_responder: bool = false
 var ledger: MaterialLedger
@@ -95,7 +100,7 @@ func target_point(target: Node3D) -> Vector3:
 	return target.get_aim_position() if target.has_method("get_aim_position") else target.global_position + Vector3.UP
 
 
-func detects_machine(target: Node3D) -> bool:
+func detects_actor(target: Node3D) -> bool:
 	if not is_instance_valid(target) or target.get_node("Health").current <= 0 or global_position.distance_to(target.global_position) > detection_range:
 		return false
 	var query := PhysicsRayQueryParameters3D.create(
@@ -105,11 +110,22 @@ func detects_machine(target: Node3D) -> bool:
 
 
 func detects_robot() -> bool:
-	return detects_machine(current_target())
+	return detects_current_target()
+
+
+func detects_machine(target: Node3D) -> bool:
+	return detects_actor(target)
+
+
+func detects_current_target() -> bool:
+	var target := current_target()
+	return (not combat_target_allowed.is_valid() or combat_target_allowed.call(target)) and detects_actor(target)
 
 
 func salvage_available() -> int:
 	if not is_instance_valid(salvage):
+		return 0
+	if social != null and salvage is MaterialDrop and not social.knows_drop(salvage):
 		return 0
 	return available_stock.call(salvage) if available_stock.is_valid() else ledger.available(salvage.name)
 
@@ -127,17 +143,21 @@ func _choose_exit() -> bool:
 func decide() -> void:
 	if state in [State.DEAD, State.EXTRACTED]:
 		return
-	if select_machine_target.is_valid():
-		var selected: Node3D = select_machine_target.call(self)
+	if select_combat_target.is_valid():
+		var selected: Node3D = select_combat_target.call(self)
 		if is_instance_valid(selected) and selected != combat_target:
 			combat_target = selected
+			target_reason = "nearest visible hostile Raider" if selected is Raider else "nearest visible machine threat"
 			if combat != null:
 				combat.aim_elapsed = 0
 				if combat.owns_state():
 					transition(State.SELECTING)
-		elif is_instance_valid(combat_target) and combat_target.get_node("Health").current <= 0:
+		elif is_instance_valid(combat_target) and (combat_target.get_node("Health").current <= 0 or (combat_target_allowed.is_valid() and not combat_target_allowed.call(combat_target))):
 			combat_target = null
 			threat_remaining = 0
+			target_reason = "target no longer eligible"
+			if combat != null and combat.owns_state():
+				transition(State.SELECTING)
 	threat_visible = detects_robot()
 	if not dynamic_ai:
 		if state == State.SCAVENGING and salvage_available() == 0:
@@ -156,7 +176,12 @@ func decide() -> void:
 		threat_source = "sight"
 	elif threat_remaining <= 0.0:
 		_investigated_threat_position = Vector3.INF
-		threat_source = "none"
+		if threat_source != "ally report":
+			threat_source = "none"
+	if social != null:
+		social.sense()
+	if betrayal != null and betrayal.decide():
+		return
 	if combat != null and combat.decide():
 		return
 	if state == State.STRANDED:
@@ -193,6 +218,29 @@ func begin_investigation() -> void:
 	# Arrival allows 0.8 m tolerance; stay clear of the close-threat threshold.
 	investigation_position = target + away * (profile.flee_distance + 1.25)
 	transition(State.INVESTIGATING)
+
+
+func consider_allied_report(position: Vector3, remaining: float) -> bool:
+	if threat_visible or remaining <= 0 or state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or carried_materials >= profile.cargo_target or health.current <= health.maximum * 0.3:
+		return false
+	if (combat != null and combat.owns_state()) or (threat_source in ["damage", "gunfire"] and threat_remaining > 0):
+		return false
+	last_threat_position = position
+	threat_remaining = maxf(threat_remaining, remaining)
+	threat_source = "ally report"
+	if position.distance_to(_investigated_threat_position) < profile.investigation_rearm_distance:
+		return false
+	var map := agent.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(map) == 0:
+		return false
+	var closest := NavigationServer3D.map_get_closest_point(map, position)
+	var path := NavigationServer3D.map_get_path(map, global_position, closest, true)
+	if closest.distance_to(position) > 1 or path.is_empty() or path[path.size() - 1].distance_to(closest) > 0.8:
+		return false
+	last_threat_position = position
+	investigation_position = position
+	transition(State.INVESTIGATING)
+	return true
 
 
 func investigate_flare(position: Vector3) -> bool:
@@ -257,6 +305,8 @@ func _physics_process(delta: float) -> void:
 		return
 	threat_remaining = maxf(0, threat_remaining - delta)
 	_retry_remaining = maxf(0, _retry_remaining - delta)
+	if betrayal != null:
+		betrayal.tick(delta)
 	if combat != null:
 		combat.tick(delta)
 		if not combat.weapon.enabled:
@@ -269,7 +319,7 @@ func _physics_process(delta: float) -> void:
 	var position_target := global_position
 	if state == State.INVESTIGATING:
 		position_target = investigation_position
-	elif state == State.ENGAGING:
+	elif state in [State.ENGAGING, State.ASSESSING_BETRAYAL]:
 		position_target = global_position
 	elif state in [State.TAKING_COVER, State.REPOSITIONING] and combat != null and is_instance_valid(combat.destination):
 		position_target = combat.destination.global_position
@@ -373,7 +423,7 @@ func _on_damaged(_amount: float) -> void:
 		task_elapsed = 0
 		if dynamic_ai:
 			threat_remaining = profile.threat_memory + 2.0
-			last_threat_position = health.last_damage_origin if select_machine_target.is_valid() and health.last_damage_origin.is_finite() else robot.global_position
+			last_threat_position = health.last_damage_origin if select_combat_target.is_valid() and health.last_damage_origin.is_finite() else robot.global_position
 			threat_source = "damage"
 			if combat != null:
 				combat.on_damaged()
@@ -428,6 +478,9 @@ func update_label() -> void:
 			activity = "SEEKING COVER" if task_elapsed <= 0 else "IN COVER"
 		State.REPOSITIONING:
 			activity = "REPOSITIONING"
+		State.ASSESSING_BETRAYAL:
+			activity = "HESITATING"
+			color = Color(1, 0.55, 0.1)
 	label.modulate = color
 	var identity := "R%02d %s" % [raider_id, profile.display_name] if dynamic_ai else "R%02d" % raider_id
 	if is_flare_responder:

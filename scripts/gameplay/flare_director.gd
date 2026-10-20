@@ -34,7 +34,7 @@ func register_actor(actor: Raider) -> void:
 
 
 func accepted_death(actor: Raider) -> void:
-	if arena.mission.is_finished() or handled_deaths.has(actor.raider_id) or not equipment.resolve(actor.raider_id):
+	if arena.mission.is_world_finished() or handled_deaths.has(actor.raider_id) or not equipment.resolve(actor.raider_id):
 		return
 	handled_deaths[actor.raider_id] = true
 	var position := actor.global_position
@@ -52,13 +52,13 @@ func accepted_death(actor: Raider) -> void:
 			local_jobs.append({"id": other.raider_id, "position": position, "due": arena.elapsed + rules.local_delay})
 	if committed < rules.reinforcement_budget:
 		committed += 1
-		tickets.append({"id": next_id, "position": position, "due": arena.elapsed + maxf(rules.local_delay + 0.1, rules.reinforcement_delay)})
+		tickets.append({"id": next_id, "position": position, "due": arena.elapsed + maxf(rules.local_delay + 0.1, rules.reinforcement_delay), "relations": arena.social.responder_relations() if arena.social != null else []})
 		next_id += 1
 	arena.status.text = "Death flare! Hold E to loot equipment; reinforcements may follow."
 
 
 func process_responses() -> void:
-	if arena.mission.is_finished():
+	if arena.mission.is_world_finished():
 		return
 	for job in local_jobs.duplicate():
 		if arena.elapsed < job.due:
@@ -80,6 +80,8 @@ func process_responses() -> void:
 				break
 			responder_ids[ticket.id] = true
 			var actor: Raider = arena.spawn_raider(ticket.id, marker.global_position)
+			if arena.social != null:
+				arena.social.initialize_responder(ticket.id, ticket.relations)
 			actor.investigate_flare(ticket.position)
 			tickets.erase(ticket)
 			break
@@ -158,7 +160,7 @@ func update_recovery(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if arena.mission.is_finished():
+	if arena.mission.is_world_finished():
 		return
 	retry -= delta
 	if retry <= 0:

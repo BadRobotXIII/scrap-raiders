@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/gameplay/raider_social_config.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/enemies/opportunist_betrayal.tres" id="3"]
+[sub_resource type="Resource" id="Relations"]
+script = ExtResource("2")
+allied_pairs = Array[Vector2i]([Vector2i(1, 2), Vector2i(1, 3), Vector2i(2, 3)])
+cooperation_enabled = true
+loot_enabled = true
+opportunist_ids = PackedInt32Array(1)
+betrayal_profile = ExtResource("3")
+[resource]
+script = ExtResource("1")
+display_name = "Opportunistic Betrayal"
+entry_times = PackedFloat32Array(0, 0, 0)
+spawn_markers = PackedStringArray("BetrayalEntry1", "BetrayalEntry2", "BetrayalEntry3")
+preferred_entries = PackedStringArray("BetrayalEntry1", "BetrayalEntry2", "BetrayalEntry3")
+player_start_marker = &"BetrayalRobotStart"
+duration = 180.0
+seed = 84017
+armed = true
+social_rules = SubResource("Relations")
