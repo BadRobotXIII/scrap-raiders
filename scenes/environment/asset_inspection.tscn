@@ -1,0 +1,54 @@
+[gd_scene load_steps=14 format=3]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/control_cabinet.tscn" id="a0"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/sorting_conveyor_base.tscn" id="a1"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/scrap_bin.tscn" id="a2"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/utility_run_2m.tscn" id="a3"]
+[ext_resource type="PackedScene" path="res://scenes/environment/modules/industrial_wall_2m.tscn" id="a4"]
+[ext_resource type="PackedScene" path="res://scenes/environment/modules/industrial_wall_4m.tscn" id="a5"]
+[ext_resource type="PackedScene" path="res://scenes/environment/modules/steel_column_4m.tscn" id="a6"]
+[ext_resource type="PackedScene" path="res://scenes/environment/modules/steel_edge_beam_4m.tscn" id="a7"]
+[ext_resource type="Material" path="res://resources/materials/environment/concrete.tres" id="floor"]
+[sub_resource type="PlaneMesh" id="Floor"]
+material = ExtResource("floor")
+size = Vector2(20, 18)
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
+sky_top_color = Color(0.3, 0.42, 0.55, 1)
+sky_horizon_color = Color(0.7, 0.73, 0.75, 1)
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMaterial")
+[sub_resource type="Environment" id="Environment"]
+background_mode = 2
+sky = SubResource("Sky")
+background_color = Color(0.12, 0.15, 0.18, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.8, 0.85, 0.9, 1)
+ambient_light_energy = 0.6
+[node name="EnvironmentAssetInspection" type="Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+light_energy = 1.2
+shadow_enabled = true
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("Floor")
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(10, 9, 13)
+rotation_degrees = Vector3(-28, 38, 0)
+current = true
+[node name="control_cabinet" parent="." instance=ExtResource("a0" )]
+position = Vector3(-5, 0, 3)
+[node name="sorting_conveyor_base" parent="." instance=ExtResource("a1" )]
+position = Vector3(-2, 0, 3)
+[node name="scrap_bin" parent="." instance=ExtResource("a2" )]
+position = Vector3(1, 0, 3)
+[node name="utility_run_2m" parent="." instance=ExtResource("a3" )]
+position = Vector3(4, 0, 3)
+[node name="industrial_wall_2m" parent="." instance=ExtResource("a4" )]
+position = Vector3(-5, 0, -3)
+[node name="industrial_wall_4m" parent="." instance=ExtResource("a5" )]
+position = Vector3(-1, 0, -3)
+[node name="steel_column_4m" parent="." instance=ExtResource("a6" )]
+position = Vector3(3, 0, -3)
+[node name="steel_edge_beam_4m" parent="." instance=ExtResource("a7" )]
+position = Vector3(5, 0, -3)

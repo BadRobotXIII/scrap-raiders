@@ -1,6 +1,6 @@
 # Phase 5, Stage P - Dynamic encounter generation
 
-Recorded: **2026-10-19**. **Implemented and validated; awaiting Checkpoint P manual review.** The director approved the [implementation plan](../plans/phase_5_stage_p_dynamic_encounter_plan.md). The [supplied ledger](../ledgers/phase_5_stage_p_dynamic_encounter_generation.md) is preserved unchanged.
+Recorded: **2026-10-19**. **Checkpoint P accepted on 2026-10-20**, including the subsequent combat corrections. The director approved the [implementation plan](../plans/phase_5_stage_p_dynamic_encounter_plan.md). The [supplied ledger](../ledgers/phase_5_stage_p_dynamic_encounter_generation.md) is preserved unchanged.
 
 ## Delivery and scope
 
@@ -57,13 +57,15 @@ Existing AI can repeatedly switch between cover/engagement or flight/extraction 
 
 ## Manual Checkpoint P procedure
 
+Subsequent play-testing identified combat switching and guard-contact retaliation issues. The [combat stability follow-up](stage_p_combat_stability_followup.md) records both rounds of correction and final twenty-three-suite validation. The director accepted the result on 2026-10-20. The following procedure remains useful for future regressions.
+
 1. **Passive:** Shift+F5, then F1. Observe the opening, arrivals at 35/70/105 seconds, stock competition, patrol crossings and independent exits. Look for useful quiet periods as well as encounters, without approaching actors with the robot.
 2. **Active:** Intervene in one area, leave another alone, recover cargo/equipment and return to the Recall Dock. Check that independent objectives continue elsewhere and that flares create bounded pressure.
 3. **Post-death:** Die before all scheduled arrivals, choose Spectate, cycle Raiders/machines, and watch later arrivals. Confirm that Return/deadline preserve the failed deployment and prior stash.
 4. **Reproduction:** Restart the same seed and compare layout, profiles, stock, entry markers and schedule. Ctrl+Shift+F5 advances the seed; seeds 87017 and 87018 select different authored layouts in this engine version. Compare setup, not identical physics winners.
 5. **Population/pacing:** Assess five-Raider congestion, cover/exit interference, capacity-delayed arrivals, patrol usefulness, frame pacing and late-arrival loot availability. Betrayal is optional and must not be forced for acceptance.
 
-Manual believable-variety acceptance remains outstanding. Stop at **Checkpoint P** for feedback; no Stage Q implementation is authorized.
+**Checkpoint P is accepted.** The separately approved [Stage Q plan](../plans/phase_5_stage_q_personality_combat_plan.md) is now implemented for its own manual checkpoint; see the [Q report](stage_q_personality_combat.md). The original P ledger remains unchanged.
 
 ## Git checkpoints
 

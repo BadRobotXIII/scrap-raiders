@@ -1,0 +1,177 @@
+[
+    {
+        "test":  "awareness_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage D checks complete; failures: 0"
+    },
+    {
+        "test":  "betrayal_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage M betrayal checks complete; failures: 0"
+    },
+    {
+        "test":  "combat_movement_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Combat movement checks complete; failures: 0"
+    },
+    {
+        "test":  "combat_stability_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Combat stability checks complete; failures: 0"
+    },
+    {
+        "test":  "combat_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Combat checks complete; failures: 0"
+    },
+    {
+        "test":  "destruction_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Destruction checks complete; failures: 0"
+    },
+    {
+        "test":  "dynamic_ai_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage B checks complete; failures: 0"
+    },
+    {
+        "test":  "encounter_generation_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage P encounter generation checks complete; failures: 0"
+    },
+    {
+        "test":  "extraction_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  1,
+        "result":  "Stage G checks complete; failures: 0"
+    },
+    {
+        "test":  "flare_loot_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage F checks complete; failures: 0"
+    },
+    {
+        "test":  "hostile_combat_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage E checks complete; failures: 0"
+    },
+    {
+        "test":  "integrated_extraction_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage N integrated extraction checks complete; failures: 0"
+    },
+    {
+        "test":  "machine_ecosystem_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Machine ecosystem tests: 0 failures"
+    },
+    {
+        "test":  "mission_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Mission checks complete; failures: 0"
+    },
+    {
+        "test":  "mission_variety_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage C checks complete; failures: 0"
+    },
+    {
+        "test":  "multi_raider_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage A checks complete; failures: 0"
+    },
+    {
+        "test":  "personality_combat_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage Q personality combat checks complete; failures: 0"
+    },
+    {
+        "test":  "personality_integration_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage Q integration checks complete; failures: 0"
+    },
+    {
+        "test":  "post_death_spectator_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage O post-death spectator checks complete; failures: 0"
+    },
+    {
+        "test":  "raider_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Raider checks complete; failures: 0"
+    },
+    {
+        "test":  "robot_controller_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Controller integration checks complete; failures: 0"
+    },
+    {
+        "test":  "social_cooperation_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage L social cooperation checks complete; failures: 0"
+    },
+    {
+        "test":  "social_rivalry_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage K social rivalry checks complete; failures: 0"
+    },
+    {
+        "test":  "spectator_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage J spectator checks complete; failures: 0"
+    },
+    {
+        "test":  "traversal_test.gd",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0,
+        "result":  "Stage I traversal checks complete; failures: 0"
+    }
+]

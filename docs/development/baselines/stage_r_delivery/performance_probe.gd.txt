@@ -1,0 +1,57 @@
+extends SceneTree
+
+func _initialize() -> void:
+	call_deferred("run")
+
+func quantile(values: Array[float], fraction: float) -> float:
+	values.sort()
+	return values[mini(values.size() - 1, int(values.size() * fraction))]
+
+func run() -> void:
+	var args := OS.get_cmdline_user_args()
+	var enabled := args[0] == "on"
+	var peak := args[1] == "peak"
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	Engine.max_fps = 120
+	var arena := load("res://scenes/levels/refined_extraction_arena.tscn").instantiate() as Node3D
+	arena.capture_metrics = enabled
+	arena.stash_path = "res://.godot/stage_r_baseline/performance_stash.json"
+	root.add_child(arena)
+	current_scene = arena
+	arena.set_physics_process(false)
+	arena.flare_director.set_physics_process(false)
+	arena.recall.set_physics_process(false)
+	arena.robot.input_adapter.set_physics_process(false)
+	arena.robot.input_adapter.set_process_input(false)
+	for index in range(10):
+		await physics_frame
+		await process_frame
+	if peak:
+		arena.elapsed = 106
+	arena.process_entries()
+	arena.set_physics_process(true)
+	arena.flare_director.set_physics_process(true)
+	arena.recall.set_physics_process(true)
+	var process_ms: Array[float] = []
+	var physics_ms: Array[float] = []
+	var max_live := 0
+	var first_live: int = arena.raiders.size()
+	for index in range(360):
+		await process_frame
+		var live := 0
+		for actor in arena.raiders.values():
+			if is_instance_valid(actor) and arena.ledger.is_active(actor.raider_id):
+				live += 1
+		max_live = maxi(max_live, live)
+		if index >= 60:
+			process_ms.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000)
+			physics_ms.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000)
+	var result := {"capture": enabled, "peak_fixture": peak, "samples": process_ms.size(), "process_p50_ms": quantile(process_ms, 0.5), "process_p95_ms": quantile(process_ms, 0.95), "physics_p50_ms": quantile(physics_ms, 0.5), "physics_p95_ms": quantile(physics_ms, 0.95), "first_live_raiders": first_live, "max_live_raiders": max_live, "machines": arena.ecosystem.machines.size(), "conserved": arena.ledger.is_conserved(), "renderer": "Forward+", "resolution": [1600,900], "fps_cap":120}
+	var path := "res://.godot/stage_r_baseline/performance_" + args[0] + "_" + args[1] + ".json"
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(result, "\t"))
+	print("PERFORMANCE ", result)
+	arena.queue_free()
+	for index in range(30):
+		await process_frame
+	quit(0 if result.conserved and (not peak or max_live == 5) else 1)

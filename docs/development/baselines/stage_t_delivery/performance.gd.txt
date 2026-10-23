@@ -1,0 +1,50 @@
+extends "res://tests/gameplay_integration_test.gd"
+func run() -> void:
+ var capture := OS.get_cmdline_user_args().has("capture")
+ test_directory = "res://.godot/stage_t_performance/" + Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena := load("res://scenes/levels/asset_recovery_arena.tscn").instantiate() as Node3D
+ arena.stash_path = test_directory + "/stash.json"
+ arena.seed_override = 87018
+ arena.capture_metrics = capture
+ root.add_child(arena)
+ current_scene = arena
+ await start_frozen(arena)
+ await all_entries(arena)
+ # Arrange all finite initial IDs immediately; existing resources and autonomous decisions stay intact.
+ for id in range(1,6):
+  var actor: Raider = arena.raiders[id]
+  actor.position = arena.get_node("RaiderSpawns").get_node(NodePath(arena.encounter.layout.entry_markers[id-1])).position
+  if id == 5:actor.position.z += 3
+  actor.set_physics_process(true)
+  actor.combat.weapon.set_physics_process(true)
+ for machine in arena.ecosystem.machines:
+  machine.set_physics_process(true)
+  if machine.weapon != null:machine.weapon.set_physics_process(true)
+ arena.set_physics_process(true)
+ arena.flare_director.set_physics_process(true)
+ var times: Array[float] = []
+ var peak_times: Array[float] = []
+ var previous := Time.get_ticks_usec()
+ var caps := true
+ var valid := true
+ for index in range(600):
+  await process_frame
+  var now := Time.get_ticks_usec()
+  var duration := (now-previous)/1000.0
+  previous = now
+  if index > 60:
+   times.append(duration)
+   if arena.flare_director.living_count() == 5 and arena.ecosystem.machines.size() == 2:peak_times.append(duration)
+  caps = caps and arena.flare_director.living_count() <= 5 and arena.flare_director.committed <= 2
+  valid = valid and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+ times.sort()
+ peak_times.sort()
+ var data := {"capture_metrics":capture,"frame_samples":times.size(),"median_ms":times[times.size()/2],"p95_ms":times[int(times.size()*0.95)],"max_ms":times[-1],"five_raiders_two_machines_samples":peak_times.size(),"peak_p95_ms":peak_times[int(peak_times.size()*0.95)] if not peak_times.is_empty() else 0,"caps_valid":caps,"conserved":valid,"simulation_seconds_observed":arena.elapsed-105.5,"rendering_device":RenderingServer.get_video_adapter_name(),"processor":OS.get_processor_name(),"engine":Engine.get_version_info().string,"configured_window":root.size}
+ var output := FileAccess.open("res://.godot/stage_t_delivery/performance_%s.json" % ("on" if capture else "off"),FileAccess.WRITE)
+ output.store_string(JSON.stringify(DeploymentMetrics.serializable(data),"\t"))
+ output.close()
+ print("PERFORMANCE ",data)
+ arena.queue_free()
+ await frames(30)
+ quit(1 if failures or not caps or not valid or peak_times.is_empty() else 0)

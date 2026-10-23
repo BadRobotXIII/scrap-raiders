@@ -1,16 +1,24 @@
 # Development records
 
-Last updated: **2026-10-19**. Internal working title: SCRAP Raiders.
+Last updated: **2026-10-22**. Internal working title: SCRAP Raiders.
 
 ## Current position
 
-The prototype, Phase 2 Stages A–D, Phase 3 Stages E–I and Stages J–O are accepted. Baseline commit `bac0f6d` preserves all accepted pre-P work and development records. The Stage P implementation plan was approved; seeded encounter opportunities are implemented and validated for Checkpoint P manual review. Relationships, competition and squad membership remain independent. Stage Q is not authorized.
+The prototype through Checkpoint U is accepted. Baseline commit `bac0f6d` preserves accepted pre-P work; accepted P/Q/R/S work also remains in the working tree. The director approved the Stage S plan on 2026-10-21. **The director accepted Checkpoint S on 2026-10-21.** Normal startup now opens Operation: Asset Recovery's briefing. The [S delivery report](reports/stage_s_mission_structure.md) records objectives, deployment/settlement ownership, 29-suite validation, graphical/natural checks, director acceptance and retained refinement checks.
+
+The director approved the [Stage T audit/remediation plan](plans/phase_7_stage_t_remediation_plan.md) on 2026-10-21. Its implementation is **accepted at Checkpoint T on 2026-10-21**, with a dead-target eligibility correction, normal-only north entry-placement refinement, physical S integration coverage, 30 passing suites and eight natural observations. The [T delivery report and updated matrix](reports/stage_t_full_gameplay_integration.md) distinguish natural events, constructed fixtures and remaining director review. The [original audit](reports/stage_t_integration_audit.md) remains the historical S baseline. The director explicitly stated "Stage T is approved." No commit is included; Stage U planning is recorded below.
+
+The director subsequently reported rapid spinning and decision paralysis during multi-threat encounters and close allied contact. The [Raider decision follow-up](reports/stage_t_raider_decision_followup.md) records three reproductions and targeted movement/target/attacker-response corrections. The director subsequently accepted Stage T including this follow-up; it does not alter mission resources or expand scope.
 
 Older stage reports retain their validation-time Git status; their previously uncommitted J–O work is now preserved by the baseline above. Stage P is a separate focused commit containing its report and implementation.
 
 Stage I acceptance: the director confirmed jump and boost work, approved the jump height, and noted that the jump feels floaty. Refinement was explicitly deferred. The original F2-only rollout was superseded by the [post-K availability follow-up](reports/traversal_availability_followup.md): jump and boost now default to enabled across all test scenes, with their tuning unchanged.
 
 The broad Phase 3 ledger includes future possibilities. Completion here means the approved E–I scope, not delivery of every optional capability, crafting system, chassis, or upgrade described in that ledger.
+
+The supplied [Stage U ledger](ledgers/phase_7_stage_u_world_expansion.md) is archived byte-for-byte from attachment `37d23ca3-1204-42b0-bf24-2502a0a52f0b/Pasted text.txt`. The [world-expansion architecture/layout proposal](plans/phase_7_stage_u_world_expansion_plan.md) assesses the accepted compact baseline and proposes a 72 x 64 m interconnected graybox. **The director approved the proposal and accepted Checkpoint U on 2026-10-21 after confirming everything functioned perfectly.** See the [Stage U report](reports/stage_u_world_expansion.md) for navigation, physical travel/combat, seeded observations, graphical validation and performance evidence. Default startup remains compact Asset Recovery.
+
+The supplied [Stage V ledger](ledgers/phase_7_stage_v_environment_art.md) is archived byte-for-byte from attachment `194b4572-b6fb-40e6-88c4-156e5499e064/Pasted text.txt`. The [environment pipeline and processing-bay proposal](plans/phase_7_stage_v_environment_art_plan.md) incorporates the director's industrial reference images and grounded visual direction. Blender 4.5.10 LTS is verified locally. **The director approved the proposal; Stage V is implemented and validated for Checkpoint V visual/play-test review.** The [delivery report](reports/stage_v_environment_art.md) records eight original assets, the limited bay, source-edit/reimport proof, 33 passing suites, graphical checks, measured cost and remaining manual review. The [production guide](../art_pipeline/README.md) documents the Blender-to-GLB workflow. No Stage W or Git commit is authorized.
 
 ## Original ledgers
 
@@ -24,9 +32,19 @@ These are unchanged copies of the director's three supplied attachments. Their o
 
 The later [Phase 4 Stage J spectator amendment](ledgers/phase_4_stage_j_spectator_amendment.md) preserves the director's supplied message as a separate ledger. No full Phase 4 social AI ledger has been supplied in this archive.
 
+The [Stage R development ledger](ledgers/phase_5_stage_r_encounter_polish.md) preserves the full supplied Stage R text. Its prerequisite was satisfied when the director separately confirmed Q acceptance. Its plan was approved and the resulting Stage R delivery is accepted; the original proposal instructions remain archived as historical text.
+
+The [Stage S development ledger](ledgers/phase_6_stage_s_mission_structure.md) is an unchanged copy of attachment `9aa3bf23-cd8e-4756-bc7b-e218c4584e77/Pasted text.txt`. Its [architecture and implementation proposal](plans/phase_6_stage_s_mission_structure_plan.md) was approved and implemented; the original stop-before-implementation text remains archived as historical instructions.
+
+The [Stage T development ledger](ledgers/phase_7_stage_t_integration_audit.md) combines attachment `06ce110b-9619-4559-9704-024d886eada2/Pasted text.txt`, which stops in section 9, with the director's complete follow-up reply. The director subsequently approved its focused remediation plan; the original approval instructions remain archived as historical scope.
+
 ## Reports
 
-Current work: [Stage P ledger](ledgers/phase_5_stage_p_dynamic_encounter_generation.md), [approved implementation plan](plans/phase_5_stage_p_dynamic_encounter_plan.md) and [delivery/validation report](reports/stage_p_dynamic_encounters.md). Stop at Checkpoint P for passive, active, replay, population and post-death play-testing.
+- [Stage U world expansion](reports/stage_u_world_expansion.md): approved modular graybox, shared mission configuration/replay, physical regressions, natural seed comparison and subsequent Checkpoint U acceptance.
+
+Stage P play-test feedback prompted a focused [combat stability correction](reports/stage_p_combat_stability_followup.md): engagement retention, visible-attacker retaliation, uninterrupted cover progress, physical guard clearance and sustained firing. The 2026-10-20 follow-up passed twenty-three suites and was accepted by the director.
+
+Latest accepted work: [Stage R integrated mission polish](reports/stage_r_integrated_polish.md), including 27-suite validation, clearer feedback, optional metrics and the rejected timing experiment. The [Stage R baseline report](reports/stage_r_baseline_evaluation.md) and [evidence archive](baselines/stage_r_2026_10_20/summary.json) preserve pre-implementation observations. The approved [Stage S plan](plans/phase_6_stage_s_mission_structure_plan.md) is now delivered and accepted at Checkpoint S.
 
 The [Phase 4 social AI plan](plans/phase_4_social_ai_plan.md) records approved K–M scope and the architectural clarification.
 
@@ -42,7 +60,14 @@ The [Phase 4 social AI plan](plans/phase_4_social_ai_plan.md) records approved K
 - [Stage M opportunistic betrayal report](reports/stage_m_opportunistic_betrayal.md): accepted authored opportunity, warning, bounded pair hostility, ordinary combat/loot and display/HUD follow-up.
 - [Stage N integrated extraction report](reports/stage_n_integrated_extraction.md): accepted combined deployment-to-stash mission and nineteen-suite validation.
 - [Stage O post-death spectating report](reports/stage_o_post_death_spectating.md): accepted player/world lifetime separation, restricted follow view and twenty-suite validation.
-- [Stage P dynamic encounters report](reports/stage_p_dynamic_encounters.md): seeded layouts, staggered arrivals, shared limits, twenty-one-suite validation and pending manual acceptance.
+- [Stage P dynamic encounters report](reports/stage_p_dynamic_encounters.md): accepted seeded layouts, staggered arrivals and shared limits; twenty-one initial suites and twenty-three after combat follow-ups.
+- [Stage Q personality combat report](reports/stage_q_personality_combat.md): accepted opt-in armed personality decisions, stable commitments, bounded observed-position pursuit and twenty-five-suite validation.
+- [Stage S mission structure delivery](reports/stage_s_mission_structure.md): briefing, banked-loot objectives, frozen results, 29-suite validation and director acceptance on 2026-10-21.
+- [Stage T integration audit](reports/stage_t_integration_audit.md): historical pre-implementation matrix, ownership/lifecycle review, fresh 29-suite validation, normal seeded evidence and classified gaps.
+- [Stage T full gameplay integration](reports/stage_t_full_gameplay_integration.md): approved implementation, updated matrix, controlled configuration comparison, original 30-suite validation, graphical evidence and subsequent Checkpoint T acceptance.
+- [Stage T Raider decision follow-up](reports/stage_t_raider_decision_followup.md): director-reported contact spinning and multi-threat paralysis, physical regressions, short body bypasses and bounded target/attacker commitment; 31-suite validation and director acceptance.
+- [Stage R integrated polish delivery](reports/stage_r_integrated_polish.md): implemented scope, rejected timing trial, validation and director acceptance of Checkpoint R.
+- [Stage R baseline evaluation](reports/stage_r_baseline_evaluation.md): current configuration audit, normal/accelerated observations, reproduced recovery feedback defect, HUD capture, source hashes and fresh validation. Historical pre-implementation evidence; see the Stage R delivery report for subsequent work.
 
 Use the [project README](../../README.md) for current launch commands, architecture, tuning and validation instructions. Use these records for historical scope and acceptance. Git commits identify the actual implementation at each checkpoint.
 

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	visible = robot.is_physics_processing() and not robot.debug_movement_locked
+	visible = robot.is_physics_processing() and robot.can_process() and not robot.debug_movement_locked
 	var status := "READY"
 	match robot.boost_state:
 		RobotController.BoostState.BOOSTING:

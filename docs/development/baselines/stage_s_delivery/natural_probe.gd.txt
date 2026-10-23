@@ -1,0 +1,47 @@
+extends SceneTree
+func _initialize() -> void:
+	call_deferred("run")
+func run() -> void:
+	var seed_value := int(OS.get_cmdline_user_args()[0])
+	var a = load("res://scenes/levels/asset_recovery_arena.tscn").instantiate()
+	a.seed_override = seed_value
+	a.capture_metrics = true
+	a.stash_path = "res://.godot/stage_s_validation/natural_%d_stash.json" % seed_value
+	root.add_child(a)
+	current_scene = a
+	a.start_deployment()
+	a.spectator.enter()
+	a.spectator.set_process(false)
+	var conserved := true
+	var cap := true
+	var peak := 0
+	var frozen: Dictionary = {}
+	var unchanged := true
+	for i in range(12000):
+		await physics_frame
+		await process_frame
+		conserved = conserved and a.ledger.is_conserved() and a.flare_director.equipment.is_valid()
+		var live := 0
+		for actor in a.raiders.values():
+			if is_instance_valid(actor) and a.ledger.is_active(actor.raider_id):
+				live += 1
+		peak = maxi(peak, live)
+		cap = cap and live <= 5 and a.flare_director.committed <= 2
+		if a.mission_objectives.is_closed():
+			if frozen.is_empty():
+				frozen = a.mission_objectives.result()
+			unchanged = unchanged and frozen == a.mission_objectives.result()
+		if a.mission.player_destroyed and not a.post_death.active and not a.mission.is_world_finished():
+			a.post_death.enter()
+		if a.mission.is_world_finished() or a.elapsed >= 180:
+			break
+	await process_frame
+	var data := {"seed":seed_value,"setup":DeploymentMetrics.serializable(a.encounter.snapshot),"elapsed":a.elapsed,"conserved":conserved,"cap_valid":cap,"peak_raiders":peak,"result_frozen":unchanged,"result":a.mission_objectives.result(),"metrics":a.metrics.snapshot()}
+	var output := FileAccess.open("res://.godot/stage_s_validation/natural_%d.json" % seed_value,FileAccess.WRITE)
+	output.store_string(JSON.stringify(data,"\t"))
+	output.close()
+	print("NATURAL S ",seed_value," t=",a.elapsed," conserved=",conserved," cap=",cap," frozen=",unchanged)
+	a.queue_free()
+	for i in range(30):
+		await process_frame
+	quit(0 if conserved and cap and unchanged and not data.result.is_empty() else 1)

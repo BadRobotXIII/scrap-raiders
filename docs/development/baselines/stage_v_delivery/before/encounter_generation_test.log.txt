@@ -1,0 +1,257 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Valid seeded encounter starts two initial actors
+PASS: Twelve salvage units and two installed components are allocated once on valid routes
+PASS: Authored salvage is supported and connected to extraction
+PASS: Authored salvage is supported and connected to extraction
+PASS: Authored salvage is supported and connected to extraction
+PASS: Malformed finite stock is rejected
+PASS: Duplicate objective identities are rejected
+PASS: Invalid population limit is rejected
+PASS: Layout choice depends on stable text IDs rather than resource insertion order
+PASS: Off-map salvage is rejected instead of creating an unreachable objective
+PASS: Ground patrol points inside collision geometry are rejected
+PASS: Restored authored surfaces and patrols remain valid
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Restart reproduces the exact resolved setup without mutating shared resources
+0.0s SETUP seed 87018 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Ctrl+Shift+F5 advances runtime seed without editing shared mission definitions
+PASS: Living player can recall successfully without waiting for every future encounter arrival
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Switching to an earlier preset discards encounter overrides and preserves original stock
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Plain F5 retains the accepted Integrated Extraction preset
+0.0s SETUP seed 87048 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Seed override resolves valid layout while authored seed remains unchanged
+0.0s SETUP seed 87049 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Seed override resolves valid layout while authored seed remains unchanged
+PASS: Seed corpus produces both authored opportunity arrangements
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Encounter actors independently select and damage nearby patrol machines
+R01: ENGAGING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Competing allies cannot duplicate or share the same finite six-unit source
+PASS: Later opportunities remain pending before their authored arrival
+PASS: Blocked authored entry waits without fallback teleport or collision overlap
+R03: SCAVENGING -> SELECTING
+PASS: Unblocked entry retries at the same validated marker
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Five initial actors saturate the shared live cap alongside two finite machines
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R04: SELECTING -> TAKING_COVER
+PASS: Existing hostile Raider logic acquires and damages a rival within encounter conditions
+R04: TAKING_COVER -> FLEEING
+R04: FLEEING -> DEAD
+PASS: Ordinary rival death creates finite cargo and exactly one flare ticket
+R03: SELECTING -> SCAVENGING
+PASS: A survivor physically scavenges fallen rival cargo without creating an extraction loss
+R03: SCAVENGING -> EXTRACTING
+R03: EXTRACTING -> EXTRACTED
+PASS: Looted finite cargo becomes Lost only through actual timed physical extraction
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+PASS: Flare admits a bounded responder through shared capacity without material stock creation
+R06: INVESTIGATING -> DEAD
+PASS: Responder death consumes at most the final finite ticket
+R07: SCAVENGING -> SELECTING
+R07: SELECTING -> INVESTIGATING
+R07: INVESTIGATING -> DEAD
+PASS: Finite response chain cannot replenish budget or duplicate equipment
+PASS: Diagnostics retain a bounded event history
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Initial admission respects configured cap even before any flare
+R01: SELECTING -> DEAD
+R03: SCAVENGING -> SELECTING
+PASS: Initial and response work cannot each claim the same final population slot
+R03: SELECTING -> DEAD
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+PASS: Pending response retries when actual live capacity becomes available
+PASS: Pending encounter schedule survives permanent player-deployment failure
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Late entries continue while spectating without using camera position or exposing diagnostics
+PASS: Deadline seals bounded encounter work without changing previously banked stash
+0.0s SETUP seed 87048 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: ENGAGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> ENGAGING
+R03: ENGAGING -> INVESTIGATING
+R03: INVESTIGATING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> ENGAGING
+R03: ENGAGING -> TAKING_COVER
+R03: TAKING_COVER -> REPOSITIONING
+R03: REPOSITIONING -> ENGAGING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: SCAVENGING -> ENGAGING
+R04: SCAVENGING -> ENGAGING
+R03: ENGAGING -> TAKING_COVER
+R04: ENGAGING -> INVESTIGATING
+R04: INVESTIGATING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: TAKING_COVER -> REPOSITIONING
+R03: REPOSITIONING -> ENGAGING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SELECTING -> EXTRACTING
+R03: SELECTING -> EXTRACTING
+R04: EXTRACTING -> EXTRACTED
+R03: EXTRACTING -> EXTRACTED
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+PASS: Natural scheduled actors operate across multiple independent areas and arrival times
+PASS: Natural simulation preserves live limits, finite response and both ledgers
+PERF seed 87048 elapsed 110.933333333335 wall ms 18337 peak actors 4
+0.0s SETUP seed 87049 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R01: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R01: INVESTIGATING -> ENGAGING
+R02: INVESTIGATING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> ENGAGING
+R02: ENGAGING -> INVESTIGATING
+R02: INVESTIGATING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: TAKING_COVER -> REPOSITIONING
+R02: SCAVENGING -> ENGAGING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> INVESTIGATING
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R02: INVESTIGATING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: EXTRACTING -> ENGAGING
+R02: ENGAGING -> TAKING_COVER
+R03: SCAVENGING -> EXTRACTING
+R01: ENGAGING -> TAKING_COVER
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R02: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R02: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R02: REPOSITIONING -> ENGAGING
+R03: EXTRACTING -> EXTRACTED
+R02: ENGAGING -> FLEEING
+R01: ENGAGING -> TAKING_COVER
+R02: FLEEING -> EXTRACTING
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R02: EXTRACTING -> FLEEING
+R02: FLEEING -> EXTRACTING
+R02: EXTRACTING -> DEAD
+R01: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+R04: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+R06: INVESTIGATING -> SELECTING
+R06: SELECTING -> EXTRACTING
+R06: EXTRACTING -> EXTRACTED
+R04: EXTRACTING -> EXTRACTED
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+PASS: Natural scheduled actors operate across multiple independent areas and arrival times
+PASS: Natural simulation preserves live limits, finite response and both ledgers
+PERF seed 87049 elapsed 110.933333333335 wall ms 18337 peak actors 4
+Stage P encounter generation checks complete; failures: 0

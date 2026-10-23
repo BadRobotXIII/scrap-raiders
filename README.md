@@ -4,19 +4,51 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Original phase ledgers, completion reports and the current acceptance history are collected in the [development records](docs/development/README.md).
 
-Stages N and O are accepted. Stage P dynamic encounter generation is implemented for [Checkpoint P play-testing](docs/development/reports/stage_p_dynamic_encounters.md). The accepted pre-P project is preserved in baseline commit `bac0f6d`.
+Stages N, O, P, Q, R, S, T and U are accepted. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) records seeded encounters and validation. The accepted pre-P project is preserved in baseline commit `bac0f6d`.
+
+The [combat follow-up](docs/development/reports/stage_p_combat_stability_followup.md) records the engagement, guard-clearance and sustained-fire corrections accepted on 2026-10-20. The [Stage Q report](docs/development/reports/stage_q_personality_combat.md) records accepted personality-aware combat. The [Stage R baseline](docs/development/reports/stage_r_baseline_evaluation.md) and [implementation proposal](docs/development/plans/phase_5_stage_r_integrated_polish_plan.md) were approved and implemented for Checkpoint R. The [Stage R delivery report](docs/development/reports/stage_r_integrated_polish.md) records validation and the rejected arrival-timing trial; the director accepted Checkpoint R on 2026-10-20.
+
+The approved [Stage S plan](docs/development/plans/phase_6_stage_s_mission_structure_plan.md) is implemented and **Checkpoint S was accepted on 2026-10-21**. The [Stage S report](docs/development/reports/stage_s_mission_structure.md) records the playable mission, objectives, settlement policy, validation and director acceptance.
+
+The approved [Stage T remediation plan](docs/development/plans/phase_7_stage_t_remediation_plan.md) is implemented and **Checkpoint T was accepted on 2026-10-21**. The [delivery report and updated integration matrix](docs/development/reports/stage_t_full_gameplay_integration.md) record 30-suite validation, eight natural observations, graphical checks and remaining review. The [original audit](docs/development/reports/stage_t_integration_audit.md) preserves the pre-T baseline. The director approved the [Stage U proposal](docs/development/plans/phase_7_stage_u_world_expansion_plan.md); the expanded graybox was accepted at Checkpoint U on 2026-10-21. See the [U report](docs/development/reports/stage_u_world_expansion.md).
+
+Normal Asset Recovery now uses an S-specific north layout: its early allied carrier can load before the opportunist arrives, allowing existing conditional betrayal and social combat to emerge. The default 87017 south layout and P/Q/R references retain their configuration. In active S, **Ctrl+Shift+F5**, then Deploy, advances to **87018 north**; restart repeats the current seed. Dead targets are immediately ineligible for allied reports. Arrival times, Q policies, weapons, health, finite stock and response limits are unchanged.
+
+Director review prompted a [Raider decision follow-up](docs/development/reports/stage_t_raider_decision_followup.md): short stable body bypasses, retained bounded pursuit and a bounded attacker-response window address rapid turning and aim-reset paralysis. The director accepted Stage T including this follow-up; no mission configuration was changed by the follow-up.
 
 ## Requirements and running
 
 - Windows x64, Godot **4.7.2 Standard**, GDScript, Forward+ renderer.
 - Vulkan-capable graphics device; no external assets, frameworks, services, or networking.
-- Blender is installed according to the director; detailed models and animations remain outside this phase.
+- Blender **4.5.10 LTS** is verified for authoring. Stage V delivers eight original environment assets, shared materials and a limited processing-bay demonstration. Runtime uses explicit GLBs and does not require Blender. See the [pipeline guide](docs/art_pipeline/README.md) and [Checkpoint V report](docs/development/reports/stage_v_environment_art.md); director visual review is pending. Character/animation work remains deferred.
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
 The default resizable window is **1600×900**. **F3** shows/hides the developer HUD, control banner and detailed spectator inspector; they start hidden. Mission information, combat feedback and interaction prompts remain visible. Spectator mode retains a small active-mode indicator when debug details are hidden.
 
-The default `scenes/levels/mission_arena.tscn` runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, **F12 selects Recall Deployment with extraction and persistent rewards**, **F4 selects Machine Ecosystem**, and **F2 selects Traversal Experiment**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
+Stage U's separate **Operation: Salvage Complex** graybox is available explicitly:
+
+```powershell
+godot --path . res://scenes/levels/expanded_salvage_complex.tscn
+```
+
+Click **Deploy**. The 72 x 64 m complex adds processing, yard, loading ramps, container storage and alternate service/perimeter routes. F1/F3 retain spectator/diagnostics. In U, **Ctrl+Shift+F5**, then Deploy, advances its seed; **R** replays U. In-game F5 selects a reference scenario and is not the U launch control. Default startup remains compact Asset Recovery following Checkpoint U acceptance. See the [report and manual checklist](docs/development/reports/stage_u_world_expansion.md).
+
+The expanded scene now includes the Stage V art demonstration in the western processing building, near (-18, 0, 3). Launch it with the command above, then Deploy. For comparison, launch `res://scenes/levels/expanded_salvage_complex_graybox.tscn`; the complete eight-asset library is at `res://scenes/environment/asset_inspection.tscn`. F1/F3 provide spectator/diagnostics. The [Stage V report](docs/development/reports/stage_v_environment_art.md) contains screenshots, 33-suite validation, performance evidence and the manual checklist.
+
+The default startup is **Operation: Asset Recovery**, using `scenes/levels/asset_recovery_arena.tscn`. Read the briefing and click **Deploy**; the simulation waits until then. Bank **3 materials** and extract to succeed. Banking equipment and personally defeating a hostile Raider are optional. Early recall banks carried loot even with an incomplete primary; death/timeout forfeits deployment cargo. **R / Prepare next deployment** returns to the briefing with fresh objectives and the same seed/stash.
+
+Launching `scenes/levels/mission_arena.tscn` explicitly still runs **Intercept** in the expanded 48 m graybox. F6-F8 select the unarmed scenarios, F9 selects armed Survival, F10 selects Loot Pressure, **F12 selects Recall Deployment with extraction and persistent rewards**, **F4 selects Machine Ecosystem**, and **F2 selects Traversal Experiment**. Movement, shoulder camera, combat, flares, and loot presentation remain shared.
+
+The accepted R reference remains available explicitly; in-game F5 still selects the N reference (the editor project Run command now starts S):
+
+```powershell
+godot --path . res://scenes/levels/refined_extraction_arena.tscn
+```
+
+R combines Q's accepted actors, personalities, seeded layouts, finite loot, machines, recall and spectator modes with a smaller player HUD. F3 restores global accounting and actor details. The tested earlier-arrival candidate was reverted; R retains Q's `[0, 0, 35, 70, 105]` schedule. Recovery success notices remain visible for two seconds.
+
+Optional debug measurement: append `-- --capture-metrics` to that command (or enable `capture_metrics` in the scene inspector). **Ctrl+F3** exports a local JSON snapshot to the printed `user://deployment_*.json` path; F3 shows the capture indicator. Capture starts disabled, never changes actor decisions or loot, retains 256 detailed events with an explicit discarded count, and continues after player death until world termination. No data is transmitted. R restart preserves scene, seed and capture selection. Existing Ctrl+Shift+F5 still selects/advances P/Q references; it does not select R. In active S it instead prepares S with the next seed. Reference-preset hotkeys are available after Deploy; leaving S ends its deployment and forfeits unbanked cargo. Objectives are independent of optional metrics.
 
 The original 32 m three-Raider arena remains available at `scenes/levels/test_arena.tscn` for Stage A/B regression checks.
 
@@ -50,7 +82,8 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | F4 | Deploy Machine Ecosystem (Stage H); scout and guard support with recall |
 | F5 | Deploy Integrated Extraction (Stage N); combined mission with persistent recall rewards |
 | Shift+F5 (debug builds) | Deploy Emergent Encounters (Stage P) |
-| Ctrl+Shift+F5 (debug builds) | Deploy next encounter seed; restart repeats the current seed |
+| Alt+Shift+F5 (debug builds) | Deploy Personality Encounters (Stage Q); preserve current encounter seed |
+| Ctrl+Shift+F5 (debug builds) | Deploy next encounter seed in the current P/Q mode; restart repeats the mode and seed |
 | F2 | Deploy Traversal Experiment (Stage I); Space jumps, Shift boosts |
 
 Escape releases controls without pausing simulation. Losing application focus also releases the cursor.
@@ -67,7 +100,11 @@ Initial actors and flare responders share a maximum of five live Raiders, with a
 
 **F3** shows the seed, layout, stock locations, nearby participants, actual objectives/targets/relations and recent events. Area/diagnostic sampling runs every 0.5 seconds, with a 64-entry event history. F1/Tab/F retains the detailed developer inspector. Earlier presets retain their accepted settings and stock; the new layout data is opt-in.
 
-Review both layouts passively, intervene in an encounter, follow actors after death, then compare same-seed restarts and other seeds. Pacing, congestion, late-arrival usefulness and believable variety still require manual acceptance. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) includes the full procedure and current AI limitations; Stage Q is not authorized.
+For future regression checks, review both layouts passively, intervene in an encounter, follow actors after death, then compare same-seed restarts and other seeds. Stage P, its combat corrections and Stage Q are accepted. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) includes the full procedure and remaining limitations.
+
+## Stage Q personality comparison
+
+Stage Q comparison: **Alt+Shift+F5**, or `godot --path . res://scenes/levels/personality_encounters_arena.tscn`. Greedy prioritizes salvage/cargo and bounded self-defense; Cowardly favors committed escape with defensive fire when blocked; Aggressive fights and searches last-observed positions. **Shift+F5** returns from Q to P with the same seed. F3 shows policy reasons and timers. The [Q report](docs/development/reports/stage_q_personality_combat.md) records tuning, twenty-five-suite validation and manual review steps. Earlier presets retain their accepted policies.
 
 ## Stage N integrated extraction mission
 
@@ -381,6 +418,17 @@ godot --headless --path . --script res://tests/betrayal_test.gd
 godot --headless --path . --script res://tests/integrated_extraction_test.gd
 godot --headless --path . --script res://tests/post_death_spectator_test.gd
 godot --headless --path . --script res://tests/encounter_generation_test.gd
+godot --headless --path . --script res://tests/combat_stability_test.gd
+godot --headless --path . --script res://tests/combat_movement_test.gd
+godot --headless --path . --script res://tests/personality_combat_test.gd
+godot --headless --path . --script res://tests/personality_integration_test.gd
+godot --headless --path . --script res://tests/recovery_feedback_test.gd
+godot --headless --path . --script res://tests/refined_extraction_test.gd
+godot --headless --path . --script res://tests/mission_objectives_test.gd
+godot --headless --path . --script res://tests/deployment_flow_test.gd
+godot --headless --path . --script res://tests/gameplay_integration_test.gd
+godot --headless --path . --script res://tests/raider_decision_stability_test.gd
+godot --headless --path . --script res://tests/expanded_world_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -450,3 +498,15 @@ Keep networking, crafting/loadout progression, detailed Blender models, and fina
 Stage J is implemented under the [Phase 4 spectator amendment](docs/development/ledgers/phase_4_stage_j_spectator_amendment.md). The director confirmed it works perfectly and approved it. Its [implementation report](docs/development/reports/stage_j_spectator.md) records validation and acceptance. Social AI requires a separate agreed scope.
 
 Stage K's [approved scope and architectural clarification](docs/development/plans/phase_4_social_ai_plan.md) is implemented. The director accepted Stages L, M and N, including the display refinement. The [Stage N report](docs/development/reports/stage_n_integrated_extraction.md) records integrated mission validation. Stage O's approved plan is implemented: twenty suites, parsing, headless/Forward+ startup and graphical spectator checks passed. Stop at [Checkpoint O](docs/development/reports/stage_o_post_death_spectating.md) for manual review. Changes after Stage I remain uncommitted.
+
+
+Stage R validation (2026-10-20): all 25 accepted suites and two new suites passed (`recovery_feedback_test.gd`, `refined_extraction_test.gd`). The latter covers optional metrics, exact transfer deltas, bounded snapshots, physical cargo recovery, timed recall under damage, post-death continuation and R restart. Editor parsing/import, bounded headless runtime and Forward+ N/P/Q/R startup passed. See the [delivery report](docs/development/reports/stage_r_integrated_polish.md) for controlled seed observations, performance limits and the manual review checklist. The director accepted Stage R on 2026-10-20 and deferred further refinement to future growth. Startup routing remains unchanged; no next-stage implementation or commit was made.
+
+
+Stage S validation (2026-10-21): all 29 suites passed, including the 27 accepted suites and two new objective/deployment-flow suites. Traversal coverage now deploys preparation-gated S before retaining all physical jump/boost assertions. Godot parsing/import, bounded default headless/Forward+ startup, graphical briefing-to-debrief flow and normal-speed seeded simulation passed. The known two-instance cleanup warning recurred in the legacy extraction test; final Stage S focused/graphical logs were clean. See the [S delivery report](docs/development/reports/stage_s_mission_structure.md) for evidence and director acceptance on 2026-10-21. Stage T is recorded separately below; no commit was performed.
+
+Stage T validation (2026-10-21): the 29 accepted suites plus the new normal-scene integration suite pass after correcting a fixture capacity assumption. Final logs, Godot parsing/import, bounded headless deployment, Forward+ GUI flow and ten scene startups are clean; the historical ObjectDB warning did not recur in this run. Eight natural observations cover seven seeds plus a repeat, with conserved loot, bounded populations and immutable settled results. Local graphical peak-population checks passed with metrics off/on. See the [T delivery report](docs/development/reports/stage_t_full_gameplay_integration.md) for limits and manual review; T acceptance, Stage U and Git commits remain pending separate authorization.
+
+Stage T decision follow-up validation (2026-10-21): all 31 suites pass, including physical allied passing, bounded pursuit with competing enemies, and alternating-attacker return-fire coverage. Parsing, Forward+ regression/startup and two normal seeded deployments passed with clean final logs. Checkpoint T remains open for director recheck; see the [follow-up report](docs/development/reports/stage_t_raider_decision_followup.md). No commit or Stage U work was performed.
+
+Stage U was accepted by the director on 2026-10-21 after successful manual play-testing. Existing controllers and finite populations remain; the expanded mission is selected explicitly and default routing is unchanged. No Git commit, publication or Stage V work is included. The [U report](docs/development/reports/stage_u_world_expansion.md) records physical corrections, automated/graphical checks, matched seeded observations and remaining acceptance checks.

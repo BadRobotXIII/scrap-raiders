@@ -1,0 +1,112 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Unordered mission schedule is rejected
+PASS: Entries at or beyond deadline are rejected
+PASS: Initial ground stock is allocated once by the ledger
+PASS: Initial ground recovery cannot double-credit materials
+PASS: Death drop IDs cannot collide with initial ground stacks
+PASS: Scheduled Raiders are unresolved before physical entry
+PASS: All authored salvage, entry and exit locations connect to the expanded arena
+PASS: Sloped access connects the raised lookout to navigation
+PASS: Unsupported off-map spawn is rejected
+PASS: Spawn overlapping robot is rejected
+PASS: Spawn inside graybox obstacle is rejected
+PASS: Authored supported empty spawn is valid
+R01: SCAVENGING -> SELECTING
+PASS: Intercept admits only the first scheduled Raider at time zero
+PASS: Spawn overlapping an entered Raider is rejected
+R01: SELECTING -> EXTRACTING
+PASS: Raider physically traverses the ramp to the raised lookout
+R01: EXTRACTING -> DEAD
+PASS: Defeating an early entry cannot finish pending waves
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Later entries use the original ledger without creating stock
+R01: SCAVENGING -> SELECTING
+PASS: Same mission seed and state reproduce initial entry
+PASS: Blocked entries remain pending with an explicit retry status
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Clearing entry obstruction admits all five Swarm Raiders
+PASS: Same-tick entries do not overlap one another
+PASS: Recovery starts with six protected and six ground materials
+PASS: Recovery honors its restricted available exit
+PASS: Initial mission cargo uses normal proximity recovery
+PASS: Initial mission cargo uses normal proximity recovery
+PASS: Initial mission cargo uses normal proximity recovery
+PASS: Recovering initial stock preserves scheduled Raider objectives
+PASS: Restart retains selected scenario with fresh ledger and cargo
+PASS: Deadline preserves unrecovered ground and unresolved scheduled entries without inventing extraction
+PASS: No scheduled actor can enter after mission completion
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Debug scenario key switches to a fresh Swarm deployment
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> EXTRACTING
+R03: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+PASS: Intercept resolves every scheduled Raider naturally with conserved materials
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R05: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R03: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> EXTRACTING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> EXTRACTING
+R04: EXTRACTING -> EXTRACTED
+R05: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+PASS: Swarm resolves every scheduled Raider naturally with conserved materials
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> EXTRACTING
+R02: SELECTING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+PASS: Recovery resolves every scheduled Raider naturally with conserved materials
+PASS: Recovery waits for ground cargo after all natural Raider resolutions
+Stage C checks complete; failures: 0

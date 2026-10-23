@@ -1,0 +1,63 @@
+[
+  {
+    "seed": 87017,
+    "layout": "south_patrol",
+    "duration": 111.183333333328,
+    "shots": 30.0,
+    "navigation_recoveries": 0,
+    "betrayals": 0,
+    "extractions": 5,
+    "machine_deaths": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "caps": true,
+    "conserved": true,
+    "frozen_result": true,
+    "unresolved": [],
+    "samples": {
+      "fresh_cached_allied_report": 62,
+      "loot_memory_present": 66,
+      "opportunist_can_assess": 11
+    }
+  },
+  {
+    "seed": 87018,
+    "layout": "north_contest",
+    "duration": 111.183333333328,
+    "shots": 32.0,
+    "navigation_recoveries": 0,
+    "betrayals": 0,
+    "extractions": 5,
+    "machine_deaths": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "caps": true,
+    "conserved": true,
+    "frozen_result": true,
+    "unresolved": [],
+    "samples": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 22,
+      "opportunist_can_assess": 51,
+      "richer_ally_qualifies": 4
+    }
+  }
+]

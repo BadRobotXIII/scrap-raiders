@@ -1,0 +1,22 @@
+{
+  "scripts/ai/raider.gd": {
+    "stage_t": "c6283bba3bdb842d09a46b59827bdc3cf0472004c2ae36d3e2eefc4d939a3898",
+    "followup": "835280a47df419b4f38f635160c7e8ea0d8c792d760671f45e58c94ad24669b7"
+  },
+  "scripts/ai/raider_combat.gd": {
+    "stage_t": "4ab0420bda441146fd7a4a689beb072bb28d137c66b07117d123894419b8f9a1",
+    "followup": "56041a5413b2678580a8f21d0ea8e09df21971427a76266f4c1c5967e92a6317"
+  },
+  "scripts/gameplay/social_encounter.gd": {
+    "stage_t": "81a2ce184d4ae6b4d677d6bd11598fa1cc42436162bc91626d5d98e4241de264",
+    "followup": "1f7ce0d5c43986f7bfbd254001d216f2b195bd1cdba1e4dbeac491e832521349"
+  },
+  "tests/raider_decision_stability_test.gd": {
+    "stage_t": null,
+    "followup": "8d23016ce2a0910e73826b8253361f53af88b376b101daf99483817b64624251"
+  },
+  "tests/raider_decision_stability_test.gd.uid": {
+    "stage_t": null,
+    "followup": "ee6254c0f0a6e6e5d3dcc901dd612a1f30226dc7845fe3b89ab0ad7fa5ba9aba"
+  }
+}

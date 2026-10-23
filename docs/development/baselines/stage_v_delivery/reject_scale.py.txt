@@ -1,0 +1,10 @@
+﻿import bpy,sys
+from pathlib import Path
+sys.path.insert(0,str(Path('tools/art_pipeline').resolve()))
+from export_asset import export_asset
+bpy.context.scene.objects['industrial_wall_4m'].scale.x=2
+try:
+ export_asset('.godot/stage_v/after/must_not_export.glb')
+ raise AssertionError('Invalid source scale was not rejected')
+except ValueError as error:
+ print('EXPECTED_EXPORT_REJECTION',error)

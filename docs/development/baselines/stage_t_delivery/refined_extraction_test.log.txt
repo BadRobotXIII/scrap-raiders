@@ -1,0 +1,67 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Capture is disabled in ordinary play
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Explicit capture creates a mission-local observer
+PASS: R reuses the finite integrated composition
+PASS: Q reference timing is unchanged
+PASS: R shares Q layouts and profiles without modifying reference resources
+PASS: Observer starts before admissions and finite loadout allocation
+PASS: Duplicate actor callback cannot double-count admission
+PASS: Export snapshots are detached
+PASS: Accepted recovery transfers once; duplicate rejected
+PASS: Deployment forfeiture settles exactly once
+PASS: Capture does not alter authoritative totals
+PASS: Capture on/off produces identical accepted accounting
+PASS: Metrics count accepted deltas, never cumulative cargo or rejected callbacks
+PASS: Repeated accepted-event callback serial is ignored
+PASS: Navigation recovery is observed at the actual decision path
+R01: SELECTING -> ENGAGING
+PASS: Detailed history is bounded and truncation explicit
+PASS: Unfinished combat duration is censored exactly once
+PASS: Explicit local snapshot exports successfully
+PASS: Export reports authoritative final accounting
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: R recovers physical cargo through the existing range/collision interaction
+PASS: R finite equipment recovery remains compatible
+PASS: Timed R recall banks material/equipment once despite nonlethal damage
+PASS: Successful R deployment finalizes observation after authoritative settlement
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: R death forfeits material and equipment deployment cargo
+PASS: Death settles once while world and observer continue
+PASS: R restricted follow prefers the lethal Raider
+PASS: Post-death observing cannot move robot, transfer loot or enter developer flight
+R03: SCAVENGING -> SELECTING
+PASS: Scheduled arrivals continue after deployment death
+R03: SELECTING -> SCAVENGING
+PASS: Autonomous machine physically patrols after player death
+PASS: Return ends observation, finalizes capture and preserves accounting
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Restart preserves R seed/capture selection with fresh mission state
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+R01: SELECTING -> EXTRACTED
+R02: SELECTING -> EXTRACTED
+R03: SELECTING -> EXTRACTED
+R04: SELECTING -> EXTRACTED
+R05: SELECTING -> EXTRACTED
+PASS: Final machine death is captured even when its coordinator callback ends the world
+Stage R refined extraction failures: 0

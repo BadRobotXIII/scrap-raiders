@@ -1,0 +1,70 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Absent stash loads empty without writing player data
+PASS: Verified atomic commit stores extraction rewards
+PASS: Saved receipt prevents duplicate reward after service restart
+PASS: Conflicting reward for the same deployment is rejected
+PASS: Separate deployments preserve globally distinct equipment identities
+PASS: Corrupt primary restores the previous validated backup
+PASS: Backup recovery can safely replay an unrecorded extraction receipt
+PASS: Subsequent commits safely replace an existing backup
+PASS: Unrecoverable corruption blocks rewards and preserves existing files
+PASS: Unsupported save versions cannot be overwritten
+PASS: Orphan temporary file cannot grant uncommitted rewards
+PASS: Duplicate input equipment IDs are rejected before any save replacement
+PASS: Resolving all Raiders still requires explicit player extraction
+PASS: First terminal extraction cannot be overwritten by late death or timeout
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Recovered mission materials become deployment cargo
+PASS: Recall is available while other Raiders and responses remain active
+PASS: Partial channel cannot bank deployment cargo
+PASS: Releasing E resets extraction progress
+PASS: Nonlethal damage preserves recall progress so the player can risk extracting
+PASS: Firing prevents recall completion
+PASS: Movement intent prevents recall from starting
+PASS: Residual physical velocity prevents recall from starting
+PASS: Physical displacement cancels recall even without movement input
+PASS: Leaving dock range rejects recall eligibility
+PASS: Full five-second channel is required before settlement
+PASS: A hit immediately before completion does not reset recall
+PASS: Successful recall banks material cargo without changing Raider loss or ground categories
+PASS: Extracted equipment and materials credit the persistent stash exactly once
+PASS: Repeated completion cannot settle or reward the deployment twice
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Restart preserves persistent stash while resetting deployment and isolated save path
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Recovered mission materials become deployment cargo
+PASS: death before channel completion forfeits cargo separately from Raider loss
+PASS: death forfeits equipment while preserving all previously banked inventory
+PASS: Late extraction cannot overwrite death
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Recovered mission materials become deployment cargo
+PASS: deadline before channel completion forfeits cargo separately from Raider loss
+PASS: deadline forfeits equipment while preserving all previously banked inventory
+PASS: Late extraction cannot overwrite deadline
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Recovered mission materials become deployment cargo
+PASS: Save failure keeps deployment and cargo intact for retry instead of falsely granting extraction
+PASS: Failed save cannot create a partial primary inventory
+PASS: Retry after a repaired save destination banks the original cargo once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Recovered mission materials become deployment cargo
+R02: SELECTING -> INVESTIGATING
+PASS: Natural five-second recall banks cargo despite repeated nonlethal hits
+Stage G checks complete; failures: 0

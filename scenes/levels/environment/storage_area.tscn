@@ -1,0 +1,151 @@
+[gd_scene load_steps=16 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material"]
+albedo_color = Color(0.55, 0.36, 0.24, 1)
+
+[sub_resource type="BoxMesh" id="Mesh0"]
+material = SubResource("Material")
+size = Vector3(12, 3, 3)
+
+[sub_resource type="BoxShape3D" id="Shape0"]
+size = Vector3(12, 3, 3)
+
+[sub_resource type="BoxMesh" id="Mesh1"]
+material = SubResource("Material")
+size = Vector3(3, 3, 12)
+
+[sub_resource type="BoxShape3D" id="Shape1"]
+size = Vector3(3, 3, 12)
+
+[sub_resource type="BoxMesh" id="Mesh2"]
+material = SubResource("Material")
+size = Vector3(3, 3, 8)
+
+[sub_resource type="BoxShape3D" id="Shape2"]
+size = Vector3(3, 3, 8)
+
+[sub_resource type="BoxMesh" id="Mesh3"]
+material = SubResource("Material")
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxShape3D" id="Shape3"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxMesh" id="Mesh4"]
+material = SubResource("Material")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxShape3D" id="Shape4"]
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="Mesh5"]
+material = SubResource("Material")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxShape3D" id="Shape5"]
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="RailMesh"]
+material = SubResource("Material")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxShape3D" id="RailShape"]
+size = Vector3(0.4, 3, 6.8)
+
+[node name="StorageArea" type="Node3D"]
+
+[node name="NorthContainer" type="StaticBody3D" parent="."]
+position = Vector3(22, 1.5, -16)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthContainer"]
+mesh = SubResource("Mesh0")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthContainer"]
+shape = SubResource("Shape0")
+
+[node name="EastContainer" type="StaticBody3D" parent="."]
+position = Vector3(29, 1.5, 1)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="EastContainer"]
+mesh = SubResource("Mesh1")
+
+[node name="Collision" type="CollisionShape3D" parent="EastContainer"]
+shape = SubResource("Shape1")
+
+[node name="SouthContainer" type="StaticBody3D" parent="."]
+position = Vector3(16, 1.5, 9)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="SouthContainer"]
+mesh = SubResource("Mesh2")
+
+[node name="Collision" type="CollisionShape3D" parent="SouthContainer"]
+shape = SubResource("Shape2")
+
+[node name="Platform" type="StaticBody3D" parent="."]
+position = Vector3(22, 0.5, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Platform"]
+mesh = SubResource("Mesh3")
+
+[node name="Collision" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("Shape3")
+
+[node name="NorthRamp" type="StaticBody3D" parent="."]
+position = Vector3(22, 0.45, -7)
+rotation_degrees = Vector3(-9.462, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthRamp"]
+mesh = SubResource("Mesh4")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthRamp"]
+shape = SubResource("Shape4")
+
+[node name="SouthRamp" type="StaticBody3D" parent="."]
+position = Vector3(22, 0.45, 7)
+rotation_degrees = Vector3(9.462, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="SouthRamp"]
+mesh = SubResource("Mesh5")
+
+[node name="Collision" type="CollisionShape3D" parent="SouthRamp"]
+shape = SubResource("Shape5")
+
+[node name="RampRail0" type="StaticBody3D" parent="."]
+position = Vector3(19.8, 1.5, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="RampRail0"]
+mesh = SubResource("RailMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="RampRail0"]
+shape = SubResource("RailShape")
+
+[node name="RampRail1" type="StaticBody3D" parent="."]
+position = Vector3(24.2, 1.5, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="RampRail1"]
+mesh = SubResource("RailMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="RampRail1"]
+shape = SubResource("RailShape")
+
+[node name="RampRail2" type="StaticBody3D" parent="."]
+position = Vector3(19.8, 1.5, 7)
+
+[node name="Mesh" type="MeshInstance3D" parent="RampRail2"]
+mesh = SubResource("RailMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="RampRail2"]
+shape = SubResource("RailShape")
+
+[node name="RampRail3" type="StaticBody3D" parent="."]
+position = Vector3(24.2, 1.5, 7)
+
+[node name="Mesh" type="MeshInstance3D" parent="RampRail3"]
+mesh = SubResource("RailMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="RampRail3"]
+shape = SubResource("RailShape")

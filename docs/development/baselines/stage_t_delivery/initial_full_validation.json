@@ -1,0 +1,152 @@
+[
+  {
+    "test": "awareness_test.gd",
+    "code": 0,
+    "seconds": 0.8888356
+  },
+  {
+    "test": "betrayal_test.gd",
+    "code": 0,
+    "seconds": 8.8034626
+  },
+  {
+    "test": "combat_movement_test.gd",
+    "code": 0,
+    "seconds": 12.4540571
+  },
+  {
+    "test": "combat_stability_test.gd",
+    "code": 0,
+    "seconds": 1.8132675999999999
+  },
+  {
+    "test": "combat_test.gd",
+    "code": 0,
+    "seconds": 2.8199745
+  },
+  {
+    "test": "deployment_flow_test.gd",
+    "code": 0,
+    "seconds": 5.4860541
+  },
+  {
+    "test": "destruction_test.gd",
+    "code": 0,
+    "seconds": 1.5966458
+  },
+  {
+    "test": "dynamic_ai_test.gd",
+    "code": 0,
+    "seconds": 18.9006428
+  },
+  {
+    "test": "encounter_generation_test.gd",
+    "code": 0,
+    "seconds": 43.0958754
+  },
+  {
+    "test": "extraction_test.gd",
+    "code": 0,
+    "seconds": 5.4050183999999994
+  },
+  {
+    "test": "flare_loot_test.gd",
+    "code": 0,
+    "seconds": 4.3970778
+  },
+  {
+    "test": "gameplay_integration_test.gd",
+    "code": 1,
+    "seconds": 49.563201199999995
+  },
+  {
+    "test": "hostile_combat_test.gd",
+    "code": 0,
+    "seconds": 9.8625524
+  },
+  {
+    "test": "integrated_extraction_test.gd",
+    "code": 0,
+    "seconds": 15.208381999999999
+  },
+  {
+    "test": "machine_ecosystem_test.gd",
+    "code": 0,
+    "seconds": 5.8811906
+  },
+  {
+    "test": "mission_objectives_test.gd",
+    "code": 0,
+    "seconds": 0.3121595
+  },
+  {
+    "test": "mission_test.gd",
+    "code": 0,
+    "seconds": 1.9908637999999999
+  },
+  {
+    "test": "mission_variety_test.gd",
+    "code": 0,
+    "seconds": 39.1210966
+  },
+  {
+    "test": "multi_raider_test.gd",
+    "code": 0,
+    "seconds": 17.1603904
+  },
+  {
+    "test": "personality_combat_test.gd",
+    "code": 0,
+    "seconds": 14.6675577
+  },
+  {
+    "test": "personality_integration_test.gd",
+    "code": 0,
+    "seconds": 40.6725322
+  },
+  {
+    "test": "post_death_spectator_test.gd",
+    "code": 0,
+    "seconds": 14.9503468
+  },
+  {
+    "test": "raider_test.gd",
+    "code": 0,
+    "seconds": 13.3708914
+  },
+  {
+    "test": "recovery_feedback_test.gd",
+    "code": 0,
+    "seconds": 1.2318502999999998
+  },
+  {
+    "test": "refined_extraction_test.gd",
+    "code": 0,
+    "seconds": 4.5692110999999995
+  },
+  {
+    "test": "robot_controller_test.gd",
+    "code": 0,
+    "seconds": 4.6630085
+  },
+  {
+    "test": "social_cooperation_test.gd",
+    "code": 0,
+    "seconds": 17.717870599999998
+  },
+  {
+    "test": "social_rivalry_test.gd",
+    "code": 0,
+    "seconds": 6.9807763
+  },
+  {
+    "test": "spectator_test.gd",
+    "code": 0,
+    "seconds": 5.5836841999999995
+  },
+  {
+    "test": "traversal_test.gd",
+    "code": 0,
+    "seconds": 13.819429699999999
+  }
+]

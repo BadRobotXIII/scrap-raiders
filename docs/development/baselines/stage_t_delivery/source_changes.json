@@ -1,0 +1,22 @@
+{
+  "scripts/gameplay/social_encounter.gd": {
+    "baseline": "e94922b6d379105139844ea4fb8663bde4a2d8c53eacbb4c90c83c686fad9f19",
+    "final": "81a2ce184d4ae6b4d677d6bd11598fa1cc42436162bc91626d5d98e4241de264"
+  },
+  "resources/missions/asset_recovery.tres": {
+    "baseline": "72a6f57697221c7dfefbffee6035cb6d7db6c9851f5a2546ed3050e5b475a236",
+    "final": "c86f1b430301de4b074763713db532c44020d8aac076e5b2a85659ac8b60f845"
+  },
+  "tests/gameplay_integration_test.gd": {
+    "baseline": null,
+    "final": "c96f275b66898f0c0881dddf06ffb409116a40cada843d201fb2a31505f24fda"
+  },
+  "tests/gameplay_integration_test.gd.uid": {
+    "baseline": null,
+    "final": "56825420c52e121c1a88792dc6cd0476f839fc2aa3c5e51517b665197c6908e3"
+  },
+  "resources/missions/s_encounter_north.tres": {
+    "baseline": null,
+    "final": "3d032e319cc1468c997a31da6f2595487d5ab8d05427054e7b6feb15f76366d5"
+  }
+}

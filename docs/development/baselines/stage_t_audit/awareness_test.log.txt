@@ -1,0 +1,47 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+PASS: Sound scenario starts outside visual perception
+R02: SCAVENGING -> FLEEING
+R03: SCAVENGING -> INVESTIGATING
+PASS: A real missed shot emits the existing weapon event
+PASS: Aggressive investigates an audible shot without seeing the robot
+PASS: Cowardly flees while Greedy tolerates a distant audible shot
+PASS: Hearing records memory without granting visual detection
+R02: FLEEING -> EXTRACTING
+PASS: Repeated gunfire does not loop retreat and reset extraction progress
+R02: EXTRACTING -> FLEEING
+PASS: Cooldown-rejected trigger emits no extra awareness event
+PASS: Unseen robot movement does not update the heard location
+R02: FLEEING -> SELECTING
+R02: SELECTING -> SCAVENGING
+PASS: Empty Cowardly resumes scavenging after gunfire memory expires
+R03: INVESTIGATING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: Completed sound investigation resumes salvage objectives
+PASS: Repeated stationary gunfire does not loop the completed investigation
+R03: SCAVENGING -> INVESTIGATING
+PASS: A meaningfully moved sound source can trigger a new investigation
+PASS: Distant shots cannot change threat memory or objectives
+R03: INVESTIGATING -> FLEEING
+PASS: Gunfire cannot override damage retreat or reset its task clock
+R03: FLEEING -> SCAVENGING
+PASS: Solid obstacle blocks sight in hearing-through-cover scenario
+R03: SCAVENGING -> INVESTIGATING
+PASS: Nearby gunfire is audible through cover under the simple radius rule
+PASS: World alert communicates investigation and its audible cause
+PASS: Presentation cannot advance task progress or material totals
+PASS: Alert clears when threat memory expires
+PASS: Loaded cargo pack receives a visible emission cue
+PASS: Depleted salvage loses its crate and clearly labels empty stock
+R01: SCAVENGING -> DEAD
+PASS: Dead Raider rejects auditory events
+PASS: Terminal deployment clears and stops alert presentation
+PASS: Terminal mission ignores late weapon events with conserved accounting
+PASS: Single-Raider regression mode preserves original behavior
+Stage D checks complete; failures: 0

@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Robot settles on arena floor
+PASS: Capsule rests at floor height
+PASS: W movement follows camera yaw
+PASS: Camera-relative movement stays on intended axis
+PASS: Robot brakes promptly to rest
+PASS: Lower pitch limit enforced
+PASS: Upper pitch limit enforced
+PASS: Stationary aiming faces camera direction
+PASS: Aiming keeps facing while moving backward
+PASS: Robot turning does not rotate the camera
+PASS: South boundary blocks robot movement
+PASS: Spring arm retracts at arena wall
+PASS: Arena obstacle blocks robot movement
+PASS: Spring arm returns to full length in clear space
+Controller integration checks complete; failures: 0

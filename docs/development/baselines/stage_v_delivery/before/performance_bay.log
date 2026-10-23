@@ -1,0 +1,53 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+0.0s SETUP seed 87018 layout u_east
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> ENGAGING
+R04: SELECTING -> SCAVENGING
+R05: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R05: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SELECTING -> SCAVENGING
+R04: SELECTING -> SCAVENGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R04: SCAVENGING -> ENGAGING
+R05: SCAVENGING -> INVESTIGATING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R05: INVESTIGATING -> FLEEING
+R04: ENGAGING -> INVESTIGATING
+R04: INVESTIGATING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R04: ENGAGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> ENGAGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> FLEEING
+R04: ENGAGING -> INVESTIGATING
+R05: FLEEING -> EXTRACTING
+R04: INVESTIGATING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R01: FLEEING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> EXTRACTING
+PERFORMANCE { "max_draw_calls": 224, "max_rendered_primitives": 177750, "max_texture_bytes": 111097344, "load_ready_ms": 269.894, "repeat_bake_ms": 14.418, "repeat_map_sync_ms": 7.023, "physics_p95_ms": 4.456, "process_p95_ms": 6.294, "static_memory_bytes": 75152379.0, "label": "before_bay", "capture_metrics": false, "frame_samples": 7144, "median_ms": 4.164, "p95_ms": 5.625, "max_ms": 9.83, "five_raiders_two_machines_samples": 1335, "peak_p95_ms": 5.717, "caps_valid": true, "conserved": true, "simulation_seconds_observed": 30.0666666666714, "rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU", "processor": "Intel(R) Core(TM) i7-14700HX", "engine": "4.7.2-stable (official)", "configured_window": (1600, 900) }

@@ -2,6 +2,8 @@ class_name MaterialLedger
 extends RefCounted
 ## Sole writer of material quantities/locations. No mission success/failure policy.
 
+signal transfer_accepted(kind: StringName, details: Dictionary)
+
 enum Outcome { ACTIVE, DEFEATED, EXTRACTED }
 
 var _stock: Dictionary[StringName, int] = {}
@@ -72,6 +74,7 @@ func register_raider(id: int) -> bool:
 	_cargo[id] = 0
 	_outcomes[id] = Outcome.ACTIVE
 	_verify_transfer()
+	_notify(&"register_raider", {"actor": id, "amount": 0})
 	return true
 
 
@@ -88,6 +91,7 @@ func release_source(point_id: StringName) -> int:
 	_stock[point_id] = 0
 	_drop_sources[id] = 0
 	_verify_transfer()
+	_notify(&"release_source", {"source": point_id, "drop": id, "amount": _ground[id]})
 	return id
 
 
@@ -100,6 +104,7 @@ func collect_ground(raider_id: int, drop_id: int, capacity: int) -> int:
 	_ground[drop_id] -= amount
 	_cargo[raider_id] += amount
 	_verify_transfer()
+	_notify(&"collect_ground", {"actor": raider_id, "drop": drop_id, "amount": amount})
 	return amount
 
 
@@ -124,6 +129,7 @@ func collect(raider_id: int, point_id: StringName, capacity: int) -> int:
 	_stock[point_id] -= amount
 	_cargo[raider_id] += amount
 	_verify_transfer()
+	_notify(&"collect", {"actor": raider_id, "source": point_id, "amount": amount})
 	return amount
 
 
@@ -141,16 +147,19 @@ func defeat(raider_id: int) -> int:
 		_ground[drop_id] = amount
 		_drop_sources[drop_id] = raider_id
 	_verify_transfer()
+	_notify(&"defeat", {"actor": raider_id, "drop": drop_id, "amount": amount})
 	return drop_id
 
 
 func extract(raider_id: int) -> bool:
 	if _sealed or not is_active(raider_id):
 		return false
-	_lost += cargo_for(raider_id)
+	var amount := cargo_for(raider_id)
+	_lost += amount
 	_cargo[raider_id] = 0
 	_outcomes[raider_id] = Outcome.EXTRACTED
 	_verify_transfer()
+	_notify(&"extract", {"actor": raider_id, "amount": amount})
 	return true
 
 
@@ -161,6 +170,7 @@ func recover(drop_id: int) -> int:
 	_ground[drop_id] = 0
 	_recovered += amount
 	_verify_transfer()
+	_notify(&"recover", {"drop": drop_id, "amount": amount})
 	return amount
 
 
@@ -171,6 +181,7 @@ func seal() -> void:
 func settle_player(extracted: bool) -> bool:
 	if _sealed or _player_settled:
 		return false
+	var amount := _recovered
 	_player_settled = true
 	if extracted:
 		_banked += _recovered
@@ -178,6 +189,7 @@ func settle_player(extracted: bool) -> bool:
 		_forfeited += _recovered
 	_recovered = 0
 	_verify_transfer()
+	_notify(&"settle_player", {"extracted": extracted, "amount": amount})
 	return true
 
 
@@ -212,3 +224,8 @@ func _sum(records: Dictionary) -> int:
 	for id in records:
 		result += int(records[id])
 	return result
+
+
+func _notify(kind: StringName, details: Dictionary) -> void:
+	details["serial"] = accepted_transfers
+	transfer_accepted.emit(kind, details)

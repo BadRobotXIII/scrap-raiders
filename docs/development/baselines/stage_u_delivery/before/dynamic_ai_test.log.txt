@@ -1,0 +1,129 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Three resource profiles share one Raider implementation
+PASS: Two authored extraction choices are available
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R02: SCAVENGING -> FLEEING
+R03: SCAVENGING -> INVESTIGATING
+PASS: Greedy continues looting under a non-close visible threat
+PASS: Cowardly retreats from the same medium-distance threat
+PASS: Aggressive investigates rather than immediately retreating
+R03: INVESTIGATING -> FLEEING
+PASS: Damage interrupts investigation and resets task progress
+R01: SCAVENGING -> FLEEING
+PASS: Even Greedy retreats from a close visible threat
+R02: FLEEING -> SELECTING
+R02: SELECTING -> SCAVENGING
+PASS: Empty fleeing Raider resumes scavenging when threat memory expires
+PASS: Threat transitions do not change material quantities
+R03: FLEEING -> INVESTIGATING
+R03: INVESTIGATING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: Completed investigation returns to objectives without collecting phantom cargo
+PASS: Identical seed and state reproduce objective scoring
+PASS: Debug seed controls local tie-break variation
+PASS: Unreachable off-map objectives are rejected
+PASS: Blocked primary exit selects reachable alternate, excluding off-map candidate
+PASS: Cowardly weights known path danger more strongly than Greedy
+PASS: Known danger on primary route makes Cowardly choose the safer alternate exit
+PASS: Extraction scoring responds to danger on the alternate route
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> INVESTIGATING
+R03: INVESTIGATING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+PASS: Stationary visible robot triggers only one investigation over ten simulated seconds
+PASS: Investigation arrival tolerance does not accidentally trigger close-range retreat
+PASS: Stable investigation preserves material accounting
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> INVESTIGATING
+R03: INVESTIGATING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: Completed investigation remains suppressed while threat position is unchanged
+R03: SCAVENGING -> INVESTIGATING
+PASS: Meaningful robot movement re-arms investigation
+R03: INVESTIGATING -> SCAVENGING
+R03: SCAVENGING -> INVESTIGATING
+PASS: Losing threat memory allows a newly spotted encounter to be investigated
+R03: INVESTIGATING -> FLEEING
+PASS: Damage still interrupts a re-armed investigation
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Greedy seeks a second finite salvage point below its six-unit cargo target
+R01: SCAVENGING -> EXTRACTING
+PASS: Second accepted transfer reaches cargo target without creating materials
+PASS: First navigation stall requests a retry
+PASS: Repeated exit stall chooses an alternate without losing cargo
+R01: EXTRACTING -> STRANDED
+PASS: No reachable exit enters explicit stranded state without teleport or invented extraction
+R01: STRANDED -> EXTRACTING
+PASS: Stranded retry can recover when an exit becomes available
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Watchdog detects no physical progress and abandons a blocked objective without teleporting
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R03: EXTRACTING -> EXTRACTED
+R02: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> EXTRACTING
+R02: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+PASS: 3 profiled Raiders resolve naturally with valid accounting
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R04: SELECTING -> SCAVENGING
+R05: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R01: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R01: SELECTING -> SCAVENGING
+R05: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R01: SELECTING -> EXTRACTING
+R02: SELECTING -> EXTRACTING
+R04: SELECTING -> EXTRACTING
+R03: EXTRACTING -> EXTRACTED
+R05: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+R04: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+PASS: 5 profiled Raiders resolve naturally with valid accounting
+Stage B checks complete; failures: 0

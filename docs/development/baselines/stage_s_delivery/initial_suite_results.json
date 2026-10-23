@@ -1,0 +1,118 @@
+[
+  {
+    "test": "awareness_test.gd",
+    "code": 0
+  },
+  {
+    "test": "betrayal_test.gd",
+    "code": 0
+  },
+  {
+    "test": "combat_movement_test.gd",
+    "code": 0
+  },
+  {
+    "test": "combat_stability_test.gd",
+    "code": 0
+  },
+  {
+    "test": "combat_test.gd",
+    "code": 0
+  },
+  {
+    "test": "deployment_flow_test.gd",
+    "code": 0
+  },
+  {
+    "test": "destruction_test.gd",
+    "code": 0
+  },
+  {
+    "test": "dynamic_ai_test.gd",
+    "code": 0
+  },
+  {
+    "test": "encounter_generation_test.gd",
+    "code": 0
+  },
+  {
+    "test": "extraction_test.gd",
+    "code": 0
+  },
+  {
+    "test": "flare_loot_test.gd",
+    "code": 0
+  },
+  {
+    "test": "hostile_combat_test.gd",
+    "code": 0
+  },
+  {
+    "test": "integrated_extraction_test.gd",
+    "code": 0
+  },
+  {
+    "test": "machine_ecosystem_test.gd",
+    "code": 0
+  },
+  {
+    "test": "mission_objectives_test.gd",
+    "code": 0
+  },
+  {
+    "test": "mission_test.gd",
+    "code": 0
+  },
+  {
+    "test": "mission_variety_test.gd",
+    "code": 0
+  },
+  {
+    "test": "multi_raider_test.gd",
+    "code": 0
+  },
+  {
+    "test": "personality_combat_test.gd",
+    "code": 0
+  },
+  {
+    "test": "personality_integration_test.gd",
+    "code": 0
+  },
+  {
+    "test": "post_death_spectator_test.gd",
+    "code": 0
+  },
+  {
+    "test": "raider_test.gd",
+    "code": 0
+  },
+  {
+    "test": "recovery_feedback_test.gd",
+    "code": 0
+  },
+  {
+    "test": "refined_extraction_test.gd",
+    "code": 0
+  },
+  {
+    "test": "robot_controller_test.gd",
+    "code": 0
+  },
+  {
+    "test": "social_cooperation_test.gd",
+    "code": 0
+  },
+  {
+    "test": "social_rivalry_test.gd",
+    "code": 0
+  },
+  {
+    "test": "spectator_test.gd",
+    "code": 0
+  },
+  {
+    "test": "traversal_test.gd",
+    "code": 1
+  }
+]

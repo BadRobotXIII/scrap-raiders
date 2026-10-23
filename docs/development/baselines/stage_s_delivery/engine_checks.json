@@ -1,0 +1,15 @@
+{
+  "engine": "Godot 4.7.2 Standard",
+  "date": "2026-10-21",
+  "editor_import": 0,
+  "bounded_default_headless_frames": 600,
+  "headless_exit": 0,
+  "bounded_default_forward_plus_frames": 180,
+  "graphical_exit": 0,
+  "graphical_flow_exit": 0,
+  "graphical_reference_R_exit": 0,
+  "new_and_accepted_suites": 29,
+  "final_failures": 0,
+  "legacy_warning": "Two ObjectDB instances leaked at legacy extraction-suite exit; assertions passed.",
+  "manual_checkpoint": "S pending director review"
+}

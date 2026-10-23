@@ -1,0 +1,235 @@
+extends SceneTree
+## Temporary read-only Stage R observation harness. No actor/loot policy writes.
+
+const COMBAT_STATES := [Raider.State.ENGAGING, Raider.State.TAKING_COVER, Raider.State.REPOSITIONING]
+var arena: Node3D
+var data: Dictionary
+var events: Array[Dictionary] = []
+var episodes: Array[Dictionary] = []
+var active_episodes: Dictionary = {}
+var known: Dictionary = {}
+var previous: Dictionary = {}
+var shots: Array[float] = []
+var stalled: Dictionary = {}
+var stall_records: Array[Dictionary] = []
+var max_stall: float = 0
+var last_transfer: int = -1
+var started: int
+
+
+func _initialize() -> void:
+	call_deferred("run")
+
+
+func event(kind: String, values: Dictionary = {}) -> void:
+	if events.size() < 5000:
+		var entry := values.duplicate(true)
+		entry["kind"] = kind
+		entry["time"] = snappedf(arena.elapsed, 0.001)
+		events.append(entry)
+
+
+func point(value: Vector3) -> Array:
+	return [snappedf(value.x, 0.001), snappedf(value.y, 0.001), snappedf(value.z, 0.001)]
+
+
+func material_snapshot() -> Dictionary:
+	var ledger: MaterialLedger = arena.ledger
+	return {"total": ledger.total_materials, "stock": ledger.protected_materials, "carried": ledger.carried_materials, "ground": ledger.dropped_materials, "recovered": ledger.recovered_materials, "lost": ledger.lost_materials, "banked": ledger.banked_materials, "forfeited": ledger.forfeited_materials, "transfers": ledger.accepted_transfers}
+
+
+func on_shot(_origin: Vector3, _endpoint: Vector3, damaged: bool, subject: String) -> void:
+	shots.append(arena.elapsed)
+	data.shots += 1
+	data.damaging_shots += int(damaged)
+	event("shot", {"actor": subject, "damaged": damaged})
+
+
+func on_state(before: Raider.State, after: Raider.State, id: int) -> void:
+	event("state", {"actor": id, "before": Raider.State.keys()[before], "after": Raider.State.keys()[after]})
+	if after in COMBAT_STATES and not before in COMBAT_STATES:
+		active_episodes[id] = arena.elapsed
+	if before in COMBAT_STATES and not after in COMBAT_STATES and active_episodes.has(id):
+		episodes.append({"actor": id, "start": active_episodes[id], "end": arena.elapsed, "censored": false})
+		active_episodes.erase(id)
+
+
+func register_actors() -> void:
+	for actor in arena.raiders.values():
+		if not is_instance_valid(actor) or known.has(actor.raider_id):
+			continue
+		var id: int = actor.raider_id
+		known[id] = true
+		data.actors[str(id)] = {"profile": actor.profile.display_name, "policy": RaiderProfile.CombatPolicy.keys()[actor.profile.combat_policy], "entry": arena.elapsed, "spawn": point(actor.position), "responder": arena.flare_director.responder_ids.has(id)}
+		event("entry", {"actor": id, "profile": actor.profile.display_name, "position": point(actor.position)})
+		actor.state_changed.connect(on_state.bind(id))
+		if actor.state in COMBAT_STATES:
+			active_episodes[id] = arena.elapsed
+		actor.combat.weapon.fired.connect(on_shot.bind("R%d" % id))
+		actor.cargo_collected.connect(func(amount: int) -> void: event("collection_notice", {"actor": id, "current_cargo": amount}))
+		actor.extracted.connect(func(amount: int) -> void:
+			data.raider_extractions += 1
+			event("extraction", {"actor": id, "cargo": amount}))
+		actor.defeated.connect(func(amount: int) -> void:
+			data.raider_deaths += 1
+			event("raider_death", {"actor": id, "cargo": amount}))
+
+
+func sample(delta: float) -> void:
+	register_actors()
+	var live := 0
+	for actor in arena.raiders.values():
+		if not is_instance_valid(actor):
+			continue
+		live += 1
+		var id: int = actor.raider_id
+		var goal: Vector3 = actor.position
+		if actor.state == Raider.State.SCAVENGING and is_instance_valid(actor.salvage):
+			goal = actor.salvage.global_position
+		elif actor.state in [Raider.State.FLEEING, Raider.State.EXTRACTING] and is_instance_valid(actor.extraction):
+			goal = actor.extraction.global_position
+		elif actor.state == Raider.State.INVESTIGATING:
+			goal = actor.investigation_position
+		elif actor.state in [Raider.State.TAKING_COVER, Raider.State.REPOSITIONING] and is_instance_valid(actor.combat.destination):
+			goal = actor.combat.destination.global_position
+		if previous.has(id):
+			var before: Dictionary = previous[id]
+			if actor.navigation_status != before.nav or actor.navigation_failures != before.failures:
+				event("navigation_status", {"actor": id, "status": actor.navigation_status, "failures": actor.navigation_failures})
+			var low_progress: bool = not arena.mission.is_world_finished() and goal.distance_to(actor.position) > 1 and actor.position.distance_to(before.position) < 0.05 and actor.state == before.state and goal.distance_to(before.goal) < 0.2
+			if low_progress:
+				stalled[id] = float(stalled.get(id, 0.0)) + delta
+				max_stall = maxf(max_stall, stalled[id])
+			else:
+				close_stall(id)
+		previous[id] = {"position": actor.position, "goal": goal, "state": actor.state, "nav": actor.navigation_status, "failures": actor.navigation_failures}
+	data.peak_raiders = maxi(data.peak_raiders, live)
+	data.conservation = data.conservation and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid() and live <= 5
+	if arena.ledger.accepted_transfers != last_transfer:
+		last_transfer = arena.ledger.accepted_transfers
+		event("material_snapshot", material_snapshot())
+	if arena.mission.player_destroyed and not arena.post_death.active and not arena.mission.is_world_finished():
+		arena.post_death.enter()
+
+
+func close_stall(id: int) -> void:
+	if float(stalled.get(id, 0.0)) >= 3:
+		stall_records.append({"actor": id, "end": arena.elapsed, "seconds": stalled[id], "state": Raider.State.keys()[previous[id].state], "position": point(previous[id].position), "goal": point(previous[id].goal)})
+	stalled.erase(id)
+
+
+func run() -> void:
+	var args := OS.get_cmdline_user_args()
+	var mode := args[0] if args.size() > 0 else "n"
+	var seed_value := int(args[1]) if args.size() > 1 else 85017
+	var scale := float(args[2]) if args.size() > 2 else 8.0
+	var duration := float(args[3]) if args.size() > 3 else 180.0
+	var label := args[4] if args.size() > 4 else "%s_%d" % [mode, seed_value]
+	var scene_path := "res://scenes/levels/integrated_extraction_arena.tscn" if mode == "n" else ("res://scenes/levels/emergent_encounters_arena.tscn" if mode == "p" else "res://scenes/levels/personality_encounters_arena.tscn")
+	arena = load(scene_path).instantiate()
+	# N exposes no runtime seed override. Override only the cached seed in this
+	# isolated process before _ready; resource files on disk remain unchanged.
+	if mode == "n":
+		arena.CONFIGS[12].seed = seed_value
+	else:
+		arena.seed_override = seed_value
+	arena.stash_path = "res://.godot/stage_r_baseline/stash_%s_%s.json" % [label, Crypto.new().generate_random_bytes(6).hex_encode()]
+	root.add_child(arena)
+	current_scene = arena
+	arena.set_physics_process(false)
+	arena.flare_director.set_physics_process(false)
+	arena.recall.set_physics_process(false)
+	arena.robot.set_physics_process(false)
+	arena.robot.input_adapter.set_physics_process(false)
+	arena.robot.input_adapter.set_process_input(false)
+	for machine in arena.ecosystem.machines:
+		machine.set_physics_process(false)
+		if machine.weapon != null:
+			machine.weapon.set_physics_process(false)
+	for index in range(10):
+		await physics_frame
+		await process_frame
+	arena.process_entries()
+	data = {"label": label, "mode": mode, "seed": seed_value, "scale": scale, "requested_duration": duration, "engine": Engine.get_version_info().string, "actors": {}, "shots": 0, "damaging_shots": 0, "raider_deaths": 0, "raider_extractions": 0, "machine_deaths": 0, "player_damage": 0.0, "peak_raiders": 0, "conservation": true}
+	data.setup = {"name": arena.config.display_name, "profiles": [], "entry_times": Array(arena.config.entry_times), "layout": str(arena.encounter.layout.layout_id) if arena.encounter != null else "fixed_integrated", "initial_stock": material_snapshot(), "seed": arena.debug_seed}
+	for actor in arena.raiders.values():
+		data.setup.profiles.append(actor.profile.display_name)
+	register_actors()
+	for machine in arena.ecosystem.machines:
+		var machine_name: String = machine.name
+		machine.health.died.connect(func() -> void:
+			data.machine_deaths += 1
+			event("machine_death", {"actor": machine_name}))
+		if machine.weapon != null:
+			machine.weapon.fired.connect(on_shot.bind(machine_name))
+			machine.weapon.set_physics_process(true)
+		machine.set_physics_process(true)
+	arena.robot.get_node("Health").damaged.connect(func(amount: float) -> void:
+		data.player_damage += amount
+		event("player_damage", {"amount": amount}))
+	arena.robot.get_node("Health").died.connect(func() -> void: event("player_death"))
+	arena.spectator.enter()
+	arena.spectator.set_process(false)
+	arena.spectator.camera.global_position = Vector3(0, 30, 0)
+	arena.robot.set_physics_process(true)
+	arena.set_physics_process(true)
+	arena.flare_director.set_physics_process(true)
+	arena.recall.set_physics_process(true)
+	if arena.encounter != null:
+		arena.encounter.set_physics_process(true)
+	Engine.time_scale = scale
+	started = Time.get_ticks_msec()
+	var last_sample: float = arena.elapsed
+	for index in range(15000):
+		await physics_frame
+		await process_frame
+		if arena.elapsed - last_sample >= 0.25:
+			sample(arena.elapsed - last_sample)
+			last_sample = arena.elapsed
+		if arena.elapsed >= duration or arena.mission.is_world_finished() or Time.get_ticks_msec() - started > maxi(90000, int(duration * 1500 / minf(scale, 2))):
+			break
+	sample(maxf(0, arena.elapsed - last_sample))
+	for id in stalled.keys():
+		close_stall(id)
+	for id in active_episodes:
+		episodes.append({"actor": id, "start": active_episodes[id], "end": arena.elapsed, "censored": true})
+	data.elapsed = arena.elapsed
+	data.wall_ms = Time.get_ticks_msec() - started
+	data.world_reason = arena.mission.world_reason
+	data.world_finished = arena.mission.is_world_finished()
+	data.player_dead = arena.mission.player_destroyed
+	data.player_position = point(arena.robot.position)
+	data.materials = material_snapshot()
+	data.equipment = {}
+	for location in EquipmentLedger.Location.values():
+		data.equipment[EquipmentLedger.Location.keys()[location]] = arena.flare_director.equipment.count_at(location)
+	data.response_tickets_committed = arena.flare_director.committed
+	data.responders_admitted = 0
+	for record in data.actors.values():
+		data.responders_admitted += int(record.responder)
+	data.first_shot = shots[0] if not shots.is_empty() else -1
+	data.last_shot = shots[-1] if not shots.is_empty() else -1
+	data.longest_no_shot_interval = 0.0
+	var previous_shot := 0.0
+	for shot in shots:
+		data.longest_no_shot_interval = maxf(data.longest_no_shot_interval, shot - previous_shot)
+		previous_shot = shot
+	data.longest_no_shot_interval = maxf(data.longest_no_shot_interval, arena.elapsed - previous_shot)
+	data.combat_episodes = episodes
+	data.stall_observations = stall_records
+	data.longest_low_progress = max_stall
+	data.unresolved = []
+	for actor in arena.raiders.values():
+		if is_instance_valid(actor):
+			data.unresolved.append({"id": actor.raider_id, "state": Raider.State.keys()[actor.state], "cargo": actor.carried_materials, "position": point(actor.position), "navigation": actor.navigation_status})
+	data.events = events
+	data.event_limit_reached = events.size() == 5000
+	Engine.time_scale = 1
+	var output := FileAccess.open("res://.godot/stage_r_baseline/%s.json" % label, FileAccess.WRITE)
+	output.store_string(JSON.stringify(data, "\t"))
+	output.close()
+	print("BASELINE ", label, " t=", data.elapsed, " shots=", data.shots, " deaths=", data.raider_deaths, " extracts=", data.raider_extractions, " stall=", data.longest_low_progress)
+	arena.queue_free()
+	for index in range(30):
+		await process_frame
+	quit(0 if data.conservation and (data.elapsed >= minf(duration, 179.9) or data.world_finished) else 1)

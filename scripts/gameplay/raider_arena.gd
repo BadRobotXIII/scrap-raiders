@@ -1,6 +1,8 @@
 extends Node3D
 ## Coordinates scene objects and presentation. Ledger owns materials; rules own outcomes.
 
+signal raider_defeat_accepted(event: Dictionary)
+
 const DEPLOYMENT_EFFECT := preload("res://scenes/effects/deployment_effect.tscn")
 const RAIDER_SCENE := preload("res://scenes/raiders/raider.tscn")
 const DROP_SCENE := preload("res://scenes/loot/material_drop.tscn")
@@ -24,6 +26,7 @@ var ecosystem: MachineEcosystem
 var spectator: DeveloperSpectator
 var spectator_view: SpectatorCamera
 var post_death: PostDeathSpectator
+var deployment_started: bool = true
 var player_terminated: bool = false
 var world_shutdown: bool = false
 var death_elapsed: float = 0
@@ -33,6 +36,8 @@ var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
 var mission := MissionRules.new()
 var elapsed: float = 0.0
+var action_notice: String = ""
+var action_notice_until: float = 0.0
 var raiders: Dictionary[int, Raider] = {}
 var drops: Dictionary[int, MaterialDrop] = {}
 var salvage_points: Array[Node3D] = []
@@ -41,6 +46,7 @@ var debug_visible: bool = false
 var setup_error: String = ""
 var salvage_quantities: Dictionary[StringName, int] = {}
 var resolved_profiles: Array[RaiderProfile] = []
+var fallback_profiles: Array[RaiderProfile] = []
 var machine_routes: PackedStringArray = PackedStringArray(["ScoutRoute", "GuardRoute"])
 var max_active_raiders: int = 5
 @onready var robot: RobotController = $Robot
@@ -96,6 +102,8 @@ func _ready() -> void:
 	$Overlay/Summary/Content/Restart.pressed.connect(restart_mission)
 	$Robot/Weapon.fired.connect(_on_weapon_fired)
 	$Robot/Health.died.connect(_on_player_destroyed)
+	setup_mission_objectives()
+	setup_observer()
 	deploy_raiders()
 	if OS.is_debug_build() or mission.post_death_spectating:
 		spectator_view = SpectatorCamera.new()
@@ -116,9 +124,26 @@ func _ready() -> void:
 		var feedback := preload("res://scripts/presentation/traversal_feedback.gd").new()
 		feedback.robot = robot
 		$Overlay.add_child(feedback)
+	if deployment_started:
+		present_arrival()
+
+
+func present_arrival() -> void:
 	var arrival := DEPLOYMENT_EFFECT.instantiate() as Node3D
 	arrival.position = robot.position
 	add_child(arrival)
+
+
+func uses_concise_hud() -> bool:
+	return false
+
+
+func setup_mission_objectives() -> void:
+	pass
+
+
+func setup_observer() -> void:
+	pass
 
 
 func initial_ground_stock() -> Dictionary:
@@ -164,12 +189,16 @@ func deploy_raiders() -> void:
 
 
 func spawn_raider(id: int, world_position: Vector3) -> Raider:
+	if not deployment_started:
+		return null
 	var actor := RAIDER_SCENE.instantiate() as Raider
 	actor.name = "Raider" if id == 1 else "Raider%d" % id
 	actor.raider_id = id
 	actor.ledger = ledger
 	actor.dynamic_ai = dynamic_ai
 	actor.profile = resolved_profiles[id - 1] if id <= resolved_profiles.size() else PROFILES[(id - 1) % PROFILES.size()]
+	if id > resolved_profiles.size() and not fallback_profiles.is_empty():
+		actor.profile = fallback_profiles[(id - 1) % fallback_profiles.size()]
 	actor.select_extraction = choose_extraction
 	actor.robot = robot
 	actor.select_salvage = choose_salvage
@@ -355,7 +384,7 @@ func route_cost(actor: Raider, point: Node3D) -> float:
 
 
 func _physics_process(delta: float) -> void:
-	if mission.is_world_finished():
+	if not deployment_started or mission.is_world_finished():
 		return
 	elapsed += delta
 	if elapsed >= mission_duration:
@@ -411,9 +440,12 @@ func _on_collection_requested(actor: Raider) -> void:
 func _on_defeated(_reported_amount: int, actor: Raider) -> void:
 	if raiders.get(actor.raider_id) != actor or actor.state != Raider.State.DEAD or actor.health.current > 0:
 		return
+	# Capture actor facts before the accepted ledger mutation resolves eligibility.
+	var event := {"deployment_id": recall.deployment_id if recall != null else "", "victim": actor.raider_id, "instigator": actor.health.last_damage_instigator_id, "eligible": social.eligible(robot, actor) if social != null else ledger.is_active(actor.raider_id)}
 	var drop_id := ledger.defeat(actor.raider_id)
 	if drop_id < 0:
 		return
+	raider_defeat_accepted.emit(event)
 	if drop_id > 0:
 		var drop := present_drop(drop_id, actor.global_position)
 		status.text = "%d materials dropped by R%02d. Approach the cyan cube and press E." % [drop.materials, actor.raider_id]
@@ -468,7 +500,7 @@ func pending_world_entries() -> int:
 
 
 func eligible_drop(drop: MaterialDrop) -> bool:
-	if mission.is_finished() or not is_instance_valid(drop):
+	if not deployment_started or mission.is_finished() or not is_instance_valid(drop):
 		return false
 	if drop.is_queued_for_deletion() or drop.ledger != ledger or drops.get(drop.drop_id) != drop or drop.materials <= 0:
 		return false
@@ -507,9 +539,19 @@ func try_recover() -> bool:
 		return false
 	drops.erase(drop.drop_id)
 	drop.queue_free()
-	status.text = "Recovered %d materials." % amount
+	show_action_notice("Recovered %d materials." % amount)
 	after_event()
 	return true
+
+
+func show_action_notice(message: String) -> void:
+	action_notice = message
+	action_notice_until = elapsed + 2.0
+	status.text = message
+
+
+func action_notice_active() -> bool:
+	return elapsed < action_notice_until and not mission.is_finished()
 
 
 func refresh_hud() -> void:
@@ -564,6 +606,7 @@ func finish_mission() -> void:
 		return
 	if not player_terminated:
 		terminate_player()
+		finalize_player_result()
 		if not mission.is_world_finished() and post_death != null:
 			post_death.offer()
 			refresh_hud()
@@ -575,6 +618,15 @@ func finish_mission() -> void:
 		post_death.stop()
 	stop_world_actors()
 	show_summary()
+
+
+func complete_player_extraction() -> void:
+	mission.complete_extraction()
+	finish_mission()
+
+
+func finalize_player_result() -> void:
+	pass
 
 
 func terminate_player() -> void:

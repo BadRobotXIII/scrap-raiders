@@ -1,0 +1,75 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Equipment loadout assigned once per actor
+PASS: Responder equipment is substantially less valuable than ordinary loadouts
+PASS: Accepted death moves equipment to ground exactly once
+PASS: Identified equipment cannot be credited twice
+PASS: Extracted loadout is recorded without creating a ground drop
+PASS: Sealed equipment rejects late allocations and transfers
+PASS: Reinforcement registration adds identity without creating materials
+PASS: Committed reinforcement prevents early mission completion
+PASS: Equipment alone keeps the recovery phase playable
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Empty Raider death creates gear, one flare, one bounded ticket, and nearby local response
+PASS: Flare/equipment presentation does not invent material cargo
+PASS: Duplicate death notification cannot duplicate flares or responses
+PASS: Response delays prevent immediate local convergence or spawning
+R02: SELECTING -> INVESTIGATING
+PASS: Existing nearby Raider investigates before any reinforcement is admitted
+PASS: Additional units respect the eight-second delay
+PASS: Blocked reinforcement stays pending without teleporting
+PASS: Active cap defers due reinforcement even when entry points are clear
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+PASS: Valid entry admits the armed responder without changing material stock
+PASS: Responder has its own low-value ledger-backed loadout
+R04: INVESTIGATING -> DEAD
+R02: INVESTIGATING -> DEAD
+PASS: Responder and simultaneous ordinary deaths cannot exceed the finite response budget
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+PASS: Second and final reinforcement uses the remaining committed ticket
+R05: INVESTIGATING -> DEAD
+R03: SELECTING -> DEAD
+PASS: Further deaths still flare and drop loot but cannot create an infinite response chain
+PASS: All five resolutions enter equipment-only recovery rather than instant success
+PASS: Distant equipment is ineligible for both prompt and transfer
+PASS: Equipment recovery cannot reach through solid cover
+PASS: Overlapping equipment targets break nearest-distance ties by actor identity
+PASS: Holding E begins recovery on the nearest eligible gear stack
+PASS: Releasing E cancels progress without consuming items
+PASS: Incoming damage immediately interrupts equipment recovery
+PASS: Firing prevents equipment recovery
+PASS: Physical movement interrupts recovery even without input intent
+PASS: Recovery cannot transfer items before the full hold duration
+PASS: Completed hold transfers exactly one loadout and preserves unrelated drops
+PASS: Final equipment recovery completes mission with both ownership invariants intact
+PASS: Terminal deployment seals both ledgers
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+PASS: Restart retains Loot Pressure and resets budget, drops and outcomes
+R01: SCAVENGING -> DEAD
+PASS: Deadline stops pending responses and preserves unrecovered equipment separately from material loss
+PASS: Deadline seals equipment and cannot admit a late responder
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> SCAVENGING
+PASS: Cosmetic flare visibly rises during natural simulation
+R02: SCAVENGING -> INVESTIGATING
+R02: INVESTIGATING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+PASS: Natural scheduling notifies an existing Raider before reinforcements
+PASS: Natural delayed admission preserves both ledgers
+PASS: Player destruction stops responses and seals unrecovered equipment without mutation
+Stage F checks complete; failures: 0

@@ -1,0 +1,9 @@
+[
+  "scripts/ai/raider.gd",
+  "scripts/gameplay/equipment_ledger.gd",
+  "scripts/gameplay/flare_director.gd",
+  "scripts/gameplay/material_ledger.gd",
+  "scripts/gameplay/mission_arena.gd",
+  "scripts/gameplay/raider_arena.gd",
+  "scripts/gameplay/recall_controller.gd"
+]

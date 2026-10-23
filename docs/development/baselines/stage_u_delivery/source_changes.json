@@ -1,0 +1,54 @@
+{
+  "scripts/gameplay/mission_arena.gd": {
+    "stage_t": "f526e59ec4742f9fffce3cdb1e994ee3f2053d0a2e0369d78041d39faaaf4d7e",
+    "stage_u": "a5019b7822ee5fb5da44b3cf6a4346faa18dfec76d2ea093126431e126083eb9"
+  },
+  "scenes/levels/environment/processing_facility.tscn": {
+    "stage_t": null,
+    "stage_u": "7e9765e47e3230dfc428327b6fbd0a664654119ac48c0f698d77f8347ab409e1"
+  },
+  "scenes/levels/environment/salvage_yard.tscn": {
+    "stage_t": null,
+    "stage_u": "fbd8d020bfde4a49400737ad5c440d66c9a7801b25541ae7d11ea3fc169655db"
+  },
+  "scenes/levels/environment/service_perimeter.tscn": {
+    "stage_t": null,
+    "stage_u": "954142a23a7920e6f18261209cd3d72fa90a25a4125cf67068fb07175ac64225"
+  },
+  "scenes/levels/environment/storage_area.tscn": {
+    "stage_t": null,
+    "stage_u": "5339d76a3e22b39fd49607cedbee8cb6c077651f41a029d02f69c36ab5f442aa"
+  },
+  "scenes/levels/expanded_salvage_complex.tscn": {
+    "stage_t": null,
+    "stage_u": "712949dd53a0013dd214239fa29c27ac09593f9fcf24f808254e8519de4df7e7"
+  },
+  "scenes/levels/test_arena.tscn": {
+    "stage_t": "f3758614204bd3ca8484bf7798cf418062908adbb7d49c5a1e548ba3e13ab106",
+    "stage_u": "2fb2dac4a8dd089ffb3df3f2d3e4a23c23bd30bdb890794797bac3becf14d16c"
+  },
+  "scenes/presentation/arena_overlay.tscn": {
+    "stage_t": null,
+    "stage_u": "a5bb96006e9736e9dcac11b5c73996e330c5aa186452d74a884853d83be64ad3"
+  },
+  "resources/missions/expanded_asset_recovery.tres": {
+    "stage_t": null,
+    "stage_u": "a0605faffa42e5ad476b6d7e47d5e0e275b3c5e54509798972b06cf66e0a5447"
+  },
+  "resources/missions/u_encounter_east.tres": {
+    "stage_t": null,
+    "stage_u": "824cb0479708a51e00d3b84233f4e3721ed166d65533b37cf9cbe16d420c6a1f"
+  },
+  "resources/missions/u_encounter_west.tres": {
+    "stage_t": null,
+    "stage_u": "6dcf3d566b40186ff8c46f0888031108cfe0c1cce7244b6fae3917159d3e8a8d"
+  },
+  "tests/expanded_world_test.gd": {
+    "stage_t": null,
+    "stage_u": "d1a865d3e4f11aae65bfb95f86d961f91a071ec7b76dfe156f46ca73ad3c11a7"
+  },
+  "tests/expanded_world_test.gd.uid": {
+    "stage_t": null,
+    "stage_u": "1663399421e10ddf9a54cffe3341cd9c3bb73ceaf34946c29e8c9e4fbaf51fa6"
+  }
+}

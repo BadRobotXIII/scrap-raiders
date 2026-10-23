@@ -16,12 +16,12 @@ var player_extracted: bool = false
 var deadline_expired: bool = false
 
 
-func complete_extraction() -> bool:
+func complete_extraction(required_objectives_met: bool = true) -> bool:
 	if is_finished() or not requires_extraction:
 		return false
 	player_extracted = true
-	phase = Phase.SUCCEEDED
-	reason = "Recall complete. Robot and carried loot extracted."
+	phase = Phase.SUCCEEDED if required_objectives_met else Phase.FAILED
+	reason = "Recall complete. Robot and carried loot extracted." if required_objectives_met else "Extracted - primary objective incomplete. Carried loot banked."
 	return true
 
 
@@ -82,3 +82,9 @@ func evaluate(ledger: MaterialLedger, deadline_expired: bool = false, pending_re
 func fail_setup(message: String) -> void:
 	phase = Phase.FAILED
 	reason = message
+
+
+func fail_abandoned() -> void:
+	if not is_finished():
+		phase = Phase.FAILED
+		reason = "Deployment abandoned. Carried loot forfeited; stash unchanged."

@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "editor": 0,
+    "ordinary_suites": 31,
+    "passed": 31
+  },
+  "full_ordinary": {
+    "editor": 0,
+    "suites": 32,
+    "passed": 32,
+    "note": "Final U suite was subsequently extended and rerun focused at fixed 60 FPS/headless and ordinary timing/Forward+."
+  },
+  "final_expanded_headless_fixed_60": 0,
+  "final_expanded_forward_plus_ordinary": 0,
+  "compact_forward_plus_gui_flow": 0,
+  "expanded_forward_plus_gui_flow": 0,
+  "final_editor_import": 0,
+  "bounded_headless_startup": 0,
+  "bounded_forward_plus_startup": 0,
+  "paired_performance_exits": [
+    0,
+    0
+  ],
+  "source_files": 232
+}

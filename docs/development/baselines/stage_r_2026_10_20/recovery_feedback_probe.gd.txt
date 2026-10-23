@@ -1,0 +1,48 @@
+extends SceneTree
+
+
+func _initialize() -> void:
+	call_deferred("run")
+
+
+func frames(count: int) -> void:
+	for index in range(count):
+		await physics_frame
+		await process_frame
+
+
+func run() -> void:
+	var arena := load("res://scenes/levels/integrated_extraction_arena.tscn").instantiate() as Node3D
+	arena.stash_path = "res://.godot/stage_r_baseline/recovery_probe_stash.json"
+	root.add_child(arena)
+	current_scene = arena
+	arena.set_physics_process(false)
+	arena.flare_director.set_physics_process(false)
+	arena.recall.set_physics_process(false)
+	arena.robot.set_physics_process(false)
+	arena.robot.input_adapter.set_physics_process(false)
+	for machine in arena.ecosystem.machines:
+		machine.set_physics_process(false)
+		if machine.weapon != null:
+			machine.weapon.set_physics_process(false)
+	await frames(10)
+	arena.process_entries()
+	for actor in arena.raiders.values():
+		actor.set_physics_process(false)
+		actor.combat.weapon.set_physics_process(false)
+	var victim: Raider = arena.raiders[1]
+	victim.position = Vector3(0, 0.1, 8)
+	arena.robot.position = victim.position
+	var collected: int = arena.ledger.collect(1, &"Salvage", 3)
+	victim.health.apply_damage(1000)
+	await frames(3)
+	arena.ecosystem.awareness.observe(arena.ecosystem.machines[0].source_id, 2, arena.raiders[2].position, arena.elapsed)
+	var accepted: bool = arena.try_recover()
+	var result := {"fixture_collected": collected, "recovery_accepted": accepted, "recovered": arena.ledger.recovered_materials, "status_immediately_after_recovery": arena.status.text, "conserved": arena.ledger.is_conserved()}
+	var output := FileAccess.open("res://.godot/stage_r_baseline/recovery_feedback_reproduction.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(result, "\t"))
+	output.close()
+	print("REPRODUCTION ", result)
+	arena.queue_free()
+	await frames(30)
+	quit(0 if accepted and result.recovered == 3 and result.conserved else 1)

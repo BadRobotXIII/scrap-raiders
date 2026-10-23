@@ -1,0 +1,152 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Q comparison permits existing developer spectator
+PASS: Camera proximity cannot change Q target, observation, movement or ownership
+R01: ENGAGING -> INVESTIGATING
+PASS: Valid unseen observation starts pursuit without tracking live target
+R01: INVESTIGATING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Failed pursuit route releases intent instead of trapping SELECTING until timeout
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Aggressive can independently select a visible hostile Raider
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Ceasefire invalidates combat interest without creating new hostility
+R01: SCAVENGING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Destroyed machine releases combat interest and its preallocated component exactly once
+R01: SCAVENGING -> ENGAGING
+R02: SELECTING -> EXTRACTED
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Extracted rival releases target safely after node cleanup
+R01: SCAVENGING -> DEAD
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+PASS: Finite flare responder uses opted-in fallback profile with unchanged response budget
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Q restart preserves preset, seed and isolated stash while resetting actors and accounting
+0.0s SETUP seed 87018 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Next-seed control retains Q comparison mode
+0.0s SETUP seed 87018 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Q-to-P comparison preserves the chosen seed
+0.0s SETUP seed 87018 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: P-to-Q comparison preserves the same authored opportunity layout
+PASS: Q player death irreversibly forfeits recovered loot once while world remains active
+PASS: One settlement permits existing restricted post-death follow mode
+PASS: Post-death target cycling cannot change policy, accounting or failed deployment
+PASS: Deadline while observing stops policy timers and actors without a second settlement
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Returning to accepted P restores baseline profiles without leaked Q state
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R02: ENGAGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> FLEEING
+R03: FLEEING -> EXTRACTING
+R03: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> ENGAGING
+R04: ENGAGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> EXTRACTING
+R04: EXTRACTING -> EXTRACTED
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+PASS: Natural Q layout 87017 sustains autonomous activity with finite population and conserved ownership
+Q NATURAL seed 87017 | south_patrol | time 146.7 | entered 5 | lost 13 | stock 0 | Return to the Recall Dock to extract.
+0.0s SETUP seed 87018 layout north_contest
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> FLEEING
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> FLEEING
+R01: FLEEING -> EXTRACTING
+R02: FLEEING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> ENGAGING
+R03: ENGAGING -> INVESTIGATING
+R03: INVESTIGATING -> ENGAGING
+R03: ENGAGING -> INVESTIGATING
+R03: INVESTIGATING -> ENGAGING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> ENGAGING
+R04: ENGAGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> EXTRACTING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> SCAVENGING
+R04: EXTRACTING -> EXTRACTED
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+PASS: Natural Q layout 87018 sustains autonomous activity with finite population and conserved ownership
+Q NATURAL seed 87018 | north_contest | time 146.8 | entered 5 | lost 13 | stock 0 | Return to the Recall Dock to extract.
+Stage Q integration checks complete; failures: 0

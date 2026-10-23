@@ -1,0 +1,719 @@
+[
+  {
+    "run": "final_87017",
+    "seed": 87017,
+    "layout": "south_patrol",
+    "setup": {
+      "entries": [
+        "EncounterSouthEntry",
+        "BetrayalEntry1",
+        "Spawn4",
+        "Spawn2",
+        "Spawn5"
+      ],
+      "layout": "south_patrol",
+      "positions": [
+        [
+          -14.0,
+          0.0,
+          13.0
+        ],
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Aggressive",
+        "Cowardly",
+        "Greedy",
+        "Aggressive"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "EncounterScoutRoute",
+        "EncounterGuardRoute"
+      ],
+      "seed": 87017,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 17.316666666667,
+    "world_end_seconds": 111.183333333328,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 0,
+    "raider_damage_by_raiders": 0,
+    "shots": 30.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 41,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "fresh_cached_allied_report": 68,
+      "loot_memory_present": 70,
+      "opportunist_can_assess": 10
+    }
+  },
+  {
+    "run": "final_87018",
+    "seed": 87018,
+    "layout": "north_contest",
+    "setup": {
+      "entries": [
+        "Spawn5",
+        "BetrayalEntry3",
+        "Spawn2",
+        "Spawn4",
+        "Spawn5"
+      ],
+      "layout": "north_contest",
+      "positions": [
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ],
+        [
+          -14.0,
+          0.0,
+          13.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Cowardly",
+        "Aggressive",
+        "Aggressive",
+        "Greedy"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "ScoutRoute",
+        "GuardRoute"
+      ],
+      "seed": 87018,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 45.0999999999987,
+    "world_end_seconds": 146.833333333342,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 1,
+    "raider_damage_by_raiders": 6,
+    "shots": 57.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 3.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 14,
+      "forfeited": 0,
+      "ground": 0,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 75,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 110,
+      "opportunist_can_assess": 10,
+      "richer_ally_qualifies": 4
+    }
+  },
+  {
+    "run": "final_87019",
+    "seed": 87019,
+    "layout": "south_patrol",
+    "setup": {
+      "entries": [
+        "EncounterSouthEntry",
+        "BetrayalEntry1",
+        "Spawn4",
+        "Spawn2",
+        "Spawn5"
+      ],
+      "layout": "south_patrol",
+      "positions": [
+        [
+          -14.0,
+          0.0,
+          13.0
+        ],
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Aggressive",
+        "Cowardly",
+        "Greedy",
+        "Aggressive"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "EncounterScoutRoute",
+        "EncounterGuardRoute"
+      ],
+      "seed": 87019,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 17.316666666667,
+    "world_end_seconds": 111.183333333328,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 0,
+    "raider_damage_by_raiders": 0,
+    "shots": 30.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 41,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "fresh_cached_allied_report": 68,
+      "loot_memory_present": 70,
+      "opportunist_can_assess": 10
+    }
+  },
+  {
+    "run": "final_87020",
+    "seed": 87020,
+    "layout": "north_contest",
+    "setup": {
+      "entries": [
+        "Spawn5",
+        "BetrayalEntry3",
+        "Spawn2",
+        "Spawn4",
+        "Spawn5"
+      ],
+      "layout": "north_contest",
+      "positions": [
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ],
+        [
+          -14.0,
+          0.0,
+          13.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Cowardly",
+        "Aggressive",
+        "Aggressive",
+        "Greedy"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "ScoutRoute",
+        "GuardRoute"
+      ],
+      "seed": 87020,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 44.2999999999988,
+    "world_end_seconds": 135.166666666666,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 1,
+    "raider_damage_by_raiders": 7,
+    "shots": 52.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 12,
+      "forfeited": 0,
+      "ground": 2,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 71,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 57,
+      "opportunist_can_assess": 10,
+      "richer_ally_qualifies": 4
+    }
+  },
+  {
+    "run": "final_87021",
+    "seed": 87021,
+    "layout": "north_contest",
+    "setup": {
+      "entries": [
+        "Spawn5",
+        "BetrayalEntry3",
+        "Spawn2",
+        "Spawn4",
+        "Spawn5"
+      ],
+      "layout": "north_contest",
+      "positions": [
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ],
+        [
+          -14.0,
+          0.0,
+          13.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Cowardly",
+        "Aggressive",
+        "Aggressive",
+        "Greedy"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "ScoutRoute",
+        "GuardRoute"
+      ],
+      "seed": 87021,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 43.4999999999988,
+    "world_end_seconds": 138.633333333336,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 1,
+    "raider_damage_by_raiders": 6,
+    "shots": 52.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 14,
+      "forfeited": 0,
+      "ground": 0,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 70,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 50,
+      "opportunist_can_assess": 10,
+      "richer_ally_qualifies": 4
+    }
+  },
+  {
+    "run": "final_87022",
+    "seed": 87022,
+    "layout": "south_patrol",
+    "setup": {
+      "entries": [
+        "EncounterSouthEntry",
+        "BetrayalEntry1",
+        "Spawn4",
+        "Spawn2",
+        "Spawn5"
+      ],
+      "layout": "south_patrol",
+      "positions": [
+        [
+          -14.0,
+          0.0,
+          13.0
+        ],
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Aggressive",
+        "Cowardly",
+        "Greedy",
+        "Aggressive"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "EncounterScoutRoute",
+        "EncounterGuardRoute"
+      ],
+      "seed": 87022,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 17.316666666667,
+    "world_end_seconds": 111.183333333328,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 0,
+    "raider_damage_by_raiders": 0,
+    "shots": 30.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 41,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "fresh_cached_allied_report": 68,
+      "loot_memory_present": 70,
+      "opportunist_can_assess": 10
+    }
+  },
+  {
+    "run": "final_87023",
+    "seed": 87023,
+    "layout": "north_contest",
+    "setup": {
+      "entries": [
+        "Spawn5",
+        "BetrayalEntry3",
+        "Spawn2",
+        "Spawn4",
+        "Spawn5"
+      ],
+      "layout": "north_contest",
+      "positions": [
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ],
+        [
+          -14.0,
+          0.0,
+          13.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Cowardly",
+        "Aggressive",
+        "Aggressive",
+        "Greedy"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "ScoutRoute",
+        "GuardRoute"
+      ],
+      "seed": 87023,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 44.2999999999988,
+    "world_end_seconds": 138.633333333336,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 1,
+    "raider_damage_by_raiders": 5,
+    "shots": 46.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 2.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 13,
+      "forfeited": 0,
+      "ground": 1,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 63,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 58,
+      "opportunist_can_assess": 10,
+      "richer_ally_qualifies": 4
+    }
+  },
+  {
+    "run": "final_repeat_87018",
+    "seed": 87018,
+    "layout": "north_contest",
+    "setup": {
+      "entries": [
+        "Spawn5",
+        "BetrayalEntry3",
+        "Spawn2",
+        "Spawn4",
+        "Spawn5"
+      ],
+      "layout": "north_contest",
+      "positions": [
+        [
+          -16.0,
+          0.0,
+          -14.0
+        ],
+        [
+          16.0,
+          0.0,
+          -2.0
+        ],
+        [
+          -14.0,
+          0.0,
+          13.0
+        ]
+      ],
+      "profiles": [
+        "Greedy",
+        "Cowardly",
+        "Aggressive",
+        "Aggressive",
+        "Greedy"
+      ],
+      "quantities": [
+        6,
+        3,
+        3
+      ],
+      "routes": [
+        "ScoutRoute",
+        "GuardRoute"
+      ],
+      "seed": 87018,
+      "times": [
+        0.0,
+        0.0,
+        35.0,
+        70.0,
+        105.0
+      ]
+    },
+    "player_end_seconds": 45.0999999999987,
+    "world_end_seconds": 146.833333333342,
+    "player_destroyed": true,
+    "raider_extractions": 5,
+    "betrayals": 1,
+    "raider_damage_by_raiders": 6,
+    "shots": 57.0,
+    "machine_deaths": 2.0,
+    "navigation_recoveries": 3.0,
+    "materials": {
+      "banked": 0,
+      "cargo": 0,
+      "extracted": 14,
+      "forfeited": 0,
+      "ground": 0,
+      "recovered": 0,
+      "stock": 0,
+      "total": 14,
+      "valid": true
+    },
+    "peak_raiders": 2,
+    "responses": 0,
+    "conserved": true,
+    "cap_valid": true,
+    "frozen_result": true,
+    "probe_event_count": 75,
+    "metric_events_discarded": 0,
+    "unresolved": [],
+    "sample_occupancies": {
+      "betrayal_assessment": 3,
+      "loot_memory_present": 110,
+      "opportunist_can_assess": 10,
+      "richer_ally_qualifies": 4
+    }
+  }
+]

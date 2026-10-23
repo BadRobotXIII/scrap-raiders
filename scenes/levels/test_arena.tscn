@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/robot.tscn" id="1_robot"]
 [ext_resource type="PackedScene" path="res://scenes/targets/practice_target.tscn" id="2_target"]
 [ext_resource type="Script" path="res://scripts/gameplay/raider_arena.gd" id="4_arena"]
+[ext_resource type="PackedScene" path="res://scenes/presentation/arena_overlay.tscn" id="5_overlay"]
+
 
 [sub_resource type="NavigationMesh" id="NavigationMesh"]
 agent_radius = 0.5
@@ -92,6 +94,7 @@ outer_radius = 0.8
 [sub_resource type="BoxMesh" id="SalvageCrate"]
 material = SubResource("SalvageMarkerMaterial")
 size = Vector3(0.45, 0.35, 0.45)
+
 
 [node name="TestArena" type="Node3D"]
 script = ExtResource("4_arena")
@@ -184,18 +187,7 @@ shape = SubResource("ObstacleShape")
 [node name="Robot" parent="." instance=ExtResource("1_robot")]
 position = Vector3(0, 0.1, 7)
 
-[node name="Overlay" type="CanvasLayer" parent="."]
-
-[node name="FoundationStatus" type="Label" parent="Overlay"]
-offset_left = 24.0
-offset_top = 20.0
-offset_right = 760.0
-offset_bottom = 110.0
-mouse_filter = 2
-text = "SCRAP RAIDERS | RECOVERY MISSION
-WASD: move | Mouse: orbit | RMB: aim | LMB: fire
-E: recover cargo | Esc: release mouse | Click: capture"
-label_settings = SubResource("OverlaySettings")
+[node name="Overlay" parent="." instance=ExtResource("5_overlay")]
 
 [node name="TargetA" parent="." instance=ExtResource("2_target")]
 position = Vector3(0, 0, -7)
@@ -309,72 +301,3 @@ cast_shadow = 0
 [node name="Crate" type="MeshInstance3D" parent="Salvage3"]
 position = Vector3(0, 0.175, 0)
 mesh = SubResource("SalvageCrate")
-
-[node name="RaiderStatus" type="Label" parent="Overlay"]
-offset_left = 24.0
-offset_top = 110.0
-offset_right = 1000.0
-offset_bottom = 145.0
-text = "One Raider: scavenge -> flee/extract. Approach or shoot to interrupt."
-label_settings = SubResource("OverlaySettings")
-
-[node name="MissionStatus" type="Label" parent="Overlay"]
-offset_left = 24.0
-offset_top = 155.0
-offset_right = 1250.0
-offset_bottom = 220.0
-label_settings = SubResource("OverlaySettings")
-
-[node name="DebugStatus" type="Label" parent="Overlay"]
-visible = false
-offset_left = 24.0
-offset_top = 250.0
-offset_right = 1100.0
-offset_bottom = 430.0
-mouse_filter = 2
-label_settings = SubResource("DebugSettings")
-
-[node name="PickupPrompt" type="Label" parent="Overlay"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = 52.0
-offset_right = 220.0
-offset_bottom = 90.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-text = "[E] Recover materials"
-horizontal_alignment = 1
-label_settings = SubResource("OverlaySettings")
-
-[node name="Summary" type="PanelContainer" parent="Overlay"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -160.0
-offset_right = 360.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Content" type="VBoxContainer" parent="Overlay/Summary"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Report" type="Label" parent="Overlay/Summary/Content"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
-
-[node name="Restart" type="Button" parent="Overlay/Summary/Content"]
-layout_mode = 2
-text = "Restart mission (R)"

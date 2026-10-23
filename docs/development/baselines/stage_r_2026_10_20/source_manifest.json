@@ -1,0 +1,782 @@
+[
+    {
+        "path":  "resources\\enemies\\aggressive.tres",
+        "hash":  "931917E15378B31E5945AF8CBA06019C8E1F3E69CC310FABFD1ADF5EB5CF37B3"
+    },
+    {
+        "path":  "resources\\enemies\\armed_scavenger.tres",
+        "hash":  "5F5EB922C23C469CA7D7D8C50A55BFD66D6777690A2EDC73ECBDAA3D2823F2B9"
+    },
+    {
+        "path":  "resources\\enemies\\cowardly.tres",
+        "hash":  "F5B2F254835C2091512A2A6DC51AE2D57869AF8576F731542490E67EFC63ED2A"
+    },
+    {
+        "path":  "resources\\enemies\\greedy.tres",
+        "hash":  "91C73E9B1254955C6CB3A077A2769B46B62088E536C3D31B784ADE1A04FF32FA"
+    },
+    {
+        "path":  "resources\\enemies\\opportunist_betrayal.tres",
+        "hash":  "8C433354FECB3C6478AEE9162DC8D36B2CB49BB1225CFB02B26FEB6E5D5E0CDF"
+    },
+    {
+        "path":  "resources\\enemies\\q_aggressive.tres",
+        "hash":  "ED52284BAECDD97E14AAD5F32441ED92AB9EA10B584303F737FF3C434C30F087"
+    },
+    {
+        "path":  "resources\\enemies\\q_cowardly.tres",
+        "hash":  "B7AE8C997711C70F0093FEE8388F7BBF2C4A0D1F386F228574E85CBCB5E45988"
+    },
+    {
+        "path":  "resources\\enemies\\q_greedy.tres",
+        "hash":  "9D86E14CB483280FA1ED4D15DED0629C2170E53A8D855959F32003E949A6C107"
+    },
+    {
+        "path":  "resources\\missions\\death_flare_rules.tres",
+        "hash":  "F300C0152572894F26A72CBADC5128E0F92DF51D65FF8BD6D8D6AB3B1DCA3CA9"
+    },
+    {
+        "path":  "resources\\missions\\ecosystem.tres",
+        "hash":  "59595E8EFFC642B025F6AB4595565FA9A0C16B238B0BE622C342B1664B9CFFFC"
+    },
+    {
+        "path":  "resources\\missions\\emergent_encounters.tres",
+        "hash":  "4D95A7066AD95A1D7B6175F6669FD34657C709BF86211B454797836815F00980"
+    },
+    {
+        "path":  "resources\\missions\\encounter_north.tres",
+        "hash":  "8A9A572BDD440F7FF9C71AE2FFDB41FEBFA44AF53389BD13AA64FAC127B256BC"
+    },
+    {
+        "path":  "resources\\missions\\encounter_south.tres",
+        "hash":  "4EC9361A2B5748694B641165CE38B75D531CCBD575668E35F8C5DFBB4D7E3B3B"
+    },
+    {
+        "path":  "resources\\missions\\extraction.tres",
+        "hash":  "B1CDD7F055832B53F2830ED477957C13F664BE289AC62D39F51684E3CD9CE928"
+    },
+    {
+        "path":  "resources\\missions\\integrated_extraction.tres",
+        "hash":  "8121F4F37E3E75D4B05BCF5BE4AD18AB6B8C73D164D71A01F4F57C7EC644EF68"
+    },
+    {
+        "path":  "resources\\missions\\intercept.tres",
+        "hash":  "4D2D1BA0393A6C037D329A3824CEA95A4EC6B9699C82B5B1130ED6C0AAC82E1D"
+    },
+    {
+        "path":  "resources\\missions\\loot_pressure.tres",
+        "hash":  "91A4E269C1CDCA4FF6C73D7D327F6186F72AAFA56F3324CC35F67D8BCEC08569"
+    },
+    {
+        "path":  "resources\\missions\\personality_encounters.tres",
+        "hash":  "BD9439CDCFE50A6C5AA6639702126A1BF89BAB815CEF6E67465247D1EF5B076C"
+    },
+    {
+        "path":  "resources\\missions\\q_encounter_north.tres",
+        "hash":  "AC421802115788372A7375921B0F634E378998B238102D1E01D6DC99C35A349F"
+    },
+    {
+        "path":  "resources\\missions\\q_encounter_south.tres",
+        "hash":  "CEF3047AF97F3BF92B6E06E3E24B0F450580366AEE9131CCCEA8F7974336A045"
+    },
+    {
+        "path":  "resources\\missions\\recovery.tres",
+        "hash":  "88A7E1D17BEB2C4ED77DEA7418A95253E0EFB3F373765127F71B4AE05DBC7D1F"
+    },
+    {
+        "path":  "resources\\missions\\social_betrayal.tres",
+        "hash":  "4424EAD5F1CB29F4BE2EB6497A7D818283B7ED8EDE2C20D7E4A616A912EA6D1F"
+    },
+    {
+        "path":  "resources\\missions\\social_cooperation.tres",
+        "hash":  "29EAF65471D912BC3D4F5427D714514E44FA0D3B1E077E9C00C376C3D407E524"
+    },
+    {
+        "path":  "resources\\missions\\social_pressure.tres",
+        "hash":  "901C98ED22D7C617854F10ED7BE2036C715EBBCB05868192543F7F91F43BD075"
+    },
+    {
+        "path":  "resources\\missions\\social_rivalry.tres",
+        "hash":  "429662881D05C0D53BB839ECEE3ADC6E956FA7ECAF86D2DE302D16682E580F63"
+    },
+    {
+        "path":  "resources\\missions\\survival.tres",
+        "hash":  "93A1E5FD4AFB0C2517B9816414982E581FAF56D237D0995FE04520ED28E422EA"
+    },
+    {
+        "path":  "resources\\missions\\swarm.tres",
+        "hash":  "88E7ACD5D546DC3566DE2B81A542BA76A15E3646ED53A4B548339E47940DBFFB"
+    },
+    {
+        "path":  "resources\\missions\\traversal.tres",
+        "hash":  "26D8C185673170B3E2C76CB4061751B0D692DB72A39979A4602BDA8BE18996F2"
+    },
+    {
+        "path":  "resources\\weapons\\guard_pulse.tres",
+        "hash":  "5F913E6F04199301F0BAD351D8238FF6783730B793BC5E5E0C78F2489FC89A1E"
+    },
+    {
+        "path":  "resources\\weapons\\prototype_blaster.tres",
+        "hash":  "FCA696085E34508CA8911F63DABE38CED4C43E07779285D8F7AF864292F57839"
+    },
+    {
+        "path":  "resources\\weapons\\raider_rifle.tres",
+        "hash":  "FD65E119C3EE9C316E4564726ED03EB5ADE87A83B07EC7640027E422FD815829"
+    },
+    {
+        "path":  "scenes\\effects\\deployment_effect.tscn",
+        "hash":  "D040F71BDD3E9030DDAD6C8BAC86795C64E32AC6666E8FB059D17AA573698CF9"
+    },
+    {
+        "path":  "scenes\\levels\\ecosystem_arena.tscn",
+        "hash":  "05C8AAE215737C9F8F05B938E31F5CC72CB691441F5EB0705A19389ABBE1224C"
+    },
+    {
+        "path":  "scenes\\levels\\emergent_encounters_arena.tscn",
+        "hash":  "537580E17126A8E8A41FE59B27F9C76C912FE51E9656AF73989650AB4FAAF915"
+    },
+    {
+        "path":  "scenes\\levels\\extraction_arena.tscn",
+        "hash":  "B47FEAD7A501A9413213B3C8E369B99CD9E636CCFAAC3B8DFD3B3D550E92D855"
+    },
+    {
+        "path":  "scenes\\levels\\integrated_extraction_arena.tscn",
+        "hash":  "44ED7239A74C9489DDDAB53A9FF664B27EDF1E634BF1DA9ACD4966790199C37B"
+    },
+    {
+        "path":  "scenes\\levels\\loot_pressure_arena.tscn",
+        "hash":  "FE900E3C6A8E1948C7EA3C1D20D2D7CF83E2BA49E90617BF87559049A4194505"
+    },
+    {
+        "path":  "scenes\\levels\\mission_arena.tscn",
+        "hash":  "30BA97A0283345AB7A9F6F0B3A7B477DB8C6821E26350053BDA9E0E6514A95CA"
+    },
+    {
+        "path":  "scenes\\levels\\personality_encounters_arena.tscn",
+        "hash":  "6587C3B6E971E5AF5A119343671E6786ADE9D95233DEF91324E6CADBDA84D12A"
+    },
+    {
+        "path":  "scenes\\levels\\single_raider_arena.tscn",
+        "hash":  "C3FEBEC4313005A4E024CDA95BF89782EC467BA732B15C488FE566DAA08C7AA3"
+    },
+    {
+        "path":  "scenes\\levels\\social_betrayal_arena.tscn",
+        "hash":  "3AA5459BA8FEF99B9A19B0C5C9FFE43E8DAE448A9ECB90DAC1DE06222996663C"
+    },
+    {
+        "path":  "scenes\\levels\\social_cooperation_arena.tscn",
+        "hash":  "11ACEBDCF64244724F04AD06B51DF41A87EE9EAD608CECD4952D69FE525A2DDE"
+    },
+    {
+        "path":  "scenes\\levels\\social_pressure_arena.tscn",
+        "hash":  "EDAF8D028A8E511977B9F8D7F0DE6C223965102929F72931A2CFBEB35266D012"
+    },
+    {
+        "path":  "scenes\\levels\\social_rivalry_arena.tscn",
+        "hash":  "4E306A8CB5E7DFC0CCCAA3857BD767DAB8FED374A827BE8E4961792953872027"
+    },
+    {
+        "path":  "scenes\\levels\\survival_arena.tscn",
+        "hash":  "03C97469B6CF498D15A35C61682EACFD8CFF6BF0AEDDC6FEE3E0E5153DE7EB58"
+    },
+    {
+        "path":  "scenes\\levels\\test_arena.tscn",
+        "hash":  "F3758614204BD3CA8484BF7798CF418062908ADBB7D49C5A1E548BA3E13AB106"
+    },
+    {
+        "path":  "scenes\\levels\\traversal_arena.tscn",
+        "hash":  "042503149B5199FA2D0243B600D602C4626E94CB30B4ABDB2F2D6EC6FB0CE82E"
+    },
+    {
+        "path":  "scenes\\loot\\material_drop.tscn",
+        "hash":  "AB32BD1DF293AE33FF43CF8819F811398E079F24F5FE48439656736700F02628"
+    },
+    {
+        "path":  "scenes\\player\\robot.tscn",
+        "hash":  "42B2FC072AAB36E5F2C4E0DEE038B7159CDF4F1741ED2F21968EBB05F38D88F8"
+    },
+    {
+        "path":  "scenes\\raiders\\raider.tscn",
+        "hash":  "5229FCC5F2A84883467C64C0C30C946EB2466B300EFD2760DDCEF7A6F95A11A5"
+    },
+    {
+        "path":  "scenes\\targets\\practice_target.tscn",
+        "hash":  "6D500B30275AF5270C31B92D3658FAA41F32A7BE22C9DDDF0446C83BD14923F4"
+    },
+    {
+        "path":  "scripts\\ai\\raider.gd",
+        "hash":  "62591612A3B850F140B844981D632CBC5608F41E6A3FA9414B6E4895B347AAF7"
+    },
+    {
+        "path":  "scripts\\ai\\raider.gd.uid",
+        "hash":  "7B62660587BD8FF3A156228F0298C71CE4BEDAC301E9603B82169E760C3EF48C"
+    },
+    {
+        "path":  "scripts\\ai\\raider_betrayal.gd",
+        "hash":  "616727760A01532FD58F764A1D8B4CEF8B9263CE46D55779EA20BF7C15FD0C4A"
+    },
+    {
+        "path":  "scripts\\ai\\raider_betrayal.gd.uid",
+        "hash":  "0354CE220C924DBA004E21DB9F8EC2F32BFFBB2D0EBD63915BB987B3B07BCDB7"
+    },
+    {
+        "path":  "scripts\\ai\\raider_betrayal_profile.gd",
+        "hash":  "65794E9BCA1E83F3675BE6AB27E88370E21A2E75628DDD1ABABFF32DD71255A1"
+    },
+    {
+        "path":  "scripts\\ai\\raider_betrayal_profile.gd.uid",
+        "hash":  "4FFF97EAC5230552C96E635E36C499A40E596BA52D3A9C18D11B4D7C50CD7299"
+    },
+    {
+        "path":  "scripts\\ai\\raider_combat.gd",
+        "hash":  "4AB0420BDA441146FD7A4A689BEB072BB28D137C66B07117D123894419B8F9A1"
+    },
+    {
+        "path":  "scripts\\ai\\raider_combat.gd.uid",
+        "hash":  "F7426AA84220FEBA0C798BF3CAEE76B5C9EAE1091F8B9F7AC146084C47512E8F"
+    },
+    {
+        "path":  "scripts\\ai\\raider_combat_profile.gd",
+        "hash":  "9B905ED67F92B32E93923DA7DFA12217DD56B8ED7045B72B442A66237228D6F7"
+    },
+    {
+        "path":  "scripts\\ai\\raider_combat_profile.gd.uid",
+        "hash":  "75404414284EA5D8A6B7885D69D00563A37624FBC6E8E685471C03ACA0760B40"
+    },
+    {
+        "path":  "scripts\\ai\\raider_profile.gd",
+        "hash":  "FC6A2073601A5F360FEA687F762F0E738665767047334BEB7FEED8A878D774C3"
+    },
+    {
+        "path":  "scripts\\ai\\raider_profile.gd.uid",
+        "hash":  "5E019829ED1220061EA8A3442F8DC94C32DC50DDBA12E2B74E7FA81F9A99735C"
+    },
+    {
+        "path":  "scripts\\ai\\raider_social.gd",
+        "hash":  "1D44F74D91B1B09C7B4C3A498A194E1C416F664C2E979EAF50659FBDD3B6843C"
+    },
+    {
+        "path":  "scripts\\ai\\raider_social.gd.uid",
+        "hash":  "63D5A613637A941EB76248E8B78C3832D2351C6DF008E4A7DD7077BF6029C8BA"
+    },
+    {
+        "path":  "scripts\\ai\\support_machine.gd",
+        "hash":  "364FF50F890C9B46C9DB0D483C8E6A9974F4B0428ED97386D8FD9AEDDDECD459"
+    },
+    {
+        "path":  "scripts\\ai\\support_machine.gd.uid",
+        "hash":  "50F832CECBF75C57F6FCF8674695A46E1F2A3F6D8090E53FD7B45D9F147BB822"
+    },
+    {
+        "path":  "scripts\\components\\death_tumble.gd",
+        "hash":  "FE22F9DFEEE7C56FF00051B70C999A380B096174D0F66A26D115075927334263"
+    },
+    {
+        "path":  "scripts\\components\\death_tumble.gd.uid",
+        "hash":  "0E2D98D15A427D506A0832D3A81A5E2926D7ADEB91E5F72DEC30DA3B20798DB8"
+    },
+    {
+        "path":  "scripts\\components\\health.gd",
+        "hash":  "97C05B28B62B1022CD49FA4DD09E19834188476B6CD094D478C8299F0F8E84EC"
+    },
+    {
+        "path":  "scripts\\components\\health.gd.uid",
+        "hash":  "E049C3329E3FBE6D839FA9147964DC00CF1B3E05DDD4ED65185EF8A96BBF184B"
+    },
+    {
+        "path":  "scripts\\components\\hit_reaction.gd",
+        "hash":  "59404ABB992DAB972FE52907FF7BE6BDE7C6AFEAA48BA4A1B878AFE27BCA3DC9"
+    },
+    {
+        "path":  "scripts\\components\\hit_reaction.gd.uid",
+        "hash":  "88BD6A72B6E3E2FA309E3F8D841ECD9DCFFF974C04B52B29232F80FD6DDDC8ED"
+    },
+    {
+        "path":  "scripts\\debug\\developer_spectator.gd",
+        "hash":  "08FADED5E8D8CD930EC0C8E4F7289D86DDF61C3A5B4617367ADA94601FD593AC"
+    },
+    {
+        "path":  "scripts\\debug\\developer_spectator.gd.uid",
+        "hash":  "48B02FE8178B02885C1C6ADE1519EBF6048110EC00D08D7037BF7FA06B6EEE5A"
+    },
+    {
+        "path":  "scripts\\gameplay\\encounter_layout.gd",
+        "hash":  "A7AC4EF3948C39D198B6CC798E1F626CB0B965323189982CEB4BFF979915FC49"
+    },
+    {
+        "path":  "scripts\\gameplay\\encounter_layout.gd.uid",
+        "hash":  "41F79D09E3FE79378934CAA1BA354AE16D1DD7EB0E50784BF45DF09888490743"
+    },
+    {
+        "path":  "scripts\\gameplay\\encounter_setup.gd",
+        "hash":  "FA8FB61FB18A350A0BAA0AEEB9DC53EFB848CC3B3058462CBEA16EA9E3757FB2"
+    },
+    {
+        "path":  "scripts\\gameplay\\encounter_setup.gd.uid",
+        "hash":  "57B7FE6B816E97399D0810710A3B81D0D7875A8D447DCFB22FD03E90737DE34A"
+    },
+    {
+        "path":  "scripts\\gameplay\\equipment_drop.gd",
+        "hash":  "1C31FF65FE03FC56F328727CC2A1F4642A11BFD86EF63970ADB79212D3B4E7E4"
+    },
+    {
+        "path":  "scripts\\gameplay\\equipment_drop.gd.uid",
+        "hash":  "7D1C2043EEBA2FBF8800A7A88C1547FCC5C477A7BB129AD878C7A839DF057CCA"
+    },
+    {
+        "path":  "scripts\\gameplay\\equipment_ledger.gd",
+        "hash":  "EE44C90C99B062D40DB63F9D0C4CAF62EF0A5DA8CE0A4D5E534F0EDA97ACCD7B"
+    },
+    {
+        "path":  "scripts\\gameplay\\equipment_ledger.gd.uid",
+        "hash":  "1102101BFDC614FC1332FB1286BB522588F281B6842EF8D6DC682C55C3DDF9F0"
+    },
+    {
+        "path":  "scripts\\gameplay\\flare_config.gd",
+        "hash":  "0CD79EAAAF1BCC45D50B56A8017A0A9C1FA702061CB5556C8B28A90027A4E99C"
+    },
+    {
+        "path":  "scripts\\gameplay\\flare_config.gd.uid",
+        "hash":  "950071B61BDE53141450377C8C1F587CA3BFEA0991A5E7FD55112FBD922673DA"
+    },
+    {
+        "path":  "scripts\\gameplay\\flare_director.gd",
+        "hash":  "710521DF96911A6A08A46DDA4C5022D8A58AE328B9BFABAE0EFCEBF12D2250D4"
+    },
+    {
+        "path":  "scripts\\gameplay\\flare_director.gd.uid",
+        "hash":  "A4848BC9A0D0FE1C5A972436E85CADE9510157E26CDAEBD33B9DBF3B3EE97DAA"
+    },
+    {
+        "path":  "scripts\\gameplay\\hitscan_weapon.gd",
+        "hash":  "16C29B0B500466A9530225A3D77D212390E99BEC8789CA51AB86B668267CCE68"
+    },
+    {
+        "path":  "scripts\\gameplay\\hitscan_weapon.gd.uid",
+        "hash":  "0E9231FB70091E725BE50ED428AED29B03EA5E412D17AF6C65C1A3445725AA35"
+    },
+    {
+        "path":  "scripts\\gameplay\\machine_awareness.gd",
+        "hash":  "FCCD947800EA01FD6C0E050D536634B6BC2B48ECA7C0ED70B65CF8925F423FD5"
+    },
+    {
+        "path":  "scripts\\gameplay\\machine_awareness.gd.uid",
+        "hash":  "E22CD4CF32616BC3FB9C78E7C3D399FBC7728B065DF941530BC432B46D4231CC"
+    },
+    {
+        "path":  "scripts\\gameplay\\machine_ecosystem.gd",
+        "hash":  "B8B5CCC809C7C1D16941F7CD2E4F86995E57B1693DEFED7E86B7F57381F3DB7C"
+    },
+    {
+        "path":  "scripts\\gameplay\\machine_ecosystem.gd.uid",
+        "hash":  "10D8C4A847782CABCDE196399C2811EA9C1736F318FF32F06429FE78118FDB0A"
+    },
+    {
+        "path":  "scripts\\gameplay\\material_drop.gd",
+        "hash":  "D7A79EB7BBD075C09D1C82148159B7028F922F8C1C709CA75E2D8BBD7E8F4D8D"
+    },
+    {
+        "path":  "scripts\\gameplay\\material_drop.gd.uid",
+        "hash":  "B0AAFB3ECDA350A3271CD5192E846105485108398C000DEF06132A7F898F4D40"
+    },
+    {
+        "path":  "scripts\\gameplay\\material_ledger.gd",
+        "hash":  "C287B0FCD91467270FB80F766057D3DE4D4219E43E3D7F19B4C5CC67CBA142BB"
+    },
+    {
+        "path":  "scripts\\gameplay\\material_ledger.gd.uid",
+        "hash":  "1D7A76726832BB93A5545F3D335DC17F0BE04612819C8721B725FBDCC0027D44"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_arena.gd",
+        "hash":  "D19324EB3C1F3F5C6476781A071631642AE474126D68DCF2BA633F5B77EC5D20"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_arena.gd.uid",
+        "hash":  "464C4B908C1A2E425F5940FD0EF9AAF4BAAE6B270DEC2E55B8EFCF8A7E0FF074"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_config.gd",
+        "hash":  "AEF0B8341C42BF1AAE5D9AC05F798C32273F1E3BB2DF51CFDE03F2045CBFB70B"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_config.gd.uid",
+        "hash":  "238EC15888B4947A90370C0D0B77104819429F278A9963AF9A5CFEA918B498CE"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_rules.gd",
+        "hash":  "54707A781C6CB4A87609FA15770FBCE00099EB07103162A204AAEE48F92DAF2E"
+    },
+    {
+        "path":  "scripts\\gameplay\\mission_rules.gd.uid",
+        "hash":  "711C908B8FA28742FD4C930C4B02CEFE7AB308BF67C7FCBDD37EB9B2106E9B7D"
+    },
+    {
+        "path":  "scripts\\gameplay\\persistent_stash.gd",
+        "hash":  "F5EF6F843D989C2059349A77D0D18EC5E55B71797B927172CDD101B8A6A5702B"
+    },
+    {
+        "path":  "scripts\\gameplay\\persistent_stash.gd.uid",
+        "hash":  "8DB04499261D0F8EB8BF6F69897ACB3E36493B6B110DBA69FF12B28360956A16"
+    },
+    {
+        "path":  "scripts\\gameplay\\post_death_spectator.gd",
+        "hash":  "1539DA2A0DAFF1A578A1FABBFFAA02069C67FB35F295260B8C2DB827166ECED4"
+    },
+    {
+        "path":  "scripts\\gameplay\\post_death_spectator.gd.uid",
+        "hash":  "4CA03F498610C20B03974CB2173D54C6D13A126FECA2EEDA4CAC6A7CC4F36B8B"
+    },
+    {
+        "path":  "scripts\\gameplay\\practice_target.gd",
+        "hash":  "8BF81F58C8632E2B7431C3702D57DB21DEB07E21B90A654A0E142AAADE1685D5"
+    },
+    {
+        "path":  "scripts\\gameplay\\practice_target.gd.uid",
+        "hash":  "C964E35AC3EA6D27528A8C135600C3C604C6130F47938F7611ABE04C29505EA9"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_arena.gd",
+        "hash":  "D9F76F40B740930A1A8A92809CD24ACD6A2FA3D076FE5F427E1D6B73B5C7670B"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_arena.gd.uid",
+        "hash":  "E16F500D6F00D141F9B484D97654A1734F78BE5D4312DC3C3F494A82F3DF4BAD"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_relations.gd",
+        "hash":  "866B81CA62A0B97BC64F8AD9753D403E18AEE71C7A7FF732D3AC3EEEAF349FD0"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_relations.gd.uid",
+        "hash":  "F3A254A933FFB7EC7E69D0CBB5485E45B4D8945B2686AEA67D6C62F13582C615"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_social_config.gd",
+        "hash":  "CA9CE4E4A6D286B71B453A07020C65A8ECD25EE3F972C00F5B5CABD7E885E0DF"
+    },
+    {
+        "path":  "scripts\\gameplay\\raider_social_config.gd.uid",
+        "hash":  "86FAFCE6D32814A405CEFF3969F0E1D2E7C6622BD63F819B05938579C1834553"
+    },
+    {
+        "path":  "scripts\\gameplay\\recall_controller.gd",
+        "hash":  "4B31012CEAD4602C5A7B6FE25DC32349763BE7F3C0A5CEEEDEDBC55087A233EE"
+    },
+    {
+        "path":  "scripts\\gameplay\\recall_controller.gd.uid",
+        "hash":  "03254C949428FBAD758C5A45FAAFCE80FA171309E3D859B949F16AA48D4C0337"
+    },
+    {
+        "path":  "scripts\\gameplay\\shot_executor.gd",
+        "hash":  "0D1B5D876003307241D7A5A096B38930C074DC13F85FAEDEBFEAFECE21A1EAC4"
+    },
+    {
+        "path":  "scripts\\gameplay\\shot_executor.gd.uid",
+        "hash":  "6675455B6025E2246C06C6C42D249BCEA442B219485C61A15D3E10C74D468281"
+    },
+    {
+        "path":  "scripts\\gameplay\\social_encounter.gd",
+        "hash":  "E94922B6D379105139844EA4FB8663BDE4A2D8C53EACBB4C90C83C686FAD9F19"
+    },
+    {
+        "path":  "scripts\\gameplay\\social_encounter.gd.uid",
+        "hash":  "68EA873F2A1003C4F8CBAA568FBD75F7BDB2B1E233CFB754C24DEDE1ED124728"
+    },
+    {
+        "path":  "scripts\\gameplay\\weapon_definition.gd",
+        "hash":  "AF23C4F39AA6863BC58314F1981A85C80F3CBC9CF8152AD6C3D5C159B952555C"
+    },
+    {
+        "path":  "scripts\\gameplay\\weapon_definition.gd.uid",
+        "hash":  "8ADE7ABC584BF7E9C7EABC9072D2D10BC3C86CA9892F33A2EAC0A60611383E04"
+    },
+    {
+        "path":  "scripts\\player\\combat_feedback.gd",
+        "hash":  "A957CBE91A388516DC5F3B1817D925AB69ABA216AFEA2961C05EFD7FBD9F5F49"
+    },
+    {
+        "path":  "scripts\\player\\combat_feedback.gd.uid",
+        "hash":  "40AFDCAEEEE45CC4237FCBE102A44A1EB7A4615C90E0A92E50BBDF3C9ABBA2A3"
+    },
+    {
+        "path":  "scripts\\player\\player_damage_feedback.gd",
+        "hash":  "83595550859FF5A296219C03BCEF8466F5C3107C3D9B82C38AF6EB962737B1AB"
+    },
+    {
+        "path":  "scripts\\player\\player_damage_feedback.gd.uid",
+        "hash":  "33D563DE0E45DEAB2E5769E3E173EC4E455177E0A50FB3953B07F8BCECC5B080"
+    },
+    {
+        "path":  "scripts\\player\\robot_camera.gd",
+        "hash":  "6B9E9139CD1105BADBA8898F4935A50464CC1C73DE0595264A77261A1C1757C1"
+    },
+    {
+        "path":  "scripts\\player\\robot_camera.gd.uid",
+        "hash":  "BE113F4837BAC8866F7C542581C5145AA2C17BEA968A90902321F5FE75423CDF"
+    },
+    {
+        "path":  "scripts\\player\\robot_controller.gd",
+        "hash":  "1850C9F138B32C40F8C9556F54DCD10893F56A4F2FCFAF54E6C97693DAEC13AB"
+    },
+    {
+        "path":  "scripts\\player\\robot_controller.gd.uid",
+        "hash":  "277C8157148E7587D7596CE431BA2C6B58ADA6C124A628FAC196D0B3AD85D326"
+    },
+    {
+        "path":  "scripts\\player\\robot_input.gd",
+        "hash":  "A253C9B15D4211B3EE1E57E2D212F804816B4172DA0E06F0A2D061FBF38CE69F"
+    },
+    {
+        "path":  "scripts\\player\\robot_input.gd.uid",
+        "hash":  "DDCFA7D3E198791BBE1589B4AF0B2FF6450B7A7065324E8681F7E08B7E615139"
+    },
+    {
+        "path":  "scripts\\presentation\\death_flare.gd",
+        "hash":  "920FB69C1481261E3A809F0854795EB08C856047CB50B86B89B42E72251865FD"
+    },
+    {
+        "path":  "scripts\\presentation\\death_flare.gd.uid",
+        "hash":  "68CE348415AEB43E07705177B52AD1A381691E63A3C310C51C025C96B0AC0A14"
+    },
+    {
+        "path":  "scripts\\presentation\\deployment_effect.gd",
+        "hash":  "C0AB7440416C4BA4AB18D5E27C7789854D89814F85422FA4D62E372B61E3CF17"
+    },
+    {
+        "path":  "scripts\\presentation\\deployment_effect.gd.uid",
+        "hash":  "70306E6A366EE3C2AB756A0B77FCC9B4B7CAFBCCCE665087BCBFB38D51A9BEE7"
+    },
+    {
+        "path":  "scripts\\presentation\\raider_feedback.gd",
+        "hash":  "AC48DE83FAFB275E934A8A858000C01B1A8C9B2A30CB0A60F897FFFAB2090060"
+    },
+    {
+        "path":  "scripts\\presentation\\raider_feedback.gd.uid",
+        "hash":  "AF7A96A9423156E83BB68169DF5DA1E5382FBE7F60793C01F9B0927F81C8D669"
+    },
+    {
+        "path":  "scripts\\presentation\\spectator_camera.gd",
+        "hash":  "82522FDCAA1C9C87459208B98B75C1E9F2CBDFFFFC7E8BE487148B35E9BDDBFE"
+    },
+    {
+        "path":  "scripts\\presentation\\spectator_camera.gd.uid",
+        "hash":  "CF8AFB47B504635C4E7F233550CFBADE5EFB24484B8F1945B6B7BD26454AFC16"
+    },
+    {
+        "path":  "scripts\\presentation\\support_fire_feedback.gd",
+        "hash":  "DE81718FBD5FE6FFCEFD26148AB9D5A7D7EF92BD6B0CFB9895778FF3F724095D"
+    },
+    {
+        "path":  "scripts\\presentation\\support_fire_feedback.gd.uid",
+        "hash":  "160A7A0056D45AED36811E32B4DD612A633C80CDAB0BF0FF0918E5B5ABD064C3"
+    },
+    {
+        "path":  "scripts\\presentation\\traversal_feedback.gd",
+        "hash":  "4481A5E6BE2283A0E5321A0E0BF09E6F0A54C4E30DA6423A4631D847D44DCED7"
+    },
+    {
+        "path":  "scripts\\presentation\\traversal_feedback.gd.uid",
+        "hash":  "63B93F0797BE96E48F8E3534D733DF39F3AE25E5D01CFA56E7CF83FA70C6C566"
+    },
+    {
+        "path":  "tests\\awareness_test.gd",
+        "hash":  "F01400155837417A8B49FEDC572445B0246C2BCE840FDA84BD90D4551D3776F2"
+    },
+    {
+        "path":  "tests\\awareness_test.gd.uid",
+        "hash":  "5801CEEE748FB0C25A632ED02F454381779AAA797A5C333DFE639967434FE7C5"
+    },
+    {
+        "path":  "tests\\betrayal_test.gd",
+        "hash":  "7EBFEC436F6D6BF5FEDFD8A80C59C9E00CE1816ED95A85FC30B3EB4BE2E30BE5"
+    },
+    {
+        "path":  "tests\\betrayal_test.gd.uid",
+        "hash":  "6F428A40A8386263191BB08448AB6CAD077395FF08E1884F7F12D74BF5C5660A"
+    },
+    {
+        "path":  "tests\\combat_movement_test.gd",
+        "hash":  "997F009CDF1EED07526A006CFBA73BC5432A24283A7D1F276464673F8AE4E158"
+    },
+    {
+        "path":  "tests\\combat_movement_test.gd.uid",
+        "hash":  "167796DE666776531E44293C7C62618F9D562AAC7C4A1445C6F1AA1BD1D71119"
+    },
+    {
+        "path":  "tests\\combat_stability_test.gd",
+        "hash":  "B31C6325E28D30DD63C48D15862F11D7934ED3731A42B707A8CABC5A98399E06"
+    },
+    {
+        "path":  "tests\\combat_stability_test.gd.uid",
+        "hash":  "4996196823A59F6629A0C5D3D2DA63F0452E889BE986FAF29A3D55CC23DD3110"
+    },
+    {
+        "path":  "tests\\combat_test.gd",
+        "hash":  "92040DF4F83676677994F439044A840434135180A06ABB4D10E6A5BEA492CEA3"
+    },
+    {
+        "path":  "tests\\combat_test.gd.uid",
+        "hash":  "C880BFC1B0D9FE49D93161B7CE6A24EFCD6B972F84017051152AF0629A67536E"
+    },
+    {
+        "path":  "tests\\destruction_test.gd",
+        "hash":  "A438304859E10E7C3E17939BF242036E2CAEE727D934C79EFC410F64D59EFE10"
+    },
+    {
+        "path":  "tests\\destruction_test.gd.uid",
+        "hash":  "D5F18DF6906B7E2E40DDF0C67073F78ACBCE2E41794269C12EE7E2CE25C45D36"
+    },
+    {
+        "path":  "tests\\dynamic_ai_test.gd",
+        "hash":  "D1EF1B375EB092F11981BB83A82760786B430CCD2DD7B714488933410FA963A2"
+    },
+    {
+        "path":  "tests\\dynamic_ai_test.gd.uid",
+        "hash":  "C50DDC0E1D8FEF1E693FA7E0AF8057A4C9F341DD966CA7BBC6B68E9E7464426B"
+    },
+    {
+        "path":  "tests\\encounter_generation_test.gd",
+        "hash":  "3CE310345ACE60C95038207F8E7A19CD55D49474C7C17CC7D8393BAA74EA70F6"
+    },
+    {
+        "path":  "tests\\encounter_generation_test.gd.uid",
+        "hash":  "CDFCE81B365569D651DC5C2166AAFCF9A1E80EF4D98E8DEB86C7C58A1904EB12"
+    },
+    {
+        "path":  "tests\\extraction_test.gd",
+        "hash":  "3EFA4DAA92FD6797D344605E5D97F32CFF73693F15166181E299992E2F175ACB"
+    },
+    {
+        "path":  "tests\\extraction_test.gd.uid",
+        "hash":  "CAA05BDFF2DFD1D52740C9E72466015B2216C1C87F1D9F10E7BD27167B6A5EB9"
+    },
+    {
+        "path":  "tests\\flare_loot_test.gd",
+        "hash":  "3BA83553D31E26C6EBB55FE7C48E5756EF553E6544F7E7FCCDD7924C0088D997"
+    },
+    {
+        "path":  "tests\\flare_loot_test.gd.uid",
+        "hash":  "30CC2B0849129B9E197E866FB8D771FAFBB9BFB0F4B7438E826FBC7C04FAFB68"
+    },
+    {
+        "path":  "tests\\hostile_combat_test.gd",
+        "hash":  "71517788D61EC98B5CEFCC4F69A721EA15531BF07DFEC0E8E79C1839D294079D"
+    },
+    {
+        "path":  "tests\\hostile_combat_test.gd.uid",
+        "hash":  "B6418B286A3F196B06885A4EABD06E2D75DA140075A89B36D2BE3B4E6A892BE9"
+    },
+    {
+        "path":  "tests\\integrated_extraction_test.gd",
+        "hash":  "BC70CB7AA4353E0F96C1A4E9D2F386F83C7B2104411C1BD2B2820E956769C149"
+    },
+    {
+        "path":  "tests\\integrated_extraction_test.gd.uid",
+        "hash":  "6F536B44BDE4525DC4C1DE2E349D6F33129612082CD039F762F2CCBB9A955399"
+    },
+    {
+        "path":  "tests\\machine_ecosystem_test.gd",
+        "hash":  "BA5FFCBC799F1DAD71978D72D5A95ED080A8CA10A3DDB0DD2849B60C9E6305CD"
+    },
+    {
+        "path":  "tests\\machine_ecosystem_test.gd.uid",
+        "hash":  "B38B10D0DD8D59DAF9256EB31EDCF7057FDE6DEFEBF2B1990802568044859E7B"
+    },
+    {
+        "path":  "tests\\mission_test.gd",
+        "hash":  "A59DD061139C43CEE6E8E8658CEA9962035EA5D3CA9096A26C1D25C03896CA9D"
+    },
+    {
+        "path":  "tests\\mission_test.gd.uid",
+        "hash":  "E5B3C84A2B7CEC775DFC5641E7FAB1D47DCB1A86DED004670163B27FB40A5960"
+    },
+    {
+        "path":  "tests\\mission_variety_test.gd",
+        "hash":  "7DEB16F6D5390E10EDE93C6B32343B42554544CB5FD81E1A820FF23E7B7ECAB9"
+    },
+    {
+        "path":  "tests\\mission_variety_test.gd.uid",
+        "hash":  "5CED327D257D595BFE648FE2FF86FB40E57CD1BFDA99F18C2EB50FD2AC2CCD6B"
+    },
+    {
+        "path":  "tests\\multi_raider_test.gd",
+        "hash":  "2F2A70A1D32A6C0A838F9418E3B5212C4FDA50732FC47DFD5999416A5A09D1CD"
+    },
+    {
+        "path":  "tests\\multi_raider_test.gd.uid",
+        "hash":  "BA60922DFBA066FA7444415E503663CE10654048BBF977BDE9DA38D3CFCEA0F4"
+    },
+    {
+        "path":  "tests\\personality_combat_test.gd",
+        "hash":  "842F423F7ED3DD89791C58C5D0B7DFCE9756F54A3B8F1AA3F94B69FF2AA170FD"
+    },
+    {
+        "path":  "tests\\personality_combat_test.gd.uid",
+        "hash":  "B7468E0120ED4B481FD8466C54145FD33D6C25E667FBCCB2D7C3F36B81D7AEFE"
+    },
+    {
+        "path":  "tests\\personality_integration_test.gd",
+        "hash":  "09C5354A3B29669040FB09695B2081B810284CFD31042331945BD0356C2B88D0"
+    },
+    {
+        "path":  "tests\\personality_integration_test.gd.uid",
+        "hash":  "97B0EBE8BDBFEDFA119A1611C9AE6EC107487B00A7B7F20082512A6E3BA73C0F"
+    },
+    {
+        "path":  "tests\\post_death_spectator_test.gd",
+        "hash":  "CCC1DB8BB662EFCEF98F73834EEB29503C5F2BCEF7C126A50F045FDC05EC1679"
+    },
+    {
+        "path":  "tests\\post_death_spectator_test.gd.uid",
+        "hash":  "BED05EF4534B5B698C3CDA733E13C46750A4592B3BF60D1AE884A535B902D996"
+    },
+    {
+        "path":  "tests\\raider_test.gd",
+        "hash":  "6FD27DEDAB4E0780E6650735041BBC0363D3D593FFD025848D0027C4FA67FF1F"
+    },
+    {
+        "path":  "tests\\raider_test.gd.uid",
+        "hash":  "8D723AF3391FA7663D32067D95FF79F6E3706C24A8A6B002D998C10DF874A6DE"
+    },
+    {
+        "path":  "tests\\robot_controller_test.gd",
+        "hash":  "EBC0C28E8C277926C61A773C6C30AD0C7F11FBA117C9223FADADC820C5C73BBD"
+    },
+    {
+        "path":  "tests\\robot_controller_test.gd.uid",
+        "hash":  "42B70AB5EBB009D949F16488C09DB50C44604B74EBE64371195E194A4DBB318F"
+    },
+    {
+        "path":  "tests\\social_cooperation_test.gd",
+        "hash":  "CB729C0E8D3B8D15D64E10DA5BAD67FA0B6036005BD36C70EF678C9632003A8D"
+    },
+    {
+        "path":  "tests\\social_cooperation_test.gd.uid",
+        "hash":  "AD513F8BE90646144E02A87B5BCFB42156072108DF8B4F5B7B21DF61D6C0DABA"
+    },
+    {
+        "path":  "tests\\social_rivalry_test.gd",
+        "hash":  "6FD104DF65F3EA16A563440998BC7844F4A3514932FAFFEB9FAC632C02E2C7C8"
+    },
+    {
+        "path":  "tests\\social_rivalry_test.gd.uid",
+        "hash":  "12AAB0F6F08297F5B22317B164E8D1C40458FB3BA50D0B44227FABEEB84F0E58"
+    },
+    {
+        "path":  "tests\\spectator_test.gd",
+        "hash":  "CD90CAB4139D7D0C42CC83702AE4A45C4FF8AEAF3D08F6E85A3567F0F4A6F45A"
+    },
+    {
+        "path":  "tests\\spectator_test.gd.uid",
+        "hash":  "AFE6CAB24D9C3404935F580A1B325F728B70B14334465B7B136FF12A549BE796"
+    },
+    {
+        "path":  "tests\\traversal_test.gd",
+        "hash":  "87D052615AC50D6B9BBC626DEA5AD1D6A16BCC78ED8CA2B8645F0CD55D35F760"
+    },
+    {
+        "path":  "tests\\traversal_test.gd.uid",
+        "hash":  "B645A38EE0F294ACF0EC7C518DECC37FFA10479EF057895D1E2E7DC06C065A17"
+    }
+]

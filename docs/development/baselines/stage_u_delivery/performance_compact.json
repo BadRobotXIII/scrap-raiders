@@ -1,0 +1,23 @@
+{
+	"caps_valid": true,
+	"capture_metrics": false,
+	"configured_window": "(1600, 900)",
+	"conserved": true,
+	"engine": "4.7.2-stable (official)",
+	"five_raiders_two_machines_samples": 1676,
+	"frame_samples": 7143,
+	"label": "compact",
+	"load_ready_ms": 266.499,
+	"max_ms": 7.43,
+	"median_ms": 4.17,
+	"p95_ms": 5.615,
+	"peak_p95_ms": 5.615,
+	"physics_p95_ms": 2.872,
+	"process_p95_ms": 32.096,
+	"processor": "Intel(R) Core(TM) i7-14700HX",
+	"rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+	"repeat_bake_ms": 6.871,
+	"repeat_map_sync_ms": 7.507,
+	"simulation_seconds_observed": 30.1166666666714,
+	"static_memory_bytes": 72939506.0
+}

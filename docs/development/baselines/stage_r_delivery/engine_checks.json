@@ -1,0 +1,37 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "editor_import": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "bounded_headless_R_capture": {
+    "frames": 600,
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "forward_plus": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "scenarios": [
+      "N",
+      "P",
+      "Q",
+      "R"
+    ],
+    "frames_each": 600,
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "errors": 0,
+    "warnings": 0
+  },
+  "new_tests_final_rerun": {
+    "recovery_feedback_test.gd": 0,
+    "refined_extraction_test.gd": 0
+  },
+  "manual_acceptance": "pending"
+}

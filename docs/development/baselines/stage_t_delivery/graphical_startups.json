@@ -1,0 +1,42 @@
+[
+    {
+        "scene":  "asset_recovery",
+        "code":  0
+    },
+    {
+        "scene":  "mission",
+        "code":  0
+    },
+    {
+        "scene":  "single_raider",
+        "code":  0
+    },
+    {
+        "scene":  "emergent_encounters",
+        "code":  0
+    },
+    {
+        "scene":  "personality_encounters",
+        "code":  0
+    },
+    {
+        "scene":  "refined_extraction",
+        "code":  0
+    },
+    {
+        "scene":  "social_rivalry",
+        "code":  0
+    },
+    {
+        "scene":  "social_cooperation",
+        "code":  0
+    },
+    {
+        "scene":  "social_betrayal",
+        "code":  0
+    },
+    {
+        "scene":  "ecosystem",
+        "code":  0
+    }
+]

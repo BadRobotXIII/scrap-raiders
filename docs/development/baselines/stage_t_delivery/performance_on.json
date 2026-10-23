@@ -1,0 +1,16 @@
+{
+	"caps_valid": true,
+	"capture_metrics": true,
+	"configured_window": "(1600, 900)",
+	"conserved": true,
+	"engine": "4.7.2-stable (official)",
+	"five_raiders_two_machines_samples": 539,
+	"frame_samples": 539,
+	"max_ms": 6.787,
+	"median_ms": 4.166,
+	"p95_ms": 5.52,
+	"peak_p95_ms": 5.52,
+	"processor": "Intel(R) Core(TM) i7-14700HX",
+	"rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+	"simulation_seconds_observed": 2.48333333333319
+}

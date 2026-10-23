@@ -89,6 +89,8 @@ func run() -> void:
 	check(guard.health.current == 70 and guard.health.last_damage_instigator_id == a.get_instance_id(), "Relation-aware weapon predicate permits ordinary damage to support machines")
 	guard.position = Vector3(18, 0.1, -18)
 	await frames(3)
+	check(arena.social.choose_target(a) == guard, "Brief loss of guard sight preserves the integrated engagement")
+	a.threat_remaining = 0
 	a.decide()
 	check(a.current_target() == c and arena.social.eligible(c, a) and not arena.social.eligible(b, a), "Rival selection and allied damage protection remain active with machine support enabled")
 	c.position = Vector3(20, 0.1, -18)

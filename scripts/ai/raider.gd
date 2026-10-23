@@ -2,6 +2,7 @@ class_name Raider
 extends CharacterBody3D
 ## Owns this actor's FSM and physics. Quantities remain read-only ledger views.
 
+signal navigation_recovered(details: Dictionary)
 signal state_changed(previous: State, next: State)
 signal extracted(materials: int)
 signal cargo_collected(materials: int)
@@ -53,6 +54,10 @@ var blocked_exits: Dictionary[StringName, bool] = {}
 var _progress_elapsed: float = 0.0
 var _progress_origin: Vector3
 var _retry_remaining: float = 0.0
+var _bypass_actor: CharacterBody3D
+var _bypass_direction: Vector3
+var _bypass_remaining: float = 0.0
+var _bypass_goal: Vector3
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 @onready var health: Health = $Health
 @onready var label: Label3D = $Label3D
@@ -105,6 +110,7 @@ func detects_actor(target: Node3D) -> bool:
 		return false
 	var query := PhysicsRayQueryParameters3D.create(
 		global_position + Vector3.UP, target_point(target), 3, [get_rid()])
+	query.hit_from_inside = true
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	return not hit.is_empty() and hit.collider == target
 
@@ -130,12 +136,13 @@ func salvage_available() -> int:
 	return available_stock.call(salvage) if available_stock.is_valid() else ledger.available(salvage.name)
 
 
-func _choose_exit() -> bool:
+func _choose_exit(preserve_activity_on_failure: bool = false) -> bool:
 	extraction = select_extraction.call(raider_id)
 	if extraction == null:
 		navigation_status = "NO REACHABLE EXIT; retry in 2s"
 		_retry_remaining = 2.0
-		transition(State.STRANDED)
+		if not preserve_activity_on_failure:
+			transition(State.STRANDED)
 		return false
 	return true
 
@@ -150,8 +157,6 @@ func decide() -> void:
 			target_reason = "nearest visible hostile Raider" if selected is Raider else "nearest visible machine threat"
 			if combat != null:
 				combat.aim_elapsed = 0
-				if combat.owns_state():
-					transition(State.SELECTING)
 		elif is_instance_valid(combat_target) and (combat_target.get_node("Health").current <= 0 or (combat_target_allowed.is_valid() and not combat_target_allowed.call(combat_target))):
 			combat_target = null
 			threat_remaining = 0
@@ -223,7 +228,7 @@ func begin_investigation() -> void:
 func consider_allied_report(position: Vector3, remaining: float) -> bool:
 	if threat_visible or remaining <= 0 or state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or carried_materials >= profile.cargo_target or health.current <= health.maximum * 0.3:
 		return false
-	if (combat != null and combat.owns_state()) or (threat_source in ["damage", "gunfire"] and threat_remaining > 0):
+	if (combat != null and (combat.owns_state() or combat.pursuing or combat.escaping)) or (threat_source in ["damage", "gunfire"] and threat_remaining > 0):
 		return false
 	last_threat_position = position
 	threat_remaining = maxf(threat_remaining, remaining)
@@ -246,7 +251,7 @@ func consider_allied_report(position: Vector3, remaining: float) -> bool:
 func investigate_flare(position: Vector3) -> bool:
 	if state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or health.current <= health.maximum * 0.3:
 		return false
-	if detects_robot() or (combat != null and combat.owns_state()):
+	if detects_robot() or (combat != null and (combat.owns_state() or combat.pursuing or combat.escaping)):
 		return false
 	if state == State.EXTRACTING and carried_materials >= profile.cargo_target:
 		return false
@@ -305,6 +310,7 @@ func _physics_process(delta: float) -> void:
 		return
 	threat_remaining = maxf(0, threat_remaining - delta)
 	_retry_remaining = maxf(0, _retry_remaining - delta)
+	_bypass_remaining = maxf(0, _bypass_remaining - delta)
 	if betrayal != null:
 		betrayal.tick(delta)
 	if combat != null:
@@ -319,7 +325,9 @@ func _physics_process(delta: float) -> void:
 	var position_target := global_position
 	if state == State.INVESTIGATING:
 		position_target = investigation_position
-	elif state in [State.ENGAGING, State.ASSESSING_BETRAYAL]:
+	elif state == State.ENGAGING and combat != null:
+		position_target = combat.spacing_position()
+	elif state == State.ASSESSING_BETRAYAL:
 		position_target = global_position
 	elif state in [State.TAKING_COVER, State.REPOSITIONING] and combat != null and is_instance_valid(combat.destination):
 		position_target = combat.destination.global_position
@@ -354,7 +362,10 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 			return
 		elif state == State.INVESTIGATING and task_elapsed >= 2.0:
-			transition(State.SELECTING)
+			if combat != null and combat.pursuing:
+				combat.release_interest("last observed position searched; resume objectives")
+			else:
+				transition(State.SELECTING)
 	else:
 		task_elapsed = 0
 	var direction := Vector3.ZERO
@@ -381,6 +392,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_progress_elapsed = 0
 	var speed := flee_speed if state == State.FLEEING else walk_speed
+	direction = steer_around_actor(direction, position_target)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 	if not is_on_floor():
@@ -388,16 +400,58 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 	move_and_slide()
-	if direction.length_squared() > 0.01:
+	if direction.length_squared() > 0.01 and state != State.ENGAGING:
 		visuals.rotation.y = atan2(-direction.x, -direction.z)
 	update_label()
 
 
+func steer_around_actor(direction: Vector3, destination: Vector3) -> Vector3:
+	if direction.is_zero_approx():
+		_bypass_remaining = 0
+		return direction
+	# Navigation paths describe static geometry. Sweep the actual body for a
+	# nearby actor before walking into it; geometry still blocks every move.
+	if _bypass_remaining > 0 and is_instance_valid(_bypass_actor) and destination.distance_to(_bypass_goal) < 1:
+		var offset := _bypass_actor.global_position - global_position
+		offset.y = 0
+		var forward := (destination - global_position).normalized()
+		var lateral := offset - forward * offset.dot(forward)
+		if offset.length() < 2.5 and lateral.length() < 1.0 and offset.dot(forward) > 0 and not test_move(global_transform, _bypass_direction * 0.6):
+			return _bypass_direction
+	_bypass_remaining = 0
+	var collision := KinematicCollision3D.new()
+	var blocker: CharacterBody3D
+	if test_move(global_transform, direction, collision) and collision.get_collider() is CharacterBody3D:
+		blocker = collision.get_collider() as CharacterBody3D
+	if blocker == null:
+		return direction
+	var away := global_position - blocker.global_position
+	away.y = 0
+	if away.is_zero_approx():
+		away = -direction
+	away = away.normalized()
+	var tangent := Vector3(-away.z, 0, away.x)
+	var preferred := tangent if tangent.dot(destination - global_position) >= 0 else -tangent
+	for side in [preferred, -preferred]:
+		var detour: Vector3 = (side + away * 0.5 + direction * 0.5).normalized()
+		if not test_move(global_transform, detour * 0.6):
+			# Commit to this physical direction briefly, not a recomputed tangent
+			# around a moving blocker. Expiry/changed goals/geometry release it.
+			_bypass_actor = blocker
+			_bypass_direction = detour
+			_bypass_goal = destination
+			_bypass_remaining = 0.35
+			return detour
+	return Vector3.ZERO
+
+
 func recover_navigation(destination: Vector3) -> void:
+	var previous := state
 	navigation_failures += 1
 	if navigation_failures == 1:
 		navigation_status = "REPATH REQUESTED"
 		agent.target_position = destination
+		navigation_recovered.emit({"goal": destination, "reason": "low progress", "result": navigation_status, "before": previous, "after": state})
 		return
 	navigation_failures = 0
 	if state == State.SCAVENGING:
@@ -409,7 +463,10 @@ func recover_navigation(destination: Vector3) -> void:
 		transition(State.SELECTING)
 	elif combat != null and combat.owns_state():
 		combat.release()
-		transition(State.SELECTING)
+		if detects_current_target():
+			transition(State.ENGAGING)
+		else:
+			begin_investigation()
 	else:
 		if is_instance_valid(extraction):
 			blocked_exits[extraction.name] = true
@@ -417,19 +474,30 @@ func recover_navigation(destination: Vector3) -> void:
 		if _choose_exit():
 			task_elapsed = 0
 
+	navigation_recovered.emit({"goal": destination, "reason": "repeated low progress", "result": navigation_status, "before": previous, "after": state})
+
 
 func _on_damaged(_amount: float) -> void:
 	if health.current > 0:
-		task_elapsed = 0
 		if dynamic_ai:
 			threat_remaining = profile.threat_memory + 2.0
 			last_threat_position = health.last_damage_origin if select_combat_target.is_valid() and health.last_damage_origin.is_finite() else robot.global_position
 			threat_source = "damage"
 			if combat != null:
+				var instigator := instance_from_id(health.last_damage_instigator_id) if health.last_damage_instigator_id > 0 else null
+				# React to an observed, eligible attacker. Damage alone does not
+				# grant vision through walls or turn neutral actors hostile.
+				if instigator is Node3D and combat_target_allowed.is_valid() and combat_target_allowed.call(instigator) and detects_actor(instigator):
+					if combat_target != instigator and combat.can_redirect_to_attacker():
+						combat_target = instigator
+						combat.aim_elapsed = 0
+						target_reason = "visible attacker"
 				combat.on_damaged()
 				return
+			task_elapsed = 0
 			if not _choose_exit():
 				return
+		task_elapsed = 0
 		transition(State.FLEEING)
 
 

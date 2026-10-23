@@ -4,3 +4,7 @@ export.cfg
 export_credentials.cfg
 builds/
 *.tmp
+
+# Editable Blender source is tracked; editor backups are not.
+assets/environment/source/**/*.blend[0-9]
+tools/art_pipeline/__pycache__/

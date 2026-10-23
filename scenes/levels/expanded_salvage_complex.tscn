@@ -1,0 +1,400 @@
+[gd_scene load_steps=30 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/robot.tscn" id="1_robot"]
+[ext_resource type="PackedScene" path="res://scenes/targets/practice_target.tscn" id="2_target"]
+[ext_resource type="Script" path="res://scripts/gameplay/raider_arena.gd" id="4_arena"]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_arena.gd" id="6_mission"]
+[ext_resource type="Resource" path="res://resources/missions/expanded_asset_recovery.tres" id="7_config"]
+[ext_resource type="PackedScene" path="res://scenes/presentation/arena_overlay.tscn" id="5_overlay"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/salvage_yard.tscn" id="u0"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/processing_facility_art.tscn" id="u1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/storage_area.tscn" id="u2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/service_perimeter.tscn" id="u3"]
+
+
+[sub_resource type="NavigationMesh" id="NavigationMesh"]
+agent_radius = 0.5
+agent_height = 2.0
+geometry_parsed_geometry_type = 1
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navigation_geometry"
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
+sky_top_color = Color(0.16, 0.25, 0.36, 1)
+sky_horizon_color = Color(0.65, 0.73, 0.78, 1)
+ground_bottom_color = Color(0.13, 0.16, 0.19, 1)
+ground_horizon_color = Color(0.65, 0.73, 0.78, 1)
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMaterial")
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 3
+ambient_light_color = Color(0.72, 0.81, 0.95, 1)
+ambient_light_energy = 0.65
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.22, 0.28, 0.30, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+material = SubResource("FloorMaterial")
+size = Vector3(32, 1, 32)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.37, 0.43, 0.47, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+material = SubResource("WallMaterial")
+size = Vector3(32, 2, 1)
+
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(32, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="ObstacleMaterial"]
+albedo_color = Color(0.88, 0.48, 0.16, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="ObstacleMesh"]
+material = SubResource("ObstacleMaterial")
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxShape3D" id="ObstacleShape"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="LabelSettings" id="OverlaySettings"]
+font_size = 20
+font_color = Color(0.94, 0.97, 1, 1)
+outline_size = 6
+outline_color = Color(0.035, 0.045, 0.06, 1)
+
+[sub_resource type="LabelSettings" id="DebugSettings"]
+font_size = 14
+outline_size = 4
+outline_color = Color(0.035, 0.045, 0.06, 1)
+
+[sub_resource type="StandardMaterial3D" id="SalvageMarkerMaterial"]
+shading_mode = 0
+albedo_color = Color(1, 0.8, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="ExitMarkerMaterial"]
+shading_mode = 0
+albedo_color = Color(0.3, 1, 0.4, 1)
+
+[sub_resource type="TorusMesh" id="SalvageRing"]
+material = SubResource("SalvageMarkerMaterial")
+inner_radius = 0.65
+outer_radius = 0.8
+
+[sub_resource type="TorusMesh" id="ExitRing"]
+material = SubResource("ExitMarkerMaterial")
+inner_radius = 0.65
+outer_radius = 0.8
+
+[sub_resource type="BoxMesh" id="SalvageCrate"]
+material = SubResource("SalvageMarkerMaterial")
+size = Vector3(0.45, 0.35, 0.45)
+
+[node name="ExpandedSalvageComplex" type="Node3D"]
+script = ExtResource("6_mission")
+scenario_index = 16
+mission_config_override = ExtResource("7_config")
+
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+light_color = Color(1, 0.91, 0.78, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+
+
+[node name="Robot" parent="." instance=ExtResource("1_robot")]
+position = Vector3(0, 0.1, 26)
+
+
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh")
+
+
+
+[node name="Salvage" type="Marker3D" parent="."]
+position = Vector3(-10, 0, -10)
+
+
+
+[node name="Label3D" type="Label3D" parent="Salvage"]
+position = Vector3(0, 1.1, 0)
+text = "SALVAGE"
+billboard = 1
+font_size = 48
+modulate = Color(1, 0.85, 0.35, 1)
+
+
+
+[node name="Ring" type="MeshInstance3D" parent="Salvage"]
+position = Vector3(0, 0.1, 0)
+mesh = SubResource("SalvageRing")
+cast_shadow = 0
+
+
+
+[node name="Crate" type="MeshInstance3D" parent="Salvage"]
+position = Vector3(0, 0.175, 0)
+mesh = SubResource("SalvageCrate")
+
+
+
+[node name="Extraction" type="Marker3D" parent="."]
+position = Vector3(-30, 0, -25)
+
+
+
+[node name="Label3D" type="Label3D" parent="Extraction"]
+position = Vector3(0, 1.1, 0)
+text = "RAIDER EXIT"
+billboard = 1
+font_size = 48
+modulate = Color(0.3, 1, 0.4, 1)
+
+
+
+[node name="Ring" type="MeshInstance3D" parent="Extraction"]
+position = Vector3(0, 0.1, 0)
+mesh = SubResource("ExitRing")
+cast_shadow = 0
+
+
+
+[node name="RaiderSpawns" type="Node3D" parent="."]
+
+
+[node name="Extraction2" type="Marker3D" parent="."]
+position = Vector3(30, 0, 25)
+
+
+
+[node name="Label3D" type="Label3D" parent="Extraction2"]
+position = Vector3(0, 1.1, 0)
+text = "RAIDER EXIT B"
+billboard = 1
+font_size = 48
+modulate = Color(0.3, 1, 0.4, 1)
+
+
+
+[node name="Ring" type="MeshInstance3D" parent="Extraction2"]
+position = Vector3(0, 0.1, 0)
+mesh = SubResource("ExitRing")
+cast_shadow = 0
+
+
+
+[node name="Spawn1" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(-20, 0.1, -20)
+
+
+
+[node name="Spawn2" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(-24, 0.1, 3)
+
+
+
+[node name="Spawn3" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(12, 0.1, 22)
+
+
+
+[node name="Spawn4" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(12, 0.1, -22)
+
+
+
+[node name="Spawn5" type="Marker3D" parent="RaiderSpawns"]
+position = Vector3(32, 0.1, 8)
+
+
+
+[node name="Salvage2" type="Marker3D" parent="."]
+position = Vector3(11, 0, -3)
+
+
+
+[node name="Label3D" type="Label3D" parent="Salvage2"]
+position = Vector3(0, 1.1, 0)
+billboard = 1
+font_size = 48
+modulate = Color(1, 0.85, 0.35, 1)
+
+
+
+[node name="Ring" type="MeshInstance3D" parent="Salvage2"]
+position = Vector3(0, 0.1, 0)
+mesh = SubResource("SalvageRing")
+cast_shadow = 0
+
+
+
+[node name="Crate" type="MeshInstance3D" parent="Salvage2"]
+position = Vector3(0, 0.175, 0)
+mesh = SubResource("SalvageCrate")
+
+
+
+[node name="Salvage3" type="Marker3D" parent="."]
+position = Vector3(-10, 0, 11)
+
+
+
+[node name="Label3D" type="Label3D" parent="Salvage3"]
+position = Vector3(0, 1.1, 0)
+billboard = 1
+font_size = 48
+modulate = Color(1, 0.85, 0.35, 1)
+
+
+
+[node name="Ring" type="MeshInstance3D" parent="Salvage3"]
+position = Vector3(0, 0.1, 0)
+mesh = SubResource("SalvageRing")
+cast_shadow = 0
+
+
+
+[node name="Crate" type="MeshInstance3D" parent="Salvage3"]
+position = Vector3(0, 0.175, 0)
+mesh = SubResource("SalvageCrate")
+
+
+
+[node name="Overlay" parent="." instance=ExtResource("5_overlay")]
+
+[node name="Geometry" type="Node3D" parent="." groups=["navigation_geometry"]]
+
+[node name="SalvageYard" parent="Geometry" instance=ExtResource("u0")]
+
+[node name="ProcessingFacility" parent="Geometry" instance=ExtResource("u1")]
+
+[node name="StorageArea" parent="Geometry" instance=ExtResource("u2")]
+
+[node name="ServicePerimeter" parent="Geometry" instance=ExtResource("u3")]
+
+[node name="RecallDock" type="Marker3D" parent="."]
+position = Vector3(0, 0, 26)
+
+[node name="SocialRobotStart" type="Marker3D" parent="."]
+position = Vector3(0, 0.1, 26)
+
+[node name="EncounterSites" type="Node3D" parent="."]
+
+[node name="Yard" type="Marker3D" parent="EncounterSites"]
+position = Vector3(1, 0, 0)
+
+[node name="Processing" type="Marker3D" parent="EncounterSites"]
+position = Vector3(-19, 0, -7)
+
+[node name="Storage" type="Marker3D" parent="EncounterSites"]
+position = Vector3(22, 1, 0)
+
+[node name="YardEast" type="Marker3D" parent="EncounterSites"]
+position = Vector3(3, 0, -4)
+
+[node name="ProcessingSouth" type="Marker3D" parent="EncounterSites"]
+position = Vector3(-26, 0, 5)
+
+[node name="StorageEast" type="Marker3D" parent="EncounterSites"]
+position = Vector3(24, 1, 0)
+
+[node name="ScoutRoute" type="Node3D" parent="."]
+
+[node name="Point0" type="Marker3D" parent="ScoutRoute"]
+position = Vector3(0, 3.5, -18)
+
+[node name="Point1" type="Marker3D" parent="ScoutRoute"]
+position = Vector3(12, 3.5, -18)
+
+[node name="Point2" type="Marker3D" parent="ScoutRoute"]
+position = Vector3(12, 3.5, 12)
+
+[node name="Point3" type="Marker3D" parent="ScoutRoute"]
+position = Vector3(0, 3.5, 12)
+
+[node name="GuardRoute" type="Node3D" parent="."]
+
+[node name="Point0" type="Marker3D" parent="GuardRoute"]
+position = Vector3(-10, 0.1, -6)
+
+[node name="Point1" type="Marker3D" parent="GuardRoute"]
+position = Vector3(11, 0.1, -6)
+
+[node name="Point2" type="Marker3D" parent="GuardRoute"]
+position = Vector3(11, 0.1, 12)
+
+[node name="Point3" type="Marker3D" parent="GuardRoute"]
+position = Vector3(-10, 0.1, 12)
+
+[node name="CoverPoints" type="Node3D" parent="."]
+
+[node name="YardWest" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-7, 0, -3)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/YardWest"]
+position = Vector3(0, 0, 8)
+
+[node name="YardEast" type="Marker3D" parent="CoverPoints"]
+position = Vector3(9, 0, 4)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/YardEast"]
+position = Vector3(0, 0, -5)
+
+[node name="Processing" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-25, 0, -3)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/Processing"]
+position = Vector3(0, 0, 10)
+
+[node name="Service" type="Marker3D" parent="CoverPoints"]
+position = Vector3(-18, 0, 18)
+
+[node name="Peek" type="Marker3D" parent="CoverPoints/Service"]
+position = Vector3(12, 0, 0)
+
+[node name="SALVAGEYARD" type="Label3D" parent="."]
+position = Vector3(0, 3.8, -8)
+text = "SALVAGE YARD"
+font_size = 48
+billboard = 1
+pixel_size = 0.004
+
+[node name="PROCESSING" type="Label3D" parent="."]
+position = Vector3(-22, 5.9, -2)
+text = "PROCESSING"
+font_size = 48
+billboard = 1
+pixel_size = 0.004
+
+[node name="STORAGE" type="Label3D" parent="."]
+position = Vector3(23, 3.3, -16)
+text = "STORAGE"
+font_size = 48
+billboard = 1
+pixel_size = 0.004
+
+[node name="SERVICEROUTE" type="Label3D" parent="."]
+position = Vector3(-8, 3.8, 20)
+text = "SERVICE ROUTE"
+font_size = 48
+billboard = 1
+pixel_size = 0.004

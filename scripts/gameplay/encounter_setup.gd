@@ -129,6 +129,8 @@ func build_description() -> String:
 		var target := str(actor.current_target().name) if is_instance_valid(actor.current_target()) else "none"
 		var salvage := str(actor.salvage.name) if is_instance_valid(actor.salvage) else "none"
 		lines.append("R%02d %s %s | objective %s | target %s | cargo %d | threat %s" % [id, actor.profile.display_name, Raider.State.keys()[actor.state], salvage, target, actor.carried_materials, actor.threat_source])
+		if actor.combat != null and actor.profile.combat_policy != RaiderProfile.CombatPolicy.BASELINE:
+			lines.append("  " + actor.combat.describe_policy())
 		var attitudes: Array[String] = []
 		for other in ids:
 			if arena.social != null and other != id and arena.ledger.is_active(other):

@@ -1,0 +1,28 @@
+{
+  "changed_from_R": [
+    "scripts/debug/developer_spectator.gd",
+    "scripts/gameplay/flare_director.gd",
+    "scripts/gameplay/mission_arena.gd",
+    "scripts/gameplay/mission_config.gd",
+    "scripts/gameplay/mission_rules.gd",
+    "scripts/gameplay/raider_arena.gd",
+    "scripts/gameplay/recall_controller.gd",
+    "scripts/presentation/traversal_feedback.gd",
+    "tests/traversal_test.gd",
+    "project.godot"
+  ],
+  "added_from_R": [
+    "scripts/gameplay/mission_objective_definition.gd",
+    "scripts/gameplay/mission_objective_definition.gd.uid",
+    "scripts/gameplay/mission_objectives.gd",
+    "scripts/gameplay/mission_objectives.gd.uid",
+    "scripts/presentation/mission_objectives_view.gd",
+    "scripts/presentation/mission_objectives_view.gd.uid",
+    "scenes/levels/asset_recovery_arena.tscn",
+    "resources/missions/asset_recovery.tres",
+    "tests/deployment_flow_test.gd",
+    "tests/deployment_flow_test.gd.uid",
+    "tests/mission_objectives_test.gd",
+    "tests/mission_objectives_test.gd.uid"
+  ]
+}

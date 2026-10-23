@@ -1,0 +1,14 @@
+from pathlib import Path
+import subprocess,json,time,re
+out=Path('.godot/stage_v/final_checks');out.mkdir(exist_ok=True)
+runs=[('editor',['--headless','--editor','--quit']),('asset_headless',['--headless','--script','res://tests/asset_pipeline_test.gd']),('asset_forward',['--script','res://tests/asset_pipeline_test.gd']),('world_forward',['--script','res://tests/expanded_world_test.gd']),('gui',['--script','res://.godot/stage_v/gui.gd']),('visual',['--script','res://.godot/stage_v/visual.gd']),('headless_start',['--headless','res://scenes/levels/expanded_salvage_complex.tscn','--quit-after','120']),('forward_start',['res://scenes/levels/expanded_salvage_complex.tscn','--quit-after','120']),('inspection_start',['res://scenes/environment/asset_inspection.tscn','--quit-after','120']),('graybox_start',['res://scenes/levels/expanded_salvage_complex_graybox.tscn','--quit-after','120'])]
+results=[]
+for label,args in runs:
+ t=time.time()
+ result=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.',*args],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=240)
+ log=result.stdout+result.stderr
+ (out/(label+'.log.txt')).write_text(log,encoding='utf-8')
+ issues=[line for line in log.splitlines() if re.search(r'ERROR|WARNING|SCRIPT ERROR|FAIL:',line)]
+ results.append(dict(check=label,exit=result.returncode,seconds=round(time.time()-t,2),issues=issues))
+ (out/'validation.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
+ print(label,result.returncode,issues,flush=True)

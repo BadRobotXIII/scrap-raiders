@@ -1,0 +1,12 @@
+from pathlib import Path
+import subprocess,json,hashlib,time
+root=Path.cwd();out=root/'.godot/stage_v/before';out.mkdir(exist_ok=True)
+m=json.loads((root/'docs/development/baselines/stage_t_decisions/source_manifest.json').read_text(encoding='utf-8'))
+
+runs=[]
+for label,args in [('editor',['--headless','--path','.','--editor','--quit'])]+[(p.stem,['--headless','--path','.','--script','res://'+p.as_posix()]) for p in sorted(Path('tests').glob('*_test.gd'))]:
+ t=time.time();r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd',*args],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=240)
+ (out/(label+'.log.txt')).write_text(r.stdout+r.stderr,encoding='utf-8');runs.append({'suite':label,'exit':r.returncode,'seconds':round(time.time()-t,2)})
+ (out/'validation.json').write_text(json.dumps(runs,indent=2),encoding='utf-8')
+ print(label,r.returncode,flush=True)
+

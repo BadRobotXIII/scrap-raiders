@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EncounterLayout" load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/encounter_layout.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/enemies/q_greedy.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/enemies/q_cowardly.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/enemies/q_aggressive.tres" id="4"]
+[ext_resource type="Script" path="res://scripts/ai/raider_profile.gd" id="6"]
+[resource]
+script = ExtResource("1")
+layout_id = &"north_contest"
+salvage_markers = PackedStringArray("EncounterSites/North", "EncounterSites/East", "EncounterSites/South")
+salvage_quantities = PackedInt32Array(6, 3, 3)
+entry_markers = PackedStringArray("EncounterNorthEntry", "Spawn1", "Spawn2", "Spawn4", "Spawn5")
+profiles = Array[ExtResource("6")]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("4"), ExtResource("2")])

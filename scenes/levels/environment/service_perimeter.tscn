@@ -1,0 +1,159 @@
+[gd_scene load_steps=20 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material"]
+albedo_color = Color(0.32, 0.37, 0.35, 1)
+
+[sub_resource type="BoxMesh" id="Mesh0"]
+material = SubResource("Material")
+size = Vector3(72, 1, 64)
+
+[sub_resource type="BoxShape3D" id="Shape0"]
+size = Vector3(72, 1, 64)
+
+[sub_resource type="BoxMesh" id="Mesh1"]
+material = SubResource("Material")
+size = Vector3(72, 4, 1)
+
+[sub_resource type="BoxShape3D" id="Shape1"]
+size = Vector3(72, 4, 1)
+
+[sub_resource type="BoxMesh" id="Mesh2"]
+material = SubResource("Material")
+size = Vector3(72, 4, 1)
+
+[sub_resource type="BoxShape3D" id="Shape2"]
+size = Vector3(72, 4, 1)
+
+[sub_resource type="BoxMesh" id="Mesh3"]
+material = SubResource("Material")
+size = Vector3(1, 4, 64)
+
+[sub_resource type="BoxShape3D" id="Shape3"]
+size = Vector3(1, 4, 64)
+
+[sub_resource type="BoxMesh" id="Mesh4"]
+material = SubResource("Material")
+size = Vector3(1, 4, 64)
+
+[sub_resource type="BoxShape3D" id="Shape4"]
+size = Vector3(1, 4, 64)
+
+[sub_resource type="BoxMesh" id="Mesh5"]
+material = SubResource("Material")
+size = Vector3(12, 3, 1)
+
+[sub_resource type="BoxShape3D" id="Shape5"]
+size = Vector3(12, 3, 1)
+
+[sub_resource type="BoxMesh" id="Mesh6"]
+material = SubResource("Material")
+size = Vector3(14, 3, 1)
+
+[sub_resource type="BoxShape3D" id="Shape6"]
+size = Vector3(14, 3, 1)
+
+[sub_resource type="BoxMesh" id="Mesh7"]
+material = SubResource("Material")
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxShape3D" id="Shape7"]
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxMesh" id="Mesh8"]
+material = SubResource("Material")
+size = Vector3(1, 3, 6)
+
+[sub_resource type="BoxShape3D" id="Shape8"]
+size = Vector3(1, 3, 6)
+
+[node name="ServicePerimeter" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.5, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("Mesh0")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("Shape0")
+
+[node name="NorthBoundary" type="StaticBody3D" parent="."]
+position = Vector3(0, 2, -31.5)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthBoundary"]
+mesh = SubResource("Mesh1")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthBoundary"]
+shape = SubResource("Shape1")
+
+[node name="SouthBoundary" type="StaticBody3D" parent="."]
+position = Vector3(0, 2, 31.5)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="SouthBoundary"]
+mesh = SubResource("Mesh2")
+
+[node name="Collision" type="CollisionShape3D" parent="SouthBoundary"]
+shape = SubResource("Shape2")
+
+[node name="WestBoundary" type="StaticBody3D" parent="."]
+position = Vector3(-35.5, 2, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WestBoundary"]
+mesh = SubResource("Mesh3")
+
+[node name="Collision" type="CollisionShape3D" parent="WestBoundary"]
+shape = SubResource("Shape3")
+
+[node name="EastBoundary" type="StaticBody3D" parent="."]
+position = Vector3(35.5, 2, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="EastBoundary"]
+mesh = SubResource("Mesh4")
+
+[node name="Collision" type="CollisionShape3D" parent="EastBoundary"]
+shape = SubResource("Shape4")
+
+[node name="WestServiceScreen" type="StaticBody3D" parent="."]
+position = Vector3(-18, 1.5, 16)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WestServiceScreen"]
+mesh = SubResource("Mesh5")
+
+[node name="Collision" type="CollisionShape3D" parent="WestServiceScreen"]
+shape = SubResource("Shape5")
+
+[node name="EastServiceScreen" type="StaticBody3D" parent="."]
+position = Vector3(16, 1.5, 18)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="EastServiceScreen"]
+mesh = SubResource("Mesh6")
+
+[node name="Collision" type="CollisionShape3D" parent="EastServiceScreen"]
+shape = SubResource("Shape6")
+
+[node name="NorthPerimeterScreen" type="StaticBody3D" parent="."]
+position = Vector3(-12, 1.5, -23)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthPerimeterScreen"]
+mesh = SubResource("Mesh7")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthPerimeterScreen"]
+shape = SubResource("Shape7")
+
+[node name="RecallScreen" type="StaticBody3D" parent="."]
+position = Vector3(-5, 1.5, 24)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="RecallScreen"]
+mesh = SubResource("Mesh8")
+
+[node name="Collision" type="CollisionShape3D" parent="RecallScreen"]
+shape = SubResource("Shape8")

@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Stage T artifacts: res://.godot/stage_t_tests/bf284c488c3ab52c
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: S accepts a live eligible ally sighting
+PASS: Unseen living target movement cannot relocate shared observation
+PASS: S deployment death preserves independent world simulation
+PASS: Destroyed player immediately invalidates cached allied report
+PASS: New reports cannot reintroduce destroyed player
+PASS: Report invalidation cannot change frozen result or accounting
+Stage T integration checks complete; failures: 0

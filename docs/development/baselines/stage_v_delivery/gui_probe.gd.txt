@@ -1,0 +1,48 @@
+﻿extends "res://tests/expanded_world_test.gd"
+func run() -> void:
+ test_directory="res://.godot/stage_v/gui_" + Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena := create_u("gui")
+ await frames(15)
+ await preview("briefing")
+ var point:Vector2 = arena.objective_view.deploy_button.get_global_rect().get_center()
+ var motion := InputEventMouseMotion.new()
+ motion.position=point
+ motion.global_position=point
+ root.push_input(motion)
+ for pressed in [true,false]:
+  var click := InputEventMouseButton.new()
+  click.position=point
+  click.global_position=point
+  click.button_index=MOUSE_BUTTON_LEFT
+  click.pressed=pressed
+  root.push_input(click)
+  await frames(1)
+ check(arena.deployment_started,"Actual graphical Deploy click starts expanded mission")
+ freeze(arena)
+ await frames(12)
+ arena.process_entries()
+ freeze(arena)
+ park_world(arena)
+ var victim:Raider=arena.raiders[1]
+ victim.position=Vector3(0,.1,20)
+ arena.robot.position=Vector3(0,.1,17)
+ arena.ledger.collect(1,&"Salvage",3)
+ await frames(3)
+ var weapon:ShotExecutor=arena.robot.get_node("Weapon")
+ for i in range(8):
+  if victim.health.current<=0:break
+  weapon.cooldown=0
+  weapon.try_fire_at(victim.position+Vector3.UP)
+ check(victim.health.current==0,"Player weapon physically defeats a loaded Raider in U")
+ arena.robot.position=Vector3(0,.1,20)
+ await frames(3)
+ check(arena.try_recover(),"Player physically recovers U kill cargo")
+ await preview("active")
+ await finish_recall(arena)
+ check(arena.mission.player_extracted and arena.ledger.banked_materials==3,"Graphical V mission completes objectives and banks finite cargo")
+ await preview("success")
+ print("V GUI artifacts: ",test_directory)
+ arena.queue_free()
+ await frames(30)
+ quit(1 if failures else 0)

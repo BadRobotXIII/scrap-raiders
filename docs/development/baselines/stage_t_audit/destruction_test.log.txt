@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Death creates exactly one cosmetic physics body
+PASS: Physics copy preserves collider world position
+PASS: Cosmetic body is excluded from gameplay collision queries
+PASS: Target copy contains visual geometry without health
+PASS: Original gameplay target is removed normally
+PASS: Physics copy launches and tumbles
+PASS: Gameplay ray ignores the cosmetic body
+PASS: Expired tumble body cleans itself up
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> DEAD
+PASS: Raider physics copy includes body, head, and backpack
+PASS: Cargo remains separate and stationary at the death position
+PASS: Destruction presentation preserves mission state and material totals
+PASS: Restart clears both cosmetic bodies and previous cargo
+Destruction checks complete; failures: 0

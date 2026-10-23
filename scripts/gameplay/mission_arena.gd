@@ -1,8 +1,13 @@
 extends "res://scripts/gameplay/raider_arena.gd"
 ## Owns scheduled entry and scenario selection; Raiders retain their shared FSM.
 
-const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres"), preload("res://resources/missions/ecosystem.tres"), preload("res://resources/missions/traversal.tres"), preload("res://resources/missions/social_rivalry.tres"), preload("res://resources/missions/social_cooperation.tres"), preload("res://resources/missions/social_pressure.tres"), preload("res://resources/missions/social_betrayal.tres"), preload("res://resources/missions/integrated_extraction.tres"), preload("res://resources/missions/emergent_encounters.tres")]
-@export_range(0, 13) var scenario_index: int = 0
+const CONFIGS: Array[MissionConfig] = [preload("res://resources/missions/intercept.tres"), preload("res://resources/missions/swarm.tres"), preload("res://resources/missions/recovery.tres"), preload("res://resources/missions/survival.tres"), preload("res://resources/missions/loot_pressure.tres"), preload("res://resources/missions/extraction.tres"), preload("res://resources/missions/ecosystem.tres"), preload("res://resources/missions/traversal.tres"), preload("res://resources/missions/social_rivalry.tres"), preload("res://resources/missions/social_cooperation.tres"), preload("res://resources/missions/social_pressure.tres"), preload("res://resources/missions/social_betrayal.tres"), preload("res://resources/missions/integrated_extraction.tres"), preload("res://resources/missions/emergent_encounters.tres"), preload("res://resources/missions/personality_encounters.tres"), preload("res://resources/missions/refined_extraction.tres"), preload("res://resources/missions/asset_recovery.tres")]
+@export_range(0, 16) var scenario_index: int = 0
+@export var capture_metrics: bool = false
+@export var mission_config_override: MissionConfig
+var metrics: DeploymentMetrics
+var mission_objectives: MissionObjectives
+var objective_view: MissionObjectivesView
 var config: MissionConfig
 var pending_ids: Array[int] = []
 var spawn_order: Array[Node3D] = []
@@ -14,13 +19,18 @@ var seed_override: int = -1
 
 
 func _ready() -> void:
-	config = CONFIGS[clampi(scenario_index, 0, CONFIGS.size() - 1)]
+	config = mission_config_override if mission_config_override != null else CONFIGS[clampi(scenario_index, 0, CONFIGS.size() - 1)]
+	deployment_started = not config.briefing_required
+	if not deployment_started:
+		process_mode = Node.PROCESS_MODE_DISABLED
+		$Overlay.process_mode = Node.PROCESS_MODE_ALWAYS
 	raider_count = config.raider_count
 	salvage_point_count = config.salvage_point_count
 	materials_per_point = config.materials_per_point
 	mission_duration = config.duration
 	debug_seed = config.seed
 	max_active_raiders = config.max_active_raiders
+	fallback_profiles = config.fallback_profiles
 	if not config.encounter_layouts.is_empty():
 		if seed_override >= 0:
 			debug_seed = seed_override
@@ -48,6 +58,9 @@ func _ready() -> void:
 		$Overlay/FoundationStatus.text += "\nF1: Spectator | F11: Rivalry | Shift+F11: Cooperation | Ctrl+F11: Pressure | Alt+F11: Betrayal"
 	if encounter != null:
 		$Overlay/FoundationStatus.text = "EMERGENT ENCOUNTERS | WASD move | Mouse orbit | LMB fire | E recover\nSpace jump | Shift boost | F1 spectator | F3 diagnostics\nShift+F5: encounter preset | Ctrl+Shift+F5: next seed | Hold E at dock: recall"
+		if scenario_index == 14:
+			$Overlay/FoundationStatus.text = $Overlay/FoundationStatus.text.replace("EMERGENT ENCOUNTERS", "PERSONALITY ENCOUNTERS")
+		$Overlay/FoundationStatus.text += "\nAlt+Shift+F5: personality comparison"
 	if not mission.is_finished():
 		for index in range(config.ground_stacks):
 			present_drop(index + 1, $GroundCargo.get_child(index).global_position)
@@ -55,6 +68,29 @@ func _ready() -> void:
 		if config.player_extraction:
 			status.text = "%s: recover loot and hold E at the Recall Dock to extract before the deadline." % config.display_name
 		refresh_hud()
+	if objective_view != null:
+		if not deployment_started:
+			robot.input_adapter.gameplay_enabled = false
+			robot.input_adapter.clear_intent()
+			robot.get_node("Weapon").enabled = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		objective_view.prepare()
+
+
+func setup_mission_objectives() -> void:
+	if not config.objective_definitions.is_empty():
+		mission_objectives = MissionObjectives.new(config, ledger, flare_director.equipment, robot.get_instance_id(), recall.deployment_id)
+		raider_defeat_accepted.connect(mission_objectives.accepted_defeat)
+		objective_view = MissionObjectivesView.new()
+		objective_view.arena = self
+		$Overlay.add_child(objective_view)
+
+
+func setup_observer() -> void:
+	if OS.is_debug_build() and (capture_metrics or "--capture-metrics" in OS.get_cmdline_user_args()):
+		metrics = DeploymentMetrics.new()
+		add_child(metrics)
+		metrics.attach(self)
 
 
 func initial_ground_stock() -> Dictionary:
@@ -65,6 +101,8 @@ func initial_ground_stock() -> Dictionary:
 
 
 func actor_entered(actor: Raider) -> void:
+	if metrics != null:
+		metrics.register_actor(actor)
 	if encounter != null:
 		encounter.register_actor(actor)
 
@@ -136,7 +174,7 @@ func reaches_any(map: RID, origin: Vector3, points: Array[Node3D]) -> bool:
 
 
 func process_entries() -> void:
-	if mission.is_world_finished():
+	if not deployment_started or mission.is_world_finished():
 		return
 	if encounter != null and not encounter.navigation_checked:
 		if NavigationServer3D.map_get_iteration_id($NavigationRegion3D.get_navigation_map()) == 0:
@@ -198,10 +236,14 @@ func refresh_hud() -> void:
 		objectives.text += "\nEquipment ground %d | Recovered %d | Response budget %d/%d" % [flare_director.equipment.ground_count(), flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED), flare_director.committed, flare_rules.reinforcement_budget]
 	if ecosystem != null:
 		var reports := ecosystem.awareness.observations(elapsed)
-		if not reports.is_empty() and not mission.is_finished():
+		if not reports.is_empty() and not mission.is_finished() and not action_notice_active():
 			$Overlay/RaiderStatus.text = "Machine report: R%02d last seen near (%.0f, %.0f)" % [reports[0].target_id, reports[0].position.x, reports[0].position.z]
-		elif $Overlay/RaiderStatus.text.begins_with("Machine report:"):
+		elif not action_notice_active() and $Overlay/RaiderStatus.text.begins_with("Machine report:"):
 			$Overlay/RaiderStatus.text = ""
+	if action_notice_active():
+		status.text = action_notice
+	elif status.text == action_notice:
+		status.text = ""
 	if debug_visible:
 		$Overlay/DebugStatus.text = $Overlay/DebugStatus.text.replace("STAGE B", "STAGE C")
 		$Overlay/DebugStatus.text += "\nSTAGE C | %s | pending %s | %s" % [config.display_name, pending_ids, entry_status]
@@ -218,20 +260,103 @@ func refresh_hud() -> void:
 		if encounter != null and not encounter.snapshot.is_empty():
 			$Overlay/DebugStatus.text = encounter.describe()
 
+	if uses_concise_hud():
+		refresh_refined_hud()
+	if objective_view != null:
+		objective_view.refresh()
+
+
+func uses_concise_hud() -> bool:
+	return scenario_index == 15 or (config != null and config.concise_hud)
+
+
+func refresh_refined_hud() -> void:
+	objectives.position.y = 160 if debug_visible else 24
+	var global_totals := objectives.text
+	var routine_report := status.text if status.text.begins_with("Machine report:") else ""
+	var equipment_count := flare_director.equipment.count_at(EquipmentLedger.Location.RECOVERED) if flare_director != null else 0
+	objectives.text = "Recover loot and return to the Recall Dock.\nCargo: %d materials | %d equipment | Time: %ds" % [ledger.recovered_materials, equipment_count, ceili(maxf(0, mission_duration - elapsed))]
+	if mission.is_finished():
+		objectives.text = "Deployment ended. See the report."
+	if not action_notice_active():
+		status.text = ""
+	if debug_visible:
+		$Overlay/DebugStatus.text += "\n" + global_totals + "\n" + routine_report
+		if metrics != null:
+			$Overlay/DebugStatus.text += "\nMETRICS ON | Ctrl+F3: export local snapshot | events %d/%d" % [metrics.events.size(), DeploymentMetrics.EVENT_LIMIT]
+	for actor in raiders.values():
+		if is_instance_valid(actor):
+			actor.label.visible = debug_visible
+	if ecosystem != null:
+		for machine in ecosystem.machines:
+			machine.label.visible = debug_visible
+	for target in ["TargetA", "TargetB", "TargetC"]:
+		var target_label := get_node_or_null(target + "/Label3D")
+		if target_label != null:
+			target_label.visible = debug_visible
+	if recall != null:
+		recall.stash_label.visible = debug_visible or not recall.save_error.is_empty()
+
+
+func start_deployment() -> bool:
+	if deployment_started or mission.is_finished():
+		return false
+	deployment_started = true
+	robot.input_adapter.clear_intent()
+	robot.input_adapter.gameplay_enabled = true
+	robot.get_node("Weapon").enabled = true
+	process_mode = Node.PROCESS_MODE_INHERIT
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if objective_view != null:
+		objective_view.begin()
+	present_arrival()
+	refresh_hud()
+	return true
+
+
+func complete_player_extraction() -> void:
+	var required_met := mission_objectives.required_satisfied(true) if mission_objectives != null else true
+	mission.complete_extraction(required_met)
+	finish_mission()
+
+
+func finalize_player_result() -> void:
+	if mission_objectives != null:
+		mission_objectives.close(mission, elapsed)
+
 
 func finish_mission() -> void:
 	var was_visible := summary.visible
 	super.finish_mission()
-	if not was_visible and summary.visible:
+	if metrics != null and mission.is_world_finished():
+		# Finish after the terminal signal has reached all observers (e.g. last machine death).
+		metrics.finish.call_deferred(mission.world_reason)
+	if not was_visible and summary.visible and mission_objectives == null:
 		$Overlay/Summary/Content/Report.text += "\nRaiders never entered: %d" % pending_ids.size()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_F3 and event.ctrl_pressed and metrics != null:
+			var output := "user://deployment_%d_%d.json" % [debug_seed, Time.get_ticks_msec()]
+			var error := metrics.export_json(output)
+			show_action_notice("Metrics saved: " + ProjectSettings.globalize_path(output) if error == OK else "Metrics export failed: " + error_string(error))
+			get_viewport().set_input_as_handled()
+			return
 		if event.physical_keycode == KEY_F5:
 			get_viewport().set_input_as_handled()
 			if event.shift_pressed and OS.is_debug_build():
-				select_scenario.call_deferred(13, debug_seed + 1 if event.ctrl_pressed and encounter != null else -1)
+				if event.ctrl_pressed and scenario_index == 16:
+					select_scenario.call_deferred(16, debug_seed + 1, true)
+					return
+				var encounter_index := 14 if event.alt_pressed or (event.ctrl_pressed and scenario_index == 14) else 13
+				var encounter_seed := -1
+				if encounter != null:
+					if event.ctrl_pressed:
+						encounter_seed = debug_seed + 1
+					elif event.alt_pressed or scenario_index == 14:
+						encounter_seed = debug_seed
+				select_scenario.call_deferred(encounter_index, encounter_seed)
 			else:
 				select_scenario.call_deferred(12)
 			return
@@ -255,15 +380,30 @@ func _unhandled_input(event: InputEvent) -> void:
 	super._unhandled_input(event)
 
 
-func select_scenario(index: int, new_seed: int = -1) -> void:
+func select_scenario(index: int, new_seed: int = -1, preserve_level: bool = false) -> void:
 	# Replace the scene with an explicit configuration; no persistent singleton state.
+	if mission_objectives != null and not mission.is_finished():
+		mission.fail_abandoned()
+		finish_mission()
 	if mission.player_destroyed and not mission.is_world_finished():
 		mission.stop_world("Deployment replaced.")
 		finish_mission()
 	var scene_path := "res://scenes/levels/emergent_encounters_arena.tscn" if index == 13 else "res://scenes/levels/mission_arena.tscn"
+	if index == 14:
+		scene_path = "res://scenes/levels/personality_encounters_arena.tscn"
+	if index == 15:
+		scene_path = "res://scenes/levels/refined_extraction_arena.tscn"
+	if index == 16:
+		scene_path = "res://scenes/levels/asset_recovery_arena.tscn"
+	if preserve_level and not scene_file_path.is_empty():
+		scene_path = scene_file_path
+	if metrics != null:
+		metrics.finish("Deployment replaced.")
 	var replacement := load(scene_path).instantiate() as Node3D
 	replacement.scenario_index = clampi(index, 0, CONFIGS.size() - 1)
+	replacement.mission_config_override = mission_config_override if preserve_level else null
 	replacement.seed_override = new_seed
+	replacement.capture_metrics = capture_metrics
 	replacement.stash_path = stash_path
 	var tree := get_tree()
 	tree.root.remove_child(self)
@@ -273,4 +413,17 @@ func select_scenario(index: int, new_seed: int = -1) -> void:
 
 
 func restart_mission() -> void:
-	select_scenario.call_deferred(scenario_index, debug_seed if encounter != null else -1)
+	select_scenario.call_deferred(scenario_index, debug_seed if encounter != null else -1, true)
+
+
+func _exit_tree() -> void:
+	if mission_objectives != null:
+		mission_objectives.dispose()
+	if is_instance_valid(metrics) and not metrics.stopped:
+		metrics.finish("Scene closed.")
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and mission_objectives != null and not mission.is_finished():
+		mission.fail_abandoned()
+		finish_mission()

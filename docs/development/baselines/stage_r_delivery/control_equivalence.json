@@ -1,0 +1,19 @@
+{
+  "identical_except_display_name": true,
+  "q_sha256": "bd9439cdcfe50a6c5aa6639702126a1bf89bab815cef6e67465247d1ef5b076c",
+  "initial_r_sha256": "0e3d25d23a37c2336b14b971df4874969a1ec4185408d2a29d72ea941756cc6a",
+  "control_entry_times": [
+    0,
+    0,
+    35,
+    70,
+    105
+  ],
+  "candidate_entry_times": [
+    0,
+    0,
+    15,
+    25,
+    70
+  ]
+}

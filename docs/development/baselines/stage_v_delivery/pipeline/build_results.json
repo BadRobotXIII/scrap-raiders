@@ -1,0 +1,30 @@
+[
+  {
+    "asset": "industrial_wall_2m",
+    "exit": 0
+  },
+  {
+    "asset": "steel_column_4m",
+    "exit": 0
+  },
+  {
+    "asset": "steel_edge_beam_4m",
+    "exit": 0
+  },
+  {
+    "asset": "control_cabinet",
+    "exit": 0
+  },
+  {
+    "asset": "sorting_conveyor_base",
+    "exit": 0
+  },
+  {
+    "asset": "utility_run_2m",
+    "exit": 0
+  },
+  {
+    "asset": "scrap_bin",
+    "exit": 0
+  }
+]

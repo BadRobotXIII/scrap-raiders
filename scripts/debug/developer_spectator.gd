@@ -41,7 +41,7 @@ func _ready() -> void:
 
 
 func enter() -> bool:
-	if not OS.is_debug_build() or active or arena.mission.is_finished() or arena.robot.get_node("Health").current <= 0:
+	if not OS.is_debug_build() or not arena.deployment_started or active or arena.mission.is_finished() or arena.robot.get_node("Health").current <= 0:
 		return false
 	var robot: RobotController = arena.robot
 	previous_mouse_mode = Input.mouse_mode

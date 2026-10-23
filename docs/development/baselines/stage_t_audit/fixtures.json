@@ -1,0 +1,23 @@
+{
+	"betrayal_controlled_fixture": {
+		"assessment_began": true,
+		"committed": true,
+		"conserved": true,
+		"hostile": true,
+		"normal_scene": "res://scenes/levels/asset_recovery_arena.tscn",
+		"policy": 1,
+		"profile": "Greedy",
+		"victim_cargo": 3
+	},
+	"dead_player_report_reproduction": {
+		"accepted_live_report": true,
+		"dead_player_health": 0.0,
+		"dead_player_still_eligible": true,
+		"expires_after_ttl": true,
+		"present_before_death": true,
+		"report_remains_after_death": true,
+		"result_frozen": true,
+		"world_continues": true
+	},
+	"fixture_changes": "Positions arranged; existing finite stock transferred via ledger; assessment advanced and robot destroyed. No source/configuration edits. These are NOT natural outcomes."
+}

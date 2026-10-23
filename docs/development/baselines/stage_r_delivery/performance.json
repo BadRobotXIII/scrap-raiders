@@ -1,0 +1,118 @@
+[
+  {
+    "capture": false,
+    "conserved": true,
+    "first_live_raiders": 2,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 2,
+    "peak_fixture": false,
+    "physics_p50_ms": 2.064,
+    "physics_p95_ms": 2.448,
+    "process_p50_ms": 1.744,
+    "process_p95_ms": 20.148,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300
+  },
+  {
+    "capture": false,
+    "conserved": true,
+    "first_live_raiders": 5,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 5,
+    "peak_fixture": true,
+    "physics_p50_ms": 2.18,
+    "physics_p95_ms": 2.992,
+    "process_p50_ms": 2.293,
+    "process_p95_ms": 26.897,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300
+  },
+  {
+    "capture": true,
+    "conserved": true,
+    "first_live_raiders": 2,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 2,
+    "peak_fixture": false,
+    "physics_p50_ms": 1.809,
+    "physics_p95_ms": 2.214,
+    "process_p50_ms": 1.716,
+    "process_p95_ms": 25.052,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300
+  },
+  {
+    "capture": true,
+    "conserved": true,
+    "first_live_raiders": 5,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 5,
+    "peak_fixture": true,
+    "physics_p50_ms": 2.293,
+    "physics_p95_ms": 3.644,
+    "process_p50_ms": 1.606,
+    "process_p95_ms": 26.77,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300
+  },
+  {
+    "capture": false,
+    "conserved": true,
+    "first_live_raiders": 5,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 5,
+    "peak_fixture": true,
+    "physics_p50_ms": 3.121,
+    "physics_p95_ms": 3.47,
+    "process_p50_ms": 1.885,
+    "process_p95_ms": 27.885,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300,
+    "repeat_after_full_suite": true
+  },
+  {
+    "capture": true,
+    "conserved": true,
+    "first_live_raiders": 5,
+    "fps_cap": 120,
+    "machines": 2,
+    "max_live_raiders": 5,
+    "peak_fixture": true,
+    "physics_p50_ms": 2.832,
+    "physics_p95_ms": 3.277,
+    "process_p50_ms": 1.77,
+    "process_p95_ms": 26.891,
+    "renderer": "Forward+",
+    "resolution": [
+      1600,
+      900
+    ],
+    "samples": 300,
+    "repeat_after_full_suite": true
+  }
+]

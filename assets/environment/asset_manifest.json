@@ -1,0 +1,280 @@
+{
+  "schema": 1,
+  "blender": "4.5.10 LTS",
+  "godot": "4.7.2 Standard",
+  "units": "metres",
+  "front": "Blender +Y exported to Godot -Z",
+  "assets": [
+    {
+      "id": "control_cabinet",
+      "source": "assets/environment/source/machinery/control_cabinet.blend",
+      "export": "assets/environment/exports/machinery/control_cabinet.glb",
+      "source_sha256": "fa1965c910ecb815304ed0c889f39b7ea3046ceb5de33a2cd26c00dfee6050ba",
+      "export_sha256": "f086395c2d1be9105b5003e90d3356d4e2269cb6ee1bddc37457bf31ef292b22",
+      "triangles": 344,
+      "minimum": [
+        -0.4000000059604645,
+        0,
+        -0.203000009059906
+      ],
+      "maximum": [
+        0.4000000059604645,
+        1.600000023841858,
+        0.1899999976158142
+      ],
+      "dimensions": [
+        0.8,
+        1.6,
+        0.393
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "rubber",
+        "safety_yellow"
+      ],
+      "surfaces": 3,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "sorting_conveyor_base",
+      "source": "assets/environment/source/machinery/sorting_conveyor_base.blend",
+      "export": "assets/environment/exports/machinery/sorting_conveyor_base.glb",
+      "source_sha256": "47b1a06e5c477220198af63f698b0e89cef87b0fed7b896c5d4d169d48b941f4",
+      "export_sha256": "01602e3550eaee148ea4fc278cdaf737eadb878fbb75f93ef6459f7187a22d36",
+      "triangles": 1628,
+      "minimum": [
+        -2,
+        0,
+        -1
+      ],
+      "maximum": [
+        2,
+        1.2000000476837158,
+        1
+      ],
+      "dimensions": [
+        4,
+        1.2,
+        2
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "weathered_steel",
+        "rubber",
+        "safety_yellow"
+      ],
+      "surfaces": 4,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "scrap_bin",
+      "source": "assets/environment/source/props/scrap_bin.blend",
+      "export": "assets/environment/exports/props/scrap_bin.glb",
+      "source_sha256": "a55d42c3ac4b2e65b17d48fa66d3a7fc9777678b115fd7a32b785abcc9b99443",
+      "export_sha256": "06571f1bf27c869b8eebfcbc915c7e61eac16ea66f4f9f3c4b095bd7188d9329",
+      "triangles": 616,
+      "minimum": [
+        -0.5,
+        0,
+        -0.4000000059604645
+      ],
+      "maximum": [
+        0.5,
+        0.800000011920929,
+        0.4000000059604645
+      ],
+      "dimensions": [
+        1.0,
+        0.8,
+        0.8
+      ],
+      "materials": [
+        "weathered_steel",
+        "painted_steel_bluegray"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "utility_run_2m",
+      "source": "assets/environment/source/props/utility_run_2m.blend",
+      "export": "assets/environment/exports/props/utility_run_2m.glb",
+      "source_sha256": "c52aabb73f51c70b8c971149f292f61543c2b0cad1b3307c24c2a3b6583d8b4a",
+      "export_sha256": "4efa1a1affbd524d76a552f17c3134ede7241360bedf52a702a95576cac2ba5b",
+      "triangles": 336,
+      "minimum": [
+        0,
+        0,
+        -0.09000000357627869
+      ],
+      "maximum": [
+        2,
+        0.1820000559091568,
+        0.09000000357627869
+      ],
+      "dimensions": [
+        2,
+        0.182,
+        0.18
+      ],
+      "materials": [
+        "galvanized_steel",
+        "weathered_steel"
+      ],
+      "surfaces": 2,
+      "origin": "start",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "industrial_wall_2m",
+      "source": "assets/environment/source/structures/industrial_wall_2m.blend",
+      "export": "assets/environment/exports/structures/industrial_wall_2m.glb",
+      "source_sha256": "cc319b0141f802f895833565e3dec2b214212515e7c03a92fa0a7dd052b98a2a",
+      "export_sha256": "a157827a3dfe1de43502405ff472b19df5e2dbbd09cb74a926c9e425cd922bc0",
+      "triangles": 804,
+      "minimum": [
+        -1,
+        0,
+        -0.5005000233650208
+      ],
+      "maximum": [
+        1,
+        4,
+        0.5
+      ],
+      "dimensions": [
+        2,
+        4,
+        1.0005
+      ],
+      "materials": [
+        "concrete",
+        "painted_steel_bluegray",
+        "galvanized_steel"
+      ],
+      "surfaces": 3,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "industrial_wall_4m",
+      "source": "assets/environment/source/structures/industrial_wall_4m.blend",
+      "export": "assets/environment/exports/structures/industrial_wall_4m.glb",
+      "source_sha256": "0777f5e33e6da9b079b2d9375cc634066d58ff872a25337b221810c03c580fcd",
+      "export_sha256": "3e40659763a4545616ec965f703d45c0d71420f64ff02c28d20bf0ab9cac3c26",
+      "triangles": 1332,
+      "minimum": [
+        -2,
+        0,
+        -0.5005000233650208
+      ],
+      "maximum": [
+        2,
+        4,
+        0.5
+      ],
+      "dimensions": [
+        4,
+        4,
+        1.0005
+      ],
+      "materials": [
+        "concrete",
+        "painted_steel_bluegray",
+        "galvanized_steel"
+      ],
+      "surfaces": 3,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "steel_column_4m",
+      "source": "assets/environment/source/structures/steel_column_4m.blend",
+      "export": "assets/environment/exports/structures/steel_column_4m.glb",
+      "source_sha256": "f231b224289f75b6cb51191ff1334fab0087113f19b9d4d0eaf9bea6090c61b6",
+      "export_sha256": "771f13aeb913d0eda6ad2dd5e221f5b87c3b64c7fcdff1b5a219d41399cd8050",
+      "triangles": 220,
+      "minimum": [
+        -0.20000000298023224,
+        0,
+        -0.20000000298023224
+      ],
+      "maximum": [
+        0.20000000298023224,
+        4,
+        0.20000000298023224
+      ],
+      "dimensions": [
+        0.4,
+        4,
+        0.4
+      ],
+      "materials": [
+        "weathered_steel"
+      ],
+      "surfaces": 1,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "steel_edge_beam_4m",
+      "source": "assets/environment/source/structures/steel_edge_beam_4m.blend",
+      "export": "assets/environment/exports/structures/steel_edge_beam_4m.glb",
+      "source_sha256": "2cccf6fb4633d05ddde176e32a16d27a64490f35ca58539ca4758bb359d0ba3d",
+      "export_sha256": "5981d3aa57cba36f7dec3ed1c696fdb75d7dd1ff4e953a6b9cd15c31a7fc9855",
+      "triangles": 132,
+      "minimum": [
+        0,
+        0,
+        -0.15000000596046448
+      ],
+      "maximum": [
+        4,
+        0.30000001192092896,
+        0.15000000596046448
+      ],
+      "dimensions": [
+        4,
+        0.3,
+        0.3
+      ],
+      "materials": [
+        "weathered_steel"
+      ],
+      "surfaces": 1,
+      "origin": "start",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    }
+  ],
+  "materials": [
+    "concrete",
+    "galvanized_steel",
+    "painted_steel_bluegray",
+    "rubber",
+    "safety_yellow",
+    "weathered_steel"
+  ],
+  "textures": [
+    {
+      "path": "assets/environment/textures/surface_roughness.png",
+      "sha256": "11bed1bee7d05806cb3d5c8d8d9a9fafad923d3d05068da06d21d4f3d3f0898a",
+      "size": [
+        1024,
+        1024
+      ],
+      "provenance": "Original periodic procedural map, seed 65021; build_materials.py"
+    },
+    {
+      "path": "assets/environment/textures/surface_wear.png",
+      "sha256": "4cc876e58d09c9c48b48b133b818ff8a1efce922248527c2742bc804b76e9f45",
+      "size": [
+        1024,
+        1024
+      ],
+      "provenance": "Original periodic procedural map, seed 65021; build_materials.py"
+    }
+  ]
+}

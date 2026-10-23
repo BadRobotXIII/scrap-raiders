@@ -58,7 +58,7 @@ func accepted_death(actor: Raider) -> void:
 
 
 func process_responses() -> void:
-	if arena.mission.is_world_finished():
+	if not arena.deployment_started or arena.mission.is_world_finished():
 		return
 	for job in local_jobs.duplicate():
 		if arena.elapsed < job.due:
@@ -103,7 +103,7 @@ func living_count() -> int:
 
 
 func eligible(drop: EquipmentDrop) -> bool:
-	if arena.mission.is_finished() or not is_instance_valid(drop) or drop.is_queued_for_deletion():
+	if not arena.deployment_started or arena.mission.is_finished() or not is_instance_valid(drop) or drop.is_queued_for_deletion():
 		return false
 	if equipment_drops.get(drop.owner_id) != drop or equipment.ground_count(drop.owner_id) <= 0:
 		return false
@@ -150,6 +150,7 @@ func update_recovery(delta: float) -> void:
 			equipment_drops.erase(selected.owner_id)
 			selected.queue_free()
 			cancel_recovery()
+			arena.show_action_notice("Equipment recovered. Extract to bank it.")
 			arena.after_event()
 			selected = null
 	for drop in equipment_drops.values():
@@ -160,7 +161,7 @@ func update_recovery(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if arena.mission.is_world_finished():
+	if not arena.deployment_started or arena.mission.is_world_finished():
 		return
 	retry -= delta
 	if retry <= 0:

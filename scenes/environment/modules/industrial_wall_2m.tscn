@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/structures/industrial_wall_2m.glb" id="1"]
+[node name="IndustrialWall2M" type="Node3D"]
+[node name="Visual" parent="." instance=ExtResource("1")]

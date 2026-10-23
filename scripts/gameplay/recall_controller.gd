@@ -50,7 +50,7 @@ func setup() -> void:
 
 
 func eligible() -> bool:
-	if arena.mission.is_finished() or arena.robot.get_node("Health").current <= 0 or arena.elapsed >= arena.mission_duration:
+	if not arena.deployment_started or arena.mission.is_finished() or arena.robot.get_node("Health").current <= 0 or arena.elapsed >= arena.mission_duration:
 		return false
 	if arena.robot.global_position.distance_to(dock.global_position) > 2.0:
 		return false
@@ -103,8 +103,7 @@ func complete() -> bool:
 	refresh_stash()
 	arena.ledger.settle_player(true)
 	arena.flare_director.equipment.settle_player(true)
-	arena.mission.complete_extraction()
-	arena.finish_mission()
+	arena.complete_player_extraction()
 	return true
 
 
@@ -122,7 +121,7 @@ func settle_failure() -> void:
 
 
 func refresh() -> void:
-	label.text = "RECALL DOCK\nHold [E] %.1fs" % maxf(0, channel_time - elapsed)
+	label.text = "RECALL DOCK" if arena.uses_concise_hud() else "RECALL DOCK\nHold [E] %.1fs" % maxf(0, channel_time - elapsed)
 	if arena.mission.is_finished():
 		label.text = "RECALL COMPLETE" if arena.mission.player_extracted else "RECALL UNAVAILABLE"
 	if eligible() and arena.selected_drop() == null and arena.flare_director.selected_drop() == null:

@@ -56,12 +56,23 @@ func initialize_responder(id: int, snapshot: Array) -> void:
 func eligible(target: Node3D, actor: Raider) -> bool:
 	if arena.mission.is_world_finished() or not is_instance_valid(target) or not arena.ledger.is_active(actor.raider_id):
 		return false
+	var health := target.get_node_or_null("Health") as Health
+	if target.is_queued_for_deletion() or health == null or health.current <= 0:
+		return false
 	if target is Raider:
 		return target != actor and arena.raiders.get(target.raider_id) == target and arena.ledger.is_active(target.raider_id) and relations.attitude(actor.raider_id, target.raider_id) == RaiderRelations.Attitude.HOSTILE
 	return target == arena.robot or (arena.ecosystem != null and arena.ecosystem.machines.has(target))
 
 
 func choose_target(actor: Raider) -> Node3D:
+	# Finish a fight/cover route through brief occlusion rather than repeatedly
+	# choosing whichever opponent happens to be nearest on this perception tick.
+	var current := actor.combat_target
+	if is_instance_valid(current) and eligible(current, actor) and actor.combat != null:
+		var engaged := actor.combat.owns_state() and actor.threat_remaining > 0
+		var pursuing := actor.combat.pursuing and actor.combat.observation_valid()
+		if engaged or pursuing:
+			return current
 	var candidates: Array[Node3D] = [arena.robot]
 	for other in arena.raiders.values():
 		if is_instance_valid(other):
@@ -90,6 +101,8 @@ func describe(actor: Raider) -> String:
 	var instigator: Object = instance_from_id(actor.health.last_damage_instigator_id) if actor.health.last_damage_instigator_id > 0 else null
 	var source := "R%02d" % instigator.raider_id if instigator is Raider else str(actor.health.last_damage_instigator_id)
 	var details := "Relations: %s\nSquad: %s | competition: independent\nLast damage instigator: %s" % [", ".join(entries), str(actor.squad_id) if not actor.squad_id.is_empty() else "none", source]
+	if actor.combat != null and actor.profile.combat_policy != RaiderProfile.CombatPolicy.BASELINE:
+		details += "\n" + actor.combat.describe_policy()
 	if actor.social != null:
 		details += "\nReports %d | Known drops %d | Source %s" % [actor.social.reports.size(), actor.social.loot_memory.size(), actor.threat_source]
 		for id in actor.social.reports:

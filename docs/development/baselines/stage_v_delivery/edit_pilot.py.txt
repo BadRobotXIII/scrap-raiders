@@ -1,0 +1,9 @@
+﻿import bpy
+count=0
+for vertex in bpy.context.scene.objects['industrial_wall_4m'].data.vertices:
+ if vertex.co.y > .499 and -1.9 < vertex.co.x < -1.4 and 1.2 < vertex.co.z < 1.7:
+  vertex.co.z += .12
+  count+=1
+assert count>0
+bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath)
+print('PILOT_EDIT vertices moved',count)

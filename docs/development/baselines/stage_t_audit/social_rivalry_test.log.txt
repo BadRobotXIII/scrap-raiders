@@ -1,0 +1,63 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Unspecified relationship defaults to neutral
+PASS: Unknown and self relationships are rejected
+PASS: Explicit alliance is symmetric and does not require squad registration
+PASS: Duplicate relation event is rejected
+PASS: Relation diagnostics are detached and cannot change materials
+PASS: Resolved Raider cannot initiate a new pair relationship
+PASS: Sealed relations reject late transitions
+PASS: Conflicting authored pairs fail setup validation
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Social preset admits three Raiders with nine preallocated materials
+PASS: Rivalry retains player traversal without flares, persistence or support machines
+PASS: Allied Raiders remain independent actors with no permanent squad
+R01: SELECTING -> ENGAGING
+PASS: Raider selects visible hostile human with distant robot
+PASS: Rival shot retains normal aim warning
+R03: SELECTING -> TAKING_COVER
+PASS: Physical rival hit deals ten damage and records actual instigator identity
+PASS: Damage response uses hit origin rather than distant player position
+PASS: Allied body blocks rival shot without friendly damage or penetration
+PASS: Neutral body is protected from damage and receives no false hit attribution
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: No-longer-hostile target loses combat eligibility and aim
+R01: SCAVENGING -> ENGAGING
+PASS: Resuming rivalry requires a fresh target warning
+PASS: Solid geometry blocks rival perception
+PASS: Neutral Raiders can both choose the same finite salvage stock
+R01: ENGAGING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: First neutral competitor collects stock; second cannot duplicate or share it
+PASS: Depleted contested stock makes neutral competitor select another objective
+PASS: Spectator exposes relationships separately from absent squad membership
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> SELECTING
+PASS: Allied Raiders can independently attack the same machine without permanent squad membership
+R01: ENGAGING -> DEAD
+R02: SELECTING -> DEAD
+PASS: Simultaneous rival scenario deaths preserve independent health and normal cargo drops
+PASS: Combat remains safe after targets are freed
+PASS: Terminal policy seals relations and stops all hostile weapons
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Restart restores authored attitudes and finite stock
+R03: ENGAGING -> TAKING_COVER
+R03: TAKING_COVER -> FLEEING
+R03: FLEEING -> DEAD
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> TAKING_COVER
+PASS: Authored rivalry produces natural human combat without player intervention
+PASS: Natural rival weapon combat can defeat a Raider through the shared death path
+PASS: Natural rivalry maintains material conservation
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Existing Survival retains its original Raider-friendly damage configuration
+Stage K social rivalry checks complete; failures: 0

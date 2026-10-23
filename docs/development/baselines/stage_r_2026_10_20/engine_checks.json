@@ -1,0 +1,26 @@
+[
+    {
+        "check":  "parsing",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0
+    },
+    {
+        "check":  "forward_integrated",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  1
+    },
+    {
+        "check":  "forward_q",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0
+    },
+    {
+        "check":  "ui_probe",
+        "exit_code":  0,
+        "errors":  0,
+        "warnings":  0
+    }
+]

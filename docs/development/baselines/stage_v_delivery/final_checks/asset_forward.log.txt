@@ -1,0 +1,49 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+PASS: Eight source-backed assets use the six shared material foundations
+PASS: All accepted U gameplay, collision modules, configs and earlier tests remain byte-identical
+PASS: Editable source/export identities match inventory: control_cabinet
+PASS: Repeated instances share imported mesh resources: control_cabinet
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: control_cabinet
+PASS: Editable source/export identities match inventory: sorting_conveyor_base
+PASS: Repeated instances share imported mesh resources: sorting_conveyor_base
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: sorting_conveyor_base
+PASS: Editable source/export identities match inventory: scrap_bin
+PASS: Repeated instances share imported mesh resources: scrap_bin
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: scrap_bin
+PASS: Editable source/export identities match inventory: utility_run_2m
+PASS: Repeated instances share imported mesh resources: utility_run_2m
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: utility_run_2m
+PASS: Editable source/export identities match inventory: industrial_wall_2m
+PASS: Repeated instances share imported mesh resources: industrial_wall_2m
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: industrial_wall_2m
+PASS: Editable source/export identities match inventory: industrial_wall_4m
+PASS: Repeated instances share imported mesh resources: industrial_wall_4m
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: industrial_wall_4m
+PASS: Editable source/export identities match inventory: steel_column_4m
+PASS: Repeated instances share imported mesh resources: steel_column_4m
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: steel_column_4m
+PASS: Editable source/export identities match inventory: steel_edge_beam_4m
+PASS: Repeated instances share imported mesh resources: steel_edge_beam_4m
+PASS: Import preserves scale, UVs, remapped materials and visual-only ownership: steel_edge_beam_4m
+PASS: Small library stays below its initial aggregate geometry review threshold
+PASS: Shared original surface texture is available and identified
+PASS: Shared original surface texture is available and identified
+0.0s SETUP seed 87017 layout u_west
+PASS: Dressed solid geometry stays within accepted collision envelopes plus surface-detail tolerance
+0.0s SETUP seed 87017 layout u_west
+PASS: Art and explicit graybox retain identical collision, markers and navigation inputs
+PASS: Graybox selection shows original surfaces and disables all production visuals
+0.0s SETUP seed 87017 layout u_west
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Visually enclosed sorting machine still blocks an actual low rifle shot
+PASS: Clear side approach to dressed equipment permits a valid physical shot
+PASS: Player shoulder camera remains usable near dressed walls and ceiling
+PASS: Player shoulder camera remains usable near dressed walls and ceiling
+PASS: Player shoulder camera remains usable near dressed walls and ceiling
+PASS: Art retains independent developer camera permissions
+PASS: Accepted transfers in art tests preserve the original ledgers
+Asset pipeline failures: 0

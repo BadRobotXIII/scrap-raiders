@@ -146,6 +146,10 @@ func run() -> void:
 		other.combat.weapon.set_physics_process(false)
 	check(arena.social.relations.attitude(1, 2) == RaiderRelations.Attitude.ALLIED and arena.ledger.protected_materials == 9, "Restart restores authored attitudes and finite stock")
 	# Run actual common FSM/physics without forcing targets or health.
+	# Isolate the autonomous rivalry from a stationary player who is otherwise
+	# a valid opponent within rifle range of the authored entry positions.
+	arena.robot.set_physics_process(false)
+	arena.robot.position = Vector3(100, 0.1, 100)
 	var damaged := false
 	var combat_death := false
 	for actor in arena.raiders.values():

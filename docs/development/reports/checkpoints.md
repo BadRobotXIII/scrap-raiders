@@ -2,11 +2,11 @@
 
 Recorded: 2026-10-19. Reconstructed summaries from README validation records, Git history and director review messages. These entries preserve the results of the checkpoint reports; they are not verbatim transcripts of unavailable earlier assistant messages.
 
-Prototype through Stage J have been accepted by the director. Validation counts describe each checkpoint at the time of delivery. Detailed architecture and current test commands remain in the [project README](../../../README.md).
+Updated: 2026-10-20. Prototype through Stage Q have been accepted by the director. Validation counts describe each checkpoint at the time of delivery. Detailed architecture and current test commands remain in the [project README](../../../README.md).
 
 Stage K is implemented after its separate scope approval. The director confirmed the new mechanics work well and reported unavailable jump/boost, addressed by the [traversal availability follow-up](traversal_availability_followup.md). Its architectural clarification keeps relationship, competition and squad metadata independent.
 
-The director confirmed the traversal correction and authorized Stage L. Its cooperation/contested-cargo implementation is validated and awaiting manual review; Stage M remains unapproved.
+The director confirmed the traversal correction and subsequently accepted Stages L–Q. Stage P combat follow-ups and Checkpoint Q were accepted on 2026-10-20. Stage R baseline evaluation and an implementation proposal are prepared for approval; no R gameplay implementation has begun.
 
 | Checkpoint | Implementation | Automated validation | Manual feedback and follow-up |
 | --- | --- | --- | --- |
@@ -26,7 +26,9 @@ The director confirmed the traversal correction and authorized Stage L. Its coop
 | M — Opportunistic betrayal | Uncommitted implementation: Alt+F11 authored encounter, one R1 opportunist, continuous visible assessment, warning, one accepted pair hostility transition and ordinary combat/loot | Eighteen suites passed; interruption, threat/health/retreat priority, isolated pair relations, ordinary damage/death/loot, conservation, deadline/restart and naturally reproduced opportunity; parser/headless/Forward+ startup passed | Director confirmed functionally great and accepted. Requested larger window and hideable debug HUD: 1600×900 default and F3 toggles banner/diagnostics/inspector; related three suites, parsing and startup passed. |
 | N - Integrated extraction | Uncommitted implementation: F5 combined mission, existing graybox, three social/profiled Raiders, one opportunist, finite flares/responders, scout/guard, traversal and persistent recall | Nineteen suites passed; cross-system targeting/damage, betrayal/death/response, overlapping loot, component accounting, recall under fire with pending threats, quiet recovery, death/deadline, restart and natural simultaneous simulation; parsing/headless/Forward+ startup passed | Awaiting play-testing of full player routes, three-minute pacing, combined prompts, encounter balance and extraction difficulty. Earlier scenarios remain available. |
 | O - Post-death spectating | Uncommitted implementation: F5 opt-in, permanent player failure with continuing world, one-time forfeiture, shared spectator camera, restricted Raider/machine follow, killer preference and Spectate/Return | Twenty suites passed; natural post-death activity, target death/extraction/freeing, waiting/responders, collision/non-interference, Return/deadline/restart, ledger sealing, unchanged stash and legacy developer/scenario behavior; parsing/headless/Forward+ startup and graphical spectator checks passed | Awaiting Checkpoint O manual review of follow comfort, target transitions, choices and summary readability. Release package not exercised; Stage P is not authorized. |
-| P - Dynamic encounter generation | Separate Stage P commit after baseline `bac0f6d`: optional seeded layouts, stock/routes/profile order, staggered entries, shared live cap and Shift+F5 development preset | Twenty-one suites passed, plus affected graphical spectator/encounter checks, editor import/parsing and bounded headless/Forward+ startup; seeded setup, valid placement, contested stock/loot/extraction, machine/rival combat, finite pressure, pending work after death and invariant checks | Awaiting manual believable-variety, pacing and congestion review. Stage Q is not authorized. |
+| P - Dynamic encounter generation | `32cdde3` after baseline `bac0f6d`: optional seeded layouts, staggered entries, shared live cap and Shift+F5 preset; subsequent combat follow-ups remain uncommitted | Twenty-three suites passed after engagement, guard-clearance and sustained-fire fixes, plus parsing and bounded headless/Forward+ checks; isolated saves and conserved accounting | Accepted by the director on 2026-10-20. |
+| Q - Personality-aware combat | Opt-in copied profiles and same-seed comparison mission; cargo-sensitive Greedy, persistent Cowardly escape and Aggressive observed-position pursuit | Twenty-five suites passed; real scavenging, shots, escape and timed extraction; restart, spectators, target resolution, finite population and accounting; parsing and headless/Forward+ startup | Accepted by the director on 2026-10-20. See the [Q report](stage_q_personality_combat.md). Uncommitted. |
+| R - Integrated polish (planning) | Repository audit, preserved supplied ledger, read-only baseline observations and reviewable proposal; no gameplay changes | Fresh 25-suite pass, eighteen observation runs, engine/startup checks, HUD capture and recovery-notice reproduction; gameplay source hashes unchanged | Awaiting implementation-plan approval under the R ledger. See the [baseline evaluation](stage_r_baseline_evaluation.md) and [proposal](../plans/phase_5_stage_r_integrated_polish_plan.md). |
 
 ## Validation qualifications
 
@@ -47,3 +49,34 @@ Some parallel Phase 3 flare/recall runs emitted two-instance ObjectDB shutdown c
 ## Deferred work
 
 After Stage I, the director requested and accepted Stage J developer spectator tooling through a separate Phase 4 amendment. Implementation, validation and acceptance are recorded in the [Stage J report](stage_j_spectator.md). The jump's floaty feel remains deferred. Raider-versus-Raider social AI, balancing, presentation and initial Blender assets require their own agreed scope. Maintaining this register does not authorize additional gameplay systems.
+
+
+## Checkpoint R - accepted (2026-10-20)
+
+The approved plan is implemented in the explicit refined extraction scene. Recovery notices, a smaller normal HUD, optional bounded deployment metrics and targeted lifecycle regressions are delivered. The earlier-arrival experiment was reverted after five normal-speed seeds; accepted Q timing and N/P/Q resources remain intact. All 27 suites, parsing, headless launch and Forward+ N/P/Q/R startup passed. See the [delivery report](stage_r_integrated_polish.md) and evidence links for exact observations and retained refinement checks. The director confirmed "All works well for this stage" and approved it, noting that refinement will continue as the project grows. No commit, publication, routing promotion or next-stage work is included.
+
+
+## Checkpoint S - accepted (2026-10-21)
+
+The approved mission-structure plan is implemented. Default startup opens Operation: Asset Recovery at preparation; explicit Deploy starts the existing simulation. Required banked material/extraction goals and optional equipment/player-kill goals derive from authoritative owners. Early extraction preserves inventory but reports incomplete primary, and settled player results remain frozen through spectating. All 29 suites passed after teaching the all-preset traversal setup to deploy S; parsing, headless/Forward+ startup, graphical flow and seeded natural runs passed. The legacy extraction cleanup warning remains separate. The director accepted Checkpoint S with "Approved" on 2026-10-21. See the [S delivery report](stage_s_mission_structure.md). No Stage T, commit or publication is included.
+
+## Checkpoint T - implemented, manual review pending (2026-10-21)
+
+The director approved the repository audit and focused remediation proposal before implementation. The existing target authority now rejects dead targets; normal Asset Recovery uses an S-specific north entry arrangement that demonstrates natural conditional betrayal/rival damage without altering Q policy or reference presets. A physical normal-scene integration suite extends coverage through social combat, machines, contested finite loot, extraction, post-death responses, camera permissions and restart. All 30 suites pass after correcting a new test-fixture capacity assumption; parsing, headless deployment, graphical flow, ten scene startups and bounded peak-population graphical checks passed. Seven seeds plus a repeated seed retain conservation/caps/frozen results. See the [delivery report](stage_t_full_gameplay_integration.md) for evidence and manual checklist. Stage T is not yet accepted; no Stage U, commit or publication is included.
+
+The director reported broadly successful integration with rapid spinning/hesitation in close and multi-threat Raider encounters. The [decision follow-up](stage_t_raider_decision_followup.md) corrects reproduced steering reversal, lost pursuit commitment and repeated damage-driven aim resets. Manual recheck remains pending; this feedback is not recorded as unconditional T acceptance.
+
+
+## Checkpoint T - director acceptance (2026-10-21)
+
+The director explicitly confirmed "Stage T is approved," accepting the delivered integration and subsequent Raider decision-stability follow-up. The earlier pending-review entries above preserve the delivery chronology. The current accepted baseline includes 31 passing suites and the final follow-up observations; original T seeded outcomes are historical. Stage U architecture/layout planning is requested, with construction awaiting approval of the [proposal](../plans/phase_7_stage_u_world_expansion_plan.md). No Git commit or publication is authorized.
+
+
+## Checkpoint U - accepted (2026-10-21)
+
+The director approved the world-expansion architecture and layout proposal after accepting T. The 72 x 64 m graybox reuses the existing mission controller, ledger/persistence/AI/camera authorities and bounded populations. U has authored seeded arrangements, a processing block, central yard, ramped storage and alternate service/perimeter routes. Default startup remains compact Asset Recovery. See the [delivery report](stage_u_world_expansion.md) for final validation, physical ramp/peek corrections, matched seed observations, performance limits and director checklist. The director confirmed "Everthing functioned perfectly, approved" and accepted Checkpoint U on 2026-10-21. Stage V requires separate scope and approval; no Git commit or publication is included.
+
+
+## Checkpoint V - implemented, manual review pending (2026-10-22)
+
+The director approved the environment pipeline and processing-bay proposal before production. Eight original Blender models, six shared materials, two original maps, explicit GLB imports and a limited dressed bay are delivered. All 33 suites pass; editor parsing/import, clean isolated import, actual source-edit/reimport, Forward+ physical/GUI/startup and two seeded observations passed. The final bay adds 40 draw calls and 9 MiB texture memory in matched local tests, with p95 frame intervals near 5.7 ms. Accepted U collision/navigation/gameplay remain intact. See the [Stage V report](stage_v_environment_art.md), [pipeline guide](../../art_pipeline/README.md) and manual checklist. Director visual/play-test acceptance remains pending; no Stage W, commit or publication is authorized.

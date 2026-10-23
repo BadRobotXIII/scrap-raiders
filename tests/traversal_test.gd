@@ -47,6 +47,8 @@ func reset_at(point: Vector3) -> void:
 
 
 func verify_preset_traversal(label: String) -> void:
+	if not arena.deployment_started:
+		check(arena.start_deployment(), label + " starts through its briefing before physical traversal")
 	robot = arena.robot
 	input = robot.input_adapter
 	input.set_physics_process(false)

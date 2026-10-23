@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-21",
+  "source_files_checked": 216,
+  "changed_from_s": {},
+  "log_issues": [
+    {
+      "log": "flare_loot_test.log",
+      "line": "godot.cmd : WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    },
+    {
+      "log": "flare_loot_test.log",
+      "line": "    + CategoryInfo          : NotSpecified: (WARNING: 2 Obje...` for details).:String) [], RemoteException"
+    }
+  ],
+  "normal_deployments": [
+    {
+      "seed": 87017,
+      "layout": "south_patrol",
+      "world_seconds": 111.183333333328,
+      "player_result_seconds": 17.316666666667,
+      "player_destroyed": true,
+      "raider_extractions": 5,
+      "raider_damage_by_raiders": 0,
+      "machine_deaths": 2.0,
+      "shots": 30.0,
+      "navigation_recoveries": 2.0,
+      "materials": {
+        "banked": 0,
+        "cargo": 0,
+        "extracted": 13,
+        "forfeited": 0,
+        "ground": 1,
+        "recovered": 0,
+        "stock": 0,
+        "total": 14,
+        "valid": true
+      },
+      "peak_raiders": 2,
+      "response_tickets": 0,
+      "conserved": true,
+      "cap_valid": true,
+      "frozen_result": true,
+      "samples": {
+        "ally_report_intent": 97,
+        "fresh_cached_allied_report": 78,
+        "loot_memory_present": 88,
+        "opportunist_can_assess": 14
+      },
+      "probe_events": 41,
+      "metrics_discarded_events": 0
+    },
+    {
+      "seed": 87018,
+      "layout": "north_contest",
+      "world_seconds": 180.000000000035,
+      "player_result_seconds": 180.000000000035,
+      "player_destroyed": false,
+      "raider_extractions": 5,
+      "raider_damage_by_raiders": 0,
+      "machine_deaths": 1.0,
+      "shots": 44.0,
+      "navigation_recoveries": 4.0,
+      "materials": {
+        "banked": 0,
+        "cargo": 0,
+        "extracted": 9,
+        "forfeited": 0,
+        "ground": 1,
+        "recovered": 0,
+        "stock": 4,
+        "total": 14,
+        "valid": true
+      },
+      "peak_raiders": 2,
+      "response_tickets": 0,
+      "conserved": true,
+      "cap_valid": true,
+      "frozen_result": true,
+      "samples": {
+        "ally_report_intent": 5,
+        "fresh_cached_allied_report": 26,
+        "loot_memory_present": 6,
+        "opportunist_can_assess": 1
+      },
+      "probe_events": 55,
+      "metrics_discarded_events": 0
+    },
+    {
+      "seed": 87019,
+      "layout": "south_patrol",
+      "world_seconds": 111.183333333328,
+      "player_result_seconds": 17.316666666667,
+      "player_destroyed": true,
+      "raider_extractions": 5,
+      "raider_damage_by_raiders": 0,
+      "machine_deaths": 2.0,
+      "shots": 30.0,
+      "navigation_recoveries": 2.0,
+      "materials": {
+        "banked": 0,
+        "cargo": 0,
+        "extracted": 13,
+        "forfeited": 0,
+        "ground": 1,
+        "recovered": 0,
+        "stock": 0,
+        "total": 14,
+        "valid": true
+      },
+      "peak_raiders": 2,
+      "response_tickets": 0,
+      "conserved": true,
+      "cap_valid": true,
+      "frozen_result": true,
+      "samples": {
+        "ally_report_intent": 97,
+        "fresh_cached_allied_report": 78,
+        "loot_memory_present": 88,
+        "opportunist_can_assess": 14
+      },
+      "probe_events": 41,
+      "metrics_discarded_events": 0
+    },
+    {
+      "seed": 87020,
+      "layout": "north_contest",
+      "world_seconds": 180.000000000035,
+      "player_result_seconds": 180.000000000035,
+      "player_destroyed": false,
+      "raider_extractions": 5,
+      "raider_damage_by_raiders": 0,
+      "machine_deaths": 1.0,
+      "shots": 43.0,
+      "navigation_recoveries": 4.0,
+      "materials": {
+        "banked": 0,
+        "cargo": 0,
+        "extracted": 9,
+        "forfeited": 0,
+        "ground": 1,
+        "recovered": 0,
+        "stock": 4,
+        "total": 14,
+        "valid": true
+      },
+      "peak_raiders": 2,
+      "response_tickets": 0,
+      "conserved": true,
+      "cap_valid": true,
+      "frozen_result": true,
+      "samples": {
+        "ally_report_intent": 5,
+        "fresh_cached_allied_report": 26,
+        "loot_memory_present": 6,
+        "opportunist_can_assess": 1
+      },
+      "probe_events": 54,
+      "metrics_discarded_events": 0
+    },
+    {
+      "seed": 87021,
+      "layout": "north_contest",
+      "world_seconds": 180.000000000035,
+      "player_result_seconds": 180.000000000035,
+      "player_destroyed": false,
+      "raider_extractions": 5,
+      "raider_damage_by_raiders": 0,
+      "machine_deaths": 1.0,
+      "shots": 43.0,
+      "navigation_recoveries": 4.0,
+      "materials": {
+        "banked": 0,
+        "cargo": 0,
+        "extracted": 9,
+        "forfeited": 0,
+        "ground": 1,
+        "recovered": 0,
+        "stock": 4,
+        "total": 14,
+        "valid": true
+      },
+      "peak_raiders": 2,
+      "response_tickets": 0,
+      "conserved": true,
+      "cap_valid": true,
+      "frozen_result": true,
+      "samples": {
+        "ally_report_intent": 5,
+        "fresh_cached_allied_report": 26,
+        "loot_memory_present": 6,
+        "opportunist_can_assess": 1
+      },
+      "probe_events": 54,
+      "metrics_discarded_events": 0
+    }
+  ]
+}

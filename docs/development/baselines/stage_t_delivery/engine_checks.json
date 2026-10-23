@@ -1,0 +1,50 @@
+{
+  "editor_import": 0,
+  "default_headless_600_frames": 0,
+  "graphical_deployment_flow": 0,
+  "graphical_startups": [
+    {
+      "scene": "asset_recovery",
+      "code": 0
+    },
+    {
+      "scene": "mission",
+      "code": 0
+    },
+    {
+      "scene": "single_raider",
+      "code": 0
+    },
+    {
+      "scene": "emergent_encounters",
+      "code": 0
+    },
+    {
+      "scene": "personality_encounters",
+      "code": 0
+    },
+    {
+      "scene": "refined_extraction",
+      "code": 0
+    },
+    {
+      "scene": "social_rivalry",
+      "code": 0
+    },
+    {
+      "scene": "social_cooperation",
+      "code": 0
+    },
+    {
+      "scene": "social_betrayal",
+      "code": 0
+    },
+    {
+      "scene": "ecosystem",
+      "code": 0
+    }
+  ],
+  "editor_import_final": 0,
+  "performance_metrics_off": 0,
+  "performance_metrics_on": 0
+}

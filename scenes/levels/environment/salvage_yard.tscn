@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material"]
+albedo_color = Color(0.48, 0.43, 0.32, 1)
+
+[sub_resource type="BoxMesh" id="Mesh0"]
+material = SubResource("Material")
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxShape3D" id="Shape0"]
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxMesh" id="Mesh1"]
+material = SubResource("Material")
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxShape3D" id="Shape1"]
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxMesh" id="Mesh2"]
+material = SubResource("Material")
+size = Vector3(5, 1.2, 2)
+
+[sub_resource type="BoxShape3D" id="Shape2"]
+size = Vector3(5, 1.2, 2)
+
+[sub_resource type="BoxMesh" id="Mesh3"]
+material = SubResource("Material")
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxShape3D" id="Shape3"]
+size = Vector3(8, 3, 1)
+
+[node name="SalvageYard" type="Node3D"]
+
+[node name="WestBay" type="StaticBody3D" parent="."]
+position = Vector3(-5, 1.5, -3)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WestBay"]
+mesh = SubResource("Mesh0")
+
+[node name="Collision" type="CollisionShape3D" parent="WestBay"]
+shape = SubResource("Shape0")
+
+[node name="EastBay" type="StaticBody3D" parent="."]
+position = Vector3(7, 1.5, 4)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="EastBay"]
+mesh = SubResource("Mesh1")
+
+[node name="Collision" type="CollisionShape3D" parent="EastBay"]
+shape = SubResource("Shape1")
+
+[node name="LowCrates" type="StaticBody3D" parent="."]
+position = Vector3(-1, 0.6, 8)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowCrates"]
+mesh = SubResource("Mesh2")
+
+[node name="Collision" type="CollisionShape3D" parent="LowCrates"]
+shape = SubResource("Shape2")
+
+[node name="NorthScreen" type="StaticBody3D" parent="."]
+position = Vector3(4, 1.5, -15)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthScreen"]
+mesh = SubResource("Mesh3")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthScreen"]
+shape = SubResource("Shape3")

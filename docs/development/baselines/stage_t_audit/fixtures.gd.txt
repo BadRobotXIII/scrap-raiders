@@ -1,0 +1,42 @@
+extends "res://tests/integrated_extraction_test.gd"
+func run() -> void:
+	var a = load("res://scenes/levels/asset_recovery_arena.tscn").instantiate()
+	a.stash_path = "res://.godot/stage_t_audit/fixture_stash.json"
+	root.add_child(a)
+	current_scene = a
+	a.start_deployment()
+	freeze(a)
+	await frames(10)
+	a.process_entries()
+	freeze(a)
+	a.robot.position = Vector3(100,0.1,100)
+	for machine in a.ecosystem.machines:machine.position = Vector3(100,3,100)
+	var opportunist: Raider = a.raiders[1]
+	var ally: Raider = a.raiders[2]
+	opportunist.position = Vector3(0,0.1,8)
+	ally.position = Vector3(0,0.1,14)
+	a.ledger.collect(2,&"Salvage",3)
+	opportunist.transition(Raider.State.SELECTING)
+	await frames(3)
+	opportunist.decide()
+	var began := opportunist.state == Raider.State.ASSESSING_BETRAYAL
+	opportunist.betrayal.tick(2)
+	var betrayal := {"normal_scene":a.scene_file_path,"profile":opportunist.profile.display_name,"policy":opportunist.profile.combat_policy,"assessment_began":began,"committed":opportunist.betrayal.spent,"hostile":a.social.relations.attitude(1,2)==RaiderRelations.Attitude.HOSTILE,"victim_cargo":ally.carried_materials,"conserved":a.ledger.is_conserved()}
+	a.social.relations.set_attitude(1,2,RaiderRelations.Attitude.ALLIED,"audit fixture restore",a.elapsed)
+	a.robot.position = Vector3(0,0.1,20)
+	await frames(3)
+	var accepted: bool = opportunist.social.receive(ally,a.robot,a.robot.global_position,a.elapsed+3)
+	var before: bool = not opportunist.social.best_report().is_empty()
+	a.robot.get_node("Health").apply_damage(1000,ally.position,ally.get_instance_id())
+	var eligibility: bool = a.social.eligible(a.robot,opportunist)
+	var after: bool = not opportunist.social.best_report().is_empty()
+	a.elapsed += 3.1
+	var expired: bool = opportunist.social.best_report().is_empty()
+	var report := {"accepted_live_report":accepted,"present_before_death":before,"dead_player_health":a.robot.get_node("Health").current,"world_continues":not a.mission.is_world_finished(),"dead_player_still_eligible":eligibility,"report_remains_after_death":after,"expires_after_ttl":expired,"result_frozen":a.mission_objectives.is_closed()}
+	var output := FileAccess.open("res://.godot/stage_t_audit/fixtures.json",FileAccess.WRITE)
+	output.store_string(JSON.stringify({"betrayal_controlled_fixture":betrayal,"dead_player_report_reproduction":report,"fixture_changes":"Positions arranged; existing finite stock transferred via ledger; assessment advanced and robot destroyed. No source/configuration edits. These are NOT natural outcomes."},"\t"))
+	output.close()
+	print("AUDIT FIXTURES ",betrayal," ",report)
+	a.queue_free()
+	await frames(30)
+	quit(0 if began and betrayal.committed and accepted and before else 1)

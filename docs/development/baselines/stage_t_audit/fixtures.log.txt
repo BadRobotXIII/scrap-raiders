@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+AUDIT FIXTURES { "normal_scene": "res://scenes/levels/asset_recovery_arena.tscn", "profile": "Greedy", "policy": 1, "assessment_began": true, "committed": true, "hostile": true, "victim_cargo": 3, "conserved": true } { "accepted_live_report": true, "present_before_death": true, "dead_player_health": 0.0, "world_continues": true, "dead_player_still_eligible": true, "report_remains_after_death": true, "expires_after_ttl": true, "result_frozen": true }

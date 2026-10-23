@@ -1,0 +1,18 @@
+[
+  {
+    "file": "dead_target_before.log.txt",
+    "expected_historical_failure": true,
+    "lines": [
+      "ERROR: Destroyed player immediately invalidates cached allied report",
+      "ERROR: New reports cannot reintroduce destroyed player"
+    ]
+  },
+  {
+    "file": "integration_fixture_initial.log.txt",
+    "expected_historical_failure": true,
+    "lines": [
+      "ERROR: Normal neutral competitors split only the finite three-unit stock within their actual capacities",
+      "ERROR: Player recovery consumes a conflict drop once without recording an invented Raider extraction"
+    ]
+  }
+]

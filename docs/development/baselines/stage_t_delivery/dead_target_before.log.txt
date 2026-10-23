@@ -1,0 +1,28 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Stage T artifacts: res://.godot/stage_t_tests/df60cad4aa4961a9
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: S accepts a live eligible ally sighting
+PASS: Unseen living target movement cannot relocate shared observation
+PASS: S deployment death preserves independent world simulation
+ERROR: Destroyed player immediately invalidates cached allied report
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/integrated_extraction_test.gd:16)
+       [1] dead_target_reports (res://tests/gameplay_integration_test.gd:27)
+       [2] isolated_s (res://tests/gameplay_integration_test.gd:11)
+       [3] start_frozen (res://tests/deployment_flow_test.gd:19)
+       [4] frames (res://tests/integrated_extraction_test.gd:22)
+ERROR: New reports cannot reintroduce destroyed player
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/integrated_extraction_test.gd:16)
+       [1] dead_target_reports (res://tests/gameplay_integration_test.gd:28)
+       [2] isolated_s (res://tests/gameplay_integration_test.gd:11)
+       [3] start_frozen (res://tests/deployment_flow_test.gd:19)
+       [4] frames (res://tests/integrated_extraction_test.gd:22)
+PASS: Report invalidation cannot change frozen result or accounting
+Stage T integration checks complete; failures: 2

@@ -1,0 +1,83 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Initial finite stock is nine materials
+PASS: First contested collection transfers finite stock
+PASS: Second collector cannot duplicate depleted stock
+PASS: Independent collector can use another location
+PASS: Death creates identified ground allocation with source Raider
+PASS: One death cannot end other Raiders' behavior
+PASS: Extraction accounts only for the extracting Raider
+PASS: Empty death creates no materials
+PASS: Resolved Raiders enter recovery-only despite remaining protected stock
+PASS: Ground cargo transfers to recovered stock
+PASS: Final policy reports partial extraction after recovery finishes
+PASS: Duplicate death/extraction/recovery rejected without changing ledger
+PASS: Sealed ledger refuses late events
+PASS: Partial salvage never exceeds available quantity
+PASS: Untouched salvage does not block completion
+PASS: Deadline policy does not reclassify still-carried cargo as extraction loss
+PASS: Default configuration registers three independent Raiders and salvage points
+PASS: Stable initial assignments distribute objectives
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> EXTRACTING
+PASS: Three real scavenging timers transfer nine units without duplication
+R01: EXTRACTING -> DEAD
+R02: EXTRACTING -> DEAD
+PASS: Same-frame deaths create two independent drop identities
+PASS: Other Raider and player remain active after two deaths
+PASS: Unrelated Raider retains active simulation, state, and cargo
+PASS: Equal-distance pickup deterministically selects lower drop ID
+PASS: Nearest eligible drop alone drives highlight and interaction
+PASS: Recovering one stack leaves unrelated stack intact
+PASS: Consumed identity cannot be recovered again
+PASS: Recovery is allowed while another Raider is active
+R03: EXTRACTING -> EXTRACTED
+PASS: Last extraction enters recovery-only without stopping player pickup
+PASS: Recovery-only preserves player movement and combat controls
+PASS: Partial-loss mission completes only after remaining drop recovery
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> FLEEING
+R03: SELECTING -> SCAVENGING
+PASS: Multi-Raider restart resets all actors, stock, drops, and outcomes
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> DEAD
+R02: EXTRACTING -> DEAD
+R03: EXTRACTING -> EXTRACTED
+PASS: Deadline distinguishes six unrecovered units from three extracted units
+PASS: Deadline report preserves material categories
+PASS: Deadline seals further material transfers
+R01: SCAVENGING -> EXTRACTING
+PASS: Contending actors cannot each obtain the same three materials
+PASS: Depleted objective causes deterministic fallback to another salvage point
+PASS: Spawn validation rejects obstacle overlap and duplicate positions
+R01: SCAVENGING -> FLEEING
+R01: FLEEING -> DEAD
+PASS: Hitscan kills only its selected Raider and leaves other health/identities intact
+R02: SCAVENGING -> FLEEING
+R02: FLEEING -> DEAD
+PASS: Second independent weapon kill preserves third Raider and protected stock
+R03: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> EXTRACTING
+R02: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+R03: EXTRACTING -> EXTRACTED
+PASS: 3 Raiders independently navigate/scavenge/resolve within bounded simulation
+R03: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> EXTRACTING
+R05: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> EXTRACTING
+R02: SCAVENGING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+R04: EXTRACTING -> EXTRACTED
+R01: EXTRACTING -> EXTRACTED
+R02: EXTRACTING -> EXTRACTED
+R03: EXTRACTING -> EXTRACTED
+PASS: 5 Raiders independently navigate/scavenge/resolve within bounded simulation
+Stage A checks complete; failures: 0

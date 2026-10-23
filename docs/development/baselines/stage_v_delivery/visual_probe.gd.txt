@@ -1,0 +1,23 @@
+﻿extends "res://tests/expanded_world_test.gd"
+func run() -> void:
+ test_directory="res://.godot/stage_v/after"
+ var arena := create_u("visual")
+ await start_frozen(arena)
+ arena.spectator.enter()
+ arena.spectator.set_process(false)
+ for view in [["bay",Vector3(-21,3.4,7),Vector3(-15.2,1.8,3)],["entry",Vector3(-11,2.5,0),Vector3(-19,1.6,5)],["player_height",Vector3(-21,1.8,6),Vector3(-15,1.4,5)]]:
+  arena.spectator.camera.position=view[1]
+  arena.spectator.camera.look_at(view[2])
+  await frames(5)
+  await preview("art_"+view[0])
+ arena.queue_free()
+ await frames(10)
+ var display: Node3D = load("res://scenes/environment/asset_inspection.tscn").instantiate()
+ root.add_child(display)
+ current_scene=display
+ await frames(5)
+ await preview("asset_library")
+ display.queue_free()
+ await frames(10)
+ quit()
+

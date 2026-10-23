@@ -23,4 +23,7 @@ func validation_error(config: MissionConfig) -> String:
 			return "Unknown encounter entry."
 	if profiles.size() != config.raider_count or profiles.has(null) or machine_routes.size() != 2:
 		return "Invalid encounter profiles or patrols."
+	for profile in profiles:
+		if not profile.validation_error().is_empty():
+			return profile.validation_error()
 	return ""

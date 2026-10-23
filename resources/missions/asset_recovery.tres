@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=17 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/gameplay/raider_social_config.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/enemies/opportunist_betrayal.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/missions/s_encounter_north.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/missions/q_encounter_south.tres" id="5"]
+[ext_resource type="Script" path="res://scripts/gameplay/encounter_layout.gd" id="7"]
+[ext_resource type="Resource" path="res://resources/enemies/q_greedy.tres" id="8"]
+[ext_resource type="Resource" path="res://resources/enemies/q_cowardly.tres" id="9"]
+[ext_resource type="Resource" path="res://resources/enemies/q_aggressive.tres" id="10"]
+[ext_resource type="Script" path="res://scripts/ai/raider_profile.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/gameplay/mission_objective_definition.gd" id="12"]
+[sub_resource type="Resource" id="Materials"]
+script = ExtResource("12")
+objective_id = &"secure_materials"
+description = "Bank 3 material units"
+kind = 0
+target = 3
+required = true
+[sub_resource type="Resource" id="Extract"]
+script = ExtResource("12")
+objective_id = &"extract"
+description = "Survive and extract"
+kind = 2
+target = 1
+required = true
+[sub_resource type="Resource" id="Equipment"]
+script = ExtResource("12")
+objective_id = &"secure_equipment"
+description = "Bank at least 1 equipment item"
+kind = 1
+target = 1
+[sub_resource type="Resource" id="Combat"]
+script = ExtResource("12")
+objective_id = &"stop_raider"
+description = "Personally defeat 1 hostile Raider"
+kind = 3
+target = 1
+[sub_resource type="Resource" id="Relations"]
+script = ExtResource("2")
+allied_pairs = Array[Vector2i]([Vector2i(1, 2), Vector2i(4, 5)])
+hostile_pairs = Array[Vector2i]([Vector2i(1, 4), Vector2i(2, 4), Vector2i(1, 5), Vector2i(2, 5)])
+cooperation_enabled = true
+loot_enabled = true
+responder_allied_to = PackedInt32Array(1, 2)
+responder_hostile_to = PackedInt32Array(4, 5)
+opportunist_ids = PackedInt32Array(1)
+betrayal_profile = ExtResource("3")
+[resource]
+script = ExtResource("1")
+mission_id = &"asset_recovery"
+display_name = "Operation: Asset Recovery"
+description = "Raiders are stripping the salvage facility. Intercept loaded Raiders and recover dropped cargo, then return to the Recall Dock. Original salvage stock is not directly collectable by your robot."
+risk_description = "Raiders scavenge, fight and extract independently. Allied machines provide support. Loot is finite; bank only what you can recover."
+briefing_required = true
+concise_hud = true
+objective_definitions = Array[ExtResource("12")]([SubResource("Materials"), SubResource("Extract"), SubResource("Equipment"), SubResource("Combat")])
+raider_count = 5
+entry_times = PackedFloat32Array(0, 0, 35, 70, 105)
+spawn_markers = PackedStringArray("Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "EncounterNorthEntry", "EncounterSouthEntry", "BetrayalEntry1", "BetrayalEntry3")
+player_start_marker = &"RecallDock"
+duration = 180.0
+seed = 87017
+armed = true
+death_flares = true
+player_extraction = true
+post_death_spectating = true
+machine_ecosystem = true
+social_rules = SubResource("Relations")
+
+encounter_layouts = Array[ExtResource("7")]([ExtResource("4"), ExtResource("5")])
+
+fallback_profiles = Array[ExtResource("11")]([ExtResource("8"), ExtResource("9"), ExtResource("10")])

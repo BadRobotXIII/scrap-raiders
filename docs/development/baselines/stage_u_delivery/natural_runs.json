@@ -1,0 +1,47 @@
+[
+  {
+    "label": "u",
+    "seed": 87017,
+    "exit": 0
+  },
+  {
+    "label": "u",
+    "seed": 87018,
+    "exit": 0
+  },
+  {
+    "label": "u",
+    "seed": 87019,
+    "exit": 0
+  },
+  {
+    "label": "u",
+    "seed": 87020,
+    "exit": 0
+  },
+  {
+    "label": "u",
+    "seed": 87021,
+    "exit": 0
+  },
+  {
+    "label": "u_repeat",
+    "seed": 87018,
+    "exit": 0
+  },
+  {
+    "label": "compact",
+    "seed": 87019,
+    "exit": 0
+  },
+  {
+    "label": "compact",
+    "seed": 87020,
+    "exit": 0
+  },
+  {
+    "label": "compact",
+    "seed": 87021,
+    "exit": 0
+  }
+]

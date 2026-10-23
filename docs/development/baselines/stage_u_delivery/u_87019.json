@@ -1,0 +1,2572 @@
+{
+	"actors": {
+		"1": {
+			"entry": 0.533333333333333,
+			"policy": 1,
+			"profile": "Greedy",
+			"responder": false
+		},
+		"2": {
+			"entry": 0.533333333333333,
+			"policy": 2,
+			"profile": "Cowardly",
+			"responder": false
+		},
+		"3": {
+			"entry": 35.1499999999993,
+			"policy": 3,
+			"profile": "Aggressive",
+			"responder": false
+		},
+		"4": {
+			"entry": 70.2833333333306,
+			"policy": 3,
+			"profile": "Aggressive",
+			"responder": false
+		},
+		"5": {
+			"entry": 105.416666666662,
+			"policy": 1,
+			"profile": "Greedy",
+			"responder": false
+		}
+	},
+	"cap_valid": true,
+	"conserved": true,
+	"elapsed": 145.616666666675,
+	"events": [
+		{
+			"a": 1,
+			"attitude": 0,
+			"b": 2,
+			"kind": "relation",
+			"reason": "authored alliance",
+			"time": 0.1
+		},
+		{
+			"a": 4,
+			"attitude": 0,
+			"b": 5,
+			"kind": "relation",
+			"reason": "authored alliance",
+			"time": 0.1
+		},
+		{
+			"a": 1,
+			"attitude": 2,
+			"b": 4,
+			"kind": "relation",
+			"reason": "authored rivalry",
+			"time": 0.1
+		},
+		{
+			"a": 2,
+			"attitude": 2,
+			"b": 4,
+			"kind": "relation",
+			"reason": "authored rivalry",
+			"time": 0.1
+		},
+		{
+			"a": 1,
+			"attitude": 2,
+			"b": 5,
+			"kind": "relation",
+			"reason": "authored rivalry",
+			"time": 0.1
+		},
+		{
+			"a": 2,
+			"attitude": 2,
+			"b": 5,
+			"kind": "relation",
+			"reason": "authored rivalry",
+			"time": 0.1
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 95.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 8.76666666666668
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 90.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 14.9000000000003
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 85.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 16.1000000000004
+		},
+		{
+			"actor": 2,
+			"kind": "extracted",
+			"materials": 0,
+			"time": 17.0333333333336
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 80.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 17.3000000000003
+		},
+		{
+			"actor": 1,
+			"hit": true,
+			"kind": "shot",
+			"target": "ScoutComponents",
+			"time": 25.5166666666665
+		},
+		{
+			"actor": 1,
+			"hit": true,
+			"kind": "shot",
+			"target": "ScoutComponents",
+			"time": 26.3166666666665
+		},
+		{
+			"actor": 1,
+			"hit": true,
+			"kind": "shot",
+			"target": "ScoutComponents",
+			"time": 27.1166666666664
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 75.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 27.4333333333331
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 70.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 28.633333333333
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 65.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 29.8333333333329
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 60.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 31.0333333333329
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 55.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 32.2333333333328
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 50.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 33.4333333333327
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 45.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 34.6333333333327
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 35.7999999999993
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 40.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 35.8333333333326
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 36.5999999999992
+		},
+		{
+			"actor": 1,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 35.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 37.0333333333325
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 37.3999999999992
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 38.1999999999991
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 38.9999999999991
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 39.799999999999
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 40.599999999999
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 41.3999999999989
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 42.1999999999989
+		},
+		{
+			"actor": 3,
+			"hit": true,
+			"kind": "shot",
+			"target": "Robot",
+			"time": 42.9999999999988
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 45.2999999999987
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 46.0999999999987
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 46.8999999999986
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 47.6999999999986
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 95.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 48.2333333333319
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 48.4999999999985
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 49.2999999999985
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 90.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 49.4333333333318
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 50.0999999999984
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 85.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 50.6333333333317
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 50.8999999999984
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 51.6999999999983
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 80.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 51.8333333333317
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 52.4999999999983
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 75.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 53.0333333333316
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 53.2999999999983
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 54.0999999999982
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 70.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 54.2333333333315
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 54.8999999999982
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 65.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 55.4333333333315
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 55.6999999999981
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 56.4999999999981
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 60.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 56.6333333333314
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 57.299999999998
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 55.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 57.8333333333313
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 58.099999999998
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 58.8999999999979
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 50.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 59.0333333333313
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 59.6999999999979
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 45.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 60.2333333333312
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 60.4999999999978
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 61.2999999999978
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 40.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 61.4333333333311
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 62.0999999999978
+		},
+		{
+			"actor": 1,
+			"kind": "extracted",
+			"materials": 3,
+			"time": 62.1999999999978
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 35.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 62.6333333333311
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 62.8999999999977
+		},
+		{
+			"actor": 3,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 63.6999999999977
+		},
+		{
+			"actor": 3,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 30.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 63.833333333331
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "ScoutComponents",
+			"time": 70.9333333333306
+		},
+		{
+			"actor": 3,
+			"kind": "extracted",
+			"materials": 0,
+			"time": 71.6499999999972
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "ScoutComponents",
+			"time": 71.7333333333305
+		},
+		{
+			"actor": 4,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 74.0999999999971
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 74.899999999997
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 75.699999999997
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 76.4999999999969
+		},
+		{
+			"actor": 4,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 77.2999999999969
+		},
+		{
+			"actor": 4,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 82.9333333333299
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 91.4333333333294
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 92.2333333333294
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 93.0333333333293
+		},
+		{
+			"actor": 4,
+			"hit": false,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 93.8333333333293
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 94.6333333333292
+		},
+		{
+			"actor": 4,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 95.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 100.766666666662
+		},
+		{
+			"actor": 4,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 90.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 101.966666666662
+		},
+		{
+			"actor": 4,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 85.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 110.366666666662
+		},
+		{
+			"actor": 4,
+			"amount": 5.0,
+			"kind": "raider_damage",
+			"remaining": 80.0,
+			"source": "GuardComponents",
+			"source_is_raider": false,
+			"time": 113.833333333328
+		},
+		{
+			"actor": 4,
+			"hit": true,
+			"kind": "shot",
+			"target": "GuardComponents",
+			"time": 114.466666666661
+		},
+		{
+			"actor": 4,
+			"kind": "extracted",
+			"materials": 3,
+			"time": 139.21666666667
+		},
+		{
+			"actor": 5,
+			"kind": "extracted",
+			"materials": 6,
+			"time": 145.616666666675
+		}
+	],
+	"frozen_result": true,
+	"load_ready_ms": 257.706,
+	"metrics": {
+		"actors": {
+			"1": {
+				"entry": 0.533333333333333,
+				"profile": "Greedy",
+				"responder": false
+			},
+			"2": {
+				"entry": 0.533333333333333,
+				"profile": "Cowardly",
+				"responder": false
+			},
+			"3": {
+				"entry": 35.1499999999993,
+				"profile": "Aggressive",
+				"responder": false
+			},
+			"4": {
+				"entry": 70.2833333333306,
+				"profile": "Aggressive",
+				"responder": false
+			},
+			"5": {
+				"entry": 105.416666666662,
+				"profile": "Greedy",
+				"responder": false
+			}
+		},
+		"combat_episodes": {
+			"censored": 0,
+			"count": 16,
+			"open": 0,
+			"seconds": 74.4499999999965
+		},
+		"counters": {
+			"admissions": 5.0,
+			"damaging_shots": 54.0,
+			"equipment_assign_loadout_events": 5.0,
+			"equipment_assign_loadout_items": 10.0,
+			"equipment_resolve_events": 5.0,
+			"equipment_resolve_items": 10.0,
+			"equipment_settle_player_events": 1.0,
+			"equipment_settle_player_items": 0.0,
+			"machine_deaths": 2.0,
+			"material_collect_events": 4.0,
+			"material_collect_ground_events": 1.0,
+			"material_collect_ground_units": 1.0,
+			"material_collect_units": 11.0,
+			"material_extract_events": 5.0,
+			"material_extract_units": 12.0,
+			"material_release_source_events": 2.0,
+			"material_release_source_units": 2.0,
+			"material_settle_player_events": 1.0,
+			"material_settle_player_units": 0.0,
+			"navigation_recoveries": 2.0,
+			"player_damage": 100.0,
+			"player_deaths": 1.0,
+			"shots": 82.0
+		},
+		"discarded_events": 0,
+		"duration": 145.616666666675,
+		"equipment": {
+			"BANKED": 0,
+			"CARRIED": 0,
+			"EXTRACTED": 10,
+			"FORFEITED": 0,
+			"GROUND": 0,
+			"RECOVERED": 0
+		},
+		"events": [
+			{
+				"fingerprint": "2b1ca6b715dde0a2569a0eb9be88a11a1c3c0efda8007b78af555211cf4ed920",
+				"kind": "capture_started",
+				"time": 0.0
+			},
+			{
+				"actor": 1,
+				"count": 2,
+				"kind": "equipment_assign_loadout",
+				"serial": 1,
+				"time": 0.533333333333333,
+				"value": 6
+			},
+			{
+				"actor": 1,
+				"kind": "admission",
+				"profile": "Greedy",
+				"responder": false,
+				"time": 0.533333333333333
+			},
+			{
+				"actor": 2,
+				"count": 2,
+				"kind": "equipment_assign_loadout",
+				"serial": 2,
+				"time": 0.533333333333333,
+				"value": 6
+			},
+			{
+				"actor": 2,
+				"kind": "admission",
+				"profile": "Cowardly",
+				"responder": false,
+				"time": 0.533333333333333
+			},
+			{
+				"actor": 1,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 0.533333333333333
+			},
+			{
+				"actor": 2,
+				"after": "FLEEING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 0.533333333333333
+			},
+			{
+				"actor": 1,
+				"after": "INVESTIGATING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 2.03333333333333
+			},
+			{
+				"actor": 2,
+				"after": "SELECTING",
+				"before": "FLEEING",
+				"kind": "state",
+				"time": 5.69999999999999
+			},
+			{
+				"actor": 2,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 5.69999999999999
+			},
+			{
+				"actor": 2,
+				"after": "INVESTIGATING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 5.86666666666665
+			},
+			{
+				"actor": 1,
+				"after": "TAKING_COVER",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 8.76666666666668
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 8.76666666666668
+			},
+			{
+				"actor": 2,
+				"after": "FLEEING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 9.86666666666674
+			},
+			{
+				"actor": 1,
+				"after": "REPOSITIONING",
+				"before": "TAKING_COVER",
+				"kind": "state",
+				"time": 10.9000000000001
+			},
+			{
+				"actor": 1,
+				"after": "ENGAGING",
+				"before": "REPOSITIONING",
+				"kind": "state",
+				"time": 13.5666666666669
+			},
+			{
+				"actor": 1,
+				"censored": false,
+				"duration": 4.93333333333358,
+				"kind": "combat_episode",
+				"time": 13.7000000000003
+			},
+			{
+				"actor": 1,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 13.7000000000003
+			},
+			{
+				"actor": 1,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 13.7000000000003
+			},
+			{
+				"actor": 2,
+				"after": "EXTRACTING",
+				"before": "FLEEING",
+				"kind": "state",
+				"time": 14.0333333333336
+			},
+			{
+				"actor": 1,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 14.366666666667
+			},
+			{
+				"actor": 1,
+				"after": "TAKING_COVER",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 14.9000000000003
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 14.9000000000003
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 16.1000000000004
+			},
+			{
+				"actor": 2,
+				"after": "EXTRACTED",
+				"before": "EXTRACTING",
+				"kind": "state",
+				"time": 17.0333333333336
+			},
+			{
+				"actor": 2,
+				"amount": 0,
+				"kind": "material_extract",
+				"serial": 1,
+				"time": 17.0333333333336
+			},
+			{
+				"actor": 2,
+				"count": 2,
+				"extracted": true,
+				"kind": "equipment_resolve",
+				"serial": 3,
+				"time": 17.0333333333336
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 17.3000000000003
+			},
+			{
+				"actor": 1,
+				"after": "REPOSITIONING",
+				"before": "TAKING_COVER",
+				"kind": "state",
+				"time": 21.6500000000001
+			},
+			{
+				"actor": 1,
+				"after": "ENGAGING",
+				"before": "REPOSITIONING",
+				"kind": "state",
+				"time": 23.3333333333333
+			},
+			{
+				"actor": 1,
+				"censored": false,
+				"duration": 8.99999999999966,
+				"kind": "combat_episode",
+				"time": 23.3666666666666
+			},
+			{
+				"actor": 1,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 23.3666666666666
+			},
+			{
+				"actor": 1,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 23.3666666666666
+			},
+			{
+				"actor": 1,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 24.8666666666665
+			},
+			{
+				"actor": "R1",
+				"damaged": true,
+				"kind": "shot",
+				"time": 25.5166666666665
+			},
+			{
+				"actor": "R1",
+				"damaged": true,
+				"kind": "shot",
+				"time": 26.3166666666665
+			},
+			{
+				"actor": "R1",
+				"damaged": true,
+				"kind": "shot",
+				"time": 27.1166666666664
+			},
+			{
+				"actor": 1,
+				"after": "TAKING_COVER",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 27.4333333333331
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 27.4333333333331
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 28.633333333333
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 29.8333333333329
+			},
+			{
+				"actor": 1,
+				"after": 9,
+				"before": 9,
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"kind": "navigation_recovery",
+				"reason": "low progress",
+				"result": "REPATH REQUESTED",
+				"time": 30.4499999999996
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 31.0333333333329
+			},
+			{
+				"actor": 1,
+				"censored": false,
+				"duration": 6.66666666666629,
+				"kind": "combat_episode",
+				"time": 31.5333333333328
+			},
+			{
+				"actor": 1,
+				"after": "FLEEING",
+				"before": "TAKING_COVER",
+				"kind": "state",
+				"time": 31.5333333333328
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 32.2333333333328
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 33.4333333333327
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 34.6333333333327
+			},
+			{
+				"actor": 3,
+				"count": 2,
+				"kind": "equipment_assign_loadout",
+				"serial": 4,
+				"time": 35.1499999999993,
+				"value": 6
+			},
+			{
+				"actor": 3,
+				"kind": "admission",
+				"profile": "Aggressive",
+				"responder": false,
+				"time": 35.1499999999993
+			},
+			{
+				"actor": 3,
+				"after": "ENGAGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 35.1499999999993
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 35.7999999999993
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 35.7999999999993
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 35.8333333333326
+			},
+			{
+				"actor": 1,
+				"after": 1,
+				"before": 1,
+				"goal": [
+					30.0,
+					0.0,
+					25.0
+				],
+				"kind": "navigation_recovery",
+				"reason": "low progress",
+				"result": "REPATH REQUESTED",
+				"time": 36.0666666666659
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 36.5999999999992
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 36.5999999999992
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 37.0333333333325
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 37.3999999999992
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 37.3999999999992
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 38.1999999999991
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 38.1999999999991
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 38.9999999999991
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 38.9999999999991
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 39.799999999999
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 39.799999999999
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 40.599999999999
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 40.599999999999
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 41.3999999999989
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 41.3999999999989
+			},
+			{
+				"actor": 1,
+				"after": "SELECTING",
+				"before": "FLEEING",
+				"kind": "state",
+				"time": 42.0333333333322
+			},
+			{
+				"actor": 1,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 42.0333333333322
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 42.1999999999989
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 42.1999999999989
+			},
+			{
+				"amount": 10.0,
+				"instigator": "Raider3",
+				"kind": "player_damage",
+				"time": 42.9999999999988
+			},
+			{
+				"amount": 0,
+				"extracted": false,
+				"kind": "material_settle_player",
+				"serial": 2,
+				"time": 42.9999999999988
+			},
+			{
+				"count": 0,
+				"extracted": false,
+				"kind": "equipment_settle_player",
+				"serial": 5,
+				"time": 42.9999999999988,
+				"value": 0
+			},
+			{
+				"kind": "player_death",
+				"time": 42.9999999999988
+			},
+			{
+				"actor": "R3",
+				"damaged": true,
+				"kind": "shot",
+				"time": 42.9999999999988
+			},
+			{
+				"actor": 3,
+				"censored": false,
+				"duration": 7.99999999999955,
+				"kind": "combat_episode",
+				"time": 43.1499999999988
+			},
+			{
+				"actor": 3,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 43.1499999999988
+			},
+			{
+				"actor": 3,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 43.1499999999988
+			},
+			{
+				"actor": 3,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 44.6499999999987
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 45.2999999999987
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 46.0999999999987
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 46.8999999999986
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 47.6999999999986
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 48.2333333333319
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 48.4999999999985
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 49.2999999999985
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 49.4333333333318
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 50.0999999999984
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 50.6333333333317
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 50.8999999999984
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 51.6999999999983
+			},
+			{
+				"actor": 1,
+				"amount": 3,
+				"kind": "material_collect",
+				"serial": 3,
+				"source": "Salvage3",
+				"time": 51.7833333333317
+			},
+			{
+				"actor": 1,
+				"after": "SELECTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 51.7833333333317
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 51.8333333333317
+			},
+			{
+				"actor": 1,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 51.866666666665
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 52.4999999999983
+			},
+			{
+				"actor": 1,
+				"after": "FLEEING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 52.8666666666649
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 53.0333333333316
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 53.2999999999983
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 54.0999999999982
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 54.2333333333315
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 54.8999999999982
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 55.4333333333315
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 55.6999999999981
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 56.4999999999981
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 56.6333333333314
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 57.299999999998
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 57.8333333333313
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 58.099999999998
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 58.8999999999979
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 59.0333333333313
+			},
+			{
+				"actor": 1,
+				"after": "EXTRACTING",
+				"before": "FLEEING",
+				"kind": "state",
+				"time": 59.1999999999979
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 59.6999999999979
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 60.2333333333312
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 60.4999999999978
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 61.2999999999978
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 61.4333333333311
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 62.0999999999978
+			},
+			{
+				"actor": 1,
+				"after": "EXTRACTED",
+				"before": "EXTRACTING",
+				"kind": "state",
+				"time": 62.1999999999978
+			},
+			{
+				"actor": 1,
+				"amount": 3,
+				"kind": "material_extract",
+				"serial": 4,
+				"time": 62.1999999999978
+			},
+			{
+				"actor": 1,
+				"count": 2,
+				"extracted": true,
+				"kind": "equipment_resolve",
+				"serial": 6,
+				"time": 62.1999999999978
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 62.6333333333311
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 62.8999999999977
+			},
+			{
+				"actor": "R3",
+				"damaged": false,
+				"kind": "shot",
+				"time": 63.6999999999977
+			},
+			{
+				"actor": 3,
+				"censored": false,
+				"duration": 19.1833333333322,
+				"kind": "combat_episode",
+				"time": 63.833333333331
+			},
+			{
+				"actor": 3,
+				"after": "FLEEING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 63.833333333331
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 63.833333333331
+			},
+			{
+				"actor": 3,
+				"after": "EXTRACTING",
+				"before": "FLEEING",
+				"kind": "state",
+				"time": 68.6499999999974
+			},
+			{
+				"actor": 4,
+				"count": 2,
+				"kind": "equipment_assign_loadout",
+				"serial": 7,
+				"time": 70.2833333333306,
+				"value": 6
+			},
+			{
+				"actor": 4,
+				"kind": "admission",
+				"profile": "Aggressive",
+				"responder": false,
+				"time": 70.2833333333306
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 70.2833333333306
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 70.9333333333306
+			},
+			{
+				"actor": 3,
+				"after": "EXTRACTED",
+				"before": "EXTRACTING",
+				"kind": "state",
+				"time": 71.6499999999972
+			},
+			{
+				"actor": 3,
+				"amount": 0,
+				"kind": "material_extract",
+				"serial": 5,
+				"time": 71.6499999999972
+			},
+			{
+				"actor": 3,
+				"count": 2,
+				"extracted": true,
+				"kind": "equipment_resolve",
+				"serial": 8,
+				"time": 71.6499999999972
+			},
+			{
+				"amount": 1,
+				"drop": 1,
+				"kind": "material_release_source",
+				"serial": 6,
+				"source": "ScoutComponents",
+				"time": 71.7333333333305
+			},
+			{
+				"actor": "ScoutComponents",
+				"instigator": "Raider4",
+				"kind": "machine_death",
+				"time": 71.7333333333305
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 71.7333333333305
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 1.49999999999991,
+				"kind": "combat_episode",
+				"time": 71.7833333333305
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 71.7833333333305
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 71.7833333333305
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 73.4499999999971
+			},
+			{
+				"actor": "R4",
+				"damaged": false,
+				"kind": "shot",
+				"time": 74.0999999999971
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 74.899999999997
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 75.699999999997
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 76.4999999999969
+			},
+			{
+				"actor": "R4",
+				"damaged": false,
+				"kind": "shot",
+				"time": 77.2999999999969
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 4.6666666666664,
+				"kind": "combat_episode",
+				"time": 78.1166666666635
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 78.1166666666635
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 78.4499999999968
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.166666666666657,
+				"kind": "combat_episode",
+				"time": 78.6166666666635
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 78.6166666666635
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 79.4499999999968
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.166666666666657,
+				"kind": "combat_episode",
+				"time": 79.6166666666634
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 79.6166666666634
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 80.4499999999967
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.166666666666657,
+				"kind": "combat_episode",
+				"time": 80.6166666666634
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 80.6166666666634
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 81.4499999999967
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.166666666666657,
+				"kind": "combat_episode",
+				"time": 81.6166666666633
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 81.6166666666633
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 82.2833333333299
+			},
+			{
+				"actor": "R4",
+				"damaged": false,
+				"kind": "shot",
+				"time": 82.9333333333299
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.833333333333286,
+				"kind": "combat_episode",
+				"time": 83.1166666666632
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 83.1166666666632
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 83.2833333333299
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 0.666666666666629,
+				"kind": "combat_episode",
+				"time": 83.9499999999965
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 83.9499999999965
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 87.9499999999963
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 87.9499999999963
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 90.7833333333295
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 91.4333333333294
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 92.2333333333294
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 93.0333333333293
+			},
+			{
+				"actor": "R4",
+				"damaged": false,
+				"kind": "shot",
+				"time": 93.8333333333293
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 94.6333333333292
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 4.49999999999974,
+				"kind": "combat_episode",
+				"time": 95.2833333333292
+			},
+			{
+				"actor": 4,
+				"after": "INVESTIGATING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 95.2833333333292
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 99.283333333329
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 99.283333333329
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 100.283333333329
+			},
+			{
+				"actor": 4,
+				"after": "TAKING_COVER",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 100.766666666662
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 100.766666666662
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 101.966666666662
+			},
+			{
+				"actor": 5,
+				"count": 2,
+				"kind": "equipment_assign_loadout",
+				"serial": 9,
+				"time": 105.416666666662,
+				"value": 6
+			},
+			{
+				"actor": 5,
+				"kind": "admission",
+				"profile": "Greedy",
+				"responder": false,
+				"time": 105.416666666662
+			},
+			{
+				"actor": 5,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 105.416666666662
+			},
+			{
+				"actor": 4,
+				"after": "REPOSITIONING",
+				"before": "TAKING_COVER",
+				"kind": "state",
+				"time": 107.533333333329
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "REPOSITIONING",
+				"kind": "state",
+				"time": 109.216666666662
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 8.99999999999949,
+				"kind": "combat_episode",
+				"time": 109.283333333328
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 109.283333333328
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 109.283333333328
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 109.783333333328
+			},
+			{
+				"actor": 4,
+				"after": "TAKING_COVER",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 110.366666666662
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 110.366666666662
+			},
+			{
+				"actor": 4,
+				"after": "REPOSITIONING",
+				"before": "TAKING_COVER",
+				"kind": "state",
+				"time": 112.649999999995
+			},
+			{
+				"actor": 5,
+				"after": "INVESTIGATING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 113.249999999995
+			},
+			{
+				"actor": 4,
+				"after": "ENGAGING",
+				"before": "REPOSITIONING",
+				"kind": "state",
+				"time": 113.816666666661
+			},
+			{
+				"actor": "GuardComponents",
+				"damaged": true,
+				"kind": "shot",
+				"time": 113.833333333328
+			},
+			{
+				"amount": 1,
+				"drop": 2,
+				"kind": "material_release_source",
+				"serial": 7,
+				"source": "GuardComponents",
+				"time": 114.466666666661
+			},
+			{
+				"actor": "GuardComponents",
+				"instigator": "Raider4",
+				"kind": "machine_death",
+				"time": 114.466666666661
+			},
+			{
+				"actor": "R4",
+				"damaged": true,
+				"kind": "shot",
+				"time": 114.466666666661
+			},
+			{
+				"actor": 4,
+				"censored": false,
+				"duration": 4.83333333333306,
+				"kind": "combat_episode",
+				"time": 114.616666666661
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "ENGAGING",
+				"kind": "state",
+				"time": 114.616666666661
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 114.616666666661
+			},
+			{
+				"actor": 5,
+				"after": "SELECTING",
+				"before": "INVESTIGATING",
+				"kind": "state",
+				"time": 117.416666666661
+			},
+			{
+				"actor": 5,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 117.416666666661
+			},
+			{
+				"actor": 4,
+				"amount": 1,
+				"drop": 2,
+				"kind": "material_collect_ground",
+				"serial": 8,
+				"time": 118.149999999995
+			},
+			{
+				"actor": 4,
+				"after": "SELECTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 118.149999999995
+			},
+			{
+				"actor": 5,
+				"after": "SELECTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 118.166666666661
+			},
+			{
+				"actor": 5,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 118.249999999995
+			},
+			{
+				"actor": 4,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 118.283333333328
+			},
+			{
+				"actor": 4,
+				"amount": 2,
+				"kind": "material_collect",
+				"serial": 9,
+				"source": "Salvage",
+				"time": 123.416666666661
+			},
+			{
+				"actor": 4,
+				"after": "EXTRACTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 123.416666666661
+			},
+			{
+				"actor": 5,
+				"amount": 4,
+				"kind": "material_collect",
+				"serial": 10,
+				"source": "Salvage",
+				"time": 125.399999999994
+			},
+			{
+				"actor": 5,
+				"after": "SELECTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 125.399999999994
+			},
+			{
+				"actor": 5,
+				"after": "SCAVENGING",
+				"before": "SELECTING",
+				"kind": "state",
+				"time": 125.416666666661
+			},
+			{
+				"actor": 5,
+				"amount": 2,
+				"kind": "material_collect",
+				"serial": 11,
+				"source": "Salvage2",
+				"time": 135.6
+			},
+			{
+				"actor": 5,
+				"after": "EXTRACTING",
+				"before": "SCAVENGING",
+				"kind": "state",
+				"time": 135.6
+			},
+			{
+				"actor": 4,
+				"after": "EXTRACTED",
+				"before": "EXTRACTING",
+				"kind": "state",
+				"time": 139.21666666667
+			},
+			{
+				"actor": 4,
+				"amount": 3,
+				"kind": "material_extract",
+				"serial": 12,
+				"time": 139.21666666667
+			},
+			{
+				"actor": 4,
+				"count": 2,
+				"extracted": true,
+				"kind": "equipment_resolve",
+				"serial": 10,
+				"time": 139.21666666667
+			},
+			{
+				"actor": 5,
+				"after": "EXTRACTED",
+				"before": "EXTRACTING",
+				"kind": "state",
+				"time": 145.616666666675
+			},
+			{
+				"actor": 5,
+				"amount": 6,
+				"kind": "material_extract",
+				"serial": 13,
+				"time": 145.616666666675
+			},
+			{
+				"actor": 5,
+				"count": 2,
+				"extracted": true,
+				"kind": "equipment_resolve",
+				"serial": 11,
+				"time": 145.616666666675
+			}
+		],
+		"materials": {
+			"banked": 0,
+			"cargo": 0,
+			"extracted": 12,
+			"forfeited": 0,
+			"ground": 1,
+			"recovered": 0,
+			"stock": 1,
+			"total": 14,
+			"valid": true
+		},
+		"peak_raiders": 2,
+		"reason": "No surviving actors or pending entries remain.",
+		"response_tickets_committed": 0,
+		"setup": {
+			"config": "res://resources/missions/expanded_asset_recovery.tres",
+			"config_sha256": "a0605faffa42e5ad476b6d7e47d5e0e275b3c5e54509798972b06cf66e0a5447",
+			"entries": [
+				"Spawn1",
+				"Spawn2",
+				"Spawn3",
+				"Spawn4",
+				"Spawn5"
+			],
+			"fingerprint": "2b1ca6b715dde0a2569a0eb9be88a11a1c3c0efda8007b78af555211cf4ed920",
+			"layout": "u_west",
+			"positions": [
+				[
+					1.0,
+					0.0,
+					0.0
+				],
+				[
+					-19.0,
+					0.0,
+					-7.0
+				],
+				[
+					22.0,
+					1.0,
+					0.0
+				]
+			],
+			"profile_sources": [
+				{
+					"path": "res://resources/enemies/q_greedy.tres",
+					"sha256": "9d86e14cb483280fa1ed4d15ded0629c2170e53a8d855959f32003e949a6c107"
+				},
+				{
+					"path": "res://resources/enemies/q_cowardly.tres",
+					"sha256": "b7ae8c997711c70f0093fee8388f7bbf2c4a0d1f386f228574e85cbcb5e45988"
+				},
+				{
+					"path": "res://resources/enemies/q_aggressive.tres",
+					"sha256": "ed52284baecdd97e14aad5f32441ed92ab9ea10b584303f737ff3c434c30f087"
+				},
+				{
+					"path": "res://resources/enemies/q_aggressive.tres",
+					"sha256": "ed52284baecdd97e14aad5f32441ed92ab9ea10b584303f737ff3c434c30f087"
+				},
+				{
+					"path": "res://resources/enemies/q_greedy.tres",
+					"sha256": "9d86e14cb483280fa1ed4d15ded0629c2170e53a8d855959f32003e949a6c107"
+				}
+			],
+			"profiles": [
+				"Greedy",
+				"Cowardly",
+				"Aggressive",
+				"Aggressive",
+				"Greedy"
+			],
+			"quantities": [
+				6,
+				3,
+				3
+			],
+			"routes": [
+				"ScoutRoute",
+				"GuardRoute"
+			],
+			"seed": 87019,
+			"times": [
+				0.0,
+				0.0,
+				35.0,
+				70.0,
+				105.0
+			]
+		},
+		"stopped": true,
+		"unresolved": []
+	},
+	"result": {
+		"deployment_id": "b3397c3156821eff7056ea51bba52f0e",
+		"destroyed": true,
+		"duration": 42.9999999999988,
+		"equipment_banked": 0,
+		"equipment_forfeited": 0,
+		"equipment_picked_up": 0,
+		"expired": false,
+		"extracted": false,
+		"materials_banked": 0,
+		"materials_forfeited": 0,
+		"materials_picked_up": 0,
+		"mission_id": "expanded_asset_recovery",
+		"mission_name": "Operation: Salvage Complex",
+		"objectives": [
+			{
+				"carried": 0,
+				"description": "Bank 3 material units",
+				"id": "secure_materials",
+				"kind": 0,
+				"progress": 0,
+				"required": true,
+				"status": "failed",
+				"target": 3
+			},
+			{
+				"carried": 0,
+				"description": "Survive and extract",
+				"id": "extract",
+				"kind": 2,
+				"progress": 0,
+				"required": true,
+				"status": "failed",
+				"target": 1
+			},
+			{
+				"carried": 0,
+				"description": "Bank at least 1 equipment item",
+				"id": "secure_equipment",
+				"kind": 1,
+				"progress": 0,
+				"required": false,
+				"status": "failed",
+				"target": 1
+			},
+			{
+				"carried": 0,
+				"description": "Personally defeat 1 hostile Raider",
+				"id": "stop_raider",
+				"kind": 3,
+				"progress": 0,
+				"required": false,
+				"status": "failed",
+				"target": 1
+			}
+		],
+		"reason": "Robot destroyed. Carried loot forfeited; stash unchanged.",
+		"success": false
+	},
+	"samples": {
+		"ally_report_intent": 76,
+		"fresh_cached_allied_report": 32,
+		"loot_memory_present": 53,
+		"opportunist_can_assess": 5
+	},
+	"seed": 87019,
+	"setup": {
+		"entries": [
+			"Spawn1",
+			"Spawn2",
+			"Spawn3",
+			"Spawn4",
+			"Spawn5"
+		],
+		"layout": "u_west",
+		"positions": [
+			[
+				1.0,
+				0.0,
+				0.0
+			],
+			[
+				-19.0,
+				0.0,
+				-7.0
+			],
+			[
+				22.0,
+				1.0,
+				0.0
+			]
+		],
+		"profiles": [
+			"Greedy",
+			"Cowardly",
+			"Aggressive",
+			"Aggressive",
+			"Greedy"
+		],
+		"quantities": [
+			6,
+			3,
+			3
+		],
+		"routes": [
+			"ScoutRoute",
+			"GuardRoute"
+		],
+		"seed": 87019,
+		"times": [
+			0.0,
+			0.0,
+			35.0,
+			70.0,
+			105.0
+		]
+	}
+}

@@ -1,0 +1,23 @@
+extends SceneTree
+
+
+func _initialize() -> void:
+	call_deferred("run")
+
+
+func run() -> void:
+	var arena := load("res://scenes/levels/refined_extraction_arena.tscn").instantiate() as Node3D
+	arena.stash_path = "res://.godot/stage_r_baseline/ui_stash.json"
+	root.add_child(arena)
+	current_scene = arena
+	arena.robot.input_adapter.set_physics_process(false)
+	arena.robot.input_adapter.set_process_input(false)
+	for index in range(80):
+		await physics_frame
+		await process_frame
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png("res://.godot/stage_r_baseline/refined_hud.png")
+	arena.queue_free()
+	for index in range(30):
+		await process_frame
+	quit()

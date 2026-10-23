@@ -1,0 +1,79 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Cooperation is opt-in and owns separate per-Raider observations
+R02: SELECTING -> ENGAGING
+PASS: Source sees rival while physical cover hides it from ally
+R01: SELECTING -> INVESTIGATING
+PASS: Ally independently investigates report without gaining visual targeting
+PASS: Repeated stationary reports preserve the active investigation timer
+PASS: Report carries the actual last-known snapshot
+PASS: Reports do not leak to hostile actors or relay through an unseen ally
+PASS: Non-finite observations cannot enter memory
+PASS: Unseen target movement and detached diagnostic mutation cannot change snapshot
+PASS: Communication radius rejects out-of-range ally
+PASS: Neutral competitor receives no allied report
+R01: INVESTIGATING -> FLEEING
+PASS: Report cannot override an active retreat
+R01: FLEEING -> SELECTING
+R01: SELECTING -> INVESTIGATING
+R01: INVESTIGATING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Expiry clears observations and releases reported investigation
+PASS: Finite original stock is loaded before ordinary rival death
+R03: SELECTING -> DEAD
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Visible death cargo becomes a scored salvage objective
+PASS: Unseen loot memory expires rather than exposing global drop locations
+PASS: Fresh visible observation rediscovers the same finite drop
+PASS: Distant cargo collection is rejected despite remembered identity
+PASS: Unregistered lookalike view cannot transfer a real drop allocation
+PASS: Close scavenging cannot reach through cover
+PASS: Capacity-limited recovery transfers two units and leaves one real unit
+PASS: Duplicate completed collection cannot exceed capacity
+PASS: Player can recover the remaining contested unit normally
+R02: ENGAGING -> SCAVENGING
+PASS: Late Raider request cannot duplicate the player-consumed stack
+PASS: Consumed drop identity clears from local loot memory
+R01: SCAVENGING -> DEAD
+PASS: Re-looted cargo remains carried and is not yet extraction loss
+R02: SCAVENGING -> EXTRACTING
+R02: EXTRACTING -> EXTRACTED
+PASS: Only completed physical extraction records the re-looted two units as lost
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> DEAD
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Natural Raider physically approaches, scavenges and extracts defeated rival cargo
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Social flare captures explicit responder attitude policy
+R02: SELECTING -> INVESTIGATING
+R03: SELECTING -> INVESTIGATING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+PASS: Bounded responder has independent perception without a squad requirement
+PASS: Responder uses authored ally/rival attitudes rather than inferred membership
+R02: INVESTIGATING -> DEAD
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+PASS: Second finite responder is explicitly allied to existing responders
+R04: INVESTIGATING -> DEAD
+PASS: Responder death cannot replenish the budget or create material stock
+PASS: Deadline seals social pressure with equipment ownership intact
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Restart rebuilds cooperation, finite materials and response budget
+Stage L social cooperation checks complete; failures: 0
