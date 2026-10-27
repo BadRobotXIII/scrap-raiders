@@ -1,0 +1,75 @@
+extends "res://tests/asset_pipeline_test.gd"
+var shot_log: Array = []
+var transfer_log: Array = []
+var weapons: Dictionary = {}
+func fired(a: Vector3, b: Vector3, damaged: bool, id: String) -> void:
+ shot_log.append([id,a,b,damaged])
+func transfer(kind: StringName, details: Dictionary, source: String) -> void:
+ transfer_log.append([source,kind,details.duplicate(true)])
+func hook(arena: Node3D) -> void:
+ for id in arena.raiders:
+  var actor = arena.raiders[id]
+  if is_instance_valid(actor) and not weapons.has(id):
+   weapons[id]=true
+   actor.combat.weapon.fired.connect(fired.bind("R%d" % id))
+func play(seed_value: int) -> Dictionary:
+ seed(90210)
+ shot_log=[];transfer_log=[];weapons={}
+ var arena: Node3D=load("res://scenes/levels/expanded_salvage_complex.tscn").instantiate()
+ arena.stash_path=test_directory+"/replay_%d.json" % seed_value
+ arena.seed_override=seed_value
+ arena.capture_metrics=true
+ root.add_child(arena)
+ current_scene=arena
+ await start_frozen(arena)
+ arena.ledger.transfer_accepted.connect(transfer.bind("material"))
+ arena.flare_director.equipment.transfer_accepted.connect(transfer.bind("equipment"))
+ var nav: NavigationMesh = arena.get_node("NavigationRegion3D").navigation_mesh
+ var polygons: Array = []
+ for i in range(nav.get_polygon_count()):polygons.append(Array(nav.get_polygon(i)))
+ var geometry: Dictionary = snapshot_contract(arena)
+ var navigation := {"vertices":Array(nav.get_vertices()),"polygons":polygons}
+ arena.robot.position=Vector3(100,.1,100)
+ if OS.get_cmdline_user_args().has("spectate"):
+  arena.spectator.enter()
+  arena.spectator.set_process(false)
+ arena.set_physics_process(true);arena.flare_director.set_physics_process(true)
+ for actor in arena.raiders.values():
+  actor.set_physics_process(true);actor.combat.weapon.set_physics_process(true)
+ for machine in arena.ecosystem.machines:
+  machine.set_physics_process(true)
+  if machine.weapon!=null:
+   machine.weapon.set_physics_process(true)
+   machine.weapon.fired.connect(fired.bind(str(machine.source_id)))
+ hook(arena)
+ var timeline: Array = []
+ var conserved:=true
+ for tick in range(2400):
+  await frames(1)
+  if arena.spectator.active and tick % 120 == 0:
+   arena.spectator.camera.position=Vector3(-30 + (tick % 60), 15, 25)
+  hook(arena)
+  conserved=conserved and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+  if tick%30==0:
+   var sample: Array=[]
+   for id in arena.raiders:
+    var actor=arena.raiders[id]
+    if is_instance_valid(actor):
+     var target: Node3D=actor.current_target()
+     sample.append([id,actor.state,actor.position.snapped(Vector3.ONE*.001),actor.health.current,actor.carried_materials,str(target.name) if is_instance_valid(target) else "none",str(actor.salvage.name) if is_instance_valid(actor.salvage) else "none"])
+   for machine in arena.ecosystem.machines:
+    if is_instance_valid(machine):sample.append([str(machine.source_id),machine.position.snapped(Vector3.ONE*.001),machine.health.current])
+   timeline.append(sample)
+ var data: Dictionary={"seed":seed_value,"geometry":geometry,"navigation":navigation,"timeline":timeline,"shots":shot_log.duplicate(true),"transfers":transfer_log.duplicate(true),"counters":arena.metrics.counters.duplicate(true),"events":arena.metrics.events.duplicate(true),"equipment":arena.flare_director.equipment._items.duplicate(true),"objectives":arena.mission_objectives.snapshot(),"stash":FileAccess.get_file_as_string(arena.stash_path) if FileAccess.file_exists(arena.stash_path) else "absent","conserved":conserved}
+ arena.queue_free()
+ await frames(30)
+ return data
+func run() -> void:
+ test_directory="res://.godot/y_replay_saves/"+Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var cases: Array=[]
+ for seed_value in [87017,87018]:cases.append(await play(seed_value))
+ var file:=FileAccess.open("res://.godot/stage_z_audit/replay_" + ("spectator" if OS.get_cmdline_user_args().has("spectate") else "final") + ".json",FileAccess.WRITE)
+ file.store_string(JSON.stringify(DeploymentMetrics.serializable(cases),"\t"));file.close()
+ print("Y REPLAY COMPLETE ",failures)
+ quit(1 if failures else 0)

@@ -1,0 +1,14 @@
+from pathlib import Path
+import subprocess,json,shutil
+out=Path('.godot/stage_y')
+for file in ['performance_y_full_bay.json','performance_y_full_overview.json','death_y_full_peak.json']:shutil.copy2(Path('.godot/stage_w/performance')/file,out/('pre_top_'+file))
+for name,args,marker in [('performance',['python',str(out/'performance.py')],None),('regression',['python',str(out/'validate.py')],None),('inventory',[r'C:\Users\kzulf\bin\godot.cmd','--path','.','--script','res://.godot/stage_y/full_inspect.gd','--quit-after','3000'],'Stage Y inventory failures: 0'),('native',[r'C:\Users\kzulf\bin\godot.cmd','--headless','--path','.','--script','res://tests/world_population_test.gd','--quit-after','3000'],'World population failures: 0'),('replay',[r'C:\Users\kzulf\bin\godot.cmd','--headless','--path','.','--fixed-fps','60','--script','res://.godot/stage_y/replay.gd','--quit-after','15000'],'Y REPLAY COMPLETE 0')]:
+ log=out/('final_gate_'+name+'.log.txt')
+ with log.open('w') as f:r=subprocess.run(args,stdout=f,stderr=subprocess.STDOUT,timeout=260)
+ text=log.read_text(errors='replace');print(name,r.returncode,'marker',marker is None or marker in text,flush=True)
+ if r.returncode or (marker is not None and marker not in text):raise SystemExit(1)
+ if name=='performance':
+  for view,baseline in [('bay',5.437),('overview',5.538)]:
+   data=json.loads((Path('.godot/stage_w/performance')/('performance_y_full_'+view+'.json')).read_text())
+   assert data['max_draw_calls']<=467 and data['max_rendered_primitives']<=178020 and data['p95_ms']<=baseline+1, data
+a=json.loads((out/'baseline_replay.json').read_text());b=json.loads(Path('.godot/y_replay.json').read_text());c=json.loads((out/'repeat_replay.json').read_text());result={'baseline_equal':a==b,'prior_repeat_equal':b==c};(out/'final_gate_replay_comparison.json').write_text(json.dumps(result,indent=2));print(result,flush=True)

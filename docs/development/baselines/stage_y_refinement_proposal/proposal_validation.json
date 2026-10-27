@@ -1,0 +1,48 @@
+[
+	{
+		"all_sites_clear": true,
+		"navigation_error": "",
+		"new_clusters": [
+			[
+				5.0,
+				0.0,
+				-24.0
+			],
+			[
+				30.0,
+				0.0,
+				15.0
+			],
+			[
+				-32.0,
+				0.0,
+				14.0
+			]
+		],
+		"original_contract_preserved": true,
+		"seed": 87017
+	},
+	{
+		"all_sites_clear": true,
+		"navigation_error": "",
+		"new_clusters": [
+			[
+				5.0,
+				0.0,
+				-24.0
+			],
+			[
+				30.0,
+				0.0,
+				15.0
+			],
+			[
+				-32.0,
+				0.0,
+				14.0
+			]
+		],
+		"original_contract_preserved": true,
+		"seed": 87018
+	}
+]

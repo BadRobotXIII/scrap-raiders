@@ -1,0 +1,52 @@
+extends "res://tests/gameplay_integration_test.gd"
+## Ignored diagnostic fixture: real LOS for loaded Greedy defense continuity.
+
+
+func run() -> void:
+	test_directory = "res://.godot/action_commitment_tests/greedy_" + Crypto.new().generate_random_bytes(8).hex_encode()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+	var arena := await isolated_s("greedy", 87018)
+	await all_entries(arena)
+	var actor: Raider = arena.raiders[4]
+	var target: Raider = arena.raiders[1]
+	actor.profile = load("res://resources/enemies/q_greedy.tres").duplicate()
+	actor.position = Vector3(0, 0.1, 8)
+	target.position = Vector3(0, 0.1, 14)
+	target.health.maximum = 1000
+	target.health.current = 1000
+	actor.combat.reserve_cover = func(_id: int) -> Node3D: return null
+	# Use real finite cargo and actual observed incoming damage. Greedy should
+	# finish bounded defense before considering the already accepted cargo escape.
+	check(arena.ledger.collect(4, &"Salvage", 1) == 1, "Greedy defense fixture transfers one existing material")
+	var wall := barrier(arena)
+	var collider := wall.get_child(0) as CollisionShape3D
+	collider.disabled = true
+	await frames(3)
+	actor.health.apply_damage(1, target.position, target.get_instance_id())
+	actor.decide()
+	check(actor.state == Raider.State.ENGAGING and actor.combat.defending and not actor.combat.escaping, "Observed attacker starts bounded defense despite actual carried cargo")
+	var transitions := {"count": 0}
+	actor.state_changed.connect(func(previous: Raider.State, next: Raider.State) -> void:
+		if previous in [Raider.State.ENGAGING, Raider.State.INVESTIGATING] and next in [Raider.State.ENGAGING, Raider.State.INVESTIGATING]:
+			transitions.count += 1)
+	actor.set_physics_process(true)
+	actor.combat.weapon.set_physics_process(true)
+	var retained := true
+	for cycle in range(8):
+		collider.disabled = false
+		await frames(9)
+		retained = retained and actor.state == Raider.State.ENGAGING
+		collider.disabled = true
+		await frames(9)
+		retained = retained and actor.state == Raider.State.ENGAGING
+	freeze(arena)
+	print("GREEDY_REAL_LOS transitions=", transitions.count, " retained=", retained, " defended=", actor.combat.defending, " escaped=", actor.combat.escaping, " cargo=", actor.carried_materials)
+	check(retained and transitions.count == 0, "Greedy bounded defense does not animate every brief visibility alternative")
+	actor.combat.commit_remaining = 0
+	actor.decide()
+	check(actor.state == Raider.State.FLEEING and actor.combat.escaping, "Expired defense still yields immediately to loaded Greedy cargo preservation")
+	check(arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid(), "Greedy continuity preserves finite ownership")
+	arena.queue_free()
+	await frames(30)
+	print("Greedy grace probe failures: ", failures)
+	quit(1 if failures else 0)

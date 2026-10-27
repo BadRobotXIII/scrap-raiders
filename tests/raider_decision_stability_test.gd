@@ -53,6 +53,7 @@ func pursuit_with_competing_target() -> void:
 	check(observer.combat_target == original, "Aggressive Raider initially observes the nearer eligible opponent")
 	var wall := barrier(arena)
 	await frames(3)
+	observer.combat.tick(0.66) # Finish bounded LOS grace in this frozen fixture.
 	observer.decide()
 	check(observer.combat.pursuing and not observer.threat_visible, "Occluded opponent starts existing bounded snapshot pursuit")
 	var snapshot := observer.investigation_position
@@ -80,6 +81,29 @@ func pursuit_with_competing_target() -> void:
 	alternative.health.apply_damage(1000)
 	observer.decide()
 	check(observer.combat_target != alternative and not observer.combat.pursuing, "Resolved opponent or expired observation releases commitment")
+	arena.queue_free()
+	await frames(30)
+	# A new opponent has not been briefly reacquired. Its first eligible sighting
+	# must not inherit the dead opponent's pursuit-confirmation requirement.
+	arena = await isolated_s("resolved_pursuit", 87018)
+	await all_entries(arena)
+	observer = arena.raiders[4]
+	original = arena.raiders[1]
+	alternative = arena.raiders[2]
+	observer.position = Vector3(0, 0.1, 8)
+	original.position = Vector3(0, 0.1, 14)
+	alternative.position = Vector3(-5, 0.1, 14)
+	await frames(3)
+	observer.decide()
+	wall = barrier(arena)
+	await frames(3)
+	observer.combat.tick(0.66)
+	observer.decide()
+	check(observer.combat_target == original and observer.combat.pursuing and not observer.detects_actor(original) and observer.detects_actor(alternative), "Resolved-pursuit fixture has one remembered occluded target and a separately visible eligible rival")
+	original.health.apply_damage(1000)
+	observer.decide()
+	check(observer.combat_target == alternative and observer.state == Raider.State.ENGAGING and not observer.combat.pursuing, "Death of a pursued opponent immediately releases its action for the first sighting of a different visible enemy")
+	check(arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid(), "Resolved pursuit cannot alter finite death drops or transfer ownership twice")
 	arena.queue_free()
 	await frames(30)
 

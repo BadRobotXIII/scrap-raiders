@@ -3,3 +3,30 @@
 [node name="ExpandedSalvageComplexGraybox" instance=ExtResource("1")]
 [node name="ProcessingFacility" parent="Geometry" index="1"]
 art_enabled = false
+
+[node name="SalvageYard" parent="Geometry"]
+art_enabled = false
+
+[node name="StorageArea" parent="Geometry"]
+art_enabled = false
+
+[node name="ServicePerimeter" parent="Geometry"]
+art_enabled = false
+
+[node name="StagingClusters" parent="Geometry"]
+art_enabled = false
+
+[node name="EnvironmentalPresentation" parent="."]
+art_enabled = false
+
+[node name="SALVAGEYARD" parent="."]
+visible = true
+
+[node name="PROCESSING" parent="."]
+visible = true
+
+[node name="STORAGE" parent="."]
+visible = true
+
+[node name="SERVICEROUTE" parent="."]
+visible = true

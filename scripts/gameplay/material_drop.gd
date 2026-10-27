@@ -6,7 +6,13 @@ var ledger: MaterialLedger
 var drop_id: int = 0
 var materials: int:
 	get:
-		return ledger.ground_for(drop_id) if ledger != null else 0
+		return ledger.inventory.quantity(inventory_container(), true, "world") if ledger != null else 0
+
+func inventory_container() -> String:
+	return "ground:%d" % drop_id
+
+func content_count() -> int:
+	return ledger.inventory.quantity(inventory_container()) if ledger != null else 0
 
 
 func _ready() -> void:

@@ -1,0 +1,8 @@
+{
+  "scripts/components/hit_reaction.gd": "eca5b81c42563bea5abe44c226f8ac060a78d8960f4b11c79d6501dbba33ff69",
+  "scripts/gameplay/shot_executor.gd": "27d05c586c1f48f2ec034c056467efd1a62ff5ac74800d92bff6097207b4fabf",
+  "scripts/player/combat_feedback.gd": "b45769c2d76d7641a1cc066b11310226fe1967d4df5d80717a1ef0572c589b53",
+  "scripts/player/player_damage_feedback.gd": "5cfefd731f6586fb8d394cde179a85ba2d29388178eb21a940d71722d567f88a",
+  "scripts/presentation/death_flare.gd": "df3eaffaf74b08cd1dde51e0b140a7b725870fdc070cd4c5b47c1784d9c74407",
+  "scenes/levels/asset_recovery_arena.tscn": "e13e3cdd78be837cfa06e129c1f145ae206168d16add53360a42e1969fad9911"
+}

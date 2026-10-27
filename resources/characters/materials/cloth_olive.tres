@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/textures/surface_wear.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/textures/surface_roughness.png" id="2"]
+
+[resource]
+resource_name = "cloth_olive"
+albedo_color = Color(0.38109186, 0.41687010, 0.34064343, 1)
+albedo_texture = ExtResource("1")
+metallic = 0
+roughness = 0.88
+roughness_texture = ExtResource("2")
+uv1_scale = Vector3(2, 2, 1)

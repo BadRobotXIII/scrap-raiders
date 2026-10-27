@@ -1,0 +1,138 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/actor_import_test.gd remapped: res://tests/actor_import_test.gd
+Completed load for: 'res://tests/actor_import_test.gd' remapped 'res://tests/actor_import_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+PASS: Actor inventory identifies all four source-backed visual identities
+PASS: Editable source and runtime export match actor inventory: flying_scout
+PASS: Editable source and runtime export match actor inventory: ground_machine
+PASS: Editable source and runtime export match actor inventory: player
+PASS: Editable source and runtime export match actor inventory: raider
+Loading resource: res://assets/characters/exports/raider/raider.glb remapped: res://assets/characters/exports/raider/raider.glb
+Loading resource: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn remapped: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Loading resource: res://resources/characters/materials/cloth_olive.tres remapped: res://resources/characters/materials/cloth_olive.tres
+Completed load for: 'res://resources/characters/materials/cloth_olive.tres' remapped 'res://resources/characters/materials/cloth_olive.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/protective_polymer.tres remapped: res://resources/characters/materials/protective_polymer.tres
+Completed load for: 'res://resources/characters/materials/protective_polymer.tres' remapped 'res://resources/characters/materials/protective_polymer.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/raider/raider.glb' remapped 'res://assets/characters/exports/raider/raider.glb' at thread -1
+PASS: Runtime export loads independently of Blender: raider
+PASS: Imported model root retains metre-scale identity: raider
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: raider
+PASS: Imported actor contains actual render geometry: raider
+PASS: UVs, normals, shared material remaps and skin weights are usable: raider
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: raider
+PASS: Human Raider imports one deform rig and genuinely skinned geometry
+PASS: Raider uses a bounded humanoid deform skeleton
+PASS: Stable named Raider attachment survives import: weapon_grip
+PASS: Stable named Raider attachment survives import: pack_mount
+PASS: Stable named Raider attachment survives import: head_mount
+PASS: Raider exports one explicit animation library
+PASS: Imported repeat/one-shot mode matches clip ownership: aim
+PASS: Imported repeat/one-shot mode matches clip ownership: death
+PASS: Imported repeat/one-shot mode matches clip ownership: fire
+PASS: Imported repeat/one-shot mode matches clip ownership: idle
+PASS: Imported repeat/one-shot mode matches clip ownership: run
+PASS: Imported repeat/one-shot mode matches clip ownership: walk
+PASS: Raider named animation is imported: idle
+PASS: Raider named animation is imported: walk
+PASS: Raider named animation is imported: run
+PASS: Raider named animation is imported: aim
+PASS: Raider named animation is imported: fire
+PASS: Raider named animation is imported: death
+PASS: Imported animations have no method, audio, gameplay-muzzle or authority tracks
+PASS: Instances share mesh resources without sharing mutable scene nodes: raider
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+PASS: Runtime export loads independently of Blender: player
+PASS: Imported model root retains metre-scale identity: player
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: player
+PASS: Imported actor contains actual render geometry: player
+PASS: UVs, normals, shared material remaps and skin weights are usable: player
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: player
+PASS: Mechanical actor preserves a rigid articulated hierarchy: player
+PASS: Instances share mesh resources without sharing mutable scene nodes: player
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+PASS: Runtime export loads independently of Blender: ground_machine
+PASS: Imported model root retains metre-scale identity: ground_machine
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: ground_machine
+PASS: Imported actor contains actual render geometry: ground_machine
+PASS: UVs, normals, shared material remaps and skin weights are usable: ground_machine
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: ground_machine
+PASS: Mechanical actor preserves a rigid articulated hierarchy: ground_machine
+PASS: Instances share mesh resources without sharing mutable scene nodes: ground_machine
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+PASS: Runtime export loads independently of Blender: flying_scout
+PASS: Imported model root retains metre-scale identity: flying_scout
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: flying_scout
+PASS: Imported actor contains actual render geometry: flying_scout
+PASS: UVs, normals, shared material remaps and skin weights are usable: flying_scout
+PASS: Mechanical actor preserves a rigid articulated hierarchy: flying_scout
+PASS: Instances share mesh resources without sharing mutable scene nodes: flying_scout
+PASS: Actor-mode pipeline changes preserve every accepted environment asset and shared material byte
+Actor import failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

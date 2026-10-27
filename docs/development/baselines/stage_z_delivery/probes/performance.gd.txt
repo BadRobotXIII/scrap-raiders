@@ -1,0 +1,127 @@
+extends "res://tests/gameplay_integration_test.gd"
+func run() -> void:
+ print("PERF_STAGE begin")
+ var capture := false
+ var label := OS.get_cmdline_user_args()[0]
+ var scene := OS.get_cmdline_user_args()[1]
+ var startup := Time.get_ticks_usec()
+ test_directory = "res://.godot/stage_z_build/performance_saves/" + Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena := load(scene).instantiate() as Node3D
+ arena.stash_path = test_directory + "/stash.json"
+ arena.seed_override = 87018
+ arena.capture_metrics = capture
+ root.add_child(arena)
+ current_scene = arena
+ var ready_ms := (Time.get_ticks_usec() - startup) / 1000.0
+ var startup_frames: Array[float] = []
+ var last_frame := Time.get_ticks_usec()
+ for first_frame in range(60):
+  await process_frame
+  var frame_time := Time.get_ticks_usec()
+  startup_frames.append((frame_time - last_frame) / 1000.0)
+  last_frame = frame_time
+ print("PERF_STAGE ready")
+ await start_frozen(arena)
+ print("PERF_STAGE frozen")
+ var nav := arena.get_node("NavigationRegion3D") as NavigationRegion3D
+ var before_bake := Time.get_ticks_usec()
+ nav.bake_navigation_mesh(false)
+ var rebake_ms := (Time.get_ticks_usec() - before_bake) / 1000.0
+ var iteration := NavigationServer3D.map_get_iteration_id(nav.get_navigation_map())
+ var before_sync := Time.get_ticks_usec()
+ for attempt in range(60):
+  await frames(1)
+  if NavigationServer3D.map_get_iteration_id(nav.get_navigation_map()) > iteration:break
+ var map_sync_ms := (Time.get_ticks_usec() - before_sync) / 1000.0
+ print("PERF_STAGE baked")
+ await all_entries(arena)
+ print("PERF_STAGE population")
+ # Arrange all finite initial IDs immediately; existing resources and autonomous decisions stay intact.
+ for id in range(1,6):
+  var actor: Raider = arena.raiders[id]
+  actor.position = arena.get_node("RaiderSpawns").get_node(NodePath(arena.encounter.layout.entry_markers[id-1])).position
+  if id == 5:actor.position.z += 3
+  actor.set_physics_process(true)
+  actor.combat.weapon.set_physics_process(true)
+ for machine in arena.ecosystem.machines:
+  machine.set_physics_process(true)
+  if machine.weapon != null:machine.weapon.set_physics_process(true)
+ arena.set_physics_process(true)
+ arena.flare_director.set_physics_process(true)
+ arena.spectator.enter()
+ arena.spectator.set_process(false)
+ if label.contains("bay"):
+  arena.spectator.camera.global_position = Vector3(-21, 3.4, 7)
+  arena.spectator.camera.look_at(Vector3(-15.2, 1.8, 3))
+ else:
+  arena.spectator.camera.global_position = Vector3(53, 62, 61)
+  arena.spectator.camera.look_at(Vector3.ZERO)
+ print("PERF_STAGE draw")
+ await RenderingServer.frame_post_draw
+ print("PERF_STAGE sampling")
+ root.get_texture().get_image().save_png("res://.godot/stage_z_build/overview_" + label + ".png")
+ var visual_population := {"visible_actor_meshes":0,"visible_skinned_meshes":0,"skeletons":0,"deform_bones":0,"animation_players":0}
+ var actors: Array = arena.raiders.values() + [arena.robot] + Array(arena.ecosystem.machines)
+ for actor in actors:
+  var visual_root: Node3D = actor.visuals if actor is SupportMachine else actor.get_node("Visuals")
+  for node in visual_root.find_children("*", "", true, false):
+   if node is MeshInstance3D and node.is_visible_in_tree():
+    visual_population.visible_actor_meshes += 1
+    if node.skin != null:visual_population.visible_skinned_meshes += 1
+   elif node is Skeleton3D:
+    visual_population.skeletons += 1
+    visual_population.deform_bones += node.get_bone_count()
+   elif node is AnimationPlayer:visual_population.animation_players += 1
+ var max_draw_calls := 0
+ var max_primitives := 0
+ var max_texture_bytes := 0
+ var times: Array[float] = []
+ var physics_times: Array[float] = []
+ var process_times: Array[float] = []
+ var began := Time.get_ticks_usec()
+ var peak_times: Array[float] = []
+ var previous := Time.get_ticks_usec()
+ var matched_camera := true
+ var camera_restores := 0
+ var expected_camera_position: Vector3 = arena.spectator.camera.global_position
+ var caps := true
+ var valid := true
+ for index in range(20000):
+  await process_frame
+  var now := Time.get_ticks_usec()
+  var duration := (now-previous)/1000.0
+  previous = now
+  if index > 60:
+   max_draw_calls = maxi(max_draw_calls, int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
+   max_primitives = maxi(max_primitives, int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)))
+   max_texture_bytes = maxi(max_texture_bytes, int(Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED)))
+   times.append(duration)
+   physics_times.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000)
+   process_times.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000)
+   if arena.flare_director.living_count() == 5 and arena.ecosystem.machines.size() == 2:peak_times.append(duration)
+  # Read-only benchmark fixture: keep the assigned view through normal player death/camera restoration.
+  if root.get_camera_3d() != arena.spectator.camera:
+   arena.spectator.camera.make_current()
+   camera_restores += 1
+  matched_camera = matched_camera and root.get_camera_3d() == arena.spectator.camera and arena.spectator.camera.global_position.is_equal_approx(expected_camera_position)
+  caps = caps and arena.flare_director.living_count() <= 5 and arena.flare_director.committed <= 2
+  valid = valid and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+  if Time.get_ticks_usec() - began >= 30000000:break
+ physics_times.sort()
+ process_times.sort()
+ times.sort()
+ peak_times.sort()
+ var data := {"max_draw_calls":max_draw_calls,"max_rendered_primitives":max_primitives,"max_texture_bytes":max_texture_bytes,"load_ready_ms":ready_ms,"repeat_bake_ms":rebake_ms,"repeat_map_sync_ms":map_sync_ms,"physics_p95_ms":physics_times[int(physics_times.size()*0.95)],"process_p95_ms":process_times[int(process_times.size()*0.95)],"static_memory_bytes":Performance.get_monitor(Performance.MEMORY_STATIC),"label":label,"capture_metrics":capture,"frame_samples":times.size(),"median_ms":times[times.size()/2],"p95_ms":times[int(times.size()*0.95)],"max_ms":times[-1],"five_raiders_two_machines_samples":peak_times.size(),"peak_p95_ms":peak_times[int(peak_times.size()*0.95)] if not peak_times.is_empty() else 0,"caps_valid":caps,"conserved":valid,"simulation_seconds_observed":arena.elapsed-105.5,"rendering_device":RenderingServer.get_video_adapter_name(),"processor":OS.get_processor_name(),"engine":Engine.get_version_info().string,"configured_window":root.size}
+ data["matched_camera_throughout"] = matched_camera
+ data["camera_restores_after_player_death"] = camera_restores
+ data["player_destroyed"] = arena.mission.player_destroyed
+ data["initial_actor_visual_population"] = visual_population
+ data["first_60_frame_ms"] = startup_frames
+ var output := FileAccess.open("res://.godot/stage_z_build/performance_" + label + ".json",FileAccess.WRITE)
+ output.store_string(JSON.stringify(DeploymentMetrics.serializable(data),"\t"))
+ output.close()
+ print("PERFORMANCE ",data)
+ arena.queue_free()
+ await frames(30)
+ quit(1 if failures or not caps or not valid or peak_times.is_empty() else 0)

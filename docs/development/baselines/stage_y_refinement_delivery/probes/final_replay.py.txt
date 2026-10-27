@@ -1,0 +1,27 @@
+from pathlib import Path
+import subprocess,json
+out=Path('.godot/stage_y_refinement/delivery')
+s=Path('.godot/stage_y/replay.gd').read_text()
+s=s.replace('arena.robot.position=Vector3(100,.1,100)','''arena.robot.position=Vector3(100,.1,100)
+ if OS.get_cmdline_user_args().has("spectate"):
+  arena.spectator.enter()
+  arena.spectator.set_process(false)''')
+s=s.replace('await frames(1)\n  hook(arena)','''await frames(1)
+  if arena.spectator.active and tick % 120 == 0:
+   arena.spectator.camera.position=Vector3(-30 + (tick % 60), 15, 25)
+  hook(arena)''')
+s=s.replace('"res://.godot/y_replay.json"','"res://.godot/stage_y_refinement/delivery/replay_" + ("spectator" if OS.get_cmdline_user_args().has("spectate") else "final") + ".json"')
+(out/'replay.gd').write_text(s)
+for label,args in [('final',[]),('spectator',['--','spectate'])]:
+    with (out/('replay_'+label+'.log.txt')).open('w') as f:
+        r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://'+(out/'replay.gd').as_posix(),'--quit-after','20000',*args],stdout=f,stderr=subprocess.STDOUT,timeout=120)
+    print(label,r.returncode,flush=True)
+    assert r.returncode==0
+a=json.loads((out/'replay_final.json').read_text())
+b=json.loads((out/'replay_spectator.json').read_text())
+result={'surface_only_exact_match':json.loads((out/'replay_before.json').read_text())==json.loads((out/'replay_surface.json').read_text()),'final_spectator_exact_match':a==b,'final_cases':[]}
+for x in a:
+    result['final_cases'].append({'seed':x['seed'],'conserved':x['conserved'],'counters':x['counters'],'shots':len(x['shots']),'transfers':len(x['transfers']),'navigation_vertices':len(x['navigation']['vertices']),'navigation_polygons':len(x['navigation']['polygons'])})
+(out/'replay_comparison.json').write_text(json.dumps(result,indent=2))
+print(result,flush=True)
+assert result['surface_only_exact_match'] and result['final_spectator_exact_match']

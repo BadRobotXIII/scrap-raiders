@@ -1,0 +1,17 @@
+# Stage Y refinement delivery evidence
+
+Recorded **2026-10-25/26** after approval of the [refinement amendment](../../plans/phase_7_stage_y_environment_refinement_plan.md). See the [delivery report](../../reports/stage_y_environment_refinement.md) for interpretation and remaining manual review. The original Y, Site 07 and proposal evidence directories remain separate.
+
+- `sources_before.json`, `reviewed_sources.json`, `final_checks.json`: 388 pre-refinement source identities, seven allowed existing-file changes (including the test index), six new files and warning classification. No gameplay/controller/configuration source changed.
+- `logs/regression/`: editor and all 41 suites, actual completion markers, timings and verbose accelerated shutdown diagnostics. Thirty-one suites retained only the known WAV object types. The new refinement suite was subsequently extended with visible-boundary ray checks; `logs/refinement_final.log.txt` is that final passing run.
+- `logs/native_population.log.txt`, `native_refinement.log.txt`: passing native-rate physical checks with clean teardown. `final_editor.log.txt` is the last import/parse check.
+- `data/replay_before.json`, `replay_surface.json`: exact matched surface-only replay before adding obstacles. `data/replay_final.json`, `replay_spectator.json`, `replay_comparison.json`: final both-seed replay, camera non-interference and conservation. Faster-than-real-time replays retain the documented WAV shutdown warning; their logs are included.
+- `data/full_inventory_windows.json`, `gray_inventory_windows.json`: both-seed final colliders, markers, batches, supported sites, conservation and source materials in art/graybox.
+- `data/yr_final_bay.json`, `yr_final_overview.json`: two matched 30-second Forward+ runs with raw first-sixty-frame startup intervals, frame statistics, memory, hardware and bounded population/accounting checks. Before-control data and pictures remain in the [proposal archive](../stage_y_refinement_proposal/README.md).
+- `data/peak.json`, `logs/peak.log.txt`: seven actual discharges, eight cosmetic deaths, finite settlement, expiry and restart; a separate transient peak, not the normal-view draw budget.
+- `logs/graphical.log.txt`, `gray_graphical.log.txt`, `bounded_*.log.txt`: actual recovery/Recall/death/follow/restart, graphical graybox and bounded startup. All completed cleanly. `data/runtime_validation.json` and `final_validation.json` contain exit/completion/issue summaries.
+- `screenshots/`: final art, graybox and graphical mission lifecycle. These were rendered by Godot, without image editing.
+
+`probes/*.txt` are readable copies of the ignored QA scripts, not production controllers or extra test suites. To reproduce, restore GDScript copies under `.godot/stage_y_refinement/delivery/` and orchestration scripts under `.godot/stage_y_refinement/`; restore `peak.gd.txt` to `.godot/stage_x/peak.gd`. The archived Python runners retain those paths and use isolated ignored saves. The peak/performance helpers also use the existing `.godot/stage_w/performance/` output folder; create it before running if the cache is absent. Run the normal tracked suites from `tests/` as described in the [test index](../../../../tests/README.md).
+
+The scene-ready/first-frame measurements include startup work; they do not isolate shader compilation or guarantee an empty GPU-driver cache. The original before/surface replay helper is also preserved in the earlier Y evidence. Manual acceptance has not been inferred from automated or graphical checks.

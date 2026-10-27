@@ -31,9 +31,13 @@ extends Resource
 @export var encounter_layouts: Array[EncounterLayout] = []
 @export_range(1, 5) var max_active_raiders: int = 5
 @export var fallback_profiles: Array[RaiderProfile] = []
+@export var hybrid_inventory: bool = false
+@export var loot_table: LootTable
 
 
 func validation_error() -> String:
+	if hybrid_inventory and (loot_table == null or loot_table.salvage_definitions.is_empty() or not briefing_required):
+		return "Hybrid inventory requires bounded loot and safe preparation."
 	if not objective_definitions.is_empty():
 		if mission_id.is_empty() or description.strip_edges().is_empty() or not player_extraction or not death_flares:
 			return "Objective missions require identity, description, recall and equipment support."

@@ -1,0 +1,97 @@
+{
+	"accepted_events": 14,
+	"after_restart": {
+		"animation_players": 0,
+		"bones": 0,
+		"cosmetic_bodies": 0,
+		"skeletons": 0,
+		"visible_meshes": 100,
+		"visible_skin_meshes": 0
+	},
+	"burst_metrics": {
+		"draw_calls": 557,
+		"max_ms": 5.232,
+		"p95_ms": 4.589,
+		"rendered_primitives": 274322,
+		"samples": 1081,
+		"static_memory_bytes": 85510680.0,
+		"texture_bytes": 122635776
+	},
+	"configured_window": "(1600, 900)",
+	"conserved": true,
+	"death_window_ms": 4797.281,
+	"engine": "4.7.2-stable (official)",
+	"expired": {
+		"animation_players": 0,
+		"bones": 0,
+		"cosmetic_bodies": 0,
+		"skeletons": 0,
+		"visible_meshes": 91,
+		"visible_skin_meshes": 0
+	},
+	"failures": 0,
+	"immediate_death": {
+		"animation_players": 18,
+		"bones": 200,
+		"cosmetic_bodies": 8,
+		"skeletons": 10,
+		"visible_meshes": 197,
+		"visible_skin_meshes": 30
+	},
+	"independent_terminal": {
+		"animation_players": 8,
+		"bones": 100,
+		"cosmetic_bodies": 8,
+		"skeletons": 5,
+		"visible_meshes": 148,
+		"visible_skin_meshes": 15
+	},
+	"initial": {
+		"animation_players": 10,
+		"bones": 100,
+		"cosmetic_bodies": 0,
+		"skeletons": 5,
+		"visible_meshes": 120,
+		"visible_skin_meshes": 15
+	},
+	"initial_metrics": {
+		"draw_calls": 486,
+		"max_ms": 4.681,
+		"p95_ms": 4.426,
+		"rendered_primitives": 189232,
+		"samples": 241,
+		"static_memory_bytes": 85301431.0,
+		"texture_bytes": 121193984
+	},
+	"label": "yr_final_peak",
+	"presentation_peak": {
+		"death": {
+			"bursts": 16,
+			"deaths": 8,
+			"impacts": 0,
+			"lights": 4,
+			"particles": 176,
+			"shots": 7,
+			"voices": 22
+		},
+		"discharge": {
+			"bursts": 0,
+			"deaths": 0,
+			"impacts": 0,
+			"lights": 4,
+			"particles": 0,
+			"shots": 7,
+			"voices": 13
+		},
+		"expired": {
+			"bursts": 0,
+			"deaths": 8,
+			"impacts": 0,
+			"lights": 0,
+			"particles": 0,
+			"shots": 7,
+			"voices": 3
+		}
+	},
+	"rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

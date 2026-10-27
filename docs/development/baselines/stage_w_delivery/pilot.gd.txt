@@ -1,0 +1,92 @@
+extends SceneTree
+var failures: int = 0
+func _initialize() -> void:
+ call_deferred("run")
+func frames(count: int) -> void:
+ for index in count: await process_frame
+func check(value: bool, message: String) -> void:
+ print("PASS: " if value else "FAIL: ", message)
+ if not value: failures += 1
+func run() -> void:
+ var world := Node3D.new()
+ root.add_child(world)
+ current_scene = world
+ var environment := WorldEnvironment.new()
+ var env := Environment.new()
+ env.background_mode = Environment.BG_COLOR
+ env.background_color = Color(.15,.19,.22)
+ env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+ env.ambient_light_color = Color(.8,.85,1)
+ env.ambient_light_energy = .8
+ environment.environment = env
+ world.add_child(environment)
+ var sun := DirectionalLight3D.new()
+ sun.rotation_degrees = Vector3(-35,-160,0)
+ sun.light_energy = 1.5
+ sun.shadow_enabled = true
+ world.add_child(sun)
+ var camera := Camera3D.new()
+ camera.position = Vector3(1.9,1.9,-3.5)
+ world.add_child(camera)
+ camera.look_at(Vector3(0,1,0))
+ camera.current = true
+ var instances: Array[ActorVisual] = []
+ for index in range(2):
+  var actor := CharacterBody3D.new()
+  actor.position.x = -0.7 if index == 0 else .7
+  world.add_child(actor)
+  var health := Health.new()
+  health.name = "Health"
+  actor.add_child(health)
+  var shape := CollisionShape3D.new()
+  var capsule := CapsuleShape3D.new()
+  capsule.height = 1.8
+  capsule.radius = .35
+  shape.shape = capsule
+  shape.position.y = .9
+  actor.add_child(shape)
+  var visual := Node3D.new()
+  visual.name = "Visuals"
+  actor.add_child(visual)
+  var adapter := load("res://scenes/characters/visuals/raider_visual.tscn").instantiate() as ActorVisual
+  visual.add_child(adapter)
+  adapter.configure(null,null,87017,StringName(str(index+1)))
+  adapter.set_armed(true)
+  adapter.preview_speed = 2.5 if index == 0 else 0
+  instances.append(adapter)
+  var death = load("res://scripts/components/death_tumble.gd").new()
+  death.health = health
+  death.body_collision = shape
+  death.visuals = visual
+  actor.add_child(death)
+ await frames(45)
+ var skeletons := world.find_children("*", "Skeleton3D", true, false)
+ check(skeletons.size() == 2 and skeletons[0].get_bone_count()==20,"Two independent real 20-bone Raider rigs imported")
+ check(instances[0].animation_state == &"walk" and instances[1].animation_state == &"idle","Independent walking and idle playback")
+ for instance in instances:
+  var context := HashingContext.new()
+  context.start(HashingContext.HASH_SHA256)
+  for node in instance.model.find_children("*","MeshInstance3D",true,false):
+   for surface in range(node.mesh.get_surface_count()):
+    context.update(var_to_str(node.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]).to_utf8_buffer())
+    print("MATERIAL ",node.get_active_material(surface).resource_path)
+  print("PILOT_GEOMETRY ",context.finish().hex_encode())
+ for mesh in instances[0].model.find_children("*","MeshInstance3D",true,false):
+  if mesh.skin != null: print("SKIN ",mesh.name," ",mesh.skin.get_bind_count())
+ var player: AnimationPlayer = instances[0].model.find_children("*","AnimationPlayer",true,false)[0]
+ print("CLIPS ",player.get_animation_list())
+ await RenderingServer.frame_post_draw
+ root.get_texture().get_image().save_png("res://.godot/stage_w/pilot_alive.png")
+ var health := instances[0].get_parent().get_parent().get_node("Health") as Health
+ health.apply_damage(1000)
+ instances[0].get_parent().get_parent().queue_free()
+ await create_timer(.6).timeout
+ var copies := get_nodes_in_group("death_tumbles")
+ check(copies.size()==1 and copies[0].find_children("*","Skeleton3D",true,false).size()==1,"Clean cosmetic skinned death copy survives actor removal")
+ check(copies[0].find_children("*","Health",true,false).is_empty(),"Cosmetic copy has no gameplay health")
+ await RenderingServer.frame_post_draw
+ root.get_texture().get_image().save_png("res://.godot/stage_w/pilot_death.png")
+ world.queue_free()
+ await frames(8)
+ quit(1 if failures else 0)
+

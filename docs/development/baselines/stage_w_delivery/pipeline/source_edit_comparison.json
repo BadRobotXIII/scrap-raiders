@@ -1,0 +1,28 @@
+{
+  "original": {
+    "glb_sha256": "b046cbce21bd8aaec5de129042e2624e3d362d193619d0b3871a7b6d8289d955",
+    "geometry_sha256": "f1ee3aa951efaa6313120f6acc354fee39667ef00a92c906820f5a88abbb22b6",
+    "animations": [
+      "aim",
+      "death",
+      "fire",
+      "idle",
+      "run",
+      "walk"
+    ],
+    "joints": 20
+  },
+  "edited": {
+    "glb_sha256": "97957f5c8b6441c656bf33c6499aef9448d87321bd53c9853b0a522a38e0bf91",
+    "geometry_sha256": "345e3199ff05f56c7cbe9b2e09e107e45cadbffec0843de6abc244c32c75231b",
+    "animations": [
+      "aim",
+      "death",
+      "fire",
+      "idle",
+      "run",
+      "walk"
+    ],
+    "joints": 20
+  }
+}

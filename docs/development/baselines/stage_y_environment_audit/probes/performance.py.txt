@@ -1,0 +1,8 @@
+from pathlib import Path
+import subprocess,json,time
+root=Path.cwd();out=root/'.godot/stage_y_audit';rows=[]
+for label in ['y_audit_bay','y_audit_overview']:
+ file=out/(label+'.log.txt');start=time.time()
+ with file.open('w',encoding='utf-8') as stream:
+  result=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.','--script','res://.godot/stage_w/performance.gd','--quit-after','20000','--',label,'res://scenes/levels/expanded_salvage_complex.tscn'],stdout=stream,stderr=subprocess.STDOUT,timeout=100)
+ log=file.read_text(encoding='utf-8',errors='replace');row={'case':label,'exit':result.returncode,'completed':'PERFORMANCE' in log,'seconds':round(time.time()-start,2),'issues':[s for s in log.splitlines() if 'ERROR:' in s or 'WARNING:' in s]};rows.append(row);print(row,flush=True);(out/'performance_validation.json').write_text(json.dumps(rows,indent=2))

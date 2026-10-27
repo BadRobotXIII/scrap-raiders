@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=22 format=3]
 [ext_resource type="PackedScene" path="res://scenes/environment/props/control_cabinet.tscn" id="a0"]
 [ext_resource type="PackedScene" path="res://scenes/environment/props/sorting_conveyor_base.tscn" id="a1"]
 [ext_resource type="PackedScene" path="res://scenes/environment/props/scrap_bin.tscn" id="a2"]
@@ -8,9 +8,17 @@
 [ext_resource type="PackedScene" path="res://scenes/environment/modules/steel_column_4m.tscn" id="a6"]
 [ext_resource type="PackedScene" path="res://scenes/environment/modules/steel_edge_beam_4m.tscn" id="a7"]
 [ext_resource type="Material" path="res://resources/materials/environment/concrete.tres" id="floor"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/maintenance_panel_1m.tscn" id="y0"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/processor_guard_2m.tscn" id="y1"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/vent_panel_2m.tscn" id="y2"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/pallet_load_1m.tscn" id="y3"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/scrap_bunker_panel_2m.tscn" id="y4"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/scrap_infill_1m.tscn" id="y5"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/utility_junction_0p4m.tscn" id="y6"]
+[ext_resource type="PackedScene" path="res://scenes/environment/modules/freight_panel_2m.tscn" id="y7"]
 [sub_resource type="PlaneMesh" id="Floor"]
 material = ExtResource("floor")
-size = Vector2(20, 18)
+size = Vector2(28, 32)
 [sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
 sky_top_color = Color(0.3, 0.42, 0.55, 1)
 sky_horizon_color = Color(0.7, 0.73, 0.75, 1)
@@ -33,22 +41,174 @@ shadow_enabled = true
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("Floor")
 [node name="Camera3D" type="Camera3D" parent="."]
-position = Vector3(10, 9, 13)
-rotation_degrees = Vector3(-28, 38, 0)
+position = Vector3(15, 23, 29)
+rotation_degrees = Vector3(-38, 32, 0)
+projection = 1
+size = 23
 current = true
 [node name="control_cabinet" parent="." instance=ExtResource("a0" )]
 position = Vector3(-5, 0, 3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="sorting_conveyor_base" parent="." instance=ExtResource("a1" )]
 position = Vector3(-2, 0, 3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="scrap_bin" parent="." instance=ExtResource("a2" )]
 position = Vector3(1, 0, 3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="utility_run_2m" parent="." instance=ExtResource("a3" )]
 position = Vector3(4, 0, 3)
 [node name="industrial_wall_2m" parent="." instance=ExtResource("a4" )]
 position = Vector3(-5, 0, -3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="industrial_wall_4m" parent="." instance=ExtResource("a5" )]
 position = Vector3(-1, 0, -3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="steel_column_4m" parent="." instance=ExtResource("a6" )]
 position = Vector3(3, 0, -3)
+rotation_degrees = Vector3(0, 180, 0)
 [node name="steel_edge_beam_4m" parent="." instance=ExtResource("a7" )]
 position = Vector3(5, 0, -3)
+
+[node name="maintenance_panel_1m" parent="." instance=ExtResource("y0")]
+position = Vector3(-6, 0, 8)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY0" type="Label3D" parent="."]
+position = Vector3(-6, 1.9000000000000001, 8)
+text = "MAINTENANCE\nPANEL 1 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="processor_guard_2m" parent="." instance=ExtResource("y1")]
+position = Vector3(-2, 0, 8)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY1" type="Label3D" parent="."]
+position = Vector3(-2, 1.5, 8)
+text = "PROCESSOR\nGUARD 2 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="vent_panel_2m" parent="." instance=ExtResource("y2")]
+position = Vector3(2, 0, 8)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY2" type="Label3D" parent="."]
+position = Vector3(2, 2.3, 8)
+text = "VENT PANEL\n2 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="pallet_load_1m" parent="." instance=ExtResource("y3")]
+position = Vector3(6, 0, 8)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY3" type="Label3D" parent="."]
+position = Vector3(6, 1.5, 8)
+text = "SECURED LOAD\n1 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="scrap_bunker_panel_2m" parent="." instance=ExtResource("y4")]
+position = Vector3(-6, 0, 13)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY4" type="Label3D" parent="."]
+position = Vector3(-6, 3.3, 13)
+text = "BULK RETAINER\n2 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="scrap_infill_1m" parent="." instance=ExtResource("y5")]
+position = Vector3(-2, 0, 13)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY5" type="Label3D" parent="."]
+position = Vector3(-2, 0.449477, 13)
+text = "PRESSED SCRAP\n1 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="utility_junction_0p4m" parent="." instance=ExtResource("y6")]
+position = Vector3(2, 0, 13)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY6" type="Label3D" parent="."]
+position = Vector3(2, 0.7, 13)
+text = "JUNCTION\n0.4 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="freight_panel_2m" parent="." instance=ExtResource("y7")]
+position = Vector3(6, 0, 13)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="LabelY7" type="Label3D" parent="."]
+position = Vector3(6, 3.3, 13)
+text = "FREIGHT SKIN\n2 m"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+
+[node name="LabelOriginal0" type="Label3D" parent="."]
+position = Vector3(-5, 1.9500000000000002, 3)
+text = "CONTROL\nCABINET"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal1" type="Label3D" parent="."]
+position = Vector3(-2, 1.5499999999999998, 3)
+text = "CONVEYOR"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal2" type="Label3D" parent="."]
+position = Vector3(1, 1.15, 3)
+text = "SCRAP BIN"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal3" type="Label3D" parent="."]
+position = Vector3(4, 0.532, 3)
+text = "UTILITY RUN 2M"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal4" type="Label3D" parent="."]
+position = Vector3(-5, 4.35, -3)
+text = "WALL 2M"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal5" type="Label3D" parent="."]
+position = Vector3(-1, 4.35, -3)
+text = "WALL 4M"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal6" type="Label3D" parent="."]
+position = Vector3(3, 4.35, -3)
+text = "COLUMN 4M"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0
+
+[node name="LabelOriginal7" type="Label3D" parent="."]
+position = Vector3(5, 0.6499999999999999, -3)
+text = "BEAM 4M"
+font_size = 32
+pixel_size = 0.012
+billboard = 1
+cast_shadow = 0

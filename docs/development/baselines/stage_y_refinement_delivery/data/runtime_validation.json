@@ -1,0 +1,50 @@
+[
+  {
+    "case": "yr_final_bay",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "yr_final_overview",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "inventory",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "graphical",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "peak",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "native_population",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "bounded_expanded",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "bounded_default",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

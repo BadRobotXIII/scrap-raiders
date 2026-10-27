@@ -1,0 +1,19 @@
+[
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "seconds": 4.59,
+    "issues": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372149060798177 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372129616005485 - Reference count: 1",
+      "Orphan StringName: Master (static: 0, total: 1)",
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "seconds": 5.53,
+    "issues": []
+  }
+]

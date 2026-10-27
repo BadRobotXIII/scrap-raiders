@@ -1,0 +1,25 @@
+﻿from pathlib import Path
+import subprocess,json,time,re
+root=Path.cwd(); out=root/'.godot/stage_z_audit/regression';out.mkdir(parents=True,exist_ok=True)
+runs=[]
+entries=[('editor',None,['--headless','--path','.','--editor','--quit'])]+[(p.stem,p,['--headless','--verbose','--path','.','--fixed-fps','60','--script','res://'+p.as_posix(),'--quit-after','20000']) for p in sorted(Path('tests').glob('*_test.gd'))]
+for label,source,args in entries:
+ started=time.time(); logfile=out/(label+'.log.txt'); timed_out=False
+ with logfile.open('w',encoding='utf-8') as stream:
+  process=subprocess.Popen([r'C:\Users\kzulf\bin\godot.cmd',*args],cwd=root,stdout=stream,stderr=subprocess.STDOUT)
+  try:code=process.wait(timeout=240)
+  except subprocess.TimeoutExpired:
+   timed_out=True
+   subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],stdout=stream,stderr=subprocess.STDOUT,timeout=20)
+   code=process.wait(timeout=20)
+ log=logfile.read_text(encoding='utf-8',errors='replace')
+ issues=[line for line in log.splitlines() if any(token in line for token in ['ERROR:', 'SCRIPT ERROR:', 'WARNING:'])]
+ completed=True
+ if source is not None:
+  labels=re.findall(r'print\("([^"\n]+)"',source.read_text(encoding='utf-8'))
+  completed=bool(labels) and labels[-1] in log
+ row={'suite':label,'exit':code,'seconds':round(time.time()-started,2),'timed_out':timed_out,'completion_marker_seen':completed,'issues':issues}
+ runs.append(row);(out/'validation.json').write_text(json.dumps(runs,indent=2),encoding='utf-8')
+ print(label,code,'completed='+str(completed),'issues='+str(len(issues)),flush=True)
+
+if any(r["exit"] or r["timed_out"] or not r["completion_marker_seen"] for r in runs):raise SystemExit(1)

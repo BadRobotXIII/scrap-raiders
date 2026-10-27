@@ -1,0 +1,161 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Stage T artifacts: res://.godot/stage_t_tests/b0f4b71c07f76fb7
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: S accepts a live eligible ally sighting
+PASS: Unseen living target movement cannot relocate shared observation
+PASS: Live target reports expire without becoming permanent knowledge
+PASS: Fresh direct observation can renew expired knowledge
+PASS: S deployment death preserves independent world simulation
+PASS: Destroyed player immediately invalidates cached allied report
+PASS: New reports cannot reintroduce destroyed player
+PASS: Report invalidation cannot change frozen result or accounting
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> ENGAGING
+R01: SELECTING -> INVESTIGATING
+PASS: Normal allied observer sees a machine physically occluded from its ally
+PASS: Normal S cooperation initiates independent last-known-position investigation
+PASS: Shared-threat investigation physically moves while the observing ally fires actual machine hits
+PASS: Cooperation does not assign a permanent squad
+PASS: Machine death invalidates allied targeting and releases only its preallocated component
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+R01: SELECTING -> ENGAGING
+R04: SELECTING -> ENGAGING
+R04: ENGAGING -> TAKING_COVER
+R01: ENGAGING -> TAKING_COVER
+R04: TAKING_COVER -> REPOSITIONING
+R04: REPOSITIONING -> ENGAGING
+R04: ENGAGING -> INVESTIGATING
+R04: INVESTIGATING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R01: TAKING_COVER -> REPOSITIONING
+R04: SCAVENGING -> ENGAGING
+R01: REPOSITIONING -> ENGAGING
+PASS: Normal S hostile pair physically exchanges damage through Q decisions and live weapon cadence
+PASS: Rival combat records the actual independent attacking actors
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R04: ENGAGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+PASS: Changed normal relationship releases reciprocal combat eligibility
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+PASS: Partial-capacity fixture loads two existing units without changing the Cowardly profile
+R03: SELECTING -> SCAVENGING
+R04: SELECTING -> SCAVENGING
+PASS: Normal neutral competitors split only the finite three-unit stock within their actual capacities
+PASS: Depleted contest neither duplicates stock nor manufactures hostility
+R04: SCAVENGING -> DEAD
+PASS: Player recovery consumes a conflict drop once without recording an invented Raider extraction
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+PASS: Richer ally fixture transfers existing stock through the normal material owner
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: Normal Q Greedy preserves the existing visible betrayal assessment
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Leaving valid range cancels normal-scene assessment without hostility
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Valid assessment changes only its pair, with no cargo reward
+R02: SELECTING -> TAKING_COVER
+PASS: Betrayal fires a real shot and victim independently chooses existing Q defense
+R02: TAKING_COVER -> FLEEING
+R02: FLEEING -> DEAD
+PASS: Player can intervene in social combat and receive only its actual lethal-hit objective credit
+PASS: Social conflict death creates ordinary finite cargo, equipment and one response ticket
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+PASS: Surviving Raider physically approaches and scavenges conflict cargo through the unchanged S selector
+R01: SELECTING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Re-looted material becomes extraction loss only after physical exit travel and dwell
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+PASS: Normal flare response retains finite Q profile and authored social eligibility
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R04: SELECTING -> SCAVENGING
+R05: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> FLEEING
+R03: SCAVENGING -> ENGAGING
+R04: SCAVENGING -> ENGAGING
+R05: SCAVENGING -> ENGAGING
+R04: ENGAGING -> TAKING_COVER
+R05: ENGAGING -> INVESTIGATING
+R05: INVESTIGATING -> ENGAGING
+PASS: Configured five-Raider/two-machine crowd executes physical combat/navigation within population bounds
+PASS: Failure fixture loads finite cargo before ordinary death
+R05: ENGAGING -> DEAD
+PASS: Player physically recovers cargo after intervening in a crowded encounter
+PASS: Timed interaction recovers the conflict's finite equipment allocation
+R04: TAKING_COVER -> DEAD
+PASS: Player destruction forfeits both conflict rewards exactly once
+PASS: Player follow prefers the lethal Raider and cannot acquire developer flight permissions
+PASS: Normal target cycling and camera proximity cannot influence accounting or combat eligibility
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+R07: SCAVENGING -> SELECTING
+R07: SELECTING -> INVESTIGATING
+PASS: Both finite responses can arrive after player death without exceeding the shared five-live cap
+PASS: Post-death responders retain independent Q policies and explicit alliance
+R06: INVESTIGATING -> ENGAGING
+PASS: Autonomous response physically moves or executes live weapon shots after player death
+PASS: Continuing autonomous activity cannot reopen player objectives
+R06: ENGAGING -> DEAD
+PASS: Follow target death safely switches view and cannot replenish reinforcements
+PASS: Another eligible followed Raider retains a reachable extraction
+R01: ENGAGING -> EXTRACTING
+R01: EXTRACTING -> SELECTING
+R01: SELECTING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Physical extraction dwell removes a followed target without reviving deployment
+PASS: World deadline closes observation while preserving the one settled player result
+0.0s SETUP seed 87018 layout north_contest
+PASS: Normal replay rebuilds clean briefing, authored relations and budgets without banking forfeited loot
+PASS: Both authoritative ledgers remain valid after every accepted integration transfer
+Stage T integration checks complete; failures: 0
+WARNING: 26 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 11 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

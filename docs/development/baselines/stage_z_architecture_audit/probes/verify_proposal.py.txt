@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,hashlib,re
+root=Path.cwd();evidence=root/'docs/development/baselines/stage_z_architecture_audit'
+before=json.loads((evidence/'data/sources_before.json').read_text(encoding='utf-8'))
+assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==h for p,h in before.items())
+docs=['docs/development/plans/phase_7_stage_z_hybrid_inventory_plan.md','docs/development/reports/stage_z_inventory_architecture_audit.md','docs/development/baselines/stage_z_architecture_audit/README.md']
+for name in docs:
+    p=root/name;s=p.read_text(encoding='utf-8')
+    for link in re.findall(r'\[[^\]]*\]\(([^)]+)\)',s):
+        if '://' in link or link.startswith('#'):continue
+        assert (p.parent/link.split('#')[0]).exists(),(name,link)
+    assert not any(line.rstrip()!=line for line in s.splitlines()),name
+assert not (root/'scripts/gameplay/inventory_ledger.gd').exists()
+assert len(list((root/'tests').glob('*_test.gd')))==41
+ledger=root/'docs/development/ledgers/phase_7_stage_z_hybrid_inventory.md'
+original=Path(r'C:\Users\kzulf\.codex\attachments\0ab764ad-e1f5-460b-9c5b-9f2c0b3aa3c0\Pasted text.txt')
+assert ledger.read_bytes()==original.read_bytes()
+for p in docs:print(p, len((root/p).read_text(encoding='utf-8').splitlines()),'lines')
+print('Proposal links/whitespace, ledger authenticity, 41 active suites and all 345 unchanged baseline sources verified; no implementation started.')

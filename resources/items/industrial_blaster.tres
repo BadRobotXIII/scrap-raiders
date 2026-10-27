@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/item_definition.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/weapons/prototype_blaster.tres" id="weapon"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/industrial_blaster.svg" id="icon"]
+[resource]
+script = ExtResource("1")
+icon = ExtResource("icon")
+definition_id = &"industrial_blaster"
+display_name = "Industrial blaster"
+description = "Robot-compatible primary weapon. Equip to enable firing. A finite replacement can be recovered from a deployment tool cabinet; lost weapons are not replenished at base."
+category = 3
+unit_weight_g = 4000
+max_stack = 1
+base_value = 4
+material_units = 0
+mount = &"primary"
+compatible_actors = PackedStringArray("robot")
+weapon = ExtResource("weapon")

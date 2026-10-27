@@ -1,0 +1,33 @@
+{
+	"caps_valid": true,
+	"capture_metrics": false,
+	"configured_window": "(1600, 900)",
+	"conserved": true,
+	"engine": "4.7.2-stable (official)",
+	"five_raiders_two_machines_samples": 1311,
+	"frame_samples": 7141,
+	"initial_actor_visual_population": {
+		"animation_players": 10,
+		"deform_bones": 100,
+		"skeletons": 5,
+		"visible_actor_meshes": 41,
+		"visible_skinned_meshes": 15
+	},
+	"label": "yr_proposed_bay",
+	"load_ready_ms": 479.928,
+	"max_draw_calls": 480,
+	"max_ms": 21.151,
+	"max_rendered_primitives": 182340,
+	"max_texture_bytes": 122766848,
+	"median_ms": 4.191,
+	"p95_ms": 5.417,
+	"peak_p95_ms": 5.579,
+	"physics_p95_ms": 16.049,
+	"process_p95_ms": 5.085,
+	"processor": "Intel(R) Core(TM) i7-14700HX",
+	"rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+	"repeat_bake_ms": 15.108,
+	"repeat_map_sync_ms": 8.407,
+	"simulation_seconds_observed": 30.1500000000048,
+	"static_memory_bytes": 86806820.0
+}

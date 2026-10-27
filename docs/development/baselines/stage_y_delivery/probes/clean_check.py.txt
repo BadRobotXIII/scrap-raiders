@@ -1,0 +1,30 @@
+from pathlib import Path
+import shutil,subprocess,json
+root=Path('.godot/stage_y/clean_runtime');root.mkdir(exist_ok=True)
+for folder in ['assets/environment/exports','assets/environment/textures','resources/materials/environment','scenes/levels/environment','scenes/environment']:
+ shutil.copytree(folder,root/folder,dirs_exist_ok=True)
+for p in ['scripts/presentation/environment_mesh_batch.gd','scripts/presentation/environment_mesh_batch.gd.uid','scripts/presentation/environment_art_view.gd','scripts/presentation/environment_art_view.gd.uid','scenes/presentation/salvage_complex_dressing.tscn']:
+ dest=root/p;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
+(root/'project.godot').write_text('[application]\nconfig/name="Y isolated GLB validation"\nconfig/features=PackedStringArray("4.7", "Forward Plus")\n')
+(root/'probe.gd').write_text('''extends SceneTree
+func _initialize() -> void:call_deferred("run")
+func run() -> void:
+ var batches:=0
+ for path in ["processing_facility_art","salvage_yard_art","storage_area_art","service_perimeter_art"]:
+  var model:Node3D=load("res://scenes/levels/environment/"+path+".tscn").instantiate()
+  root.add_child(model)
+  for batch in model.find_children("*","MultiMeshInstance3D",true,false):
+   assert(batch.multimesh!=null and batch.multimesh.mesh!=null)
+   batches+=1
+  model.free()
+ assert(batches==19)
+ assert(not DirAccess.dir_exists_absolute("res://assets/environment/source"))
+ print("CLEAN GLB BATCHES ",batches)
+ quit()
+''')
+rows=[]
+for label,args in [('import',['--editor','--quit']),('runtime',['--script','res://probe.gd','--quit-after','1000'])]:
+ log=Path('.godot/stage_y/clean_'+label+'.log.txt')
+ with log.open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--headless','--path',str(root),*args],stdout=f,stderr=subprocess.STDOUT,timeout=90)
+ text=log.read_text(errors='replace');row={'case':label,'exit':r.returncode,'completed':label=='import' or 'CLEAN GLB BATCHES 19' in text,'issues':[x for x in text.splitlines() if 'ERROR:' in x or 'WARNING:' in x]};rows.append(row);print(row,flush=True)
+Path('.godot/stage_y/clean_validation.json').write_text(json.dumps(rows,indent=2))

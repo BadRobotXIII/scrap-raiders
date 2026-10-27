@@ -28,6 +28,7 @@ func _init(config: MissionConfig, ledger: MaterialLedger, equipment: EquipmentLe
 	_mission_name = config.display_name
 	_ledger.transfer_accepted.connect(_on_material)
 	_equipment.transfer_accepted.connect(_on_equipment)
+	if ledger.inventory.hybrid: ledger.inventory.changed.connect(_inventory_changed)
 	refresh()
 
 
@@ -35,6 +36,9 @@ func _on_material(_kind: StringName, details: Dictionary) -> void:
 	if is_closed() or int(details.serial) <= _material_serial:
 		return
 	_material_serial = int(details.serial)
+	refresh()
+
+func _inventory_changed(_event: Dictionary) -> void:
 	refresh()
 
 
@@ -118,6 +122,7 @@ func result() -> Dictionary:
 
 
 func dispose() -> void:
+	if _ledger.inventory.changed.is_connected(_inventory_changed): _ledger.inventory.changed.disconnect(_inventory_changed)
 	if _ledger.transfer_accepted.is_connected(_on_material):
 		_ledger.transfer_accepted.disconnect(_on_material)
 	if _equipment.transfer_accepted.is_connected(_on_equipment):

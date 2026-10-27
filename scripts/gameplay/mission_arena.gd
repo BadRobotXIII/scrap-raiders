@@ -20,6 +20,8 @@ var seed_override: int = -1
 
 func _ready() -> void:
 	config = mission_config_override if mission_config_override != null else CONFIGS[clampi(scenario_index, 0, CONFIGS.size() - 1)]
+	hybrid_inventory = config.hybrid_inventory
+	loot_table = config.loot_table
 	deployment_started = not config.briefing_required
 	if not deployment_started:
 		process_mode = Node.PROCESS_MODE_DISABLED
@@ -301,11 +303,25 @@ func refresh_refined_hud() -> void:
 func start_deployment() -> bool:
 	if deployment_started or mission.is_finished():
 		return false
+	if hybrid_inventory and (not recall.save_error.is_empty() or not recall.stash.begin_inventory_deployment(recall.deployment_id)):
+		recall.save_error = recall.stash.last_error if recall.save_error.is_empty() else recall.save_error
+		recall.refresh_stash()
+		return false
 	deployment_started = true
 	robot.input_adapter.clear_intent()
 	robot.input_adapter.gameplay_enabled = true
 	robot.get_node("Weapon").enabled = true
+	if interaction_mode != null:
+		interaction_mode.close_inventory()
+		interaction_mode.refresh()
 	process_mode = Node.PROCESS_MODE_INHERIT
+	if hybrid_inventory:
+		# Briefing disabled the region too. Publish its re-enabled map before any
+		# scheduled entry validates reachability against a previously empty map.
+		NavigationServer3D.map_force_update($NavigationRegion3D.get_navigation_map())
+		# Static collision participation also resumes at the next server step.
+		# Do not classify its activation interval as invalid authored geometry.
+		entry_retry = 0.1
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if objective_view != null:
 		objective_view.begin()

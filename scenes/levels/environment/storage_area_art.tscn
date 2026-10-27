@@ -1,0 +1,261 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="1_rctum"]
+[ext_resource type="Material" path="res://resources/materials/environment/weathered_steel.tres" id="2_usmjc"]
+[ext_resource type="Material" path="res://resources/materials/environment/painted_steel_bluegray.tres" id="3_ul7ib"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="4_1fytw"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/structures/freight_panel_2m.glb" id="5_hxluj"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/facility_sign.tscn" id="6_kr85t"]
+[ext_resource type="Material" path="res://resources/materials/environment/concrete.tres" id="7_htsoc"]
+
+
+
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/storage_area.tscn" id="y_geometry"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ajv"]
+material = ExtResource("2_usmjc")
+size = Vector3(12, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k7wjk"]
+material = ExtResource("3_ul7ib")
+size = Vector3(11.9, 3, 2.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ugwhs"]
+material = ExtResource("2_usmjc")
+size = Vector3(3, 3, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8n8s1"]
+material = ExtResource("3_ul7ib")
+size = Vector3(2.9, 3, 11.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uory2"]
+material = ExtResource("2_usmjc")
+size = Vector3(3, 3, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cm5uq"]
+material = ExtResource("3_ul7ib")
+size = Vector3(2.9, 3, 7.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2lmu"]
+material = ExtResource("2_usmjc")
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eyyhj"]
+material = ExtResource("7_htsoc")
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p06ye"]
+material = ExtResource("2_usmjc")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jv5wh"]
+material = ExtResource("7_htsoc")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tx26c"]
+material = ExtResource("2_usmjc")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nroxr"]
+material = ExtResource("7_htsoc")
+size = Vector3(4, 0.18, 6.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a8x75"]
+material = ExtResource("2_usmjc")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_grv1v"]
+material = ExtResource("3_ul7ib")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8pbe"]
+material = ExtResource("2_usmjc")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4l27"]
+material = ExtResource("3_ul7ib")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_80tih"]
+material = ExtResource("2_usmjc")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h4eft"]
+material = ExtResource("3_ul7ib")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tsgwe"]
+material = ExtResource("2_usmjc")
+size = Vector3(0.4, 3, 6.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d5u3i"]
+material = ExtResource("3_ul7ib")
+size = Vector3(0.4, 3, 6.8)
+
+[node name="StorageAreaArt" instance=ExtResource("y_geometry")]
+script = ExtResource("1_rctum")
+graybox_visuals = Array[NodePath]([NodePath("NorthContainer/Mesh"), NodePath("EastContainer/Mesh"), NodePath("SouthContainer/Mesh"), NodePath("Platform/Mesh"), NodePath("NorthRamp/Mesh"), NodePath("SouthRamp/Mesh"), NodePath("RampRail0/Mesh"), NodePath("RampRail1/Mesh"), NodePath("RampRail2/Mesh"), NodePath("RampRail3/Mesh")])
+production_visuals = Array[NodePath]([NodePath("NorthContainer/Dressing"), NodePath("EastContainer/Dressing"), NodePath("SouthContainer/Dressing"), NodePath("Platform/Dressing"), NodePath("NorthRamp/Dressing"), NodePath("SouthRamp/Dressing"), NodePath("RampRail0/Dressing"), NodePath("RampRail1/Dressing"), NodePath("RampRail2/Dressing"), NodePath("RampRail3/Dressing")])
+
+[node name="NorthContainer" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthContainer"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthContainer/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_u4ajv")
+
+[node name="Surface" type="MeshInstance3D" parent="NorthContainer/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_k7wjk")
+
+[node name="freight_panel_2m" type="MultiMeshInstance3D" parent="NorthContainer/Dressing"]
+cast_shadow = 0
+script = ExtResource("4_1fytw")
+model_scene = ExtResource("5_hxluj")
+instance_transforms = Array[Transform3D]([Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1.5, -1.44), Transform3D(-2, 0, -8.742278e-08, 0, 1, 0, 1.7484555e-07, 0, -1, -4, -1.5, 1.44), Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1.44), Transform3D(-2, 0, -8.742278e-08, 0, 1, 0, 1.7484555e-07, 0, -1, 0, -1.5, 1.44), Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1.5, -1.44), Transform3D(-2, 0, -8.742278e-08, 0, 1, 0, 1.7484555e-07, 0, -1, 4, -1.5, 1.44), Transform3D(-6.556708e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.371139e-08, -5.94, -1.5, 0), Transform3D(-6.556708e-08, 0, -1, 0, 1, 0, 1.5, 0, -4.371139e-08, 5.94, -1.5, 0)])
+
+[node name="Identification" type="Label3D" parent="NorthContainer/Dressing" instance=ExtResource("6_kr85t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 1.502)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "WH-03 / SHIPPING
+07-218 / DISPATCH HELD"
+font_size = 44
+outline_size = 4
+
+[node name="EastContainer" parent="."]
+
+[node name="Dressing" type="Node3D" parent="EastContainer"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="EastContainer/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_ugwhs")
+
+[node name="Surface" type="MeshInstance3D" parent="EastContainer/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8n8s1")
+
+[node name="freight_panel_2m" type="MultiMeshInstance3D" parent="EastContainer/Dressing"]
+cast_shadow = 0
+script = ExtResource("4_1fytw")
+model_scene = ExtResource("5_hxluj")
+instance_transforms = Array[Transform3D]([Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -5.94), Transform3D(-1.5, 0, -8.742278e-08, 0, 1, 0, 1.3113416e-07, 0, -1, 0, -1.5, 5.94), Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, -1.44, -1.5, -4), Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 1.44, -1.5, -4), Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, -1.44, -1.5, 0), Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 1.44, -1.5, 0), Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, -1.44, -1.5, 4), Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 1.44, -1.5, 4)])
+
+[node name="Identification" type="Label3D" parent="EastContainer/Dressing" instance=ExtResource("6_kr85t")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.502, 0.3, 0)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "SEALED / 07-219"
+font_size = 28
+outline_size = 4
+
+[node name="SouthContainer" parent="."]
+
+[node name="Dressing" type="Node3D" parent="SouthContainer"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="SouthContainer/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_uory2")
+
+[node name="Surface" type="MeshInstance3D" parent="SouthContainer/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_cm5uq")
+
+[node name="freight_panel_2m" type="MultiMeshInstance3D" parent="SouthContainer/Dressing"]
+cast_shadow = 0
+script = ExtResource("4_1fytw")
+model_scene = ExtResource("5_hxluj")
+instance_transforms = Array[Transform3D]([Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -3.94), Transform3D(-1.5, 0, -8.742278e-08, 0, 1, 0, 1.3113416e-07, 0, -1, 0, -1.5, 3.94), Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, -1.44, -1.5, -2), Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 1.44, -1.5, -2), Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, -1.44, -1.5, 2), Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 1.44, -1.5, 2)])
+
+[node name="Identification" type="Label3D" parent="SouthContainer/Dressing" instance=ExtResource("6_kr85t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.502, 0.3, 0)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "07-220 / PART LOAD"
+font_size = 28
+outline_size = 4
+
+[node name="Platform" parent="."]
+
+[node name="Dressing" type="Node3D" parent="Platform"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="Platform/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_c2lmu")
+
+[node name="Surface" type="MeshInstance3D" parent="Platform/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_eyyhj")
+
+[node name="NorthRamp" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthRamp"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthRamp/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_p06ye")
+
+[node name="Surface" type="MeshInstance3D" parent="NorthRamp/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_jv5wh")
+
+[node name="SouthRamp" parent="."]
+
+[node name="Dressing" type="Node3D" parent="SouthRamp"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="SouthRamp/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_tx26c")
+
+[node name="Surface" type="MeshInstance3D" parent="SouthRamp/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_nroxr")
+
+[node name="RampRail0" parent="."]
+
+[node name="Dressing" type="Node3D" parent="RampRail0"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="RampRail0/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_a8x75")
+
+[node name="Surface" type="MeshInstance3D" parent="RampRail0/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_grv1v")
+
+[node name="RampRail1" parent="."]
+
+[node name="Dressing" type="Node3D" parent="RampRail1"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="RampRail1/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_u8pbe")
+
+[node name="Surface" type="MeshInstance3D" parent="RampRail1/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_u4l27")
+
+[node name="RampRail2" parent="."]
+
+[node name="Dressing" type="Node3D" parent="RampRail2"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="RampRail2/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_80tih")
+
+[node name="Surface" type="MeshInstance3D" parent="RampRail2/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_h4eft")
+
+[node name="RampRail3" parent="."]
+
+[node name="Dressing" type="Node3D" parent="RampRail3"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="RampRail3/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_tsgwe")
+
+[node name="Surface" type="MeshInstance3D" parent="RampRail3/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_d5u3i")

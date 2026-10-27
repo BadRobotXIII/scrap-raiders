@@ -24,6 +24,7 @@ func run() -> void:
 	# Lose line of sight and then exercise the actual navigation failure path.
 	guard.position = Vector3(100, 0.1, 100)
 	await frames(3)
+	a.combat.tick(0.66) # Sustained loss, after the accepted same-target LOS grace.
 	a.decide()
 	check(a.combat.pursuing, "Valid unseen observation starts pursuit without tracking live target")
 	a.recover_navigation(a.investigation_position)

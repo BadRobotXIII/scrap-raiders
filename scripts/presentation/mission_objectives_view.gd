@@ -46,6 +46,11 @@ func _ready() -> void:
 	deploy_button.custom_minimum_size.y = 48
 	deploy_button.pressed.connect(arena.start_deployment)
 	content.add_child(deploy_button)
+	if arena.hybrid_inventory:
+		var inventory_button := Button.new()
+		inventory_button.text = "Stash / Prepared loadout [I]"
+		inventory_button.pressed.connect(func() -> void: arena.interaction_mode.open_inventory())
+		content.add_child(inventory_button)
 	arena.get_node("Overlay/Summary/Content/Restart").text = "Prepare next deployment"
 
 

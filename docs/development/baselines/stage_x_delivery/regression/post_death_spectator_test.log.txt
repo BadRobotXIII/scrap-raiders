@@ -1,0 +1,85 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Deployment failure is permanent while world lifetime can continue
+PASS: World deadline cannot rewrite death outcome as a new player failure
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R02: SELECTING -> DEAD
+PASS: Death fixture recovers finite material and equipment through existing ledgers
+PASS: Developer camera may be active before lethal damage
+PASS: Death offers Spectate/Return without shutting down world
+PASS: Death exits developer view and cannot restore player controls or free camera
+PASS: Player cargo settles as forfeited once before observation
+PASS: Repeated death/finish cannot settle twice, extract or change persistent stash
+PASS: Spectate button prefers live lethal instigator and uses shared single active camera
+PASS: RMB mouse orbit respects player pitch limits
+PASS: Cycling covers every live registered Raider and support machine exactly once
+PASS: Reverse cycling follows stable target order
+PASS: Gameplay/free-flight actions cannot move actors, translate follow view or transfer loot
+PASS: Follow spring arm shortens against cover without moving its actor
+R03: SELECTING -> SCAVENGING
+PASS: Camera proximity never becomes a perceived gameplay threat
+PASS: Machine destruction still releases its preallocated component after player failure
+PASS: Human scavenging and rival eligibility continue after settlement
+R01: SELECTING -> ENGAGING
+R03: SCAVENGING -> TAKING_COVER
+PASS: Normal rival combat still fires and damages after player destruction
+R03: TAKING_COVER -> DEAD
+PASS: Target death cycles safely while cargo, equipment and flares remain authoritative
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+PASS: Finite responders can enter and receive equipment/relations after player death
+PASS: Responder can scavenge remaining original stock
+R04: INVESTIGATING -> EXTRACTED
+PASS: Extracted and freed target safely switches view; actual loss stays separate from forfeiture
+PASS: World deadline ends observation without rewriting failed deployment
+PASS: Final sealing rejects late transfers and preserves prior stash
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Restart clears observer/world state and restores player control with prior stash
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Unknown instigator falls back to a live Raider without a developer controller
+PASS: Return stops local observation and presents failure summary without revival
+PASS: Repeated Return is idempotent
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+R03: SELECTING -> DEAD
+PASS: Empty target list with pending responses allows passive observation
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+PASS: A newly admitted finite responder automatically becomes a follow target
+R04: INVESTIGATING -> DEAD
+R05: INVESTIGATING -> DEAD
+PASS: No survivors or pending entries ends observation despite remaining component loot
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+R02: ENGAGING -> TAKING_COVER
+PASS: World keeps running while player chooses Spectate or Return
+R03: SCAVENGING -> ENGAGING
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R03: ENGAGING -> TAKING_COVER
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: ENGAGING -> TAKING_COVER
+PASS: Natural post-death actors scavenge/fight while mission clock and accounting continue
+PASS: Natural observation cannot bank rewards or reopen recall
+Stage O post-death spectator checks complete; failures: 0

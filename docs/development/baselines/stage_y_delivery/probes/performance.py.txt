@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess,json,time
+out=Path('.godot/stage_y');rows=[]
+for label,args,marker in [('full_bay',['--script','res://.godot/stage_w/performance.gd','--quit-after','20000','--','y_full_bay','res://scenes/levels/expanded_salvage_complex.tscn'],'PERFORMANCE'),('full_overview',['--script','res://.godot/stage_w/performance.gd','--quit-after','20000','--','y_full_overview','res://scenes/levels/expanded_salvage_complex.tscn'],'PERFORMANCE'),('full_peak',['--script','res://.godot/stage_x/peak.gd','--quit-after','15000','--','y_full_peak'],'DEATH_PERFORMANCE')]:
+ file=out/(label+'.log.txt')
+ with file.open('w') as stream:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.',*args],stdout=stream,stderr=subprocess.STDOUT,timeout=160)
+ log=file.read_text(errors='replace');row=dict(label=label,exit=r.returncode,completed=marker in log,issues=[x for x in log.splitlines() if 'ERROR:' in x or 'WARNING:' in x]);rows.append(row);print(row,flush=True);(out/'performance_validation.json').write_text(json.dumps(rows,indent=2))

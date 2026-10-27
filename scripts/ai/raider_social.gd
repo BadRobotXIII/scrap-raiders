@@ -37,8 +37,9 @@ func best_report() -> Dictionary:
 
 
 func sees_drop(drop: MaterialDrop) -> bool:
-	if not is_instance_valid(drop) or drop.is_queued_for_deletion() or encounter.arena.drops.get(drop.drop_id) != drop or drop.ledger != actor.ledger or drop.materials <= 0 or actor.global_position.distance_to(drop.global_position) > encounter.rules.loot_radius:
+	if not is_instance_valid(drop) or drop.is_queued_for_deletion() or encounter.arena.drops.get(drop.drop_id) != drop or drop.ledger != actor.ledger or actor.global_position.distance_to(drop.global_position) > encounter.rules.loot_radius:
 		return false
+	if drop.content_count() <= 0 and not (drop is WorldLoot and drop.drop_id < 0): return false
 	var query := PhysicsRayQueryParameters3D.create(actor.global_position + Vector3.UP, drop.global_position + Vector3.UP * 0.3, 1, [actor.get_rid()])
 	query.hit_from_inside = true
 	return actor.get_world_3d().direct_space_state.intersect_ray(query).is_empty()
@@ -48,7 +49,13 @@ func knows_drop(drop: MaterialDrop) -> bool:
 	if not encounter.rules.loot_enabled or not is_instance_valid(drop) or not loot_memory.has(drop.drop_id):
 		return false
 	var memory: Dictionary = loot_memory[drop.drop_id]
-	return memory.expires > encounter.arena.elapsed and memory.position.distance_to(drop.global_position) < 0.1 and encounter.arena.drops.get(drop.drop_id) == drop and drop.materials > 0 and not drop.is_queued_for_deletion()
+	return memory.expires > encounter.arena.elapsed and memory.position.distance_to(drop.global_position) < 0.1 and encounter.arena.drops.get(drop.drop_id) == drop and (drop.content_count() > 0 or (drop is WorldLoot and drop.drop_id < 0)) and not drop.is_queued_for_deletion()
+
+func searched_empty_cache(drop: MaterialDrop) -> bool:
+	# A remembered visit is not a claim about the cache's unseen current
+	# contents. Avoid repeating a completed empty search; fresh sight can
+	# discover deposited loot and make this location interesting again.
+	return is_instance_valid(drop) and drop is WorldLoot and drop.drop_id < 0 and loot_memory.get(drop.drop_id, {}).get("empty", false)
 
 
 func known_drops() -> Array[Node3D]:
@@ -56,7 +63,7 @@ func known_drops() -> Array[Node3D]:
 	for id in loot_memory.keys():
 		var drop = encounter.arena.drops.get(id)
 		if not is_instance_valid(drop) or not knows_drop(drop):
-			loot_memory.erase(id)
+			if not searched_empty_cache(drop): loot_memory.erase(id)
 		else:
 			result.append(drop)
 	return result
@@ -68,7 +75,7 @@ func sense() -> void:
 	if encounter.rules.loot_enabled:
 		for drop in encounter.arena.drops.values():
 			if sees_drop(drop):
-				loot_memory[drop.drop_id] = {"position": drop.global_position, "expires": encounter.arena.elapsed + encounter.rules.memory_seconds}
+				loot_memory[drop.drop_id] = {"position": drop.global_position, "expires": encounter.arena.elapsed + encounter.rules.memory_seconds, "empty": drop.content_count() == 0}
 		known_drops()
 	if encounter.rules.cooperation_enabled and actor.threat_visible and actor.detects_current_target():
 		for other in encounter.arena.raiders.values():

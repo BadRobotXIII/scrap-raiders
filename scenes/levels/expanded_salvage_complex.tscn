@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/robot.tscn" id="1_robot"]
 [ext_resource type="PackedScene" path="res://scenes/targets/practice_target.tscn" id="2_target"]
@@ -6,11 +6,18 @@
 [ext_resource type="Script" path="res://scripts/gameplay/mission_arena.gd" id="6_mission"]
 [ext_resource type="Resource" path="res://resources/missions/expanded_asset_recovery.tres" id="7_config"]
 [ext_resource type="PackedScene" path="res://scenes/presentation/arena_overlay.tscn" id="5_overlay"]
-[ext_resource type="PackedScene" path="res://scenes/levels/environment/salvage_yard.tscn" id="u0"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/salvage_yard_art.tscn" id="u0"]
 [ext_resource type="PackedScene" path="res://scenes/levels/environment/processing_facility_art.tscn" id="u1"]
-[ext_resource type="PackedScene" path="res://scenes/levels/environment/storage_area.tscn" id="u2"]
-[ext_resource type="PackedScene" path="res://scenes/levels/environment/service_perimeter.tscn" id="u3"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/storage_area_art.tscn" id="u2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/service_perimeter_art.tscn" id="u3"]
 
+
+[ext_resource type="PackedScene" path="res://scenes/presentation/salvage_complex_atmosphere.tscn" id="x_atmosphere"]
+[ext_resource type="Environment" path="res://resources/presentation/industrial_day.tres" id="x_environment"]
+
+[ext_resource type="PackedScene" path="res://scenes/presentation/salvage_complex_dressing.tscn" id="y_dressing"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/staging_clusters.tscn" id="y_staging"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh"]
 agent_radius = 0.5
@@ -101,6 +108,7 @@ outer_radius = 0.8
 material = SubResource("SalvageMarkerMaterial")
 size = Vector3(0.45, 0.35, 0.45)
 
+
 [node name="ExpandedSalvageComplex" type="Node3D"]
 script = ExtResource("6_mission")
 scenario_index = 16
@@ -108,7 +116,7 @@ mission_config_override = ExtResource("7_config")
 
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment")
+environment = ExtResource("x_environment")
 
 
 
@@ -291,6 +299,8 @@ mesh = SubResource("SalvageCrate")
 
 [node name="ServicePerimeter" parent="Geometry" instance=ExtResource("u3")]
 
+[node name="StagingClusters" parent="Geometry" instance=ExtResource("y_staging")]
+
 [node name="RecallDock" type="Marker3D" parent="."]
 position = Vector3(0, 0, 26)
 
@@ -372,6 +382,7 @@ position = Vector3(-18, 0, 18)
 position = Vector3(12, 0, 0)
 
 [node name="SALVAGEYARD" type="Label3D" parent="."]
+visible = false
 position = Vector3(0, 3.8, -8)
 text = "SALVAGE YARD"
 font_size = 48
@@ -379,6 +390,7 @@ billboard = 1
 pixel_size = 0.004
 
 [node name="PROCESSING" type="Label3D" parent="."]
+visible = false
 position = Vector3(-22, 5.9, -2)
 text = "PROCESSING"
 font_size = 48
@@ -386,6 +398,7 @@ billboard = 1
 pixel_size = 0.004
 
 [node name="STORAGE" type="Label3D" parent="."]
+visible = false
 position = Vector3(23, 3.3, -16)
 text = "STORAGE"
 font_size = 48
@@ -393,8 +406,13 @@ billboard = 1
 pixel_size = 0.004
 
 [node name="SERVICEROUTE" type="Label3D" parent="."]
+visible = false
 position = Vector3(-8, 3.8, 20)
 text = "SERVICE ROUTE"
 font_size = 48
 billboard = 1
 pixel_size = 0.004
+
+[node name="Atmosphere" parent="." instance=ExtResource("x_atmosphere")]
+
+[node name="EnvironmentalPresentation" parent="." instance=ExtResource("y_dressing")]

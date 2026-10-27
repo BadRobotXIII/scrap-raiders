@@ -1,0 +1,12 @@
+{
+  "scripts/ai/raider.gd": "93f2db4f957734d71c9cee2597f7ee064d9fbb3aa8ae8e5aa9f31ca50ee665e7",
+  "scripts/ai/raider_combat.gd": "bfcd5d7d27ffe2b48834351ae976a10682cc3aac8ced665f6c36e58f2af3d43f",
+  "scripts/ai/raider_threat_monitor.gd": "a6387cf2934c8f9bae24072aa5a4482b8b75ae15d3ca832f49e27ed2457286a3",
+  "scripts/ai/raider_threat_monitor.gd.uid": "a6942b377d49185b85470c88f4a30976a701db200f56f16c1de8fd974c7edce2",
+  "tests/action_commitment_test.gd": "a82c2e164f75b77aa3bb1b3c1bd25764606801ea9e038412e2c4c4087e06826d",
+  "tests/action_commitment_test.gd.uid": "e0c1bcb5051ea84262496f2ae825ae3d09b9f54a55a9354260137c49104ba153",
+  "tests/personality_combat_test.gd": "1c194b60175ed2940f0eb3f65dd9b76cf579e07a6a0b7b3fcf0ed3b73559361b",
+  "tests/personality_integration_test.gd": "246434b73393146e4072ba14dbb526f310e48c3530b5afccefb6d07e8c9bdaac",
+  "tests/raider_decision_stability_test.gd": "3e4570d00f6cdbc245b1e99d9c79a06d1b92162d403d3e1b4c183a5224cc6b77",
+  "tests/asset_pipeline_test.gd": "200a9c10468e9e6c258b9485ce82cf0b1ec9c8e29a9ff74f41cf236266905aef"
+}

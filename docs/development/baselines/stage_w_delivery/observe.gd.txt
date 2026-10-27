@@ -1,0 +1,103 @@
+extends SceneTree
+var arena: Node3D
+var data := {"actors":{}, "events":[], "samples":{}, "conserved":true, "cap_valid":true, "frozen_result":true}
+var registered := {}
+var last_relations := 0
+var frozen := {}
+func _initialize() -> void:
+	call_deferred("run")
+func event(kind: String, details: Dictionary = {}) -> void:
+	if data.events.size() < 512:
+		var record := details.duplicate(true)
+		record["kind"] = kind
+		record["time"] = arena.elapsed
+		data.events.append(record)
+func count(key: String) -> void:
+	data.samples[key] = int(data.samples.get(key,0)) + 1
+func on_loadout(kind: StringName, details: Dictionary) -> void:
+	if kind != &"assign_loadout" or registered.has(details.actor):
+		return
+	var actor: Raider = arena.raiders[details.actor]
+	registered[details.actor] = true
+	data.actors[str(actor.raider_id)] = {"profile":actor.profile.display_name,"policy":actor.profile.combat_policy,"entry":arena.elapsed,"responder":actor.is_flare_responder}
+	actor.health.damaged.connect(on_damage.bind(actor))
+	actor.extracted.connect(func(amount: int) -> void: event("extracted",{"actor":actor.raider_id,"materials":amount}))
+	actor.combat.weapon.fired.connect(func(_o:Vector3,_e:Vector3,hit:bool) -> void: event("shot",{"actor":actor.raider_id,"target":str(actor.current_target().name),"hit":hit}))
+func on_damage(amount: float, actor: Raider) -> void:
+	var source := instance_from_id(actor.health.last_damage_instigator_id) if actor.health.last_damage_instigator_id > 0 else null
+	event("raider_damage",{"actor":actor.raider_id,"source":str(source.name) if is_instance_valid(source) else "unknown","source_is_raider":source is Raider,"amount":amount,"remaining":actor.health.current})
+func sample() -> void:
+	for actor in arena.raiders.values():
+		if not is_instance_valid(actor) or not arena.ledger.is_active(actor.raider_id):
+			continue
+		if actor.threat_source == "ally report":count("ally_report_intent")
+		if actor.social != null:
+			for report in actor.social.reports.values():
+				if report.expires > arena.elapsed:count("fresh_cached_allied_report")
+			if not actor.social.loot_memory.is_empty():count("loot_memory_present")
+		if actor.betrayal != null:
+			if actor.betrayal.can_assess():count("opportunist_can_assess")
+			for other in arena.raiders.values():
+				if is_instance_valid(other) and actor.betrayal.qualifies(other):count("richer_ally_qualifies")
+			if actor.state == Raider.State.ASSESSING_BETRAYAL:count("betrayal_assessment")
+	var relations: Array = arena.social.relations.events()
+	for index in range(last_relations,relations.size()):event("relation",relations[index])
+	last_relations = relations.size()
+func run() -> void:
+	var startup := Time.get_ticks_usec()
+	var packed := load(OS.get_cmdline_user_args()[2] if OS.get_cmdline_user_args().size() > 2 else "res://scenes/levels/expanded_salvage_complex.tscn") as PackedScene
+	var seed_value := int(OS.get_cmdline_user_args()[0])
+	var candidate := OS.get_cmdline_user_args()[1] if OS.get_cmdline_user_args().size() > 1 else "fix_only"
+	if candidate == "east_entries":
+		var cfg: MissionConfig = load("res://resources/missions/asset_recovery.tres")
+		cfg.spawn_markers = cfg.spawn_markers + PackedStringArray(["BetrayalEntry3"])
+		for original in cfg.encounter_layouts:
+			var entries := original.entry_markers.duplicate()
+			entries[0] = "Spawn5"
+			entries[1] = "BetrayalEntry3"
+			original.entry_markers = entries
+			print("CANDIDATE ",cfg.spawn_markers," ",original.entry_markers," ",original.validation_error(cfg))
+	arena = packed.instantiate()
+	arena.seed_override = seed_value
+	arena.capture_metrics = true
+	arena.stash_path = "res://.godot/stage_w/after/stash_%d.json" % seed_value
+	root.add_child(arena)
+	current_scene = arena
+	if not arena.setup_error.is_empty():
+		print("ACTUAL ",arena.config.spawn_markers)
+		for definition in arena.config.encounter_layouts:print(definition.validation_error(arena.config)," ",definition.entry_markers)
+		push_error(arena.setup_error)
+		quit(1)
+		return
+	arena.flare_director.equipment.transfer_accepted.connect(on_loadout)
+	data["load_ready_ms"] = (Time.get_ticks_usec() - startup) / 1000.0
+	data["seed"] = seed_value
+	data["setup"] = DeploymentMetrics.serializable(arena.encounter.snapshot)
+	arena.start_deployment()
+	arena.spectator.enter()
+	arena.spectator.set_process(false)
+	var next_sample := 0.0
+	for index in range(12000):
+		await physics_frame
+		await process_frame
+		data.conserved = data.conserved and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+		data.cap_valid = data.cap_valid and arena.flare_director.living_count() <= 5 and arena.flare_director.committed <= 2
+		if arena.elapsed >= next_sample:
+			sample()
+			next_sample = arena.elapsed + 0.5
+		if arena.mission_objectives.is_closed():
+			if frozen.is_empty():frozen = arena.mission_objectives.result()
+			data.frozen_result = data.frozen_result and frozen == arena.mission_objectives.result()
+		if arena.mission.player_destroyed and not arena.post_death.active and not arena.mission.is_world_finished():arena.post_death.enter()
+		if arena.mission.is_world_finished() or arena.elapsed >= 180:break
+	await process_frame
+	data["elapsed"] = arena.elapsed
+	data["metrics"] = arena.metrics.snapshot()
+	data["result"] = arena.mission_objectives.result()
+	var output := FileAccess.open("res://.godot/stage_w/after/%s_%d.json" % [candidate,seed_value],FileAccess.WRITE)
+	output.store_string(JSON.stringify(data,"\t"))
+	output.close()
+	print("AUDIT seed=",seed_value," t=",arena.elapsed," samples=",data.samples)
+	arena.queue_free()
+	for index in range(30):await process_frame
+	quit(0 if data.conserved and data.cap_valid and data.frozen_result else 1)

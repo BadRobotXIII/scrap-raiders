@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/item_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/servo_motor.svg" id="icon"]
+[resource]
+script = ExtResource("1")
+icon = ExtResource("icon")
+definition_id = &"servo_motor"
+display_name = "Servo motor"
+description = "Salvage cargo; extract to store."
+category = 1
+unit_weight_g = 4000
+max_stack = 2
+base_value = 4
+material_units = 1
+mount = &""
+compatible_actors = PackedStringArray()

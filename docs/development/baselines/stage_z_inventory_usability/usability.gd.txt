@@ -1,0 +1,54 @@
+extends "res://tests/inventory_world_test.gd"
+
+func shot(label: String) -> void:
+	await frames(4)
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png("res://.godot/stage_z_build/usability_" + label + ".png")
+
+func run() -> void:
+	root.size = Vector2i(1600, 900)
+	var arena := create_arena("usability", true)
+	await frames(15)
+	var stash: PersistentStash = arena.recall.stash
+	var fixture := stash.persistent_command("usability-fixture", {}, func(candidate: InventoryLedger) -> Dictionary:
+		for definition in [&"raider_rifle", &"industrial_blaster", &"copper_winding", &"armor_plating"]:
+			var result := candidate.issue("fixture-" + str(definition), definition, 1, "stash", "imported")
+			if not result.ok: return result
+		return {"ok": true})
+	check(fixture.ok, "Isolated presentation fixture contains recovered equipment without touching real storage")
+	var mode: PlayerInteractionMode = arena.interaction_mode
+	check(mode.open_inventory(), "Preparation opens")
+	var rifle: Dictionary
+	var blaster: Dictionary
+	for item in arena.ledger.inventory.records("stash"):
+		if item.definition == "raider_rifle": rifle = item
+		if item.definition == "industrial_blaster": blaster = item
+	mode.view.select(rifle.id)
+	check(mode.view.action_buttons["Equip / Unequip"].disabled and mode.view.details.text.contains("RAIDER ONLY"), "Rifle compatibility is readable and Equip is disabled")
+	await shot("rifle")
+	mode.view.select(blaster.id)
+	mode.view.perform("Equip / Unequip")
+	check(arena.ledger.inventory.record(blaster.id).slot == "e:primary" and arena.ledger.inventory.quantity("stash") == 4, "One-click stash equip swaps the old blaster into storage atomically")
+	await shot("prepared")
+	root.size = Vector2i(1280, 720)
+	await shot("1280")
+	root.size = Vector2i(1600, 900)
+	mode.close_inventory()
+	check(arena.start_deployment(), "Refined preparation deploys")
+	await frames(20)
+	freeze(arena)
+	var source: WorldLoot = arena.drops[-1]
+	arena.robot.position = source.position + Vector3(0, 0.1, 1)
+	await frames(4)
+	check(mode.open_inventory(source), "Registered source opens")
+	arena.inventory_interaction.opened = source
+	await shot("source")
+	mode.view.perform("Take All")
+	await frames(3)
+	mode.open_inventory()
+	await shot("cargo")
+	check(arena.ledger.inventory.is_valid(), "Visual actions preserve shared inventory invariants")
+	arena.queue_free()
+	await frames(30)
+	print("Inventory usability graphical failures: ", failures)
+	quit(1 if failures else 0)

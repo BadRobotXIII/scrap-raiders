@@ -1,0 +1,5 @@
+from pathlib import Path
+import subprocess
+with Path('.godot/stage_z_build/natural.log.txt').open('w',encoding='utf-8') as output:
+ r=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://.godot/stage_z_build/natural.gd','--quit-after','65000'],stdout=output,stderr=subprocess.STDOUT,timeout=120)
+print('natural',r.returncode)

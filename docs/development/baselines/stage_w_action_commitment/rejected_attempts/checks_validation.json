@@ -1,0 +1,40 @@
+[
+  {
+    "check": "default_headless",
+    "exit": 0,
+    "seconds": 1.43,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "check": "default_forward",
+    "exit": 0,
+    "seconds": 3.69,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "check": "expanded_forward",
+    "exit": 0,
+    "seconds": 2.47,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "check": "action_forward",
+    "exit": 0,
+    "seconds": 17.32,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "check": "gui",
+    "exit": 0,
+    "seconds": 17.1,
+    "completed": false,
+    "issues": [
+      "ERROR: Actual graphical Deploy click starts expanded mission",
+      "SCRIPT ERROR: Invalid access to property or key '1' on a base object of type 'Dictionary[int, Raider]'."
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess
+for label in ['z_bay','z_overview']:
+ with Path(f'.godot/stage_z_build/{label}.log.txt').open('w',encoding='utf-8') as f:
+  r=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--path','.','--script','res://.godot/stage_z_build/performance.gd','--',''+label,'res://scenes/levels/expanded_salvage_complex.tscn'],stdout=f,stderr=subprocess.STDOUT,timeout=100)
+ print(label,r.returncode,flush=True)

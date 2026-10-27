@@ -89,6 +89,63 @@ func reset_actor(actor: Raider, style: String) -> void:
 	actor.combat.weapon.set_physics_process(false)
 
 
+func greedy_visibility_defense() -> void:
+	var arena := await create("greedy_visibility")
+	var actor: Raider = arena.raiders[1]
+	var guard: SupportMachine = arena.ecosystem.machines[1]
+	reset_actor(actor, "greedy")
+	check(arena.ledger.collect(actor.raider_id, &"Salvage", 1) == 1, "Greedy visibility fixture carries one existing finite material")
+	var wall := StaticBody3D.new()
+	var collider := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = Vector3(3, 3, 0.4)
+	collider.shape = shape
+	collider.disabled = true
+	wall.add_child(collider)
+	wall.position = Vector3(0, 1.5, 11)
+	arena.add_child(wall)
+	await frames(3)
+	actor.health.apply_damage(1, guard.get_aim_position(), guard.get_instance_id())
+	actor.decide()
+	check(actor.state == Raider.State.ENGAGING and actor.combat.defending and not actor.combat.escaping, "Observed attacker starts Greedy bounded defense despite actual carried cargo")
+	var transitions := {"count": 0}
+	actor.state_changed.connect(func(previous: Raider.State, next: Raider.State) -> void:
+		if previous in [Raider.State.ENGAGING, Raider.State.INVESTIGATING] and next in [Raider.State.ENGAGING, Raider.State.INVESTIGATING]:
+			transitions.count += 1)
+	var retained := true
+	actor.set_physics_process(true)
+	actor.combat.weapon.set_physics_process(true)
+	for cycle in range(8):
+		collider.disabled = false
+		await frames(9)
+		retained = retained and actor.state == Raider.State.ENGAGING
+		collider.disabled = true
+		await frames(9)
+		retained = retained and actor.state == Raider.State.ENGAGING
+	freeze(arena)
+	print("Greedy defense LOS transitions: ", transitions.count)
+	check(retained and transitions.count == 0, "Greedy bounded defense retains its action through repeated physical LOS flicker")
+	actor.combat.commit_remaining = 0
+	actor.decide()
+	check(actor.state == Raider.State.FLEEING and actor.combat.escaping, "Completed defense immediately yields to loaded Greedy cargo preservation despite LOS grace")
+	# A new bounded defense is physically occluded during the grace window.
+	# Critical damage must still override it, without revealing the attacker.
+	reset_actor(actor, "greedy")
+	await frames(3)
+	actor.health.apply_damage(1, guard.get_aim_position(), guard.get_instance_id())
+	actor.decide()
+	collider.disabled = false
+	await frames(3)
+	actor.combat.tick(0.15)
+	actor.decide()
+	check(actor.state == Raider.State.ENGAGING and actor.combat.defending and not actor.detects_current_target(), "Critical-response fixture is defending inside a real occluded grace window")
+	actor.health.apply_damage(75, guard.get_aim_position(), guard.get_instance_id())
+	check(actor.health.current == 24 and actor.state == Raider.State.FLEEING and actor.combat.escaping, "Critical incoming damage applies fully and immediately overrides Greedy visibility grace")
+	check(actor.carried_materials == 1 and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid(), "Greedy continuity, cargo retreat and critical escape preserve finite authoritative ownership")
+	arena.queue_free()
+	await frames(30)
+
+
 func run() -> void:
 	directory = "res://.godot/stage_q_tests/" + Crypto.new().generate_random_bytes(8).hex_encode()
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(directory))
@@ -182,6 +239,9 @@ func run() -> void:
 	arena.add_child(wall)
 	wall.position = Vector3(0, 1.5, 11)
 	await frames(3)
+	# Frozen-policy fixture explicitly advances the same bounded visibility
+	# grace as live Combat.tick; a single missed sighting no longer changes action.
+	a.combat.tick(0.66)
 	a.decide()
 	var snapshot := a.investigation_position
 	check(a.state == Raider.State.INVESTIGATING and a.combat.pursuing, "Aggressive pursues a saved sighting after physical occlusion")
@@ -253,5 +313,6 @@ func run() -> void:
 	check(arena.recall.stash.snapshot().materials == 0, "AI extraction never banks player rewards")
 	arena.queue_free()
 	await frames(30)
+	await greedy_visibility_defense()
 	print("Stage Q personality combat checks complete; failures: ", failures)
 	quit(1 if failures else 0)

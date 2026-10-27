@@ -1,0 +1,91 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c8yor65h3qh8v"
+path="res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn"
+
+[deps]
+
+source_file="res://assets/characters/exports/ground_machine/ground_machine.glb"
+dest_files=["res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=false
+nodes/use_node_type_suffixes=false
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"cloth_olive": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/characters/materials/cloth_olive.tres"
+},
+"concrete": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/materials/environment/concrete.tres"
+},
+"galvanized_steel": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/materials/environment/galvanized_steel.tres"
+},
+"opaque_lens": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://resources/characters/materials/opaque_lens.tres",
+"use_external/path": "res://resources/characters/materials/opaque_lens.tres"
+},
+"painted_steel_bluegray": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://resources/materials/environment/painted_steel_bluegray.tres",
+"use_external/path": "res://resources/materials/environment/painted_steel_bluegray.tres"
+},
+"protective_polymer": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/characters/materials/protective_polymer.tres"
+},
+"rubber": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://resources/materials/environment/rubber.tres",
+"use_external/path": "res://resources/materials/environment/rubber.tres"
+},
+"safety_yellow": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/materials/environment/safety_yellow.tres"
+},
+"salvaged_metal": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/characters/materials/salvaged_metal.tres"
+},
+"weathered_steel": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/materials/environment/weathered_steel.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

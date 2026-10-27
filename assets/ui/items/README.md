@@ -1,0 +1,1 @@
+Original inventory icons drawn as SVG paths for this project. No third-party sources. Each silhouette corresponds to an item definition; cyan identifies robot and industrial equipment, amber distinguishes copper and human rifles. Text labels carry compatibility information independently of color.

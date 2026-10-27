@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Invalid/out-of-phase material transfers rejected
+PASS: Scavenging transfers protected stock to carried cargo
+PASS: Duplicate scavenging and unknown actor rejected
+PASS: Loaded defeat waits for cargo recovery
+PASS: Resolved Raider cannot produce a second outcome
+PASS: Recovery credits mission inventory exactly once
+PASS: Completed transfers reject duplicates
+PASS: Timeout cannot overwrite success
+PASS: Stopping an empty Raider protects all stock
+PASS: Empty extraction loses no materials
+PASS: Loaded extraction records loss and failure
+PASS: Timeout preserves unrecovered cargo accounting
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> DEAD
+PASS: Loaded kill keeps gameplay active until pickup
+PASS: Distant pickup rejected
+PASS: Pickup cannot pass through solid cover
+PASS: Nearby unobstructed cargo is recoverable
+PASS: Logical E intent transfers world stack into recovered inventory
+PASS: Repeated pickup does not duplicate credit
+PASS: Recovered world stack removed
+PASS: Success summary reports recovered materials
+PASS: Mission end stops controls/combat and releases cursor
+PASS: Restart creates a fresh mission ledger
+PASS: Restart restores Raider, HUD, and clean world
+R01: SCAVENGING -> DEAD
+PASS: Early interception succeeds without requiring nonexistent loot
+PASS: Restart action reloads after terminal outcome
+PASS: Deployment deadline produces failure summary
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Real Raider extraction signal records lost materials
+PASS: Failure summary reports extracted materials
+Mission checks complete; failures: 0
+WARNING: 9 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

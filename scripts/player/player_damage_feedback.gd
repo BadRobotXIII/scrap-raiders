@@ -4,29 +4,16 @@ extends Control
 @onready var robot: RobotController = get_parent().get_parent()
 @onready var health: Health = robot.get_node("Health")
 var flash: float = 0.0
-var audio: AudioStreamPlayer
 
 
 func _ready() -> void:
 	health.damaged.connect(_on_damaged)
 	health.died.connect(func() -> void: robot.visuals.hide())
-	audio = AudioStreamPlayer.new()
-	var sound := AudioStreamWAV.new()
-	sound.mix_rate = 22050
-	sound.format = AudioStreamWAV.FORMAT_8_BITS
-	var samples := PackedByteArray()
-	for index in range(2646):
-		var envelope := 1.0 - float(index) / 2646.0
-		samples.append(int(sin(index * TAU * 160.0 / 22050.0) * 65.0 * envelope) & 255)
-	sound.data = samples
-	audio.stream = sound
-	audio.volume_db = -16
-	add_child(audio)
+
 
 
 func _on_damaged(_amount: float) -> void:
 	flash = 0.45
-	audio.play()
 
 
 func _process(delta: float) -> void:

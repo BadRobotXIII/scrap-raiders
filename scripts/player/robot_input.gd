@@ -13,6 +13,7 @@ var recover_held: bool = false
 var jump_requested: bool = false
 var boost_requested: bool = false
 var gameplay_enabled: bool = true
+var suppress_fire_until_release: bool = false
 
 
 func _ready() -> void:
@@ -26,7 +27,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	move_intent = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	aim_intent = Input.is_action_pressed("aim")
-	fire_intent = Input.is_action_pressed("fire")
+	if not Input.is_action_pressed("fire"): suppress_fire_until_release = false
+	fire_intent = Input.is_action_pressed("fire") and not suppress_fire_until_release
 	pickup_intent = Input.is_action_just_pressed("recover")
 	recover_held = Input.is_action_pressed("recover")
 	jump_requested = Input.is_action_just_pressed("jump")

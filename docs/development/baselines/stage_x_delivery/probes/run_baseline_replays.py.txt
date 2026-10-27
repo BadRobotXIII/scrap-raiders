@@ -1,0 +1,10 @@
+from pathlib import Path
+import subprocess,json,time
+root=Path.cwd(); out=root/'.godot/stage_x';runs=[]
+for name in ['accepted_w','corrected_w']:
+ for label,args in [('import',['--editor','--quit']),('replay',['--fixed-fps','60','--script','res://.godot/replay.gd','--quit-after','18000'])]:
+  file=out/(name+'_'+label+'.log.txt')
+  with file.open('w') as stream:
+   result=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--headless','--path',str(out/name),*args],stdout=stream,stderr=subprocess.STDOUT,timeout=150)
+  log=file.read_text();runs.append({'case':name+'_'+label,'exit':result.returncode,'issues':[x for x in log.splitlines() if 'ERROR:' in x or 'WARNING:' in x]});print(runs[-1],flush=True)
+(out/'baseline_replay_validation.json').write_text(json.dumps(runs,indent=2))

@@ -1,0 +1,22 @@
+extends "res://tests/gameplay_integration_test.gd"
+func run() -> void:
+ test_directory = "res://.godot/stage_x_audit/probe_" + Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena := await isolated_s("muzzle")
+ var actor: Raider = arena.raiders[1]
+ var muzzle := actor.get_node("Visuals/RifleMuzzle") as Marker3D
+ var before := muzzle.global_position
+ var local_before := muzzle.position
+ actor.health.apply_damage(1)
+ var after := muzzle.global_position
+ var buses: Array = []
+ for index in range(AudioServer.bus_count): buses.append(AudioServer.get_bus_name(index))
+ var listeners := []
+ for method in ClassDB.class_get_method_list("AudioListener3D"):
+  if method.name in ["make_current","clear_current","is_current"]:listeners.append(method.name)
+ var result := {"engine":Engine.get_version_info(), "buses":buses,"audio_listener_api":listeners,"raider_muzzle_before":str(before),"raider_muzzle_after":str(after),"muzzle_world_drift_m":before.distance_to(after),"authored_local_unchanged":local_before==muzzle.position,"visuals_scale_after":str(actor.visuals.scale),"health_after":actor.health.current,"ledger_conserved":arena.ledger.is_conserved()}
+ FileAccess.open("res://.godot/stage_x_audit/probe.json",FileAccess.WRITE).store_string(JSON.stringify(result,"\t"))
+ print("STAGE X AUDIT ",result)
+ arena.queue_free()
+ await frames(30)
+ quit()

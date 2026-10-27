@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+0.0s SETUP seed 87017 layout u_west
+ERROR: Actual graphical Deploy click starts expanded mission
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/integrated_extraction_test.gd:16)
+       [1] run (res://.godot/stage_w/gui.gd:21)
+       [2] frames (res://tests/integrated_extraction_test.gd:22)
+SCRIPT ERROR: Invalid access to property or key '1' on a base object of type 'Dictionary[int, Raider]'.
+   at: run (res://.godot/stage_w/gui.gd:27)
+   GDScript backtrace (most recent call first):
+       [0] run (res://.godot/stage_w/gui.gd:27)
+       [1] frames (res://tests/integrated_extraction_test.gd:22)

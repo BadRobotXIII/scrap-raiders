@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/world_loot.gd" id="1"]
+[node name="ToolCabinet" type="Node3D"]
+script = ExtResource("1")
+title = "Tool cabinet"
+cue_color = Color(0.95, 0.7, 0.25, 1)

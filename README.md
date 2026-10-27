@@ -4,7 +4,11 @@ Internal working title for an original comedic third-person PvE game. The player
 
 Original phase ledgers, completion reports and the current acceptance history are collected in the [development records](docs/development/README.md).
 
-Stages N, O, P, Q, R, S, T and U are accepted. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) records seeded encounters and validation. The accepted pre-P project is preserved in baseline commit `bac0f6d`.
+For a high-level entry-point, scene, AI, accounting, camera and asset hierarchy, see the [game code-flow guide](docs/architecture/game_code_flow.md). The [test index](tests/README.md) explains the active regression suites and archive policy.
+
+The [Stage W actor visual-production proposal](docs/development/plans/phase_7_stage_w_actor_visual_production_plan.md) covers human Raiders, the player machine, ground support and flying scout using the supplied references. The director approved the design/architecture; four original actor models, a shared Raider rig and minimal animation were accepted at Checkpoint W on 2026-10-23, as explicitly recorded in the Stage X director ledger. See the [delivery report](docs/development/reports/stage_w_actor_visual_production.md) and [actor pipeline guide](docs/art_pipeline/actors.md).
+
+Stages N, O, P, Q, R, S, T, U, V, W, X and Y are accepted. The [Stage P report](docs/development/reports/stage_p_dynamic_encounters.md) records seeded encounters and validation. The accepted pre-P project is preserved in baseline commit `bac0f6d`.
 
 The [combat follow-up](docs/development/reports/stage_p_combat_stability_followup.md) records the engagement, guard-clearance and sustained-fire corrections accepted on 2026-10-20. The [Stage Q report](docs/development/reports/stage_q_personality_combat.md) records accepted personality-aware combat. The [Stage R baseline](docs/development/reports/stage_r_baseline_evaluation.md) and [implementation proposal](docs/development/plans/phase_5_stage_r_integrated_polish_plan.md) were approved and implemented for Checkpoint R. The [Stage R delivery report](docs/development/reports/stage_r_integrated_polish.md) records validation and the rejected arrival-timing trial; the director accepted Checkpoint R on 2026-10-20.
 
@@ -16,11 +20,15 @@ Normal Asset Recovery now uses an S-specific north layout: its early allied carr
 
 Director review prompted a [Raider decision follow-up](docs/development/reports/stage_t_raider_decision_followup.md): short stable body bypasses, retained bounded pursuit and a bounded attacker-response window address rapid turning and aim-reset paralysis. The director accepted Stage T including this follow-up; no mission configuration was changed by the follow-up.
 
+The approved [Stage X proposal](docs/development/plans/phase_7_stage_x_combat_audio_atmosphere_plan.md), including the flinch/muzzle correction, was **accepted at Checkpoint X on 2026-10-25**. Shared discharge/impact/damage feedback, original spatial audio, restrained industrial ambience and inspection demonstrations preserve gameplay authority. See the [delivery report](docs/development/reports/stage_x_combat_audio_atmosphere.md), [presentation guide](docs/presentation/README.md) and unchanged [director ledger](docs/development/ledgers/phase_7_stage_x_combat_audio_atmosphere.md). The approved [Stage Y world-population proposal](docs/development/plans/phase_7_stage_y_world_population_plan.md) was **accepted at Checkpoint Y on 2026-10-26**: four dressed industrial zones, eight new original modules and unchanged gameplay contracts. See the [Y delivery report and play-test checklist](docs/development/reports/stage_y_world_population.md). The optional roof-support amendment remains excluded. The director-approved [Y refinement](docs/development/reports/stage_y_environment_refinement.md) was also **accepted on 2026-10-26**: procedural concrete wear, connected utilities and three matching staged-load clusters. All 41 suites pass; the report includes rendering measurements and the manual checklist.
+
+The director-approved [Stage Z inventory plan](docs/development/plans/phase_7_stage_z_hybrid_inventory_plan.md) is implemented for **Checkpoint Z manual review**. Player and Raiders share one inventory/transfer authority. Normal and expanded missions add finite typed caches, equipment mounts, 12-slot / 35 kg player cargo, 6-slot / 24 kg Raider cargo and durable prepared loadouts. **I** opens inventory or preparation; hold **E** to search registered sources. The world continues while inventory is open. Only a mounted compatible weapon enables firing; other mounts have no stat effect in Z. Version-1 saves migrate on normal launch with an original-byte `.v1.bak`; development used isolated saves only. See the [delivery, validation and play-test checklist](docs/development/reports/stage_z_hybrid_inventory.md).
+
 ## Requirements and running
 
 - Windows x64, Godot **4.7.2 Standard**, GDScript, Forward+ renderer.
 - Vulkan-capable graphics device; no external assets, frameworks, services, or networking.
-- Blender **4.5.10 LTS** is verified for authoring. Stage V delivers eight original environment assets, shared materials and a limited processing-bay demonstration. Runtime uses explicit GLBs and does not require Blender. See the [pipeline guide](docs/art_pipeline/README.md) and [Checkpoint V report](docs/development/reports/stage_v_environment_art.md); director visual review is pending. Character/animation work remains deferred.
+- Blender **4.5.10 LTS** is verified for authoring. Stage V delivers eight original environment assets, shared materials and a limited processing-bay demonstration. Runtime uses explicit GLBs and does not require Blender. See the [pipeline guide](docs/art_pipeline/README.md) and [Checkpoint V report](docs/development/reports/stage_v_environment_art.md); Checkpoint V was accepted on 2026-10-22. Stage W adds the initial actor and animation foundation; further character detailing remains future refinement.
 
 Open with `godot --editor --path .`, then F5. Standalone: `godot --path .`.
 
@@ -34,7 +42,11 @@ godot --path . res://scenes/levels/expanded_salvage_complex.tscn
 
 Click **Deploy**. The 72 x 64 m complex adds processing, yard, loading ramps, container storage and alternate service/perimeter routes. F1/F3 retain spectator/diagnostics. In U, **Ctrl+Shift+F5**, then Deploy, advances its seed; **R** replays U. In-game F5 selects a reference scenario and is not the U launch control. Default startup remains compact Asset Recovery following Checkpoint U acceptance. See the [report and manual checklist](docs/development/reports/stage_u_world_expansion.md).
 
-The expanded scene now includes the Stage V art demonstration in the western processing building, near (-18, 0, 3). Launch it with the command above, then Deploy. For comparison, launch `res://scenes/levels/expanded_salvage_complex_graybox.tscn`; the complete eight-asset library is at `res://scenes/environment/asset_inspection.tscn`. F1/F3 provide spectator/diagnostics. The [Stage V report](docs/development/reports/stage_v_environment_art.md) contains screenshots, 33-suite validation, performance evidence and the manual checklist.
+Checkpoint W review prompted a [Raider action-commitment correction](docs/development/reports/stage_w_raider_action_commitment.md): stable sight-loss/reacquisition, bounded report investigations and cover-route congestion recovery. The existing Raider FSM remains authoritative. Its 36-suite validation and remaining manual review are separate from the original visual delivery below.
+
+Stage W actor visuals are enabled in normal and expanded deployments. Preview the three human Raider appearances and all machines with `godot --path . res://scenes/characters/actor_inspection.tscn`: **0** overview, **1-6** close views, **Left/Right** rotate and **Space** pause. Stage X adds Fire, surface impacts, Damage, Destroy/Reset, Motor and Repeat buttons; the scout remains unarmed. The [W report](docs/development/reports/stage_w_actor_visual_production.md) records 35-suite validation, rendering cost, audio cleanup warnings and the remaining director checklist.
+
+The expanded scene now dresses receiving, processing, shipping and service zones as RIVET RECLAMATION WORKS / SITE 07. Launch it with the command above, then Deploy. For comparison, launch `res://scenes/levels/expanded_salvage_complex_graybox.tscn`; inspect all sixteen original environment modules at `res://scenes/environment/asset_inspection.tscn`. F1/F3 provide spectator/diagnostics. The [Stage Y report](docs/development/reports/stage_y_world_population.md) records 40-suite validation, exact seeded replay, rendering measurements and remaining manual review. The [Stage V report](docs/development/reports/stage_v_environment_art.md) preserves the original processing pilot.
 
 The default startup is **Operation: Asset Recovery**, using `scenes/levels/asset_recovery_arena.tscn`. Read the briefing and click **Deploy**; the simulation waits until then. Bank **3 materials** and extract to succeed. Banking equipment and personally defeating a hostile Raider are optional. Early recall banks carried loot even with an incomplete primary; death/timeout forfeits deployment cargo. **R / Prepare next deployment** returns to the briefing with fresh objectives and the same seed/stash.
 
@@ -67,7 +79,11 @@ The arenas share the same simulation code. The inherited single-Raider scene ove
 | Mouse | Camera orbit |
 | Hold RMB | Aim-facing |
 | Hold LMB | Fire |
-| E | Recover nearest eligible cargo |
+| E | Search nearest registered source; reference presets retain their recovery actions |
+| I | Inventory / safe prepared loadout in normal and expanded missions |
+| Inventory: Shift+click / T | Move a stack to storage, prepared cargo, or the searched source; source pickups take only what fits |
+| Inventory: double-click / F | Double-click equips compatible gear or moves cargo; F equips or unequips selected compatible gear |
+| Inventory: A / X | Take all source loot that fits / drop selected deployment cargo |
 | Escape / click | Release / capture mouse |
 | R or Restart button | Restart after mission completion |
 | F3 | Show/hide developer HUD, control banner and spectator inspection details |
@@ -429,6 +445,8 @@ godot --headless --path . --script res://tests/deployment_flow_test.gd
 godot --headless --path . --script res://tests/gameplay_integration_test.gd
 godot --headless --path . --script res://tests/raider_decision_stability_test.gd
 godot --headless --path . --script res://tests/expanded_world_test.gd
+godot --headless --path . --script res://tests/actor_import_test.gd
+godot --headless --path . --script res://tests/actor_visual_test.gd
 godot --headless --path . --quit-after 180
 godot --path . --quit-after 180
 ```
@@ -510,3 +528,7 @@ Stage T validation (2026-10-21): the 29 accepted suites plus the new normal-scen
 Stage T decision follow-up validation (2026-10-21): all 31 suites pass, including physical allied passing, bounded pursuit with competing enemies, and alternating-attacker return-fire coverage. Parsing, Forward+ regression/startup and two normal seeded deployments passed with clean final logs. Checkpoint T remains open for director recheck; see the [follow-up report](docs/development/reports/stage_t_raider_decision_followup.md). No commit or Stage U work was performed.
 
 Stage U was accepted by the director on 2026-10-21 after successful manual play-testing. Existing controllers and finite populations remain; the expanded mission is selected explicitly and default routing is unchanged. No Git commit, publication or Stage V work is included. The [U report](docs/development/reports/stage_u_world_expansion.md) records physical corrections, automated/graphical checks, matched seeded observations and remaining acceptance checks.
+
+Stage Z is at its **architecture approval checkpoint**, with no inventory implementation authorized. See the [repository audit and fresh 41-suite baseline](docs/development/reports/stage_z_inventory_architecture_audit.md), [hybrid inventory proposal](docs/development/plans/phase_7_stage_z_hybrid_inventory_plan.md) and [original director ledger](docs/development/ledgers/phase_7_stage_z_hybrid_inventory.md). The proposal uses one shared item authority for player and Raider transfers, preserving separate UI/AI decisions.
+
+Inventory usability refinement: original item icons, labeled equipment mounts, cargo tiles, weight meter and contextual controls are documented in the [refinement report](docs/development/reports/stage_z_inventory_usability.md). The robot equips **industrial blasters**; Raider rifles are human-only equipment that can still be carried, extracted and stored. There is one starter blaster per profile and a finite recoverable blaster in each normal deployment; losses do not grant free replacements. Disassembly and upgrades remain future proposals.

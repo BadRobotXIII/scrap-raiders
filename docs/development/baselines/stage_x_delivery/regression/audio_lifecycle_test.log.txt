@@ -1,0 +1,52 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Audio category exists: Weapons
+PASS: Audio category exists: Impacts
+PASS: Audio category exists: Machines
+PASS: Audio category exists: Environment
+PASS: Audio category exists: Interface
+PASS: Audio category exists: Music
+PASS: All original audio resources match provenance hashes and authored loop modes
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: The single sound listener follows developer camera ownership
+PASS: Changing the listener cannot move actors, create awareness or transfer ownership
+PASS: Leaving spectator restores player-camera spatial listening
+PASS: Real enabled audio starts inside the bounded voice budget
+PASS: Player deployment death preserves ongoing world presentation and simulation
+PASS: Post-death spectating can follow surviving autonomous actors
+PASS: Restricted actor following uses the same presentation listener
+PASS: Repeated finish cannot resettle material or equipment accounting
+PASS: World shutdown stops every owned voice rather than waiting for playback
+PASS: Repeated scene removal leaves no presentation owner or stale emitters
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: The single sound listener follows developer camera ownership
+PASS: Changing the listener cannot move actors, create awareness or transfer ownership
+PASS: Leaving spectator restores player-camera spatial listening
+PASS: Real enabled audio starts inside the bounded voice budget
+PASS: Player deployment death preserves ongoing world presentation and simulation
+PASS: Post-death spectating can follow surviving autonomous actors
+PASS: Restricted actor following uses the same presentation listener
+PASS: Repeated finish cannot resettle material or equipment accounting
+PASS: World shutdown stops every owned voice rather than waiting for playback
+PASS: Repeated scene removal leaves no presentation owner or stale emitters
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: The single sound listener follows developer camera ownership
+PASS: Changing the listener cannot move actors, create awareness or transfer ownership
+PASS: Leaving spectator restores player-camera spatial listening
+PASS: Real enabled audio starts inside the bounded voice budget
+PASS: Player deployment death preserves ongoing world presentation and simulation
+PASS: Post-death spectating can follow surviving autonomous actors
+PASS: Restricted actor following uses the same presentation listener
+PASS: Repeated finish cannot resettle material or equipment accounting
+PASS: World shutdown stops every owned voice rather than waiting for playback
+PASS: Repeated scene removal leaves no presentation owner or stale emitters
+Audio lifecycle failures: 0

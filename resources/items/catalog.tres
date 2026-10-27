@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemCatalog" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/item_catalog.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/items/scrap_steel.tres" id="i0"]
+[ext_resource type="Resource" path="res://resources/items/copper_winding.tres" id="i1"]
+[ext_resource type="Resource" path="res://resources/items/servo_motor.tres" id="i2"]
+[ext_resource type="Resource" path="res://resources/items/industrial_sensor.tres" id="i3"]
+[ext_resource type="Resource" path="res://resources/items/control_pcb.tres" id="i4"]
+[ext_resource type="Resource" path="res://resources/items/industrial_blaster.tres" id="i5"]
+[ext_resource type="Resource" path="res://resources/items/raider_rifle.tres" id="i6"]
+[ext_resource type="Resource" path="res://resources/items/worn_response_rifle.tres" id="i7"]
+[ext_resource type="Resource" path="res://resources/items/electronics_kit.tres" id="i8"]
+[ext_resource type="Resource" path="res://resources/items/armor_plating.tres" id="i9"]
+[ext_resource type="Resource" path="res://resources/items/power_module.tres" id="i10"]
+[ext_resource type="Resource" path="res://resources/items/mobility_actuator.tres" id="i11"]
+[resource]
+script = ExtResource("1")
+definitions = Array[Resource]([ExtResource("i0"), ExtResource("i1"), ExtResource("i2"), ExtResource("i3"), ExtResource("i4"), ExtResource("i5"), ExtResource("i6"), ExtResource("i7"), ExtResource("i8"), ExtResource("i9"), ExtResource("i10"), ExtResource("i11")])

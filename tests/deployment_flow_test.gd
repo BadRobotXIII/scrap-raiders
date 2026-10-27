@@ -4,6 +4,10 @@ extends "res://tests/integrated_extraction_test.gd"
 
 func create_s(label: String, seed_value: int = 87017) -> Node3D:
 	var arena := load("res://scenes/levels/asset_recovery_arena.tscn").instantiate() as Node3D
+	# Preserve the accepted S/T scalar-content fixture; Stage Z's real normal
+	# configuration is exercised separately by the inventory integration suites.
+	arena.mission_config_override = load("res://resources/missions/asset_recovery.tres").duplicate(true)
+	arena.mission_config_override.hybrid_inventory = false
 	arena.stash_path = test_directory + "/" + label + ".json"
 	arena.seed_override = seed_value
 	root.add_child(arena)

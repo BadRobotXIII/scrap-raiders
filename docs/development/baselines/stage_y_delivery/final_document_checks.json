@@ -1,0 +1,13 @@
+{
+  "local_links_valid": true,
+  "broken_links": [],
+  "suites": 40,
+  "all_completed": true,
+  "protected_sources_unchanged": true,
+  "old_assets_preserved": true,
+  "final_seeded_replay": {
+    "baseline_equal": true,
+    "prior_repeat_equal": true
+  },
+  "new_script_uids_present": true
+}

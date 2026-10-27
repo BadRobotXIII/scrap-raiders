@@ -1,0 +1,51 @@
+extends "res://tests/inventory_world_test.gd"
+
+func run() -> void:
+	var path := test_directory + "/large.json"
+	var legacy := PersistentStash.new(path)
+	legacy.commit_rewards("a".repeat(32), 10240, [])
+	var data := {"legacy_material_units": 10240, "stash_stacks": 1024}
+	var started := Time.get_ticks_usec()
+	var modern := PersistentStash.new(path)
+	var authority := InventoryLedger.new()
+	authority.configure_container("player", load("res://resources/inventory/player.tres"))
+	check(modern.attach_inventory(authority), "1024-stack legacy fixture migrates safely")
+	data.migration_ms = (Time.get_ticks_usec() - started) / 1000.0
+	started = Time.get_ticks_usec()
+	var arena := load("res://scenes/levels/expanded_salvage_complex.tscn").instantiate() as Node3D
+	arena.stash_path = path
+	root.add_child(arena)
+	current_scene = arena
+	data.scene_load_with_large_stash_ms = (Time.get_ticks_usec() - started) / 1000.0
+	await frames(15)
+	var mode: PlayerInteractionMode = arena.interaction_mode
+	started = Time.get_ticks_usec()
+	mode.open_inventory()
+	data.ui_open_ms = (Time.get_ticks_usec() - started) / 1000.0
+	started = Time.get_ticks_usec()
+	for index in 20: mode.view.refresh()
+	data.ui_refresh_mean_ms = (Time.get_ticks_usec() - started) / 20000.0
+	data.inventory_ui_nodes = mode.view.find_children("*", "", true, false).size()
+	started = Time.get_ticks_usec()
+	for index in 100: arena.ledger.inventory.fit_value("stock:Salvage", "actor:1")
+	data.fit_query_mean_ms = (Time.get_ticks_usec() - started) / 100000.0
+	started = Time.get_ticks_usec()
+	for index in 4:
+		var item: Dictionary = arena.ledger.inventory.records("stash")[0]
+		var result: Dictionary = arena.recall.stash.persistent_command("bench%d" % index, {"id": item.id}, func(candidate: InventoryLedger) -> Dictionary: return candidate.transfer(item.id, 1, "prepared"))
+		check(result.ok, "Measured durable transfer remains valid")
+	data.durable_transfer_mean_ms = (Time.get_ticks_usec() - started) / 4000.0
+	var journal_bytes := 0
+	for file in DirAccess.get_files_at(path + ".journal"): journal_bytes += FileAccess.get_file_as_bytes((path + ".journal").path_join(file)).size()
+	data.journal_bytes = journal_bytes
+	data.journal_commits = DirAccess.get_files_at(path + ".journal").size()
+	data.current_records = arena.ledger.inventory.records().size()
+	data.valid = arena.ledger.is_conserved()
+	var output := FileAccess.open("res://.godot/stage_z_build/benchmark.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(data, "\t"))
+	output.close()
+	print("BENCHMARK ", data)
+	arena.queue_free()
+	await frames(20)
+	print("Inventory benchmark failures: ", failures)
+	quit(1 if failures else 0)

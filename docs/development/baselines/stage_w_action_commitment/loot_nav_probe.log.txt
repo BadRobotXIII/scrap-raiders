@@ -1,0 +1,44 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+PASS: Richer ally fixture transfers existing stock through the normal material owner
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: Normal Q Greedy preserves the existing visible betrayal assessment
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Leaving valid range cancels normal-scene assessment without hostility
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Valid assessment changes only its pair, with no cargo reward
+R02: SELECTING -> TAKING_COVER
+PASS: Betrayal fires a real shot and victim independently chooses existing Q defense
+R02: TAKING_COVER -> FLEEING
+R02: FLEEING -> DEAD
+PASS: Player can intervene in social combat and receive only its actual lethal-hit objective credit
+PASS: Social conflict death creates ordinary finite cargo, equipment and one response ticket
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+LOOT_FINAL (15.74707, 0.000841, -1.249116) cargo 3 dropped 3 blocked { &"MaterialDrop": true }
+ERROR: Surviving Raider physically approaches and scavenges conflict cargo through the unchanged S selector
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/integrated_extraction_test.gd:16)
+       [1] betrayal_loot_and_recall (res://.godot/w_decision_followup/loot_nav.gd:219)
+       [2] frames (res://tests/integrated_extraction_test.gd:22)
+R01: SELECTING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Re-looted material becomes extraction loss only after physical exit travel and dwell
+R06: SCAVENGING -> SELECTING
+R06: SELECTING -> INVESTIGATING
+PASS: Normal flare response retains finite Q profile and authored social eligibility

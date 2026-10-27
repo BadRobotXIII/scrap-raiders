@@ -1,0 +1,173 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="1_qp4r7"]
+[ext_resource type="Material" path="res://resources/materials/environment/weathered_steel.tres" id="2_ip6m6"]
+[ext_resource type="Material" path="res://resources/materials/environment/painted_steel_bluegray.tres" id="3_c2i0y"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/facility_sign.tscn" id="4_cs6jg"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="5_fkrtd"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/machinery/control_cabinet.glb" id="6_bnegi"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/machinery/vent_panel_2m.glb" id="7_f63pt"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/utility_run_2m.glb" id="8_10lfi"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/utility_junction_0p4m.glb" id="9_dk5iq"]
+
+
+
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/service_perimeter.tscn" id="y_geometry"]
+
+[ext_resource type="Material" path="res://resources/presentation/industrial_ground.tres" id="y_ground"]
+
+[sub_resource type="BoxMesh" id="GroundMesh"]
+material = ExtResource("y_ground")
+size = Vector3(72, 1, 64)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fk0cs"]
+material = ExtResource("2_ip6m6")
+size = Vector3(12, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_af5xr"]
+material = ExtResource("3_c2i0y")
+size = Vector3(12, 3, 0.65)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lrwqq"]
+material = ExtResource("2_ip6m6")
+size = Vector3(14, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_syniu"]
+material = ExtResource("3_c2i0y")
+size = Vector3(14, 3, 0.65)
+
+[sub_resource type="BoxMesh" id="BoxMesh_djc3j"]
+material = ExtResource("2_ip6m6")
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hxarl"]
+material = ExtResource("3_c2i0y")
+size = Vector3(8, 3, 0.65)
+
+[sub_resource type="BoxMesh" id="BoxMesh_235he"]
+material = ExtResource("2_ip6m6")
+size = Vector3(1, 3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ro077"]
+material = ExtResource("3_c2i0y")
+size = Vector3(1, 3, 6)
+
+[node name="ServicePerimeterArt" instance=ExtResource("y_geometry")]
+script = ExtResource("1_qp4r7")
+graybox_visuals = Array[NodePath]([NodePath("Floor/Mesh"), NodePath("WestServiceScreen/Mesh"), NodePath("EastServiceScreen/Mesh"), NodePath("NorthPerimeterScreen/Mesh"), NodePath("RecallScreen/Mesh")])
+production_visuals = Array[NodePath]([NodePath("Floor/GroundSurface"), NodePath("WestServiceScreen/Dressing"), NodePath("EastServiceScreen/Dressing"), NodePath("NorthPerimeterScreen/Dressing"), NodePath("RecallScreen/Dressing"), NodePath("ServiceDetails")])
+
+[node name="Floor" parent="."]
+
+[node name="GroundSurface" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("GroundMesh")
+
+[node name="WestServiceScreen" parent="."]
+
+[node name="Dressing" type="Node3D" parent="WestServiceScreen"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="WestServiceScreen/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_fk0cs")
+
+[node name="Surface" type="MeshInstance3D" parent="WestServiceScreen/Dressing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_af5xr")
+
+[node name="Identification" type="Label3D" parent="WestServiceScreen/Dressing" instance=ExtResource("4_cs6jg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.505)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "UT-04 / ISOLATED SERVICES"
+font_size = 44
+outline_size = 4
+
+[node name="EastServiceScreen" parent="."]
+
+[node name="Dressing" type="Node3D" parent="EastServiceScreen"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="EastServiceScreen/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_lrwqq")
+
+[node name="Surface" type="MeshInstance3D" parent="EastServiceScreen/Dressing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_syniu")
+
+[node name="Identification" type="Label3D" parent="EastServiceScreen/Dressing" instance=ExtResource("4_cs6jg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.505)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "UT-04 / ISOLATED SERVICES"
+font_size = 44
+outline_size = 4
+
+[node name="NorthPerimeterScreen" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthPerimeterScreen"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthPerimeterScreen/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_djc3j")
+
+[node name="Surface" type="MeshInstance3D" parent="NorthPerimeterScreen/Dressing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_hxarl")
+
+[node name="Identification" type="Label3D" parent="NorthPerimeterScreen/Dressing" instance=ExtResource("4_cs6jg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.505)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "UT-04 / ISOLATED SERVICES"
+font_size = 44
+outline_size = 4
+
+[node name="RecallScreen" parent="."]
+
+[node name="Dressing" type="Node3D" parent="RecallScreen"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="RecallScreen/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_235he")
+
+[node name="Surface" type="MeshInstance3D" parent="RecallScreen/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ro077")
+
+[node name="Identification" type="Label3D" parent="RecallScreen/Dressing" instance=ExtResource("4_cs6jg")]
+position = Vector3(0.505, 1.05, 0)
+rotation_degrees = Vector3(0, 90, 0)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "RIVET RECLAMATION WORKS / SITE 07"
+font_size = 44
+outline_size = 4
+
+[node name="ServiceDetails" type="Node3D" parent="."]
+
+[node name="control_cabinet" type="MultiMeshInstance3D" parent="ServiceDetails"]
+cast_shadow = 0
+script = ExtResource("5_fkrtd")
+model_scene = ExtResource("6_bnegi")
+instance_transforms = Array[Transform3D]([Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -23, 0.39999998, 16.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19, 0.39999998, 16.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -17, 0.39999998, 16.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 0.39999998, 16.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0.39999998, 18.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14, 0.39999998, 18.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 16, 0.39999998, 18.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20, 0.39999998, 18.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 22, 0.39999998, 18.297), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -15, 0.39999998, -22.703), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 0.39999998, -22.703), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, 0.39999998, -22.703)])
+
+[node name="vent_panel_2m" type="MultiMeshInstance3D" parent="ServiceDetails"]
+cast_shadow = 0
+script = ExtResource("5_fkrtd")
+model_scene = ExtResource("7_f63pt")
+instance_transforms = Array[Transform3D]([Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 0.29999995, 16.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -15, 0.29999995, 16.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 12, 0.29999995, 18.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, 0.29999995, 18.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 0.29999995, -22.6)])
+
+[node name="utility_run_2m" type="MultiMeshInstance3D" parent="ServiceDetails"]
+cast_shadow = 0
+script = ExtResource("5_fkrtd")
+model_scene = ExtResource("8_10lfi")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.6, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2.6, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.6, -22.6), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.6, -22.6), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.6, -22.6), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.6, -22.6), Transform3D(0, -1, 0, 1.2, 0, 0, 0, 0, 1, -19, 0.15, 16.4), Transform3D(0, -1, 0, 1.2, 0, 0, 0, 0, 1, 14, 0.15, 18.4)])
+
+[node name="utility_junction_0p4m" type="MultiMeshInstance3D" parent="ServiceDetails"]
+cast_shadow = 0
+script = ExtResource("5_fkrtd")
+model_scene = ExtResource("9_dk5iq")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6, 2.4, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 2.4, 16.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 2.4, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6, 2.4, 18.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 2.4, -22.6), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4, 2.4, -22.6), Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -19, 2.4, 16.4), Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 14, 2.4, 18.4)])

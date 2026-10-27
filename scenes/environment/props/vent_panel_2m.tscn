@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/machinery/vent_panel_2m.glb" id="1"]
+[node name="vent_panel_2m" type="Node3D"]
+[node name="Visual" parent="." instance=ExtResource("1")]
+[node name="vent_panel_2m" parent="Visual"]
+cast_shadow = 0

@@ -1,6 +1,38 @@
 extends "res://tests/expanded_world_test.gd"
 ## Validates imported presentation without giving it physics or mission authority.
 
+# V changed the expanded scene's visual resource. W changes only these accepted
+# actor presentation seams and explicit primitive-fixture selection; the rest of
+# the historical U contract remains protected by its original source identities.
+# The W director-review AI correction has separate exact reviewed identities;
+# these are not presentation exceptions or permission for future AI changes.
+const REVIEWED_ACTION_CORRECTIONS: Array[String] = [
+	"scripts/ai/raider.gd",
+	"scripts/ai/raider_combat.gd",
+	"tests/personality_combat_test.gd",
+	"tests/personality_integration_test.gd",
+	"tests/raider_decision_stability_test.gd",
+]
+const REVIEWED_X_CORRECTIONS: Array[String] = [
+	"scripts/components/hit_reaction.gd",
+	"scripts/gameplay/shot_executor.gd",
+	"scripts/player/combat_feedback.gd",
+	"scripts/player/player_damage_feedback.gd",
+	"scripts/presentation/death_flare.gd",
+	"scenes/levels/asset_recovery_arena.tscn",
+]
+const APPROVED_PRESENTATION_PATHS: Array[String] = [
+	"scenes/levels/expanded_salvage_complex.tscn",
+	"scenes/player/robot.tscn",
+	"scenes/raiders/raider.tscn",
+	"scripts/gameplay/raider_arena.gd",
+	"scripts/ai/support_machine.gd",
+	"scripts/components/death_tumble.gd",
+	"scripts/presentation/raider_feedback.gd",
+	"tests/awareness_test.gd",
+	"tests/destruction_test.gd",
+]
+
 
 func snapshot_contract(arena: Node3D) -> Dictionary:
 	var snapshot := {}
@@ -18,13 +50,22 @@ func snapshot_contract(arena: Node3D) -> Dictionary:
 
 func inspect_imports() -> void:
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/asset_manifest.json"))
-	check(manifest.assets.size() == 8 and manifest.materials.size() == 6, "Eight source-backed assets use the six shared material foundations")
+	check(manifest.assets.size() == 16 and manifest.materials.size() == 6, "Sixteen reviewed environment assets use the six shared material foundations")
 	var accepted: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_u_delivery/source_manifest.json"))
+	var corrected: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_w_action_commitment/reviewed_sources.json"))
+	var x_sources: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_x_delivery/reviewed_sources.json"))
+	# Stage Z explicitly changes shared inventory and its narrow callers. Pin
+	# those reviewed changes, including legacy-content fixture configuration,
+	# while retaining every historical geometry/art/source guard elsewhere.
+	var z_sources: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_z_delivery/reviewed_sources.json"))
 	var unchanged := true
+	for path in z_sources:
+		unchanged = unchanged and FileAccess.get_sha256("res://" + path) == z_sources[path]
 	for path in accepted:
-		if path != "scenes/levels/expanded_salvage_complex.tscn":
-			unchanged = unchanged and FileAccess.get_sha256("res://" + path) == accepted[path]
-	check(unchanged, "All accepted U gameplay, collision modules, configs and earlier tests remain byte-identical")
+		if not APPROVED_PRESENTATION_PATHS.has(path) and not z_sources.has(path):
+			var expected: String = x_sources.get(path, "") if REVIEWED_X_CORRECTIONS.has(path) else (corrected.get(path, "") if REVIEWED_ACTION_CORRECTIONS.has(path) else accepted[path])
+			unchanged = unchanged and not expected.is_empty() and FileAccess.get_sha256("res://" + path) == expected
+	check(unchanged and z_sources.size() == 22 and corrected.size() == REVIEWED_ACTION_CORRECTIONS.size() and x_sources.size() == REVIEWED_X_CORRECTIONS.size(), "Accepted U sources retain exact identities outside explicit V/W seams and the pinned W/X/Z corrections")
 	var total := 0
 	for value in manifest.assets:
 		var definition: Dictionary = value

@@ -18,8 +18,9 @@ var stash_label: Label
 func setup() -> void:
 	process_physics_priority = 40
 	deployment_id = Crypto.new().generate_random_bytes(16).hex_encode()
+	if arena.hybrid_inventory: deployment_id = arena.ledger.inventory.identity_prefix
 	stash = PersistentStash.new(arena.stash_path)
-	if not stash.load_stash():
+	if not (stash.attach_inventory(arena.ledger.inventory) if arena.hybrid_inventory else stash.load_stash()):
 		save_error = stash.last_error
 	dock = arena.get_node("RecallDock")
 	var mesh := MeshInstance3D.new()
@@ -65,6 +66,7 @@ func cancel() -> void:
 
 
 func can_channel() -> bool:
+	if arena.interaction_mode != null and arena.interaction_mode.current != PlayerInteractionMode.Mode.GAMEPLAY: return false
 	var input: RobotInput = arena.robot.input_adapter
 	var velocity := Vector2(arena.robot.velocity.x, arena.robot.velocity.z)
 	if arena.robot.traversal_enabled and (input.jump_requested or input.boost_requested or not arena.robot.is_on_floor() or arena.robot.boost_state == RobotController.BoostState.BOOSTING):
@@ -94,7 +96,7 @@ func complete() -> bool:
 	if not channeling or elapsed < channel_time or not can_channel() or start_position.distance_to(arena.robot.global_position) > 0.25 or not arena.ledger.can_settle_player() or not arena.flare_director.equipment.can_settle_player():
 		return false
 	var items: Array[Dictionary] = arena.flare_director.equipment.recovered_items()
-	if not stash.commit_rewards(deployment_id, arena.ledger.recovered_materials, items):
+	if not (stash.settle_inventory(deployment_id, true) if arena.hybrid_inventory else stash.commit_rewards(deployment_id, arena.ledger.recovered_materials, items)):
 		save_error = stash.last_error
 		cancel()
 		refresh_stash()
@@ -110,6 +112,8 @@ func complete() -> bool:
 func settle_failure() -> void:
 	cancel()
 	if not arena.mission.player_extracted:
+		if arena.hybrid_inventory and arena.deployment_started:
+			if not stash.settle_inventory(deployment_id, false): save_error = stash.last_error
 		arena.ledger.settle_player(false)
 		arena.flare_director.equipment.settle_player(false)
 		if arena.mission.player_destroyed:

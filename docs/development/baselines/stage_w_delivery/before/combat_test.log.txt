@@ -1,0 +1,16 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Invalid damage rejected
+PASS: Damage reduces health
+PASS: Lethal damage clamps health to zero
+PASS: Death emitted once; dead health rejects damage
+PASS: Ready weapon fires
+PASS: Camera-centered shot damages target
+PASS: Cooldown blocks repeated same-tick damage
+PASS: Cooldown expires and permits next shot
+PASS: Muzzle-side cover blocks shot despite clear camera ray
+PASS: Lethal hits remove target and collision body
+PASS: Misses still emit firing feedback
+PASS: Held fire respects configured cadence
+PASS: Clearing input clears fire intent
+Combat checks complete; failures: 0

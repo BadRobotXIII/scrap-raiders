@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="view"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="batch"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/pallet_load_1m.glb" id="load"]
+
+[sub_resource type="StandardMaterial3D" id="GrayMaterial"]
+albedo_color = Color(0.32, 0.37, 0.35, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="EnvelopeMesh"]
+material = SubResource("GrayMaterial")
+size = Vector3(2, 1.2, 2)
+
+[sub_resource type="BoxShape3D" id="EnvelopeShape"]
+size = Vector3(2, 1.2, 2)
+
+[node name="StagingClusters" type="Node3D"]
+script = ExtResource("view")
+graybox_visuals = Array[NodePath]([NodePath("Receiving/Mesh"), NodePath("Shipping/Mesh"), NodePath("Maintenance/Mesh")])
+production_visuals = Array[NodePath]([NodePath("PalletLoads"), NodePath("Receiving/Dressing"), NodePath("Shipping/Dressing"), NodePath("Maintenance/Dressing")])
+
+[node name="PalletLoads" type="MultiMeshInstance3D" parent="."]
+cast_shadow = 0
+script = ExtResource("batch")
+model_scene = ExtResource("load")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 8), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -24), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -24), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 0, 15), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 0, 15), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 0, 14), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 0, 14)])
+
+[node name="Receiving" type="StaticBody3D" parent="."]
+position = Vector3(5, 0.6, -24)
+
+[node name="Collision" type="CollisionShape3D" parent="Receiving"]
+shape = SubResource("EnvelopeShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Receiving"]
+mesh = SubResource("EnvelopeMesh")
+
+[node name="Dressing" type="Node3D" parent="Receiving"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="Receiving/Dressing"]
+cast_shadow = 3
+mesh = SubResource("EnvelopeMesh")
+
+[node name="Shipping" type="StaticBody3D" parent="."]
+position = Vector3(30, 0.6, 15)
+
+[node name="Collision" type="CollisionShape3D" parent="Shipping"]
+shape = SubResource("EnvelopeShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Shipping"]
+mesh = SubResource("EnvelopeMesh")
+
+[node name="Dressing" type="Node3D" parent="Shipping"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="Shipping/Dressing"]
+cast_shadow = 3
+mesh = SubResource("EnvelopeMesh")
+
+[node name="Maintenance" type="StaticBody3D" parent="."]
+position = Vector3(-32, 0.6, 14)
+
+[node name="Collision" type="CollisionShape3D" parent="Maintenance"]
+shape = SubResource("EnvelopeShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Maintenance"]
+mesh = SubResource("EnvelopeMesh")
+
+[node name="Dressing" type="Node3D" parent="Maintenance"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="Maintenance/Dressing"]
+cast_shadow = 3
+mesh = SubResource("EnvelopeMesh")

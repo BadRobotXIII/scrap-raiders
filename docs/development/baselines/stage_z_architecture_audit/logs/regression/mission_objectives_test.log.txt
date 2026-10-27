@@ -1,0 +1,50 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/mission_objectives_test.gd remapped: res://tests/mission_objectives_test.gd
+Completed load for: 'res://tests/mission_objectives_test.gd' remapped 'res://tests/mission_objectives_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://resources/missions/asset_recovery.tres remapped: res://resources/missions/asset_recovery.tres
+Loading resource: res://resources/enemies/opportunist_betrayal.tres remapped: res://resources/enemies/opportunist_betrayal.tres
+Completed load for: 'res://resources/enemies/opportunist_betrayal.tres' remapped 'res://resources/enemies/opportunist_betrayal.tres' at thread -1
+Loading resource: res://resources/missions/s_encounter_north.tres remapped: res://resources/missions/s_encounter_north.tres
+Loading resource: res://resources/enemies/q_greedy.tres remapped: res://resources/enemies/q_greedy.tres
+Completed load for: 'res://resources/enemies/q_greedy.tres' remapped 'res://resources/enemies/q_greedy.tres' at thread -1
+Loading resource: res://resources/enemies/q_cowardly.tres remapped: res://resources/enemies/q_cowardly.tres
+Completed load for: 'res://resources/enemies/q_cowardly.tres' remapped 'res://resources/enemies/q_cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/q_aggressive.tres remapped: res://resources/enemies/q_aggressive.tres
+Completed load for: 'res://resources/enemies/q_aggressive.tres' remapped 'res://resources/enemies/q_aggressive.tres' at thread -1
+Completed load for: 'res://resources/missions/s_encounter_north.tres' remapped 'res://resources/missions/s_encounter_north.tres' at thread -1
+Loading resource: res://resources/missions/q_encounter_south.tres remapped: res://resources/missions/q_encounter_south.tres
+Completed load for: 'res://resources/missions/q_encounter_south.tres' remapped 'res://resources/missions/q_encounter_south.tres' at thread -1
+Completed load for: 'res://resources/missions/asset_recovery.tres' remapped 'res://resources/missions/asset_recovery.tres' at thread -1
+PASS: S configuration validates against both finite layouts
+PASS: Impossible material targets rejected
+PASS: Duplicate objective IDs rejected
+PASS: Invalid target rejected
+PASS: Required extraction cannot be omitted
+PASS: Banking requires recall support
+PASS: Deterministic empty objective initialization
+PASS: Possession shows readiness without banked completion
+PASS: Kill credit rejects duplicates, old deployments and other instigators
+PASS: Objective inspection is detached
+PASS: Banked loot cannot substitute for extraction
+PASS: Explicit terminal reconciliation reads both settled owners
+PASS: Settled result is truthful without counting pickup and bank twice
+PASS: Frozen results and completion are idempotent
+PASS: New deployment resets objectives and credit identities
+PASS: Early extraction is terminal and distinct from mission success
+PASS: Objective queries preserve accounting invariants
+Stage S objective failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

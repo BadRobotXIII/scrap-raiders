@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: 1024-stack legacy fixture migrates safely
+0.0s SETUP seed 87017 layout u_west
+PASS: Measured durable transfer remains valid
+PASS: Measured durable transfer remains valid
+PASS: Measured durable transfer remains valid
+PASS: Measured durable transfer remains valid
+BENCHMARK { "legacy_material_units": 10240, "stash_stacks": 1024, &"migration_ms": 516.808, &"scene_load_with_large_stash_ms": 651.952, &"ui_open_ms": 12.278, &"ui_refresh_mean_ms": 9.47165, &"inventory_ui_nodes": 76, &"fit_query_mean_ms": 0.46709, &"durable_transfer_mean_ms": 171.06, &"journal_bytes": 1006010, &"journal_commits": 5, &"current_records": 1044, &"valid": true }
+Inventory benchmark failures: 0

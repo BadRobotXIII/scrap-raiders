@@ -1,0 +1,18 @@
+{
+  "baseline_entries": 427,
+  "changed_existing": [
+    "scenes/environment/asset_inspection.tscn",
+    "scenes/levels/expanded_salvage_complex.tscn",
+    "scenes/levels/expanded_salvage_complex_graybox.tscn",
+    "scenes/presentation/salvage_complex_atmosphere.tscn",
+    "scenes/levels/environment/processing_facility_art.tscn",
+    "assets/environment/asset_manifest.json",
+    "tests/actor_import_test.gd",
+    "tests/asset_pipeline_test.gd",
+    "tests/README.md",
+    "tools/art_pipeline/audit_assets.py",
+    "tools/art_pipeline/build_asset.py"
+  ],
+  "missing": [],
+  "unchanged": 416
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "case": "pilot_editor",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "pilot_assets_final",
+    "exit": 0,
+    "completed": true,
+    "issues": [
+      "WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 11 resources still in use at exit (run with --verbose for details)."
+    ]
+  },
+  {
+    "case": "pilot_graphical_final",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "pilot_perf_final",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

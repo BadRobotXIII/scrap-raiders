@@ -4,40 +4,15 @@ extends Node
 @onready var actor: Raider = get_parent()
 @onready var alert: Label3D = $"../Alert"
 var cargo_material := StandardMaterial3D.new()
-var rifle_audio: AudioStreamPlayer3D
 
 
 func setup_weapon(weapon: ShotExecutor) -> void:
-	weapon.fired.connect(_on_enemy_fired)
-	rifle_audio = AudioStreamPlayer3D.new()
-	var sound := AudioStreamWAV.new()
-	sound.mix_rate = 22050
-	sound.format = AudioStreamWAV.FORMAT_8_BITS
-	var samples := PackedByteArray()
-	for index in range(2205):
-		var envelope := 1.0 - float(index) / 2205.0
-		samples.append(int(sin(index * TAU * 600.0 / 22050.0) * 85.0 * envelope * envelope) & 255)
-	sound.data = samples
-	rifle_audio.stream = sound
-	rifle_audio.volume_db = -14
-	rifle_audio.max_distance = 35
-	actor.add_child(rifle_audio)
+	# Shared WeaponFeedback is registered once by the arena after combat setup.
+	assert(weapon != null)
 
 
 func _on_enemy_fired(origin: Vector3, endpoint: Vector3, _damaged: bool) -> void:
-	rifle_audio.play()
-	var tracer := MeshInstance3D.new()
-	var mesh := ImmediateMesh.new()
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = Color(1, 0.35, 0.15)
-	mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
-	mesh.surface_add_vertex(origin)
-	mesh.surface_add_vertex(endpoint)
-	mesh.surface_end()
-	tracer.mesh = mesh
-	actor.get_parent().add_child(tracer)
-	actor.get_tree().create_timer(0.08).timeout.connect(tracer.queue_free)
+	pass # Retained compatibility method; not a second discharge subscriber.
 
 
 func _ready() -> void:
@@ -57,6 +32,9 @@ func stop() -> void:
 
 func refresh() -> void:
 	var loaded := actor.carried_materials > 0
+	var adapter := actor.get_node_or_null("Visuals/ActorVisual") as ActorVisual
+	if adapter != null:
+		adapter.set_cargo(actor.carried_materials)
 	cargo_material.albedo_color = Color(1, 0.75, 0.15) if loaded else Color(0.22, 0.25, 0.3)
 	cargo_material.emission = Color(0.25, 0.12, 0.01) if loaded else Color.BLACK
 	if actor.state == Raider.State.ASSESSING_BETRAYAL and actor.betrayal != null and is_instance_valid(actor.betrayal.candidate):

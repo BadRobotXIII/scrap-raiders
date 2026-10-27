@@ -3,6 +3,7 @@ extends Node
 ## Shared authority for cooldown, physical shot obstruction, and weapon damage.
 
 signal fired(origin: Vector3, endpoint: Vector3, damaged_target: bool)
+signal impact_resolved(position: Vector3, normal: Vector3, incoming: Vector3, surface: StringName, damaged_target: bool)
 @export var definition: WeaponDefinition
 @export var muzzle: Marker3D
 @export var shooter: CharacterBody3D
@@ -39,10 +40,17 @@ func try_fire_at(aim_point: Vector3) -> bool:
 	var endpoint := origin + to_aim.normalized() * minf(to_aim.length() + 0.05, definition.maximum_range)
 	var hit := cast_ray(origin, endpoint)
 	var damaged_target := false
+	# Detached physical values must survive lethal callbacks/target deletion.
+	var impact_normal := Vector3.ZERO
+	var surface: StringName = &"hard_surface"
 	if not hit.is_empty():
 		endpoint = hit.position
+		impact_normal = hit.normal
+		surface = StringName((hit.collider as Node).get_meta("feedback_surface", &"hard_surface"))
 		var target_health := (hit.collider as Node).get_node_or_null("Health") as Health
 		if target_health != null and (hit.collider as CollisionObject3D).collision_layer & damage_mask and (not can_damage_target.is_valid() or can_damage_target.call(hit.collider)):
 			damaged_target = target_health.apply_damage(definition.damage, origin, shooter.get_instance_id())
 	fired.emit(origin, endpoint, damaged_target)
+	if not hit.is_empty():
+		impact_resolved.emit(endpoint, impact_normal, (endpoint - origin).normalized(), surface, damaged_target)
 	return true

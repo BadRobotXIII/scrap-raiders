@@ -1,0 +1,98 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Stage S artifact directory: res://.godot/stage_s_tests/3a825443e8cfb848
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Briefing prevents time, entries and scheduler progression
+PASS: Entire world and authoritative player interactions are gated before Deploy
+PASS: Briefing cannot fire or consume player movement
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Deploy button starts exactly once while the world is disabled
+PASS: S retains finite R composition and accepted traversal
+R01: SELECTING -> DEAD
+PASS: Finite physical cargo recovery uses accepted interaction
+PASS: Pickup readiness is not banked completion
+PASS: Real early recall preserves inventory while reporting incomplete primary
+PASS: Optional equipment and combat never block extraction
+PASS: Results display and repeated finish cannot resettle or change results
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Restart returns to briefing with fresh objectives/receipt and preserved stash/seed
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Finite physical cargo recovery uses accepted interaction
+PASS: Existing timed equipment interaction transfers a finite loadout
+PASS: Save failure preserves open objectives and cargo for retry
+PASS: Successful recall and required objectives produce mission success
+PASS: Optional recovery counts actual items, not bundles
+PASS: S success retains both conservation guarantees
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Finite physical cargo recovery uses accepted interaction
+PASS: Death freezes failed deployment while preserving earned optional kill status
+PASS: Death forfeits once without banking or stopping autonomous world
+PASS: S retains restricted follow and lethal-instigator preference
+R03: SCAVENGING -> SELECTING
+PASS: Remaining scheduled Raiders enter after deployment settlement
+R03: SELECTING -> SCAVENGING
+PASS: World physically simulates after S player death
+R02: SELECTING -> DEAD
+R03: SCAVENGING -> DEAD
+PASS: Later kills and spectating cannot rewrite settled objectives or rewards
+PASS: Return presents the frozen result without another settlement
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> TAKING_COVER
+R01: TAKING_COVER -> FLEEING
+R01: FLEEING -> DEAD
+PASS: Physical player lethal hits produce credit without auto-completing deployment
+PASS: Repeated accepted notification cannot duplicate kill credit
+R02: SELECTING -> DEAD
+PASS: AI lethal hits and allied machine destruction do not grant Raider objective credit
+0.0s SETUP seed 87018 layout north_contest
+PASS: S runtime seed override preserves authored config and stock
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Finite physical cargo recovery uses accepted interaction
+PASS: Deadline freezes expiration and one-time forfeiture
+0.0s SETUP seed 87018 layout north_contest
+PASS: Repeated seed reproduces configuration with fresh objective state
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Finite physical cargo recovery uses accepted interaction
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Leaving an active S deployment settles abandonment and freezes its result
+PASS: Developer encounter preset keeps legacy immediate start and policy
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+0.0s SETUP seed 87019 layout south_patrol
+PASS: S debug seed cycling returns to its own briefing without editing shared config
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Plain in-game F5 retains accepted N reference routing from S
+Stage S deployment-flow failures: 0

@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout u_west
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> TAKING_COVER
+R01: TAKING_COVER -> ENGAGING
+PASS: An occupied corner waypoint releases failed cover travel through bounded existing navigation recovery
+PASS: An abandoned blocked route permits an actual visible return shot instead of permanent physical indecision
+ERROR: Corner congestion does not repeatedly discard a bypass and reverse heading every physics frame
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/integrated_extraction_test.gd:16)
+       [1] occupied_corner_recovery (res://tests/action_commitment_test.gd:166)
+       [2] frames (res://tests/integrated_extraction_test.gd:22)
+PASS: Physical congestion recovery preserves material and equipment ownership
+Occupied corner recovery: heading snaps 228 | recoveries 2 | shots 4 | final (6.073349, 0.000831, -0.155268)

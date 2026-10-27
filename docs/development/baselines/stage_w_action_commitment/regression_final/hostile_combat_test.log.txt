@@ -1,0 +1,60 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Survival deploys three armed instances with a healthy player
+R01: SELECTING -> ENGAGING
+PASS: Visible in-range robot triggers the common FSM engagement state
+PASS: Reaction warning prevents immediate damage
+PASS: Shared executor applies exactly ten hostile damage with impact origin
+PASS: Player health event drives incoming damage feedback
+PASS: Hostile shot cooldown blocks repeated same-window damage
+PASS: Hostile cadence permits the next shot after 0.8 seconds
+PASS: Out-of-range target cancels aiming without firing
+PASS: Physical cover blocks hostile muzzle damage
+PASS: Lost visibility interrupts the firing warning
+PASS: Basic squad coordination assigns distinct validated cover slots
+R01: ENGAGING -> TAKING_COVER
+PASS: Nonlethal damage interrupts engagement and requests validated cover
+R01: TAKING_COVER -> REPOSITIONING
+PASS: Cover dwell advances explicitly to the authored peek position
+R01: REPOSITIONING -> ENGAGING
+PASS: Reposition arrival requires a fresh firing warning
+R01: ENGAGING -> FLEEING
+PASS: Overwhelmed Raider retreats and releases its squad cover slot
+R01: FLEEING -> EXTRACTING
+PASS: Low-health retreat can enter extraction rather than looping forever
+R02: SELECTING -> ENGAGING
+R02: ENGAGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+PASS: Lost threat returns a healthy empty fighter to scavenging
+R02: SCAVENGING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Two attackers damage the player independently without sharing cooldowns or health
+R02: ENGAGING -> DEAD
+PASS: A lethal hostile shot uses the shared physical damage path
+PASS: Player destruction is emitted once and rejects further damage
+PASS: Player death produces an explicit failed-deployment outcome
+PASS: Death stops player controls and every hostile weapon
+PASS: Player destruction retains a separate cosmetic tumble
+PASS: Player death seals exact material categories without inventing extracted losses
+PASS: Direct late firing requests are rejected after terminal shutdown
+PASS: Destroyed deployment rejects late material transfers
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Restart preserves Survival selection and resets health, outcomes, and ledger
+PASS: Restart restores the actual per-actor seeded aim stream
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Natural armed physics run warns, shoots, and damages the player with conserved accounting
+R01: ENGAGING -> TAKING_COVER
+PASS: Threatened fighter physically follows a cover/reposition route
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+PASS: Natural cover route completes its dwell and physical peek before re-engaging
+Stage E checks complete; failures: 0
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

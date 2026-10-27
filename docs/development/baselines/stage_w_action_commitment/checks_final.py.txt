@@ -1,0 +1,15 @@
+from pathlib import Path
+import subprocess,json,time,re
+out=Path('.godot/w_decision_followup/checks_final');out.mkdir(exist_ok=True)
+godot=r'C:\Users\kzulf\bin\godot.cmd'
+checks=[('default_headless',['--headless','--quit-after','120']),('default_forward',['--quit-after','120']),('expanded_forward',['res://scenes/levels/expanded_salvage_complex.tscn','--quit-after','120']),('action_forward',['--script','res://tests/action_commitment_test.gd','--quit-after','8000']),('gui',['--script','res://.godot/w_decision_followup/gui.gd','--quit-after','3600'])]
+results=[]
+for label,args in checks:
+ t=time.time()
+ r=subprocess.run([godot,'--path','.',*args],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace',timeout=180)
+ (out/(label+'.log.txt')).write_text(r.stdout,encoding='utf-8')
+ issues=[l for l in r.stdout.splitlines() if any(s in l for s in ['ERROR:', 'SCRIPT ERROR:', 'WARNING:'])]
+ completed=('Action commitment failures: 0' in r.stdout if label=='action_forward' else 'Follow-up GUI artifacts:' in r.stdout if label=='gui' else r.returncode==0)
+ results.append({'check':label,'exit':r.returncode,'seconds':round(time.time()-t,2),'completed':completed,'issues':issues})
+ (out/'validation.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
+ print(label,r.returncode,completed,issues,flush=True)

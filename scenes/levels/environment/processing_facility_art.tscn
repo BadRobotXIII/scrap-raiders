@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene format=4]
 [ext_resource type="PackedScene" path="res://scenes/levels/environment/processing_facility.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/environment/modules/industrial_wall_4m.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/environment/modules/industrial_wall_2m.tscn" id="3"]
@@ -8,8 +8,19 @@
 [ext_resource type="Material" path="res://resources/materials/environment/painted_steel_bluegray.tres" id="7"]
 [ext_resource type="Material" path="res://resources/materials/environment/safety_yellow.tres" id="8"]
 [ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/processor_guard_2m.tscn" id="y_guard"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/maintenance_panel_1m.tscn" id="y_maintenance"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="full_1_wn2qh"]
+[ext_resource type="Material" path="res://resources/materials/environment/weathered_steel.tres" id="full_2_veipp"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="full_3_wjxly"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/structures/industrial_wall_4m.glb" id="full_4_6h58w"]
+
+
+
+[ext_resource type="Material" path="res://resources/presentation/industrial_ground.tres" id="y_ground"]
+
 [sub_resource type="PlaneMesh" id="Floor"]
-material = ExtResource("6")
+material = ExtResource("y_ground")
 size = Vector2(8, 8)
 [sub_resource type="BoxMesh" id="Stripe"]
 material = ExtResource("8")
@@ -22,10 +33,49 @@ emission_energy_multiplier = 0.6
 [sub_resource type="BoxMesh" id="Lamp"]
 material = SubResource("LampMaterial")
 size = Vector3(0.8, 0.04, 0.2)
+[sub_resource type="BoxMesh" id="YBack"]
+material = ExtResource("7")
+size = Vector3(0.65, 4, 4)
+[sub_resource type="BoxMesh" id="YBelow"]
+material = ExtResource("7")
+size = Vector3(0.35, 0.5, 4)
+[sub_resource type="BoxMesh" id="YAbove"]
+material = ExtResource("7")
+size = Vector3(0.35, 1.9, 4)
+[sub_resource type="BoxMesh" id="YLeft"]
+material = ExtResource("7")
+size = Vector3(0.35, 1.6, 1.2)
+[sub_resource type="BoxMesh" id="YRight"]
+material = ExtResource("7")
+size = Vector3(0.35, 1.6, 2)
+[sub_resource type="BoxMesh" id="full_BoxMesh_7yv6r"]
+material = ExtResource("full_2_veipp")
+size = Vector3(1, 4, 24)
+
+[sub_resource type="BoxMesh" id="full_BoxMesh_mrx5s"]
+material = ExtResource("full_2_veipp")
+size = Vector3(6, 4, 1)
+
+[sub_resource type="BoxMesh" id="full_BoxMesh_ybhxl"]
+material = ExtResource("full_2_veipp")
+size = Vector3(6, 4, 1)
+
+[sub_resource type="BoxMesh" id="full_BoxMesh_efq7t"]
+material = ExtResource("full_2_veipp")
+size = Vector3(6, 4, 1)
+
+[sub_resource type="BoxMesh" id="full_BoxMesh_qjvhp"]
+material = ExtResource("full_2_veipp")
+size = Vector3(1, 4, 8)
+
+[sub_resource type="BoxMesh" id="full_BoxMesh_fnp7s"]
+material = ExtResource("full_2_veipp")
+size = Vector3(1, 3, 8)
+
 [node name="ProcessingFacilityArt" instance=ExtResource("1")]
 script = ExtResource("9")
-graybox_visuals = Array[NodePath]([NodePath("SouthEast/Mesh"), NodePath("EastSouth/Mesh"), NodePath("WorkBench/Mesh")])
-production_visuals = Array[NodePath]([NodePath("SouthEast/Wall4m"), NodePath("SouthEast/Wall2m"), NodePath("EastSouth/WallNorth"), NodePath("EastSouth/WallSouth"), NodePath("EastSouth/ControlCabinet"), NodePath("WorkBench/SortingMachine"), NodePath("Visuals")])
+graybox_visuals = Array[NodePath]([NodePath("SouthEast/Mesh"), NodePath("EastSouth/Mesh"), NodePath("WorkBench/Mesh"), NodePath("WestWall/Mesh"), NodePath("NorthWest/Mesh"), NodePath("NorthEast/Mesh"), NodePath("SouthWest/Mesh"), NodePath("EastNorth/Mesh"), NodePath("Partition/Mesh")])
+production_visuals = Array[NodePath]([NodePath("SouthEast/Wall4m"), NodePath("SouthEast/Wall2m"), NodePath("EastSouth/WallNorth"), NodePath("EastSouth/ControlCabinet"), NodePath("WorkBench/SortingMachine"), NodePath("Visuals"), NodePath("WorkBench/GuardFrontA"), NodePath("WorkBench/GuardFrontB"), NodePath("WorkBench/GuardBackA"), NodePath("WorkBench/GuardBackB"), NodePath("EastSouth/MaintenancePanel"), NodePath("EastSouth/MaintenanceShell"), NodePath("WestWall/Dressing"), NodePath("NorthWest/Dressing"), NodePath("NorthEast/Dressing"), NodePath("SouthWest/Dressing"), NodePath("EastNorth/Dressing"), NodePath("Partition/Dressing")])
 [node name="Mesh" parent="SouthEast" index="0"]
 visible = false
 [node name="Wall4m" parent="SouthEast" instance=ExtResource("2")]
@@ -38,6 +88,7 @@ visible = false
 position = Vector3(0, -2, -2)
 rotation_degrees = Vector3(0, 90, 0)
 [node name="WallSouth" parent="EastSouth" instance=ExtResource("2")]
+visible = false
 position = Vector3(0, -2, 2)
 rotation_degrees = Vector3(0, 90, 0)
 [node name="ControlCabinet" parent="EastSouth" instance=ExtResource("4")]
@@ -63,19 +114,19 @@ cast_shadow = 0
 [node name="BayIdentification" type="Label3D" parent="Visuals"]
 position = Vector3(-17, 2.8, 9.498)
 rotation_degrees = Vector3(0, 180, 0)
-text = "SORT / BAY 03"
+text = "PF-02 / SORTING"
 font_size = 52
 pixel_size = 0.004
 modulate = Color(0.8, 0.65, 0.25, 1)
 [node name="TaskLight" type="OmniLight3D" parent="Visuals"]
 position = Vector3(-18, 4.8, 4)
-light_color = Color(1, 0.91, 0.77, 1)
-light_energy = 1.2
+light_color = Color(1, 0.72, 0.43, 1)
+light_energy = 1.35
 omni_range = 8.0
 shadow_enabled = false
 [node name="EntryFill" type="OmniLight3D" parent="Visuals"]
 position = Vector3(-21, 4.8, 7)
-light_color = Color(1, 0.94, 0.84, 1)
+light_color = Color(0.66, 0.8, 1, 1)
 light_energy = 0.8
 omni_range = 6.0
 shadow_enabled = false
@@ -87,3 +138,150 @@ cast_shadow = 0
 position = Vector3(-21, 5.37, 7)
 mesh = SubResource("Lamp")
 cast_shadow = 0
+
+[node name="WorkBench" parent="."]
+metadata/feedback_surface = &"industrial_equipment"
+[node name="SouthEast" parent="."]
+metadata/feedback_surface = &"metal"
+[node name="EastSouth" parent="."]
+metadata/feedback_surface = &"metal"
+
+[node name="GuardFrontA" parent="WorkBench" instance=ExtResource("y_guard")]
+position = Vector3(-1, -0.6, -0.935)
+[node name="GuardFrontB" parent="WorkBench" instance=ExtResource("y_guard")]
+position = Vector3(1, -0.6, -0.935)
+[node name="GuardBackA" parent="WorkBench" instance=ExtResource("y_guard")]
+position = Vector3(-1, -0.6, 0.935)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="GuardBackB" parent="WorkBench" instance=ExtResource("y_guard")]
+position = Vector3(1, -0.6, 0.935)
+rotation_degrees = Vector3(0, 180, 0)
+[node name="MaintenancePanel" parent="EastSouth" instance=ExtResource("y_maintenance")]
+position = Vector3(-0.325, -1.5, 1.6)
+rotation_degrees = Vector3(0, 90, 0)
+[node name="FeedDirection" type="Label3D" parent="Visuals"]
+position = Vector3(-19.2, 1.205, 3)
+rotation_degrees = Vector3(-90, 0, 0)
+text = "FEED  >  SORT  >  OUT"
+font_size = 32
+pixel_size = 0.002
+modulate = Color(0.8, 0.65, 0.25, 1)
+[node name="Shutdown" type="Label3D" parent="Visuals"]
+position = Vector3(-14.501, 2.4, 7.6)
+rotation_degrees = Vector3(0, -90, 0)
+text = "CV-01 / ISOLATED\nPARTS REMOVED"
+font_size = 28
+pixel_size = 0.003
+
+[node name="MaintenanceShell" type="Node3D" parent="EastSouth"]
+[node name="Back" type="MeshInstance3D" parent="EastSouth/MaintenanceShell"]
+position = Vector3(0.175, 0, 2)
+mesh = SubResource("YBack")
+cast_shadow = 0
+[node name="Below" type="MeshInstance3D" parent="EastSouth/MaintenanceShell"]
+position = Vector3(-0.325, -1.75, 2)
+mesh = SubResource("YBelow")
+cast_shadow = 0
+[node name="Above" type="MeshInstance3D" parent="EastSouth/MaintenanceShell"]
+position = Vector3(-0.325, 1.05, 2)
+mesh = SubResource("YAbove")
+cast_shadow = 0
+[node name="Left" type="MeshInstance3D" parent="EastSouth/MaintenanceShell"]
+position = Vector3(-0.325, -0.7, 0.6)
+mesh = SubResource("YLeft")
+cast_shadow = 0
+[node name="Right" type="MeshInstance3D" parent="EastSouth/MaintenanceShell"]
+position = Vector3(-0.325, -0.7, 3)
+mesh = SubResource("YRight")
+cast_shadow = 0
+
+[node name="WestWall" parent="."]
+
+[node name="Dressing" type="Node3D" parent="WestWall"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="WestWall/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_7yv6r")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="WestWall/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(-2.6226832e-07, 0, 1, 0, 1, 0, -6, 0, -4.371139e-08, 0, -2, 0)])
+
+[node name="NorthWest" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthWest"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthWest/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_mrx5s")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="NorthWest/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)])
+
+[node name="NorthEast" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthEast"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthEast/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_ybhxl")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="NorthEast/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)])
+
+[node name="SouthWest" parent="."]
+
+[node name="Dressing" type="Node3D" parent="SouthWest"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="SouthWest/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_efq7t")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="SouthWest/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)])
+
+[node name="EastNorth" parent="."]
+
+[node name="Dressing" type="Node3D" parent="EastNorth"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="EastNorth/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_qjvhp")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="EastNorth/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(-8.742278e-08, 0, 1, 0, 1, 0, -2, 0, -4.371139e-08, 0, -2, 0)])
+
+[node name="Partition" parent="."]
+
+[node name="Dressing" type="Node3D" parent="Partition"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="Partition/Dressing"]
+cast_shadow = 3
+mesh = SubResource("full_BoxMesh_fnp7s")
+
+[node name="industrial_wall_4m" type="MultiMeshInstance3D" parent="Partition/Dressing"]
+cast_shadow = 0
+script = ExtResource("full_3_wjxly")
+model_scene = ExtResource("full_4_6h58w")
+instance_transforms = Array[Transform3D]([Transform3D(-8.742278e-08, 0, 1, 0, 0.75, 0, -2, 0, -4.371139e-08, 0, -1.5, 0)])
+
+[node name="FacilityIdentity" type="Label3D" parent="Visuals"]
+position = Vector3(-17, 2.8, 10.502)
+text = "RIVET / SITE 07\nPF-02 PROCESSING"
+font_size = 44
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)

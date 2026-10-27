@@ -38,6 +38,7 @@ func _ready() -> void:
 	collision.position.y = 0.6
 	add_child(collision)
 	visuals = Node3D.new()
+	visuals.name = "Visuals"
 	add_child(visuals)
 	var body := MeshInstance3D.new()
 	var mesh := BoxMesh.new()
@@ -48,6 +49,10 @@ func _ready() -> void:
 	body.mesh = mesh
 	body.position.y = 0.6
 	visuals.add_child(body)
+	var visual_scene := load("res://scenes/characters/visuals/flying_scout_visual.tscn" if flying else "res://scenes/characters/visuals/ground_machine_visual.tscn") as PackedScene
+	var adapter := visual_scene.instantiate() as ActorVisual
+	adapter.name = "ActorVisual"
+	visuals.add_child(adapter)
 	health = Health.new()
 	health.name = "Health"
 	health.maximum = 50 if flying else 80
@@ -80,9 +85,8 @@ func _ready() -> void:
 		weapon.shot_mask = 3
 		weapon.damage_mask = 1
 		add_child(weapon)
-		var feedback := preload("res://scripts/presentation/support_fire_feedback.gd").new()
-		add_child(feedback)
-		weapon.fired.connect(feedback.show_shot)
+	arena.setup_actor_visual(self, &"flying_scout" if flying else &"ground_machine", weapon, source_id)
+	body.visible = not adapter.production_enabled
 	progress_origin = global_position
 
 

@@ -1,0 +1,360 @@
+[
+  {
+    "suite": "action_commitment_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.18,
+    "issues": [],
+    "leak_classes": {},
+    "leaked_lines": []
+  },
+  {
+    "suite": "actor_visual_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.96,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372152332355120 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372161526270084 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372160402196759 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372160418973976 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "asset_pipeline_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.05,
+    "issues": [
+      "WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 2,
+      "AudioStreamWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372153355765972 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372151996811541 - Reference count: 2",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372153624201554 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "awareness_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.59,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 1,
+      "AudioStreamPlaybackWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372084971833104 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372089283577802 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "combat_movement_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.87,
+    "issues": [
+      "WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 2,
+      "AudioStreamWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372162113472560 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372167280855095 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372104248854679 - Reference count: 2"
+    ]
+  },
+  {
+    "suite": "combat_stability_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.67,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 1,
+      "AudioStreamPlaybackWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372104248854679 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372106815768791 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "combat_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.59,
+    "issues": [
+      "WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 12,
+      "AudioStreamWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372096229344980 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372097336641238 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372085508704017 - Reference count: 8",
+      "Leaked instance: AudioStreamWAV:9223372085575812884 - Reference count: 4",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372093779871579 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372093796648799 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372092538357604 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372089971443558 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372088797038466 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372088813815683 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372089988220804 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372095105271687 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372091397506954 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372092555134859 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "expanded_world_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 2.35,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372561729980307 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372569397168438 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372569128733132 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372569145510393 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.05,
+    "issues": [
+      "WARNING: 7 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 5
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372165754127986 - Reference count: 4",
+      "Leaked instance: AudioStreamWAV:9223372171441604343 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372171458381601 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372182514567383 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372180467747033 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372178420926687 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372176340552075 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.96,
+    "issues": [],
+    "leak_classes": {},
+    "leaked_lines": []
+  },
+  {
+    "suite": "gameplay_integration_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 2.36,
+    "issues": [
+      "WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 3,
+      "AudioStreamWAV": 3
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372491936761800 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372491919984600 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372505526307002 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372505509529827 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372492909840676 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372492926617955 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "hostile_combat_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.87,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372123123222350 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372133088888736 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372121126734176 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372133105666450 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "integrated_extraction_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.61,
+    "issues": [],
+    "leak_classes": {},
+    "leaked_lines": []
+  },
+  {
+    "suite": "post_death_spectator_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.32,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 2,
+      "AudioStreamWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372245496235843 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372180601964439 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372258465024430 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372179511446039 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "raider_decision_stability_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.05,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamPlaybackWAV": 1,
+      "AudioStreamWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamPlaybackWAV:9223372218753353844 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372194862598372 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "raider_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.87,
+    "issues": [
+      "WARNING: 7 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 5
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372129934771826 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372129867663000 - Reference count: 4",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372162180581148 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372164546168629 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372164562945846 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372163086550860 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372161274611550 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "recovery_feedback_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.68,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 1,
+      "AudioStreamPlaybackWAV": 1
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372106278897955 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372106295675172 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "refined_extraction_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.96,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372148658145016 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372191641372418 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372155654244478 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372181373716989 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "social_cooperation_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 1.04,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 2,
+      "AudioStreamPlaybackWAV": 2
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372201170831542 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372201187608759 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372203452532970 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372203469310187 - Reference count: 1"
+    ]
+  },
+  {
+    "suite": "spectator_test",
+    "exit": 0,
+    "timed_out": false,
+    "seconds": 0.86,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ],
+    "leak_classes": {
+      "AudioStreamWAV": 1,
+      "AudioStreamPlaybackWAV": 3
+    },
+    "leaked_lines": [
+      "Leaked instance: AudioStreamWAV:9223372125253929004 - Reference count: 3",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372130438088898 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372130538752201 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372130589083850 - Reference count: 1"
+    ]
+  }
+]

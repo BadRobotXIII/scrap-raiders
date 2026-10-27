@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/item_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/armor_plating.svg" id="icon"]
+[resource]
+script = ExtResource("1")
+icon = ExtResource("icon")
+definition_id = &"armor_plating"
+display_name = "Armor plating"
+description = "Equipment foundation; no stat effect in Stage Z."
+category = 4
+unit_weight_g = 5000
+max_stack = 1
+base_value = 5
+material_units = 0
+mount = &"armor"
+compatible_actors = PackedStringArray("robot")

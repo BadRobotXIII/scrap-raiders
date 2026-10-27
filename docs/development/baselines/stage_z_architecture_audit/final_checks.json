@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-26",
+  "pinned_sources": 345,
+  "changed_sources": [],
+  "regression_suites": 41,
+  "accelerated_warning_suites": 32,
+  "leaked_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "accepted_y_seeded_replay_exact_match": true,
+  "original_ledger_sha256": "1f7a363443dacd9e1ea13baa78c0abce7293046d9ccd5b2a2cd7a1946304bc75",
+  "implementation_started": false,
+  "real_save_inspected_or_modified": false
+}

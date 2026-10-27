@@ -1,6 +1,6 @@
 # Stage V: environment production pipeline and processing-bay proposal
 
-Prepared **2026-10-21**. **Approved by the director; implemented and validated for Checkpoint V manual review on 2026-10-22.** See the [delivery report](../reports/stage_v_environment_art.md) for actual assets, validation and remaining acceptance. The original approved proposal below is retained as scope history. Checkpoint U is accepted. This proposal implements the planning assignment in the [director's Stage V ledger](../ledgers/phase_7_stage_v_environment_art.md), informed by the subsequently attached reference images and the accepted [U delivery report](../reports/stage_u_world_expansion.md). It does not authorize Stage W, commits, publication or full-world art replacement.
+Prepared **2026-10-21**. **Approved, implemented, validated and accepted at Checkpoint V on 2026-10-22.** See the [delivery report](../reports/stage_v_environment_art.md) for actual assets, validation, acceptance and retained refinement checks. The original approved proposal below is retained as scope history. Checkpoint U is accepted. This proposal implements the planning assignment in the [director's Stage V ledger](../ledgers/phase_7_stage_v_environment_art.md), informed by the subsequently attached reference images and the accepted [U delivery report](../reports/stage_u_world_expansion.md). It does not authorize Stage W, commits, publication or full-world art replacement.
 
 ## Recommendation and visual brief
 

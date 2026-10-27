@@ -1,0 +1,38 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87018 layout u_east
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> EXTRACTING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> ENGAGING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R03: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> EXTRACTING
+R03: EXTRACTING -> EXTRACTED
+R04: EXTRACTING -> EXTRACTED
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> EXTRACTING
+R05: EXTRACTING -> EXTRACTED
+TRACE 87018 { 1: { "snaps": 5, "same_state_snaps": 2, "targets": 4, "states": 10, "goals": 5, "stalled_frames": 0 }, 2: { "snaps": 3, "same_state_snaps": 2, "targets": 0, "states": 2, "goals": 2, "stalled_frames": 0 }, 3: { "snaps": 6, "same_state_snaps": 4, "targets": 2, "states": 5, "goals": 3, "stalled_frames": 0 }, 4: { "snaps": 6, "same_state_snaps": 4, "targets": 0, "states": 3, "goals": 2, "stalled_frames": 0 }, 5: { "snaps": 1, "same_state_snaps": 0, "targets": 0, "states": 1, "goals": 1, "stalled_frames": 0 } }

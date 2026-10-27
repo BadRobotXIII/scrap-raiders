@@ -1,0 +1,19 @@
+{
+  "accepted_source_files": 292,
+  "changed": [
+    "scenes/player/robot.tscn",
+    "scenes/raiders/raider.tscn",
+    "scripts/ai/support_machine.gd",
+    "scripts/components/death_tumble.gd",
+    "scripts/gameplay/raider_arena.gd",
+    "scripts/presentation/raider_feedback.gd",
+    "tests/asset_pipeline_test.gd",
+    "tests/awareness_test.gd",
+    "tests/destruction_test.gd",
+    "tools/art_pipeline/audit_assets.py",
+    "tools/art_pipeline/configure_imports.gd",
+    "tools/art_pipeline/export_asset.py"
+  ],
+  "missing": [],
+  "unchanged": 280
+}

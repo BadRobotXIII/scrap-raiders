@@ -1,0 +1,26 @@
+from pathlib import Path
+import json,hashlib,re
+root=Path.cwd()
+evidence=root/'docs/development/baselines/stage_y_refinement_delivery'
+source_hashes=json.loads((evidence/'reviewed_sources.json').read_text())
+assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==h for p,h in source_hashes.items())
+before=json.loads((evidence/'sources_before.json').read_text())
+changed=[p for p,h in before.items() if hashlib.sha256((root/p).read_bytes()).hexdigest()!=h]
+assert set(changed)==set(json.loads((evidence/'final_checks.json').read_text())['changed_pinned_paths'])
+regression=json.loads((evidence/'logs/regression/validation.json').read_text())
+issues=[line for row in regression for line in row['issues']]
+assert all(re.fullmatch(r'WARNING: \d+ ObjectDB instances were leaked at exit \(run with `--verbose` for details\)\.',line) or re.fullmatch(r'ERROR: \d+ resources still in use at exit\.',line) for line in issues)
+for name in ['runtime_validation.json','final_validation.json']:
+    rows=json.loads((evidence/'data'/name).read_text())
+    assert all(row['exit']==0 and row['completed'] and not row['issues'] for row in rows)
+replay=json.loads((evidence/'data/replay_comparison.json').read_text())
+assert replay['surface_only_exact_match'] and replay['final_spectator_exact_match']
+paths=['docs/development/reports/stage_y_environment_refinement.md','docs/development/plans/phase_7_stage_y_environment_refinement_plan.md','docs/development/baselines/stage_y_refinement_delivery/README.md']
+for name in paths:
+    p=root/name
+    for link in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+        if '://' in link or link.startswith('#'):continue
+        assert (p.parent/link.split('#')[0]).exists(),(name,link)
+for p in source_hashes:
+    assert not any(line.rstrip()!=line for line in (root/p).read_text(encoding='utf-8').splitlines()),p
+print('Final source identities, known-only warning classification, runtime markers, replay comparison, documentation links and whitespace verified.')

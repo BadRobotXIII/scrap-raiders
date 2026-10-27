@@ -1,0 +1,20 @@
+[
+  {
+    "case": "native_refinement",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "gray_graphical",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "final_editor",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

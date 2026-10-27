@@ -1,0 +1,8 @@
+[gd_scene format=3]
+[node name="FacilitySign" type="Label3D"]
+text = "RIVET / SITE 07"
+font_size = 44
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+outline_size = 4
+cast_shadow = 0

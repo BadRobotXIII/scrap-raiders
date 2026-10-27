@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InventoryRules" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/inventory_rules.gd" id="1"]
+[resource]
+script = ExtResource("1")
+cargo_slots = 12
+weight_limit_g = 35000
+actor_kind = &"robot"
+equipment_slots = PackedStringArray("primary", "armor", "power", "mobility", "utility")

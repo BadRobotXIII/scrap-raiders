@@ -76,3 +76,20 @@ The pilot was edited in its `.blend`, exported to the same GLB and reimported. B
 Automated checks cover source/export identity, UVs, supported material bindings, bounds, shared instances, visual-only imports, protected U file hashes, exact collider/marker/nav settings, visual-envelope containment, real blocked/clear shots, camera spring-arm clearance and spectator permissions. Existing suites cover physical navigation through the dressed mission, finite materials/equipment, settlement and restart. These checks complement manual inspection; they cannot judge convincing wear, proportions, material consistency or target visibility.
 
 Before multiplying an asset: inspect front/back/culling, bevel normals, UV tiling, nonuniform scaling, repeated instances, material response, camera clipping, visual/physical cover correspondence and lighting on actors. Test a source edit and reimport, not only the initial export. Compare graybox and art with fixed cameras/resolution and matching simulation; report unavailable renderer metrics explicitly. Track every original source/GLB/import setting/material and UID, while leaving caches/backups/builds ignored.
+
+
+## Actor extension
+
+Stage W extends these same tools with explicit actor mode, a shared Raider skin/clip pipeline and mechanical hierarchies. See [actor authoring, animation and reimport](actors.md); static environment mode and accepted assets remain unchanged.
+
+## Stage Y world-population extension
+
+The director-approved Y base design is delivered for Checkpoint Y manual review. The library now has sixteen original source-backed exports, 8,140 triangles, the same six shared materials and the same two image maps. The original eight assets remain byte-identical. See the [Y report and exact module table](../development/reports/stage_y_world_population.md) and [evidence](../development/baselines/stage_y_delivery/README.md).
+
+Four inherited art wrappers dress the existing complex; graybox selection restores all primitive surfaces and area labels. Every solid detail, including each service batch instance, must fit a current collision envelope within the 12 mm detail tolerance. Decorative bulk and six surface staging outlines never register material supply or interactions. Roof supports remain a separately unapproved physical amendment.
+
+Static batches use `scripts/presentation/environment_mesh_batch.gd`: a source GLB PackedScene plus authored transforms, resolved at readiness or source-change notification. Do not embed imported mesh arrays or rely on transient importer-generated ArrayMesh subresource paths. Repeated instances must share the live imported mesh. The adapter supplies no input, collision, frame loop, actor movement, accounting or random placement. Editing/exporting/reimporting a source follows the existing workflow above.
+
+The processing guard passed a protected source-edit/reimport/restoration round trip. Final tests cover source-change rebuilds and sharing; an isolated project imported the GLBs and initialized all nineteen model batches without Blender sources or the original import cache. Use `world_population_test.gd` with the existing asset pipeline and physical expanded-world suites. Final labels/service-facing models and an orthographic overview make the sixteen-asset inspection display readable.
+
+The [approved Y refinement](../development/reports/stage_y_environment_refinement.md) reuses all sixteen exports unchanged. It adds an expanded-only static procedural ground material and three explicitly colliding staged-load clusters, with matching visible/graybox extents. The pallet batch now has a common owner and eleven instances; containment must resolve each instance to LowCrates or its declared new cluster, never assume all instances belong to the original body. Utility drops/junctions remain inside existing wall envelopes. The ground shader uses no image maps, displacement or gameplay state. Its world-space coordinates must match across the main floor and processing overlay. Further physical placements require their own review; the roof-support amendment remains excluded.

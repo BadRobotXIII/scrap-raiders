@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/presentation/ambient_feedback.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/effects/industrial_ambient.tscn" id="2"]
+[node name="Atmosphere" type="Node3D"]
+[node name="Emitter0" type="Node3D" parent="."]
+position = Vector3(0, 3, 0)
+script = ExtResource("1")
+cue = "environment/yard_wind_loop"
+[node name="Dust" parent="Emitter0" instance=ExtResource("2")]
+[node name="Emitter1" type="Node3D" parent="."]
+position = Vector3(-9, 2, -8)
+script = ExtResource("1")
+cue = "environment/vent_loop"
+[node name="Dust" parent="Emitter1" instance=ExtResource("2")]
+[node name="Emitter2" type="Node3D" parent="."]
+position = Vector3(9, 3, 8)
+script = ExtResource("1")
+cue = "environment/machinery_loop"

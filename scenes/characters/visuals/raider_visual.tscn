@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/presentation/actor_visual.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/exports/raider/raider.glb" id="2"]
+[node name="ActorVisual" type="Node3D"]
+script = ExtResource("1")
+kind = &"raider"
+model_scene = ExtResource("2")

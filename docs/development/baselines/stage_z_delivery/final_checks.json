@@ -1,0 +1,22 @@
+{
+  "suites": 47,
+  "passed": 47,
+  "warning_suites": 34,
+  "leaked_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "editor_clean": true,
+  "graphical_clean": true,
+  "natural_exit": 0,
+  "graphical_exit": 0,
+  "performance_exit": [
+    0,
+    0
+  ],
+  "director_save_used": false,
+  "ledger_sha256": "1f7a363443dacd9e1ea13baa78c0abce7293046d9ccd5b2a2cd7a1946304bc75",
+  "reviewed_changed_source_pins": 22,
+  "preserved_baseline_sources": 345,
+  "runtime_files_removed": 0
+}

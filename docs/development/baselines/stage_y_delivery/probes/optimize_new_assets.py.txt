@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess
+out=Path('.godot/stage_y')
+for name in ['scrap_bunker_panel_2m','scrap_infill_1m','freight_panel_2m','vent_panel_2m']:
+ with (out/('optimized_'+name+'.log.txt')).open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\blender.cmd','--background','--factory-startup','--python','tools/art_pipeline/build_asset.py','--','--asset',name,'--rebuild'],stdout=f,stderr=subprocess.STDOUT,timeout=90)
+ print(name,r.returncode,flush=True)
+ if r.returncode:raise SystemExit(r.returncode)

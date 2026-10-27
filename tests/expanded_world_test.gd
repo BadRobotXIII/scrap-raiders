@@ -5,6 +5,9 @@ const U_SCENE := "res://scenes/levels/expanded_salvage_complex.tscn"
 
 func create_u(label: String, seed_value: int = 87017) -> Node3D:
 	var arena := load(U_SCENE).instantiate() as Node3D
+	# U's original physical/material contract remains a legacy-content fixture.
+	arena.mission_config_override = load("res://resources/missions/expanded_asset_recovery.tres").duplicate(true)
+	arena.mission_config_override.hybrid_inventory = false
 	arena.stash_path = test_directory + "/" + label + ".json"
 	arena.seed_override = seed_value
 	root.add_child(arena)

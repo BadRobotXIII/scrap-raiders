@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-23",
+  "checks": [
+    {
+      "check": "editor.log",
+      "completion_marker_seen": true,
+      "issues": []
+    },
+    {
+      "check": "combat.log",
+      "completion_marker_seen": true,
+      "issues": []
+    },
+    {
+      "check": "actor_visual.log",
+      "completion_marker_seen": true,
+      "issues": []
+    },
+    {
+      "check": "startup_headless.log",
+      "completion_marker_seen": true,
+      "issues": []
+    },
+    {
+      "check": "startup_forward.log",
+      "completion_marker_seen": true,
+      "issues": []
+    },
+    {
+      "check": "probe.log",
+      "completion_marker_seen": true,
+      "issues": []
+    }
+  ],
+  "existing_runtime_files_unchanged": 337,
+  "new_runtime_files": [],
+  "modified_runtime_files": [],
+  "full_suite_run_during_audit": false
+}

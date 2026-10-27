@@ -1,0 +1,30 @@
+from pathlib import Path
+import subprocess,json
+out=Path('.godot/stage_y_refinement/delivery')
+s=(out/'inventory.gd').read_text().replace('var arena := create_u("audit_%d" % seed_value, seed_value)','''var arena := load("res://scenes/levels/expanded_salvage_complex_graybox.tscn").instantiate() as Node3D
+        arena.stash_path = test_directory + "/gray_%d.json" % seed_value
+        arena.seed_override = seed_value
+        root.add_child(arena)
+        current_scene = arena'''.replace('        ','\t\t'))
+s=s.replace('full_%d_%s.png','gray_%d_%s.png').replace('full_inventory_%s.json','gray_inventory_%s.json')
+(out/'gray_inventory.gd').write_text(s)
+rows=[]
+for label,args,marker in [
+    ('native_refinement',['--headless','--verbose','--path','.','--script','res://tests/environment_refinement_test.gd','--quit-after','20000'],'Environment refinement failures: 0'),
+    ('gray_graphical',['--path','.','--script','res://'+(out/'gray_inventory.gd').as_posix(),'--quit-after','20000'],'Stage Y inventory failures: 0'),
+    ('final_editor',['--headless','--path','.','--editor','--quit'],None),
+]:
+    with (out/(label+'.log.txt')).open('w') as f:
+        r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd',*args],stdout=f,stderr=subprocess.STDOUT,timeout=180)
+    log=(out/(label+'.log.txt')).read_text(errors='replace')
+    row={'case':label,'exit':r.returncode,'completed':marker is None or marker in log,'issues':[line for line in log.splitlines() if 'ERROR:' in line or 'WARNING:' in line]}
+    rows.append(row)
+    (out/'final_validation.json').write_text(json.dumps(rows,indent=2))
+    print(row,flush=True)
+    assert r.returncode==0 and row['completed']
+
+rows=json.loads((out/'runtime_validation.json').read_text())
+for row in rows:
+    if row['case']=='peak':row['completed']='DEATH_PERFORMANCE ' in (out/'peak.log.txt').read_text() and json.loads(Path('.godot/stage_w/performance/death_yr_final_peak.json').read_text())['failures']==0
+(out/'runtime_validation.json').write_text(json.dumps(rows,indent=2))
+assert all(x['exit']==0 and x['completed'] for x in rows)

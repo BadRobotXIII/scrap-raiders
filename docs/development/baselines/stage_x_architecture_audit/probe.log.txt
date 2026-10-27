@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> FLEEING
+STAGE X AUDIT { "engine": { "major": 4, "minor": 7, "patch": 2, "hex": 263938, "status": "stable", "build": "official", "hash": "ed1daf0bf001b61586d9930840f2f1394092c079", "timestamp": 0, "string": "4.7.2-stable (official)" }, "buses": ["Master"], "audio_listener_api": ["make_current", "clear_current", "is_current"], "raider_muzzle_before": "(-18.65, 1.25, 9.3)", "raider_muzzle_after": "(-18.622, 1.135, 9.243999)", "muzzle_world_drift_m": 0.13093920052052, "authored_local_unchanged": true, "visuals_scale_after": "(1.08, 0.9, 1.08)", "health_after": 99.0, "ledger_conserved": true }

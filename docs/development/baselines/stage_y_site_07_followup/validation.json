@@ -1,0 +1,26 @@
+[
+  {
+    "case": "assets",
+    "exit": 0,
+    "completed": true,
+    "issues": [
+      "WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 11 resources still in use at exit (run with --verbose for details)."
+    ]
+  },
+  {
+    "case": "expanded",
+    "exit": 0,
+    "completed": true,
+    "issues": [
+      "WARNING: 20 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 10 resources still in use at exit (run with --verbose for details)."
+    ]
+  },
+  {
+    "case": "graphical",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

@@ -1,0 +1,150 @@
+{
+  "changed": {
+    "resources/missions/asset_recovery.tres": {
+      "before": "c86f1b430301de4b074763713db532c44020d8aac076e5b2a85659ac8b60f845",
+      "after": "a348d1b0c06935803a97db33c42e735df6e5dd18eaba02104b748abbff5ba356"
+    },
+    "resources/missions/expanded_asset_recovery.tres": {
+      "before": "a0605faffa42e5ad476b6d7e47d5e0e275b3c5e54509798972b06cf66e0a5447",
+      "after": "0bf62432250ef166218fea52cf6d70b8a9b2c036455833153ae18b5678b50de2"
+    },
+    "scripts/ai/raider.gd": {
+      "before": "93f2db4f957734d71c9cee2597f7ee064d9fbb3aa8ae8e5aa9f31ca50ee665e7",
+      "after": "469eaf756fc718933010b26e65fa6d5d6a7abdca0fe49a2a87005979b1cdc8e4"
+    },
+    "scripts/ai/raider_betrayal.gd": {
+      "before": "616727760a01532fd58f764a1d8b4cef8b9263ce46d55779ea20bf7c15fd0c4a",
+      "after": "ee9ad13f3a67ad6fbeaecf82aab6c9431b81cc66a1adffbbc647fc2a01ef0eac"
+    },
+    "scripts/ai/raider_combat.gd": {
+      "before": "bfcd5d7d27ffe2b48834351ae976a10682cc3aac8ced665f6c36e58f2af3d43f",
+      "after": "62eb71b001c8317526a5714ddd83686deb3baf3cc8ed5f706b73e0b5b1ada1af"
+    },
+    "scripts/ai/raider_social.gd": {
+      "before": "1d44f74d91b1b09c7b4c3a498a194e1c416f664c2e979eaf50659fbdd3b6843c",
+      "after": "df5e4bf791a89fd59915613ce73b693480a126ab03721cce145ef81729941676"
+    },
+    "scripts/debug/developer_spectator.gd": {
+      "before": "0e0602d44e5c1e50d8dc054ab78f371be2ab18d1f713b1c696cb5000bdfc4157",
+      "after": "003307de592b9c37c7432561a280ccc68a36a9780424b081fad094f43b7710b4"
+    },
+    "scripts/gameplay/equipment_ledger.gd": {
+      "before": "9882ef07c2762c2ddf7a6a57caf9406667f7c71962a1a0afd051b4e44196e074",
+      "after": "a7b0deda59fbfaed4e96a0d31e65aa9f0f517d7b18433f5b65bd27dc18db6b5c"
+    },
+    "scripts/gameplay/flare_director.gd": {
+      "before": "fd1f52acbcd8e41ddd68180e2ea81b22f31b6af5d649db1249b6f9f0921cfbc1",
+      "after": "57c025fda947213201c013c8e9e94b3746c1404fafdee75150e3bc3d9f9f81f2"
+    },
+    "scripts/gameplay/material_drop.gd": {
+      "before": "d7a79eb7bbd075c09d1c82148159b7028f922f8c1c709ca75e2d8bbd7e8f4d8d",
+      "after": "a77bad9f7e2d24035aaf93d2196169b4f046d12f67d52c6fedeeafa72c29b4b0"
+    },
+    "scripts/gameplay/material_ledger.gd": {
+      "before": "0c1fcc48306e31cd34a56a5a610013fe0c28faa9076e3e8324e708e884504885",
+      "after": "79f1762a92657318f4049efeff8c025c28c344f3e84683c080dabdeff2ae3e37"
+    },
+    "scripts/gameplay/mission_arena.gd": {
+      "before": "a5019b7822ee5fb5da44b3cf6a4346faa18dfec76d2ea093126431e126083eb9",
+      "after": "350ce92df0c6220784bb6880131b9031817110d54e017bc6eac959a8eaeef64c"
+    },
+    "scripts/gameplay/mission_config.gd": {
+      "before": "91147189bd112d8f6ddecae1d374180891d2b59561ce6f152babbcb813ad7398",
+      "after": "8174f86f153483c1ff2136f9805367e8d30d97770d0a74b9dc9da0ffcfcc35de"
+    },
+    "scripts/gameplay/mission_objectives.gd": {
+      "before": "fc069fa54a5def9a39a8036010eab0dc0d4066511a200ba73834c3d5fe0bf6b9",
+      "after": "e96cc5b0d14095605eac0c9b18ba6831c7c242e990470d950681cf98e91c4f45"
+    },
+    "scripts/gameplay/persistent_stash.gd": {
+      "before": "f5ef6f843d989c2059349a77d0d18ec5e55b71797b927172cdd101b8a6a5702b",
+      "after": "26bfa0efa32fc87562750caf20e939c643bf9d03189d2333943fb3a9f99c228c"
+    },
+    "scripts/gameplay/raider_arena.gd": {
+      "before": "6e7687c60bcc4bcd0d258f675a66d02a35e36bb9b41c539fe1eeb82f9f017735",
+      "after": "b4f77640f73150cc60ef8f461bcafbc2c58010f47a3e90c4574608f233751f21"
+    },
+    "scripts/gameplay/recall_controller.gd": {
+      "before": "cc2c05895ade91f8a3aafce83ef30b09fc41b77b7a8fd8406d8a7a05db53b2d9",
+      "after": "e50423bec7c0f1208989c9a975ee86409363ea2bc61b25d7f831a720e5d7ca8a"
+    },
+    "scripts/player/robot_input.gd": {
+      "before": "a253c9b15d4211b3ee1e57e2d212f804816b4172da0e06f0a2d061fbf38ce69f",
+      "after": "7aba21f7de4eacf47edefed703b1da07259405d93d00b67055f6474c57a16295"
+    },
+    "scripts/presentation/mission_objectives_view.gd": {
+      "before": "eb241f522e5180a3eba3457251dcfe368caea88371700d2961f3ddbc7860c3db",
+      "after": "ba416935bd261f8d2a5847dfa73b26c3361bd8044a7f65d7169f9dd1d8092d75"
+    },
+    "tests/asset_pipeline_test.gd": {
+      "before": "db4308c7ef7fe22b02c94616ea2576471e3fc6792decbd866992d2c92616ef1e",
+      "after": "9874e8ac341da7ecb1172de73cd793d6da184c0526834b3d217342c92b78d7d0"
+    },
+    "tests/deployment_flow_test.gd": {
+      "before": "317062facc550b1994c07cbe380ea34388e2e12f249491ac3825cb0392ab0a71",
+      "after": "9ca67e0cf88d1e2eab7d64a5c26205f0c7739c2dbb92776cd8ce1f474718fcef"
+    },
+    "tests/expanded_world_test.gd": {
+      "before": "d1a865d3e4f11aae65bfb95f86d961f91a071ec7b76dfe156f46ca73ad3c11a7",
+      "after": "22f8454c990463a98e48f771e7e9bbac06674c44a8027cf3d148382f36a17f90"
+    },
+    "tests/README.md": {
+      "before": "963585eff436f2df75e0952f41aee4c7cddfc228a65ee9e981a75845f10341e7",
+      "after": "93e28d3cc6e999cd9662121b7107d590d79d78e7b0b1ac43b3d28cb4a43005b3"
+    }
+  },
+  "added": {
+    "scripts/gameplay/inventory_interaction.gd": "bcad21483040bdb87a10a6760752592745001d1a78a41fb1cfff7ce46b0620c4",
+    "scripts/gameplay/inventory_interaction.gd.uid": "01ba8d480ddd50ee79d0b7bc3c1348ac12117ac7a5cf45db79f859d51fd38476",
+    "scripts/gameplay/inventory_ledger.gd": "a7cf00c687bff7664e106a3703a5f455c9044a269d86209c69ad7b52343c2c96",
+    "scripts/gameplay/inventory_ledger.gd.uid": "8ffb567ecf0362203456709c34f3c2cce9de388af18856160c405ffaff04d276",
+    "scripts/gameplay/inventory_rules.gd": "8e27ece4142e317ddd0e66f6e12f8464de9d02d877cfc17236d71f65bf10e88b",
+    "scripts/gameplay/inventory_rules.gd.uid": "77229f051fc334dc17f36f789df1e68e6c8fe4f9cf9a2872979d0e9ea36a87c6",
+    "scripts/gameplay/item_catalog.gd": "63cec3c83c745e3736e040e93e15e75a8fd34aeec6ca9363a7adefb93600716a",
+    "scripts/gameplay/item_catalog.gd.uid": "12de91f7fb4275efd2b0b7afed0e6b534219bba46684ab1813419e8c115f46f6",
+    "scripts/gameplay/item_definition.gd": "f31aebcf0c10b5d49b4edcf25d8e3f3df71572f9bdcc794c0cd6268b11341c20",
+    "scripts/gameplay/item_definition.gd.uid": "6aee9a78c196d4ae61a7ebd301f3195f8190491633644eb4217e7a8409b4bf26",
+    "scripts/gameplay/loot_table.gd": "d6cb5414a62fc5078614078a5552f787b2810fc84b311dd053a36e884bad022f",
+    "scripts/gameplay/loot_table.gd.uid": "108d11f436dcc40e9932b1fba731f3ff90cdc34d41e314563bb29317ddd2283a",
+    "scripts/gameplay/world_loot.gd": "79848e25b45639fe192e367968b09972578a7d3213d21201eaf298398287927d",
+    "scripts/gameplay/world_loot.gd.uid": "e22358d228ea1ed7f8b3bf338bbce35b55d8fc669bef9f3e8d87114467050e8d",
+    "scripts/player/equipment_binding.gd": "2156eebbc8f4049613de4ed0e06c05bb6d63319f1a64f738a99cef1f7a7608c5",
+    "scripts/player/equipment_binding.gd.uid": "d236ab298d68d9695b4e61b0d19b67fda4b3aafb5328f9848e412bc33c2a6d59",
+    "scripts/player/player_interaction_mode.gd": "2decc3f54879401908509c592f3bac599b25a1c4e726eac6f03ada5208d83352",
+    "scripts/player/player_interaction_mode.gd.uid": "672fe07784976291dcf0a691a9e3b1dea7986f5495a2c0f85e3a2a4395861962",
+    "scripts/presentation/inventory_view.gd": "15e26d2e0893f53a0ac35db0a022e2d28865215be80514d6d361b8f93a31b3a3",
+    "scripts/presentation/inventory_view.gd.uid": "5b575285c7fc8a593903c68b43621bae14aee7437b90b5124e2b615632f34a2b",
+    "resources/inventory/legacy.tres": "d73d81d4fc1b0a1a19f0ec38dcc4923036627fa376bed7b1beccea91e045a6e8",
+    "resources/inventory/normal_loot.tres": "3554ff5283d7a10b35390994259c50a739594d67689bc8baacc98dcceb70e20b",
+    "resources/inventory/player.tres": "8d9cd50f239f78f377cb7f3a4d3766efef9cf3918dcd36b25790464766a192a9",
+    "resources/inventory/raider.tres": "ce528c00fb9bbdec7da76bce828dc70a78d5ecee64ff0c7da545f6d996a0a644",
+    "resources/items/armor_plating.tres": "a002c96a9255842c5ecde65ea3bafaf6cd38b5bf4cb37816a1a0e2d30f2938e9",
+    "resources/items/catalog.tres": "0e4da8175bd05e413f3638aa02c1471332e80bffdcb514b7e377c5459df107f4",
+    "resources/items/control_pcb.tres": "98ba60a4eb909c42d2d36d7d0b6f8d688de7df97a79ab1eebe644a1ccfb40529",
+    "resources/items/copper_winding.tres": "55bc6926456dc44bc22d2f0337210a797e510f182c890e7dcbc2a5e1bf377c75",
+    "resources/items/electronics_kit.tres": "6c618a2cf2affc24f5b44602c5401519fe692231ec12a42dbeaf6efbb74a5d53",
+    "resources/items/industrial_blaster.tres": "dfa25442c6644a6e4ea0fa497567cb09c554076b0e136d6d8bec61bca57f048d",
+    "resources/items/industrial_sensor.tres": "73d0e189f08f2dd118d4d6b51bf63d5f506350ade72aaf317d017a48c399b3a5",
+    "resources/items/mobility_actuator.tres": "7d7bd5d0e7eb7f113dfe8a800946e3ecad9dcf053eba93bef6b6cd3f766a7fc4",
+    "resources/items/power_module.tres": "de9b16032fcaf54098f4c94b8716d7479a978c29e63c4985b67d1c9a2ceebd97",
+    "resources/items/raider_rifle.tres": "ac484217502e3d62dbaf0082a5ca7858d66249d0e10059778f11f1852c87eada",
+    "resources/items/scrap_steel.tres": "79a492db9de77902a3687ea0770b9a3334a419331c69a9199053e588c08a22fa",
+    "resources/items/servo_motor.tres": "0e1b0fe432c074e80ceae90b05d83c32ec7a30b7cccf3a1cc0337a9004639f47",
+    "resources/items/worn_response_rifle.tres": "b61b2e6dc7f19cc849970f675fb4665abd652f32538650507eb2c34bcf81abd3",
+    "scenes/loot/salvage_cache.tscn": "cc1a4b4e67603051f9d1a6b19d5ea5349b7da27aac8d3f8da33ec7d825b2d229",
+    "scenes/loot/tool_cabinet.tscn": "e8074905849bdc6d0b7fedf8039b0dd5a0930b9bfeecbc9fd062e9ae7dbaebeb",
+    "tests/inventory_lifecycle_test.gd": "d06d73231d575c042faa003c054fddbb33c65936d4cfdc1c80e29722dcb59723",
+    "tests/inventory_lifecycle_test.gd.uid": "926752b02fcc195e03366abdd8d4538ac7fb2c2c56a7cc8a0ce06ff73630d629",
+    "tests/inventory_persistence_test.gd": "f457e411e1a524e8eceb157f3f2fbc783bedced8ea18a7c4e57f2d04fdb2065f",
+    "tests/inventory_persistence_test.gd.uid": "902d1f7e93a7201e1e916381c20d20f75cb552be10d38ec2c944fd9d88d20e65",
+    "tests/inventory_raider_test.gd": "e8144317bb3abefa08011e0e85e2193afb2c2b35136f134bdea772c26e36e980",
+    "tests/inventory_raider_test.gd.uid": "947794e9dbf03f8729b893efa7b719e2d2358eea9c1d7f1d36b004405b18d4f6",
+    "tests/inventory_ui_test.gd": "fdeeeaf4107fc8c14487574349221feb8aa8fc6e7ff368edd59ef6f8d9ce3cd7",
+    "tests/inventory_ui_test.gd.uid": "bd94886c731e8cbd08149f7c792fcfdfb2f50d02aefef9a14dc38cebd446bf09",
+    "tests/inventory_world_test.gd": "ada80262c11e01fa0bbddff94d49d9fdca6210d8644405144638ebd807431134",
+    "tests/inventory_world_test.gd.uid": "bd6f67d529afd27f19f0c5ba4eefe522a3d3e456fec455b3b49f87e0a57968c4",
+    "tests/item_inventory_test.gd": "b39e7484b3bc7fe03b1382fbd855d98d6ba97e9055e86f23238559e538034a6d",
+    "tests/item_inventory_test.gd.uid": "1870b11b78e57677708ce56c99aa8185bd651f158f1674a2c6f84fe679664c58"
+  },
+  "removed": []
+}

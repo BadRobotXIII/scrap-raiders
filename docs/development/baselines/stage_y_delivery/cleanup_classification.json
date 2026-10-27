@@ -1,0 +1,220 @@
+{
+  "suites": 40,
+  "warning_suites": 30,
+  "leaked_types": {
+    "AudioStreamWAV": 164,
+    "AudioStreamPlaybackWAV": 258
+  },
+  "cases": [
+    {
+      "suite": "action_commitment_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 9,
+        "AudioStreamPlaybackWAV": 17
+      }
+    },
+    {
+      "suite": "actor_visual_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 9,
+        "AudioStreamPlaybackWAV": 9
+      }
+    },
+    {
+      "suite": "asset_pipeline_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 11,
+        "AudioStreamPlaybackWAV": 11
+      }
+    },
+    {
+      "suite": "awareness_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 4,
+        "AudioStreamPlaybackWAV": 4
+      }
+    },
+    {
+      "suite": "betrayal_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 1
+      }
+    },
+    {
+      "suite": "combat_movement_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 8,
+        "AudioStreamPlaybackWAV": 27
+      }
+    },
+    {
+      "suite": "combat_stability_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 8,
+        "AudioStreamPlaybackWAV": 14
+      }
+    },
+    {
+      "suite": "combat_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 5,
+        "AudioStreamPlaybackWAV": 21
+      }
+    },
+    {
+      "suite": "deployment_flow_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 6,
+        "AudioStreamPlaybackWAV": 9
+      }
+    },
+    {
+      "suite": "dynamic_ai_test.log.txt",
+      "types": {
+        "AudioStreamPlaybackWAV": 2,
+        "AudioStreamWAV": 2
+      }
+    },
+    {
+      "suite": "encounter_generation_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 2,
+        "AudioStreamPlaybackWAV": 2
+      }
+    },
+    {
+      "suite": "expanded_world_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 10,
+        "AudioStreamPlaybackWAV": 10
+      }
+    },
+    {
+      "suite": "extraction_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 7,
+        "AudioStreamPlaybackWAV": 12
+      }
+    },
+    {
+      "suite": "flare_loot_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 5,
+        "AudioStreamPlaybackWAV": 5
+      }
+    },
+    {
+      "suite": "gameplay_integration_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 10,
+        "AudioStreamPlaybackWAV": 12
+      }
+    },
+    {
+      "suite": "hostile_combat_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 5,
+        "AudioStreamPlaybackWAV": 7
+      }
+    },
+    {
+      "suite": "integrated_extraction_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 11,
+        "AudioStreamPlaybackWAV": 20
+      }
+    },
+    {
+      "suite": "machine_ecosystem_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 11,
+        "AudioStreamPlaybackWAV": 13
+      }
+    },
+    {
+      "suite": "mission_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 2,
+        "AudioStreamPlaybackWAV": 5
+      }
+    },
+    {
+      "suite": "mission_variety_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 1
+      }
+    },
+    {
+      "suite": "multi_raider_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 2,
+        "AudioStreamPlaybackWAV": 2
+      }
+    },
+    {
+      "suite": "personality_combat_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 4,
+        "AudioStreamPlaybackWAV": 5
+      }
+    },
+    {
+      "suite": "post_death_spectator_test.log.txt",
+      "types": {
+        "AudioStreamPlaybackWAV": 20,
+        "AudioStreamWAV": 10
+      }
+    },
+    {
+      "suite": "raider_test.log.txt",
+      "types": {
+        "AudioStreamPlaybackWAV": 13,
+        "AudioStreamWAV": 6
+      }
+    },
+    {
+      "suite": "recovery_feedback_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 7,
+        "AudioStreamPlaybackWAV": 7
+      }
+    },
+    {
+      "suite": "refined_extraction_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 4,
+        "AudioStreamPlaybackWAV": 4
+      }
+    },
+    {
+      "suite": "robot_controller_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 1
+      }
+    },
+    {
+      "suite": "social_cooperation_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 1
+      }
+    },
+    {
+      "suite": "social_rivalry_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 1
+      }
+    },
+    {
+      "suite": "traversal_test.log.txt",
+      "types": {
+        "AudioStreamWAV": 1,
+        "AudioStreamPlaybackWAV": 2
+      }
+    }
+  ]
+}

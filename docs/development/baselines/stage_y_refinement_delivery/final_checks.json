@@ -1,0 +1,29 @@
+{
+  "pinned_pre_refinement_paths": 388,
+  "unchanged_pinned_paths": 381,
+  "changed_pinned_paths": [
+    "scenes/levels/expanded_salvage_complex.tscn",
+    "scenes/levels/expanded_salvage_complex_graybox.tscn",
+    "scenes/levels/environment/processing_facility_art.tscn",
+    "scenes/levels/environment/salvage_yard_art.tscn",
+    "scenes/levels/environment/service_perimeter_art.tscn",
+    "tests/README.md",
+    "tests/world_population_test.gd"
+  ],
+  "new_reviewed_paths": [
+    "resources/presentation/industrial_ground.gdshader",
+    "resources/presentation/industrial_ground.gdshader.uid",
+    "resources/presentation/industrial_ground.tres",
+    "scenes/levels/environment/staging_clusters.tscn",
+    "tests/environment_refinement_test.gd",
+    "tests/environment_refinement_test.gd.uid"
+  ],
+  "regression_suite_count": 41,
+  "suite_warning_count": 31,
+  "accelerated_leaked_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "reviewed_source_hashes_valid": true,
+  "all_regression_completion_markers_seen": true
+}

@@ -1,0 +1,60 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Normal mission uses the production player while retaining the primitive fallback
+PASS: Raider appearance derives solely from seed and actor identity
+PASS: Human model owns visible body/rifle presentation without duplicate primitives
+PASS: Raider appearance derives solely from seed and actor identity
+PASS: Human model owns visible body/rifle presentation without duplicate primitives
+PASS: Machines receive their matching production model and scout remains unarmed
+PASS: Machines receive their matching production model and scout remains unarmed
+PASS: Accepted player shot origin and shoulder-camera contract remain exact
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Production/primitive selection changes no collider, navigation radius, seed population, route, stock, aim or shot origin
+PASS: Opt-out fixture restores the supported primitive presentation
+PASS: Bounded appearance variety consumes no gameplay/global RNG state
+PASS: Loaded cue changes one Raider's mutable material without recoloring another
+PASS: Two instances animate their real imported skins independently
+PASS: Armed appearance is per instance and does not create a second weapon
+PASS: Terminal snapshot owns mutable cargo appearance after the live source refreshes
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Actual CharacterBody movement drives mechanical gait without model root motion
+PASS: A named mechanical joint articulates during real walking
+R01: SELECTING -> SCAVENGING
+PASS: Actual Raider navigation drives its imported walk skin rather than moving a visual root
+PASS: Production rifle sends a real valid physical hit through the accepted executor
+PASS: Only accepted shots drive recoil; cooldown rejection produces no extra event
+PASS: Cosmetic recoil cannot move the authoritative muzzle or double fire
+PASS: An accepted shot reaches the skinned fire layer while locomotion remains independent
+PASS: Real production movement and firing preserve finite accounting
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+PASS: Skinned death creates exactly one accepted cosmetic body
+PASS: Death retains cosmetic physics policy and the selected appearance
+PASS: Death snapshots the current skinned pose and hidden accessory before gameplay cleanup
+PASS: Terminal subtree contains no actor controller, health, navigation, weapon or callbacks
+PASS: Bounded terminal skin animation continues after its source actor is freed
+PASS: Death visuals neither duplicate nor delay the ordinary finite loot release
+PASS: Developer spectator still activates with production actors
+PASS: Independent camera movement cannot teleport the actor, enable gameplay or transfer cargo
+PASS: Leaving developer mode restores the single authoritative player camera
+PASS: Production player death remains irreversible while normal actor following and world simulation continue
+PASS: Normal spectator switching selects surviving gameplay actors rather than visual bones
+PASS: Spectating and repeated finish cannot resettle deployment or corrupt loot
+0.0s SETUP seed 87018 layout north_contest
+PASS: Restart clears terminal copies and rebuilds clean production visuals at briefing
+PASS: Every accepted material/equipment transfer preserves its authoritative invariant
+Actor visual failures: 0

@@ -1,0 +1,26 @@
+[
+  {
+    "case": "yr_control_bay",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "yr_control_overview",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "yr_proposed_bay",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "case": "yr_proposed_overview",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

@@ -1,0 +1,100 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Original eight source/export identities and shared surface foundations are preserved
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: industrial_wall_4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: scrap_bunker_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: scrap_infill_1m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: scrap_bunker_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: scrap_infill_1m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: pallet_load_1m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: scrap_bunker_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: freight_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: freight_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: freight_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: control_cabinet
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: vent_panel_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: utility_run_2m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: utility_junction_0p4m
+PASS: Batches use the live shared GLB mesh rather than embedded copies
+PASS: Reimport notification refreshes the existing source binding
+PASS: Static batch rebuild is idempotent: PaintedStagingLocations
+PASS: Static dressing and reimport refresh consume no gameplay random numbers
+PASS: World uses bounded shared instancing and restrained signage
+0.0s SETUP seed 87017 layout u_west
+PASS: Seed 87017 retains all accepted collision shapes, transforms, masks, markers and navigation inputs
+PASS: Every dressed solid and every batch instance fits its actual rotated collision envelope
+PASS: Pressed bulk covers both solid retainer tops instead of leaving sparse detail over empty space
+PASS: Full dressing stays within 120 added geometry nodes over the 41-node baseline
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Both populated layouts retain reachable stock and patrols
+PASS: All six staging pads remain clear and decorative material creates no ledger supply
+0.0s SETUP seed 87017 layout u_west
+PASS: Explicit graybox restores all original surfaces with the same physical contract
+0.0s SETUP seed 87018 layout u_east
+PASS: Seed 87018 retains all accepted collision shapes, transforms, masks, markers and navigation inputs
+PASS: Every dressed solid and every batch instance fits its actual rotated collision envelope
+PASS: Pressed bulk covers both solid retainer tops instead of leaving sparse detail over empty space
+PASS: Full dressing stays within 120 added geometry nodes over the 41-node baseline
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Both populated layouts retain reachable stock and patrols
+PASS: All six staging pads remain clear and decorative material creates no ledger supply
+0.0s SETUP seed 87018 layout u_east
+PASS: Explicit graybox restores all original surfaces with the same physical contract
+PASS: Repeated populated/graybox teardown releases mission presentation listeners
+0.0s SETUP seed 87017 layout u_west
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Opaque yard, freight and utility cover blocks actual rifle damage
+PASS: Adjacent clear approach permits actual physical fire
+PASS: Opaque yard, freight and utility cover blocks actual rifle damage
+PASS: Adjacent clear approach permits actual physical fire
+PASS: Opaque yard, freight and utility cover blocks actual rifle damage
+PASS: Adjacent clear approach permits actual physical fire
+PASS: Physical cover shots preserve authoritative finite accounting
+World population failures: 0

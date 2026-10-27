@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/robot_controller.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/player/robot_input.gd" id="2"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/components/health.gd" id="7"]
 [ext_resource type="Script" path="res://scripts/components/death_tumble.gd" id="8"]
 [ext_resource type="Script" path="res://scripts/player/player_damage_feedback.gd" id="9"]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/visuals/player_visual.tscn" id="actor_visual"]
 
 [sub_resource type="BoxMesh" id="GunMesh"]
 size = Vector3(0.25, 0.25, 0.75)
@@ -136,3 +138,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("9")
+
+[node name="ActorVisual" parent="Visuals" instance=ExtResource("actor_visual")]

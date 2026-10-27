@@ -1,0 +1,12 @@
+{
+  "documentation_links_valid": true,
+  "audio_files_reproduced_exactly": 29,
+  "new_script_uids_present": true,
+  "active_suites": 39,
+  "delivered_source_hashes_current": true,
+  "director_ledger_byte_exact": true,
+  "generated_snapshots_and_exports_ignored": true,
+  "git_diff_check_exit": 0,
+  "git_diff_check_notes": "Existing LF/CRLF normalization advisories only; no whitespace errors.",
+  "commit_or_publication_performed": false
+}

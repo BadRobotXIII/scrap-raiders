@@ -1,0 +1,2076 @@
+[
+	{
+		"conserved": true,
+		"distinct_geometry_materials": 9,
+		"layout": {
+			"entries": [
+				"Spawn1",
+				"Spawn2",
+				"Spawn3",
+				"Spawn4",
+				"Spawn5"
+			],
+			"layout": "u_west",
+			"positions": [
+				[
+					1.0,
+					0.0,
+					0.0
+				],
+				[
+					-19.0,
+					0.0,
+					-7.0
+				],
+				[
+					22.0,
+					1.0,
+					0.0
+				]
+			],
+			"profiles": [
+				"Greedy",
+				"Cowardly",
+				"Aggressive",
+				"Aggressive",
+				"Greedy"
+			],
+			"quantities": [
+				6,
+				3,
+				3
+			],
+			"routes": [
+				"ScoutRoute",
+				"GuardRoute"
+			],
+			"seed": 87017,
+			"times": [
+				0.0,
+				0.0,
+				35.0,
+				70.0,
+				105.0
+			]
+		},
+		"navigation_validation": "",
+		"physical_contract": {
+			"CoverPoints/Processing": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-25.0, 0.0, -3.0)]",
+			"CoverPoints/Processing/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-25.0, 0.0, 7.0)]",
+			"CoverPoints/Service": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 0.0, 18.0)]",
+			"CoverPoints/Service/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-6.0, 0.0, 18.0)]",
+			"CoverPoints/YardEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (9.0, 0.0, 4.0)]",
+			"CoverPoints/YardEast/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (9.0, 0.0, -1.0)]",
+			"CoverPoints/YardWest": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-7.0, 0.0, -3.0)]",
+			"CoverPoints/YardWest/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-7.0, 0.0, 5.0)]",
+			"EncounterSites/Processing": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-19.0, 0.0, -7.0)]",
+			"EncounterSites/ProcessingSouth": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-26.0, 0.0, 5.0)]",
+			"EncounterSites/Storage": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 1.0, 0.0)]",
+			"EncounterSites/StorageEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.0, 1.0, 0.0)]",
+			"EncounterSites/Yard": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (1.0, 0.0, 0.0)]",
+			"EncounterSites/YardEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (3.0, 0.0, -4.0)]",
+			"Extraction": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-30.0, 0.0, -25.0)]",
+			"Extraction2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (30.0, 0.0, 25.0)]",
+			"Geometry/ProcessingFacility/EastNorth/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-14.0, 2.0, -10.0)]",
+				"(1.0, 4.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/EastSouth/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-14.0, 2.0, 6.0)]",
+				"(1.0, 4.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/NorthEast/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-17.0, 2.0, -14.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/NorthWest/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-27.0, 2.0, -14.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/Partition/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-23.0, 1.5, -3.0)]",
+				"(1.0, 3.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/Roof/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-22.0, 5.5, -2.0)]",
+				"(17.0, 0.3, 25.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/SouthEast/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-17.0, 2.0, 10.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/SouthWest/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-27.0, 2.0, 10.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/WestWall/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-30.0, 2.0, -2.0)]",
+				"(1.0, 4.0, 24.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/WorkBench/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 0.6, 3.0)]",
+				"(4.0, 1.2, 2.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/EastBay/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (7.0, 1.5, 4.0)]",
+				"(2.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/LowCrates/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-1.0, 0.6, 8.0)]",
+				"(5.0, 1.2, 2.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/NorthScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (4.0, 1.5, -15.0)]",
+				"(8.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/WestBay/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-5.0, 1.5, -3.0)]",
+				"(2.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/EastBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (35.5, 2.0, 0.0)]",
+				"(1.0, 4.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/EastServiceScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (16.0, 1.5, 18.0)]",
+				"(14.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/Floor/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, -0.5, 0.0)]",
+				"(72.0, 1.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/NorthBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 2.0, -31.5)]",
+				"(72.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/NorthPerimeterScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-12.0, 1.5, -23.0)]",
+				"(8.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/RecallScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-5.0, 1.5, 24.0)]",
+				"(1.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/SouthBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 2.0, 31.5)]",
+				"(72.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/WestBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-35.5, 2.0, 0.0)]",
+				"(1.0, 4.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/WestServiceScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 1.5, 16.0)]",
+				"(12.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/EastContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (29.0, 1.5, 1.0)]",
+				"(3.0, 3.0, 12.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/NorthContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 1.5, -16.0)]",
+				"(12.0, 3.0, 3.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/NorthRamp/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.986395, -0.164393), Z: (0.0, 0.164393, 0.986395), O: (22.0, 0.45, -7.0)]",
+				"(4.0, 0.18, 6.1)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/Platform/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 0.5, 0.0)]",
+				"(8.0, 1.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail0/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (19.8, 1.5, -7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail1/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.2, 1.5, -7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail2/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (19.8, 1.5, 7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail3/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.2, 1.5, 7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/SouthContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (16.0, 1.5, 9.0)]",
+				"(3.0, 3.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/SouthRamp/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.986395, 0.164393), Z: (0.0, -0.164393, 0.986395), O: (22.0, 0.45, 7.0)]",
+				"(4.0, 0.18, 6.1)",
+				1,
+				1
+			],
+			"GuardRoute/Point0": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-10.0, 0.1, -6.0)]",
+			"GuardRoute/Point1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (11.0, 0.1, -6.0)]",
+			"GuardRoute/Point2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (11.0, 0.1, 12.0)]",
+			"GuardRoute/Point3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-10.0, 0.1, 12.0)]",
+			"RaiderSpawns/Spawn1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-20.0, 0.1, -20.0)]",
+			"RaiderSpawns/Spawn2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-24.0, 0.1, 3.0)]",
+			"RaiderSpawns/Spawn3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 0.1, 22.0)]",
+			"RaiderSpawns/Spawn4": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 0.1, -22.0)]",
+			"RaiderSpawns/Spawn5": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (32.0, 0.1, 8.0)]",
+			"RecallDock": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 0.0, 26.0)]",
+			"Salvage": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (1.0, 0.0, 0.0)]",
+			"Salvage2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-19.0, 0.0, -7.0)]",
+			"Salvage3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 1.0, 0.0)]",
+			"ScoutRoute/Point0": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 3.5, -18.0)]",
+			"ScoutRoute/Point1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 3.5, -18.0)]",
+			"ScoutRoute/Point2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 3.5, 12.0)]",
+			"ScoutRoute/Point3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 3.5, 12.0)]",
+			"SocialRobotStart": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 0.1, 26.0)]",
+			"navigation": [
+				0.5,
+				2.0,
+				1,
+				1,
+				"navigation_geometry"
+			]
+		},
+		"renderer": "NVIDIA GeForce RTX 4060 Laptop GPU",
+		"seed": 87017,
+		"sign_nodes": 14,
+		"sites": [
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Yard",
+				"position": [
+					1.0,
+					0.0,
+					0.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Processing",
+				"position": [
+					-19.0,
+					0.0,
+					-7.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Storage",
+				"position": [
+					22.0,
+					1.0,
+					0.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/YardEast",
+				"position": [
+					3.0,
+					0.0,
+					-4.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/ProcessingSouth",
+				"position": [
+					-26.0,
+					0.0,
+					5.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/StorageEast",
+				"position": [
+					24.0,
+					1.0,
+					0.0
+				]
+			}
+		],
+		"static_marking_instances": 27,
+		"total_materials": 14,
+		"zones": {
+			"ProcessingFacility": {
+				"batch_instances": 6,
+				"batch_nodes": 6,
+				"colliders": [
+					{
+						"path": "Geometry/ProcessingFacility/WestWall",
+						"position": [
+							-30.0,
+							2.0,
+							-2.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							24.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/NorthWest",
+						"position": [
+							-27.0,
+							2.0,
+							-14.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/NorthEast",
+						"position": [
+							-17.0,
+							2.0,
+							-14.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/SouthWest",
+						"position": [
+							-27.0,
+							2.0,
+							10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/SouthEast",
+						"position": [
+							-17.0,
+							2.0,
+							10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/EastNorth",
+						"position": [
+							-14.0,
+							2.0,
+							-10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/EastSouth",
+						"position": [
+							-14.0,
+							2.0,
+							6.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/Partition",
+						"position": [
+							-23.0,
+							1.5,
+							-3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							3.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/WorkBench",
+						"position": [
+							-18.0,
+							0.600000023841858,
+							3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							1.20000004768372,
+							2.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/Roof",
+						"position": [
+							-22.0,
+							5.5,
+							-2.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							17.0,
+							0.300000011920929,
+							25.0
+						]
+					}
+				],
+				"distinct_active_materials": 8,
+				"imported_meshes": 10,
+				"instanced_source_triangles": 7992,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/concrete.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/galvanized_steel.tres",
+					"res://resources/materials/environment/rubber.tres",
+					"res://resources/materials/environment/safety_yellow.tres",
+					"res://scenes/levels/environment/processing_facility.tscn::Material",
+					"res://scenes/levels/environment/processing_facility_art.tscn::LampMaterial"
+				],
+				"primitive_meshes": 17,
+				"shadow_casting_meshes": 12,
+				"visible_meshes": 27
+			},
+			"SalvageYard": {
+				"batch_instances": 35,
+				"batch_nodes": 6,
+				"colliders": [
+					{
+						"path": "Geometry/SalvageYard/WestBay",
+						"position": [
+							-5.0,
+							1.5,
+							-3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							2.0,
+							3.0,
+							6.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/EastBay",
+						"position": [
+							7.0,
+							1.5,
+							4.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							2.0,
+							3.0,
+							6.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/LowCrates",
+						"position": [
+							-1.0,
+							0.600000023841858,
+							8.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							5.0,
+							1.20000004768372,
+							2.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/NorthScreen",
+						"position": [
+							4.0,
+							1.5,
+							-15.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							3.0,
+							1.0
+						]
+					}
+				],
+				"distinct_active_materials": 3,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 6664,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/rubber.tres"
+				],
+				"primitive_meshes": 7,
+				"shadow_casting_meshes": 4,
+				"visible_meshes": 7
+			},
+			"ServicePerimeter": {
+				"batch_instances": 42,
+				"batch_nodes": 4,
+				"colliders": [
+					{
+						"path": "Geometry/ServicePerimeter/Floor",
+						"position": [
+							0.0,
+							-0.5,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							1.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/NorthBoundary",
+						"position": [
+							0.0,
+							2.0,
+							-31.5
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/SouthBoundary",
+						"position": [
+							0.0,
+							2.0,
+							31.5
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/WestBoundary",
+						"position": [
+							-35.5,
+							2.0,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/EastBoundary",
+						"position": [
+							35.5,
+							2.0,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/WestServiceScreen",
+						"position": [
+							-18.0,
+							1.5,
+							16.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							12.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/EastServiceScreen",
+						"position": [
+							16.0,
+							1.5,
+							18.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							14.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/NorthPerimeterScreen",
+						"position": [
+							-12.0,
+							1.5,
+							-23.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/RecallScreen",
+						"position": [
+							-5.0,
+							1.5,
+							24.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							3.0,
+							6.0
+						]
+					}
+				],
+				"distinct_active_materials": 6,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 12140,
+				"materials": [
+					"res://scenes/levels/environment/service_perimeter.tscn::Material",
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/rubber.tres",
+					"res://resources/materials/environment/safety_yellow.tres",
+					"res://resources/materials/environment/galvanized_steel.tres"
+				],
+				"primitive_meshes": 13,
+				"shadow_casting_meshes": 9,
+				"visible_meshes": 13
+			},
+			"StorageArea": {
+				"batch_instances": 22,
+				"batch_nodes": 3,
+				"colliders": [
+					{
+						"path": "Geometry/StorageArea/NorthContainer",
+						"position": [
+							22.0,
+							1.5,
+							-16.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							12.0,
+							3.0,
+							3.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/EastContainer",
+						"position": [
+							29.0,
+							1.5,
+							1.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							3.0,
+							3.0,
+							12.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/SouthContainer",
+						"position": [
+							16.0,
+							1.5,
+							9.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							3.0,
+							3.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/Platform",
+						"position": [
+							22.0,
+							0.5,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							1.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/NorthRamp",
+						"position": [
+							22.0,
+							0.449999988079071,
+							-7.0
+						],
+						"rotation": [
+							-9.46199989318848,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							0.180000007152557,
+							6.09999990463257
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/SouthRamp",
+						"position": [
+							22.0,
+							0.449999988079071,
+							7.0
+						],
+						"rotation": [
+							9.46199989318848,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							0.180000007152557,
+							6.09999990463257
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail0",
+						"position": [
+							19.7999992370605,
+							1.5,
+							-7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail1",
+						"position": [
+							24.2000007629395,
+							1.5,
+							-7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail2",
+						"position": [
+							19.7999992370605,
+							1.5,
+							7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail3",
+						"position": [
+							24.2000007629395,
+							1.5,
+							7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					}
+				],
+				"distinct_active_materials": 4,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 4136,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/concrete.tres",
+					"res://resources/materials/environment/galvanized_steel.tres"
+				],
+				"primitive_meshes": 20,
+				"shadow_casting_meshes": 10,
+				"visible_meshes": 20
+			}
+		}
+	},
+	{
+		"conserved": true,
+		"distinct_geometry_materials": 9,
+		"layout": {
+			"entries": [
+				"Spawn4",
+				"Spawn5",
+				"Spawn3",
+				"Spawn1",
+				"Spawn2"
+			],
+			"layout": "u_east",
+			"positions": [
+				[
+					3.0,
+					0.0,
+					-4.0
+				],
+				[
+					24.0,
+					1.0,
+					0.0
+				],
+				[
+					-26.0,
+					0.0,
+					5.0
+				]
+			],
+			"profiles": [
+				"Greedy",
+				"Cowardly",
+				"Aggressive",
+				"Aggressive",
+				"Greedy"
+			],
+			"quantities": [
+				6,
+				3,
+				3
+			],
+			"routes": [
+				"ScoutRoute",
+				"GuardRoute"
+			],
+			"seed": 87018,
+			"times": [
+				0.0,
+				0.0,
+				35.0,
+				70.0,
+				105.0
+			]
+		},
+		"navigation_validation": "",
+		"physical_contract": {
+			"CoverPoints/Processing": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-25.0, 0.0, -3.0)]",
+			"CoverPoints/Processing/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-25.0, 0.0, 7.0)]",
+			"CoverPoints/Service": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 0.0, 18.0)]",
+			"CoverPoints/Service/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-6.0, 0.0, 18.0)]",
+			"CoverPoints/YardEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (9.0, 0.0, 4.0)]",
+			"CoverPoints/YardEast/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (9.0, 0.0, -1.0)]",
+			"CoverPoints/YardWest": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-7.0, 0.0, -3.0)]",
+			"CoverPoints/YardWest/Peek": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-7.0, 0.0, 5.0)]",
+			"EncounterSites/Processing": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-19.0, 0.0, -7.0)]",
+			"EncounterSites/ProcessingSouth": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-26.0, 0.0, 5.0)]",
+			"EncounterSites/Storage": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 1.0, 0.0)]",
+			"EncounterSites/StorageEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.0, 1.0, 0.0)]",
+			"EncounterSites/Yard": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (1.0, 0.0, 0.0)]",
+			"EncounterSites/YardEast": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (3.0, 0.0, -4.0)]",
+			"Extraction": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-30.0, 0.0, -25.0)]",
+			"Extraction2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (30.0, 0.0, 25.0)]",
+			"Geometry/ProcessingFacility/EastNorth/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-14.0, 2.0, -10.0)]",
+				"(1.0, 4.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/EastSouth/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-14.0, 2.0, 6.0)]",
+				"(1.0, 4.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/NorthEast/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-17.0, 2.0, -14.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/NorthWest/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-27.0, 2.0, -14.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/Partition/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-23.0, 1.5, -3.0)]",
+				"(1.0, 3.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/Roof/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-22.0, 5.5, -2.0)]",
+				"(17.0, 0.3, 25.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/SouthEast/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-17.0, 2.0, 10.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/SouthWest/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-27.0, 2.0, 10.0)]",
+				"(6.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/WestWall/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-30.0, 2.0, -2.0)]",
+				"(1.0, 4.0, 24.0)",
+				1,
+				1
+			],
+			"Geometry/ProcessingFacility/WorkBench/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 0.6, 3.0)]",
+				"(4.0, 1.2, 2.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/EastBay/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (7.0, 1.5, 4.0)]",
+				"(2.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/LowCrates/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-1.0, 0.6, 8.0)]",
+				"(5.0, 1.2, 2.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/NorthScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (4.0, 1.5, -15.0)]",
+				"(8.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/SalvageYard/WestBay/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-5.0, 1.5, -3.0)]",
+				"(2.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/EastBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (35.5, 2.0, 0.0)]",
+				"(1.0, 4.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/EastServiceScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (16.0, 1.5, 18.0)]",
+				"(14.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/Floor/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, -0.5, 0.0)]",
+				"(72.0, 1.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/NorthBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 2.0, -31.5)]",
+				"(72.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/NorthPerimeterScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-12.0, 1.5, -23.0)]",
+				"(8.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/RecallScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-5.0, 1.5, 24.0)]",
+				"(1.0, 3.0, 6.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/SouthBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 2.0, 31.5)]",
+				"(72.0, 4.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/WestBoundary/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-35.5, 2.0, 0.0)]",
+				"(1.0, 4.0, 64.0)",
+				1,
+				1
+			],
+			"Geometry/ServicePerimeter/WestServiceScreen/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-18.0, 1.5, 16.0)]",
+				"(12.0, 3.0, 1.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/EastContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (29.0, 1.5, 1.0)]",
+				"(3.0, 3.0, 12.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/NorthContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 1.5, -16.0)]",
+				"(12.0, 3.0, 3.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/NorthRamp/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.986395, -0.164393), Z: (0.0, 0.164393, 0.986395), O: (22.0, 0.45, -7.0)]",
+				"(4.0, 0.18, 6.1)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/Platform/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (22.0, 0.5, 0.0)]",
+				"(8.0, 1.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail0/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (19.8, 1.5, -7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail1/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.2, 1.5, -7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail2/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (19.8, 1.5, 7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/RampRail3/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.2, 1.5, 7.0)]",
+				"(0.4, 3.0, 6.8)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/SouthContainer/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (16.0, 1.5, 9.0)]",
+				"(3.0, 3.0, 8.0)",
+				1,
+				1
+			],
+			"Geometry/StorageArea/SouthRamp/Collision": [
+				"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.986395, 0.164393), Z: (0.0, -0.164393, 0.986395), O: (22.0, 0.45, 7.0)]",
+				"(4.0, 0.18, 6.1)",
+				1,
+				1
+			],
+			"GuardRoute/Point0": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-10.0, 0.1, -6.0)]",
+			"GuardRoute/Point1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (11.0, 0.1, -6.0)]",
+			"GuardRoute/Point2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (11.0, 0.1, 12.0)]",
+			"GuardRoute/Point3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-10.0, 0.1, 12.0)]",
+			"RaiderSpawns/Spawn1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-20.0, 0.1, -20.0)]",
+			"RaiderSpawns/Spawn2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-24.0, 0.1, 3.0)]",
+			"RaiderSpawns/Spawn3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 0.1, 22.0)]",
+			"RaiderSpawns/Spawn4": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 0.1, -22.0)]",
+			"RaiderSpawns/Spawn5": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (32.0, 0.1, 8.0)]",
+			"RecallDock": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 0.0, 26.0)]",
+			"Salvage": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (3.0, 0.0, -4.0)]",
+			"Salvage2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (24.0, 1.0, 0.0)]",
+			"Salvage3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-26.0, 0.0, 5.0)]",
+			"ScoutRoute/Point0": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 3.5, -18.0)]",
+			"ScoutRoute/Point1": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 3.5, -18.0)]",
+			"ScoutRoute/Point2": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (12.0, 3.5, 12.0)]",
+			"ScoutRoute/Point3": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 3.5, 12.0)]",
+			"SocialRobotStart": "[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (0.0, 0.1, 26.0)]",
+			"navigation": [
+				0.5,
+				2.0,
+				1,
+				1,
+				"navigation_geometry"
+			]
+		},
+		"renderer": "NVIDIA GeForce RTX 4060 Laptop GPU",
+		"seed": 87018,
+		"sign_nodes": 14,
+		"sites": [
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Yard",
+				"position": [
+					1.0,
+					0.0,
+					0.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Processing",
+				"position": [
+					-19.0,
+					0.0,
+					-7.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/Storage",
+				"position": [
+					22.0,
+					1.0,
+					0.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/YardEast",
+				"position": [
+					3.0,
+					0.0,
+					-4.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/ProcessingSouth",
+				"position": [
+					-26.0,
+					0.0,
+					5.0
+				]
+			},
+			{
+				"geometry_clear": true,
+				"ground_valid": true,
+				"path": "EncounterSites/StorageEast",
+				"position": [
+					24.0,
+					1.0,
+					0.0
+				]
+			}
+		],
+		"static_marking_instances": 27,
+		"total_materials": 14,
+		"zones": {
+			"ProcessingFacility": {
+				"batch_instances": 6,
+				"batch_nodes": 6,
+				"colliders": [
+					{
+						"path": "Geometry/ProcessingFacility/WestWall",
+						"position": [
+							-30.0,
+							2.0,
+							-2.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							24.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/NorthWest",
+						"position": [
+							-27.0,
+							2.0,
+							-14.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/NorthEast",
+						"position": [
+							-17.0,
+							2.0,
+							-14.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/SouthWest",
+						"position": [
+							-27.0,
+							2.0,
+							10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/SouthEast",
+						"position": [
+							-17.0,
+							2.0,
+							10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							6.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/EastNorth",
+						"position": [
+							-14.0,
+							2.0,
+							-10.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/EastSouth",
+						"position": [
+							-14.0,
+							2.0,
+							6.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/Partition",
+						"position": [
+							-23.0,
+							1.5,
+							-3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							3.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/WorkBench",
+						"position": [
+							-18.0,
+							0.600000023841858,
+							3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							1.20000004768372,
+							2.0
+						]
+					},
+					{
+						"path": "Geometry/ProcessingFacility/Roof",
+						"position": [
+							-22.0,
+							5.5,
+							-2.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							17.0,
+							0.300000011920929,
+							25.0
+						]
+					}
+				],
+				"distinct_active_materials": 8,
+				"imported_meshes": 10,
+				"instanced_source_triangles": 7992,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/concrete.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/galvanized_steel.tres",
+					"res://resources/materials/environment/rubber.tres",
+					"res://resources/materials/environment/safety_yellow.tres",
+					"res://scenes/levels/environment/processing_facility.tscn::Material",
+					"res://scenes/levels/environment/processing_facility_art.tscn::LampMaterial"
+				],
+				"primitive_meshes": 17,
+				"shadow_casting_meshes": 12,
+				"visible_meshes": 27
+			},
+			"SalvageYard": {
+				"batch_instances": 35,
+				"batch_nodes": 6,
+				"colliders": [
+					{
+						"path": "Geometry/SalvageYard/WestBay",
+						"position": [
+							-5.0,
+							1.5,
+							-3.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							2.0,
+							3.0,
+							6.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/EastBay",
+						"position": [
+							7.0,
+							1.5,
+							4.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							2.0,
+							3.0,
+							6.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/LowCrates",
+						"position": [
+							-1.0,
+							0.600000023841858,
+							8.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							5.0,
+							1.20000004768372,
+							2.0
+						]
+					},
+					{
+						"path": "Geometry/SalvageYard/NorthScreen",
+						"position": [
+							4.0,
+							1.5,
+							-15.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							3.0,
+							1.0
+						]
+					}
+				],
+				"distinct_active_materials": 3,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 6664,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/rubber.tres"
+				],
+				"primitive_meshes": 7,
+				"shadow_casting_meshes": 4,
+				"visible_meshes": 7
+			},
+			"ServicePerimeter": {
+				"batch_instances": 42,
+				"batch_nodes": 4,
+				"colliders": [
+					{
+						"path": "Geometry/ServicePerimeter/Floor",
+						"position": [
+							0.0,
+							-0.5,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							1.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/NorthBoundary",
+						"position": [
+							0.0,
+							2.0,
+							-31.5
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/SouthBoundary",
+						"position": [
+							0.0,
+							2.0,
+							31.5
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							72.0,
+							4.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/WestBoundary",
+						"position": [
+							-35.5,
+							2.0,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/EastBoundary",
+						"position": [
+							35.5,
+							2.0,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							4.0,
+							64.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/WestServiceScreen",
+						"position": [
+							-18.0,
+							1.5,
+							16.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							12.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/EastServiceScreen",
+						"position": [
+							16.0,
+							1.5,
+							18.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							14.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/NorthPerimeterScreen",
+						"position": [
+							-12.0,
+							1.5,
+							-23.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							3.0,
+							1.0
+						]
+					},
+					{
+						"path": "Geometry/ServicePerimeter/RecallScreen",
+						"position": [
+							-5.0,
+							1.5,
+							24.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							1.0,
+							3.0,
+							6.0
+						]
+					}
+				],
+				"distinct_active_materials": 6,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 12140,
+				"materials": [
+					"res://scenes/levels/environment/service_perimeter.tscn::Material",
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/rubber.tres",
+					"res://resources/materials/environment/safety_yellow.tres",
+					"res://resources/materials/environment/galvanized_steel.tres"
+				],
+				"primitive_meshes": 13,
+				"shadow_casting_meshes": 9,
+				"visible_meshes": 13
+			},
+			"StorageArea": {
+				"batch_instances": 22,
+				"batch_nodes": 3,
+				"colliders": [
+					{
+						"path": "Geometry/StorageArea/NorthContainer",
+						"position": [
+							22.0,
+							1.5,
+							-16.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							12.0,
+							3.0,
+							3.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/EastContainer",
+						"position": [
+							29.0,
+							1.5,
+							1.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							3.0,
+							3.0,
+							12.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/SouthContainer",
+						"position": [
+							16.0,
+							1.5,
+							9.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							3.0,
+							3.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/Platform",
+						"position": [
+							22.0,
+							0.5,
+							0.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							8.0,
+							1.0,
+							8.0
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/NorthRamp",
+						"position": [
+							22.0,
+							0.449999988079071,
+							-7.0
+						],
+						"rotation": [
+							-9.46199989318848,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							0.180000007152557,
+							6.09999990463257
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/SouthRamp",
+						"position": [
+							22.0,
+							0.449999988079071,
+							7.0
+						],
+						"rotation": [
+							9.46199989318848,
+							0.0,
+							0.0
+						],
+						"size": [
+							4.0,
+							0.180000007152557,
+							6.09999990463257
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail0",
+						"position": [
+							19.7999992370605,
+							1.5,
+							-7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail1",
+						"position": [
+							24.2000007629395,
+							1.5,
+							-7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail2",
+						"position": [
+							19.7999992370605,
+							1.5,
+							7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					},
+					{
+						"path": "Geometry/StorageArea/RampRail3",
+						"position": [
+							24.2000007629395,
+							1.5,
+							7.0
+						],
+						"rotation": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"size": [
+							0.400000005960464,
+							3.0,
+							6.80000019073486
+						]
+					}
+				],
+				"distinct_active_materials": 4,
+				"imported_meshes": 0,
+				"instanced_source_triangles": 4136,
+				"materials": [
+					"res://resources/materials/environment/weathered_steel.tres",
+					"res://resources/materials/environment/painted_steel_bluegray.tres",
+					"res://resources/materials/environment/concrete.tres",
+					"res://resources/materials/environment/galvanized_steel.tres"
+				],
+				"primitive_meshes": 20,
+				"shadow_casting_meshes": 10,
+				"visible_meshes": 20
+			}
+		}
+	}
+]

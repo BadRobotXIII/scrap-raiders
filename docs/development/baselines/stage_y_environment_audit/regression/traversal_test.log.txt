@@ -1,0 +1,148 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Physical Space and Shift map to traversal actions
+PASS: Dedicated preset enables experimental movement
+PASS: Grounded jump launches once and consumes request
+PASS: Airborne jump request cannot reset vertical velocity
+PASS: Jump apex stays near the approved 1.5 metres
+PASS: Jump returns cleanly to the same floor
+PASS: Jump hits a low ceiling and settles without tunnelling
+PASS: Boost starts immediately in camera-relative WASD direction
+PASS: Boost direction stays fixed during the short burst
+PASS: Quarter-second burst enters cooldown
+PASS: Boost cannot restart during cooldown
+PASS: Cooldown restores readiness and normal braking stops movement
+PASS: Diagonal boost is normalized to the same speed
+PASS: Orbiting the camera does not steer an active boost
+PASS: Air boost preserves jump arc while moving horizontally
+PASS: Airborne aiming faces camera without rotating the camera rig
+PASS: Releasing mouse cancels active boost and clears pending traversal
+PASS: Boost collision cannot pass through arena boundary
+PASS: Boost collision cannot tunnel through arena obstacle
+PASS: Boost and normal movement climb the authored ramp physically
+PASS: Stationary grounded robot can channel recall
+PASS: Jump cancels recall immediately before displacement threshold
+PASS: Boost cancels recall even with no WASD intent
+PASS: Death stops traversal and clears physical velocity
+PASS: Terminal actor cannot move or change material accounting
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Restart preserves experiment and resets movement, health and cooldown
+PASS: Traversal test leaves persistent rewards untouched
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Returning to Intercept preserves accepted jump and boost
+PASS: Intercept executes jump and boost after scenario switching
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Intercept executes grounded jump and physical boost
+PASS: Intercept shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+PASS: Swarm executes grounded jump and physical boost
+PASS: Swarm shows exactly one shared traversal HUD
+PASS: Recovery executes grounded jump and physical boost
+PASS: Recovery shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Survival executes grounded jump and physical boost
+PASS: Survival shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+PASS: Loot Pressure executes grounded jump and physical boost
+PASS: Loot Pressure shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Recall Deployment executes grounded jump and physical boost
+PASS: Recall Deployment shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Machine Ecosystem executes grounded jump and physical boost
+PASS: Machine Ecosystem shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Traversal Experiment executes grounded jump and physical boost
+PASS: Traversal Experiment shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Social Rivalry executes grounded jump and physical boost
+PASS: Social Rivalry shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Social Cooperation executes grounded jump and physical boost
+PASS: Social Cooperation shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> ENGAGING
+PASS: Social Pressure executes grounded jump and physical boost
+PASS: Social Pressure shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+PASS: Opportunistic Betrayal executes grounded jump and physical boost
+PASS: Opportunistic Betrayal shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Integrated Extraction executes grounded jump and physical boost
+PASS: Integrated Extraction shows exactly one shared traversal HUD
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Emergent Encounters - Development Preset executes grounded jump and physical boost
+PASS: Emergent Encounters - Development Preset shows exactly one shared traversal HUD
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Personality Encounters - Stage Q executes grounded jump and physical boost
+PASS: Personality Encounters - Stage Q shows exactly one shared traversal HUD
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Refined Extraction - Stage R executes grounded jump and physical boost
+PASS: Refined Extraction - Stage R shows exactly one shared traversal HUD
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Operation: Asset Recovery starts through its briefing before physical traversal
+PASS: Operation: Asset Recovery executes grounded jump and physical boost
+PASS: Operation: Asset Recovery shows exactly one shared traversal HUD
+PASS: single_raider_arena executes grounded jump and physical boost
+PASS: single_raider_arena shows exactly one shared traversal HUD
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: test_arena executes grounded jump and physical boost
+PASS: test_arena shows exactly one shared traversal HUD
+Stage I traversal checks complete; failures: 0
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

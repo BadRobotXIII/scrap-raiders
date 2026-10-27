@@ -1,0 +1,89 @@
+﻿extends "res://tests/gameplay_integration_test.gd"
+# Same bounded fixture is copied to accepted V and current W. No gameplay tuning.
+func visual_counts(arena: Node3D) -> Dictionary:
+ var result := {"cosmetic_bodies":0,"skeletons":0,"bones":0,"visible_skin_meshes":0,"visible_meshes":0,"animation_players":0}
+ result.cosmetic_bodies = get_nodes_in_group("death_tumbles").size()
+ for node in arena.find_children("*", "", true, false):
+  if node is Skeleton3D:
+   result.skeletons += 1
+   result.bones += node.get_bone_count()
+  elif node is MeshInstance3D and node.is_visible_in_tree():
+   result.visible_meshes += 1
+   if node.skin != null:result.visible_skin_meshes += 1
+  elif node is AnimationPlayer:result.animation_players += 1
+ return result
+
+func observe(seconds: float, arena: Node3D) -> Dictionary:
+ var times: Array[float] = []
+ var previous := Time.get_ticks_usec()
+ var began := previous
+ var draw := 0
+ var primitives := 0
+ var texture := 0
+ while Time.get_ticks_usec() - began < int(seconds * 1000000):
+  await process_frame
+  var now := Time.get_ticks_usec()
+  times.append((now - previous) / 1000.0)
+  previous = now
+  draw = maxi(draw, int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
+  primitives = maxi(primitives, int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)))
+  texture = maxi(texture, int(Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED)))
+  accounting_valid = accounting_valid and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+ times.sort()
+ return {"samples":times.size(),"p95_ms":times[int(times.size()*0.95)],"max_ms":times[-1],"draw_calls":draw,"rendered_primitives":primitives,"texture_bytes":texture,"static_memory_bytes":Performance.get_monitor(Performance.MEMORY_STATIC)}
+
+func run() -> void:
+ var label := OS.get_cmdline_user_args()[0]
+ test_directory = "res://.godot/stage_w/death_saves/" + Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena := load("res://scenes/levels/expanded_salvage_complex.tscn").instantiate() as Node3D
+ arena.stash_path = test_directory + "/stash.json"
+ arena.seed_override = 87018
+ root.add_child(arena)
+ current_scene = arena
+ await start_frozen(arena)
+ await all_entries(arena)
+ arena.ledger.transfer_accepted.connect(audit_transfer.bind(arena))
+ arena.flare_director.equipment.transfer_accepted.connect(audit_transfer.bind(arena))
+ var actors: Array = arena.raiders.values() + Array(arena.ecosystem.machines) + [arena.robot]
+ for index in range(actors.size()):
+  actors[index].position = Vector3(-8 + index * 2, 0.1 if not actors[index] is SupportMachine or not actors[index].flying else 2.0, 20)
+ var camera := Camera3D.new()
+ arena.add_child(camera)
+ camera.position = Vector3(0, 10, 34)
+ camera.look_at(Vector3(0, 1, 20))
+ camera.make_current()
+ await frames(90)
+ var initial := visual_counts(arena)
+ var initial_metrics: Dictionary = await observe(1.0, arena)
+ var death_began := Time.get_ticks_usec()
+ for actor in actors:
+  actor.get_node("Health").apply_damage(10000, actor.position, 0)
+ camera.make_current()
+ var copies := get_nodes_in_group("death_tumbles")
+ var body_policy := copies.size() == 8
+ for body in copies:
+  body_policy = body_policy and body.collision_layer == 0 and body.collision_mask == 1 and body.mass == 8.0
+ check(body_policy, "Eight accepted sources create one cosmetic body each without gameplay collision")
+ var immediate := visual_counts(arena)
+ await frames(3)
+ var independent := visual_counts(arena)
+ var burst_metrics: Dictionary = await observe(4.5, arena)
+ var expired := visual_counts(arena)
+ check(expired.cosmetic_bodies == 0, "Four-second cosmetic bodies and terminal rigs expire without source callbacks")
+ var settled: Dictionary = arena.mission_objectives.result()
+ arena.finish_mission()
+ check(arena.mission_objectives.result() == settled, "Burst death cannot resettle failed deployment")
+ arena.restart_mission()
+ await frames(12)
+ arena = current_scene
+ check(not arena.deployment_started and get_nodes_in_group("death_tumbles").is_empty(), "Restart removes all previous terminal instances")
+ var after_restart := visual_counts(arena)
+ var data := {"label":label,"initial":initial,"initial_metrics":initial_metrics,"immediate_death":immediate,"independent_terminal":independent,"burst_metrics":burst_metrics,"expired":expired,"after_restart":after_restart,"death_window_ms":(Time.get_ticks_usec()-death_began)/1000.0,"conserved":accounting_valid,"accepted_events":accepted_events,"failures":failures,"engine":Engine.get_version_info().string,"rendering_device":RenderingServer.get_video_adapter_name(),"configured_window":root.size}
+ var output := FileAccess.open("res://.godot/stage_w/performance/death_" + label + ".json", FileAccess.WRITE)
+ output.store_string(JSON.stringify(DeploymentMetrics.serializable(data),"\t"))
+ output.close()
+ print("DEATH_PERFORMANCE ", data)
+ arena.queue_free()
+ await frames(30)
+ quit(1 if failures or not accounting_valid else 0)

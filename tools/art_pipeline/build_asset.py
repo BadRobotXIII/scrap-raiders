@@ -26,6 +26,14 @@ DEFINITIONS = {
     "sorting_conveyor_base": ("machinery", [4, 1.2, 2], 6000),
     "utility_run_2m": ("props", [2, 0.26, 0.18], 2400),
     "scrap_bin": ("props", [1, 0.8, 0.8], 3000),
+    "processor_guard_2m": ("machinery", [2, 1.2, .15], 1200),
+    "maintenance_panel_1m": ("machinery", [.8, 1.6, .35], 2000),
+    "scrap_bunker_panel_2m": ("props", [2, 3, .2], 1200),
+    "scrap_infill_1m": ("props", [1, .15, .8], 1200),
+    "pallet_load_1m": ("props", [1, 1.2, 2], 1600),
+    "freight_panel_2m": ("structures", [2, 3, .12], 1200),
+    "vent_panel_2m": ("machinery", [2, 2, .2], 1000),
+    "utility_junction_0p4m": ("props", [.4, .4, .18], 600),
 }
 COLORS = {
     "concrete": ((0.29, 0.30, 0.28), 0, 0.9),
@@ -154,6 +162,91 @@ def scrap_bin():
         bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
 
+def processor_guard():
+    box("closed_guard_backing", (0, .0035, .6), (2, .137, 1.2), "rubber", .003)
+    for x in [-.95, .95]:
+        box("yellow_edge", (x, .068, .6), (.10, .014, 1.18), "safety_yellow", .002)
+    for z in [.08, .42, 1.10]:
+        box("guard_rail", (0, .068, z), (1.88, .014, .07), "safety_yellow", .002)
+    for x in [-.78, -.52, -.26, 0, .26, .52, .78]:
+        box("recessed_guard_rib", (x, .066, .76), (.035, .014, .56), "galvanized_steel", .002)
+    box("stop_station", (.66, .070, .26), (.22, .01, .22), "safety_yellow", .001)
+    cylinder("stop_button", (.66, .071, .26), (.66, .075, .26), .055, "rubber", 12)
+
+
+def maintenance_panel():
+    # Open face, closed recessed back; no outward door or walkable cavity.
+    box("recess_back", (0, -.145, .8), (.8, .06, 1.6), "rubber", .003)
+    for x in [-.37, .37]:
+        box("frame_side", (x, 0, .8), (.06, .35, 1.6), "painted_steel_bluegray", .003)
+    for z in [.04, 1.56]:
+        box("frame_end", (0, 0, z), (.72, .35, .08), "painted_steel_bluegray", .003)
+    for z in [.42, .92, 1.32]:
+        box("service_rail", (0, -.06, z), (.60, .05, .045), "galvanized_steel", .003)
+    for x in [-.23, -.08, .08]:
+        box("remaining_module", (x, -.05, 1.14), (.10, .12, .23), "galvanized_steel", .004)
+    for x in [-.21, .18]:
+        cylinder("disconnected_conduit", (x, -.035, .15), (x, -.035, .68), .024, "galvanized_steel")
+    for x in [-.22, .04, .22]:
+        box("empty_tool_silhouette", (x, -.11, .70), (.05, .008, .19), "rubber", .001)
+
+
+def bunker_panel():
+    box("solid_retainer", (0, -.015, 1.5), (2, .17, 3), "painted_steel_bluegray", .005)
+    for z in [.12, 1.0, 2.0, 2.88]:
+        box("reinforcement", (0, .08, z), (2, .04, .09), "weathered_steel", 0)
+    for x in [-.94, .94]:
+        box("corner_post", (x, .08, 1.5), (.12, .04, 2.8), "weathered_steel", 0)
+    box("stripped_plate_recess", (-.3, .073, 1.7), (.32, .006, .23), "weathered_steel", 0)
+
+
+def scrap_infill():
+    # Pressed bulk surface, not a pile of collectible-looking loose components.
+    import random
+    local = random.Random(87025)
+    box("dense_bulk_backing", (0, 0, .025), (1, .8, .05), "weathered_steel", .002)
+    for row in range(4):
+        for col in range(5):
+            height = local.uniform(.045, .1)
+            box("pressed_plate", (-.4 + col * .2, -.3 + row * .2, .05 + height/2),
+                (.18, .17, height), "weathered_steel" if (row+col)%3 else "painted_steel_bluegray", 0)
+
+
+def pallet_load():
+    box("sealed_pallet_plinth", (0, 0, .075), (1, 2, .15), "weathered_steel", .004)
+    box("secured_industrial_load", (0, 0, .675), (1, 2, 1.05), "painted_steel_bluegray", .008)
+    for x in [-.32, .32]:
+        box("top_strap", (x, 0, 1.194), (.055, 2, .012), "rubber", .001)
+        for y in [-.995, .995]:
+            box("end_strap", (x, y, .675), (.055, .01, 1.03), "rubber", .001)
+    for y in [-.55, .55]:
+        box("top_seam", (0, y, 1.19), (.95, .018, .014), "weathered_steel", .001)
+
+
+def freight_panel():
+    box("closed_freight_skin", (0, -.02, 1.5), (2, .08, 3), "painted_steel_bluegray", .003)
+    for x in [-.84 + i*.24 for i in range(8)]:
+        box("corrugation", (x, .035, 1.5), (.10, .05, 2.8), "painted_steel_bluegray", 0)
+    for x in [-.97, .97]:
+        box("freight_edge", (x, .035, 1.5), (.06, .05, 3), "galvanized_steel", 0)
+    for z in [.035, 2.965]:
+        box("edge_rail", (0, .035, z), (2, .05, .07), "galvanized_steel", 0)
+
+
+def vent_panel():
+    box("opaque_vent_backing", (0, -.025, 1), (2, .15, 2), "painted_steel_bluegray", .004)
+    for z in [.25 + i*.21 for i in range(8)]:
+        box("closed_back_louver", (0, .07, z), (1.8, .06, .12), "galvanized_steel", 0)
+
+
+def utility_junction():
+    box("junction_case", (0, 0, .2), (.4, .16, .4), "galvanized_steel", .004)
+    box("sealed_face", (0, .085, .2), (.33, .01, .33), "weathered_steel", .002)
+    for x in [-.13, .13]:
+        for z in [.07, .33]:
+            cylinder("junction_fastener", (x, .086, z), (x, .09, z), .013, "galvanized_steel", 8)
+
+
 def build(name, rebuild=False):
     category, dimensions, limit = DEFINITIONS[name]
     source = ROOT / "assets/environment/source" / category / (name + ".blend")
@@ -181,7 +274,11 @@ def build(name, rebuild=False):
     else:
         {"steel_column_4m": column, "steel_edge_beam_4m": beam,
          "control_cabinet": cabinet, "sorting_conveyor_base": conveyor,
-         "utility_run_2m": utility, "scrap_bin": scrap_bin}[name]()
+         "utility_run_2m": utility, "scrap_bin": scrap_bin,
+         "processor_guard_2m": processor_guard, "maintenance_panel_1m": maintenance_panel,
+         "scrap_bunker_panel_2m": bunker_panel, "scrap_infill_1m": scrap_infill,
+         "pallet_load_1m": pallet_load, "freight_panel_2m": freight_panel,
+         "vent_panel_2m": vent_panel, "utility_junction_0p4m": utility_junction}[name]()
     for obj in PARTS:
         for owner in list(obj.users_collection):
             owner.objects.unlink(obj)

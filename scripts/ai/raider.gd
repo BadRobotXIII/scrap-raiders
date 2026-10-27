@@ -23,6 +23,7 @@ enum State { SCAVENGING, FLEEING, EXTRACTING, DEAD, EXTRACTED, SELECTING, INVEST
 var dynamic_ai: bool = false
 var profile: RaiderProfile
 var combat: RaiderCombat
+var threat_monitor := RaiderThreatMonitor.new()
 var social: RaiderSocial
 var betrayal: RaiderBetrayal
 var combat_target: Node3D
@@ -53,6 +54,8 @@ var blocked_salvage: Dictionary[StringName, bool] = {}
 var blocked_exits: Dictionary[StringName, bool] = {}
 var _progress_elapsed: float = 0.0
 var _progress_origin: Vector3
+var _progress_best_remaining: float = INF
+var _progress_checkpoint_remaining: float = INF
 var _retry_remaining: float = 0.0
 var _bypass_actor: CharacterBody3D
 var _bypass_direction: Vector3
@@ -88,9 +91,15 @@ func transition(next: State) -> void:
 	state = next
 	if next == State.INVESTIGATING:
 		_investigated_threat_position = last_threat_position
+		# This accepted route has its own deadline. Later knowledge cannot
+		# extend it indefinitely or reset the navigation watchdog.
+		threat_monitor.investigation_remaining = minf(threat_remaining, profile.threat_memory)
+		threat_monitor.reported_investigation = threat_source in ["ally report", "flare"]
 	task_elapsed = 0.0
 	_progress_elapsed = 0.0
 	_progress_origin = global_position
+	_progress_best_remaining = INF
+	_progress_checkpoint_remaining = INF
 	navigation_failures = 0
 	print("R%02d: %s -> %s" % [raider_id, State.keys()[previous], State.keys()[next]])
 	state_changed.emit(previous, next)
@@ -128,10 +137,14 @@ func detects_current_target() -> bool:
 	return (not combat_target_allowed.is_valid() or combat_target_allowed.call(target)) and detects_actor(target)
 
 
+func loot_progress() -> int:
+	return ledger.inventory.loot_value("actor:%d" % raider_id) if ledger != null and ledger.inventory.hybrid else carried_materials
+
 func salvage_available() -> int:
 	if not is_instance_valid(salvage):
 		return 0
 	if social != null and salvage is MaterialDrop and not social.knows_drop(salvage):
+		if ledger.inventory.hybrid and salvage is WorldLoot and salvage.drop_id < 0 and not social.searched_empty_cache(salvage): return 1 # Known authored route; inspect contents only on arrival/sight.
 		return 0
 	return available_stock.call(salvage) if available_stock.is_valid() else ledger.available(salvage.name)
 
@@ -150,6 +163,8 @@ func _choose_exit(preserve_activity_on_failure: bool = false) -> bool:
 func decide() -> void:
 	if state in [State.DEAD, State.EXTRACTED]:
 		return
+	if state == State.INVESTIGATING and threat_monitor.reported_investigation and threat_monitor.investigation_remaining <= 0:
+		transition(State.SELECTING)
 	if select_combat_target.is_valid():
 		var selected: Node3D = select_combat_target.call(self)
 		if is_instance_valid(selected) and selected != combat_target:
@@ -180,7 +195,8 @@ func decide() -> void:
 		last_threat_position = current_target().global_position
 		threat_source = "sight"
 	elif threat_remaining <= 0.0:
-		_investigated_threat_position = Vector3.INF
+		if threat_source not in ["ally report", "flare"]:
+			_investigated_threat_position = Vector3.INF
 		if threat_source != "ally report":
 			threat_source = "none"
 	if social != null:
@@ -193,7 +209,7 @@ func decide() -> void:
 		if _retry_remaining <= 0.0:
 			blocked_exits.clear()
 			blocked_salvage.clear()
-			if carried_materials < profile.cargo_target and select_salvage.call(raider_id) != null:
+			if loot_progress() < profile.cargo_target and select_salvage.call(raider_id) != null:
 				transition(State.SELECTING)
 			elif _choose_exit():
 				transition(State.EXTRACTING)
@@ -201,12 +217,12 @@ func decide() -> void:
 	if threat_visible and global_position.distance_to(current_target().global_position) <= profile.flee_distance:
 		if state != State.FLEEING and _choose_exit():
 			transition(State.FLEEING)
-	elif state == State.FLEEING and threat_remaining <= 0 and carried_materials < profile.cargo_target:
+	elif state == State.FLEEING and threat_remaining <= 0 and loot_progress() < profile.cargo_target:
 		transition(State.SELECTING)
 	elif threat_visible and profile.investigates and state == State.SCAVENGING and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
 		begin_investigation()
 	if state == State.SELECTING:
-		salvage = select_salvage.call(raider_id) if carried_materials < profile.cargo_target else null
+		salvage = select_salvage.call(raider_id) if loot_progress() < profile.cargo_target else null
 		if salvage != null:
 			transition(State.SCAVENGING)
 		elif _choose_exit():
@@ -226,13 +242,15 @@ func begin_investigation() -> void:
 
 
 func consider_allied_report(position: Vector3, remaining: float) -> bool:
-	if threat_visible or remaining <= 0 or state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or carried_materials >= profile.cargo_target or health.current <= health.maximum * 0.3:
+	if threat_visible or remaining <= 0 or state in [State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED] or loot_progress() >= profile.cargo_target or health.current <= health.maximum * 0.3:
 		return false
 	if (combat != null and (combat.owns_state() or combat.pursuing or combat.escaping)) or (threat_source in ["damage", "gunfire"] and threat_remaining > 0):
 		return false
 	last_threat_position = position
 	threat_remaining = maxf(threat_remaining, remaining)
 	threat_source = "ally report"
+	if not threat_monitor.allows_interruption(RaiderThreatMonitor.Level.REPORTED, minimum_interrupt()):
+		return false
 	if position.distance_to(_investigated_threat_position) < profile.investigation_rearm_distance:
 		return false
 	var map := agent.get_navigation_map()
@@ -253,7 +271,9 @@ func investigate_flare(position: Vector3) -> bool:
 		return false
 	if detects_robot() or (combat != null and (combat.owns_state() or combat.pursuing or combat.escaping)):
 		return false
-	if state == State.EXTRACTING and carried_materials >= profile.cargo_target:
+	if state == State.EXTRACTING and loot_progress() >= profile.cargo_target:
+		return false
+	if not threat_monitor.allows_interruption(RaiderThreatMonitor.Level.REPORTED, minimum_interrupt()) or position.distance_to(_investigated_threat_position) < profile.investigation_rearm_distance:
 		return false
 	var map := agent.get_navigation_map()
 	if NavigationServer3D.map_get_iteration_id(map) == 0:
@@ -270,6 +290,19 @@ func investigate_flare(position: Vector3) -> bool:
 	threat_remaining = maxf(threat_remaining, profile.threat_memory)
 	transition(State.INVESTIGATING)
 	return true
+
+
+func minimum_interrupt() -> RaiderThreatMonitor.Level:
+	# Rank unsolicited observations against the accepted action. Combat's
+	# existing attacker and survival policies still decide urgent responses.
+	match state:
+		State.DEAD, State.EXTRACTED, State.FLEEING, State.STRANDED:
+			return RaiderThreatMonitor.Level.CRITICAL
+		State.ENGAGING, State.TAKING_COVER, State.REPOSITIONING, State.ASSESSING_BETRAYAL:
+			return RaiderThreatMonitor.Level.DIRECT_ATTACK
+		State.INVESTIGATING:
+			return RaiderThreatMonitor.Level.VISIBLE
+	return RaiderThreatMonitor.Level.REPORTED
 
 
 func hear_gunfire(origin: Vector3) -> bool:
@@ -295,7 +328,7 @@ func hear_gunfire(origin: Vector3) -> bool:
 	if profile.flees_from_gunfire or global_position.distance_to(origin) <= profile.flee_distance:
 		if _choose_exit():
 			transition(State.FLEEING)
-	elif profile.investigates and state in [State.SCAVENGING, State.SELECTING] and carried_materials < profile.cargo_target and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
+	elif profile.investigates and state in [State.SCAVENGING, State.SELECTING] and loot_progress() < profile.cargo_target and last_threat_position.distance_to(_investigated_threat_position) >= profile.investigation_rearm_distance:
 		begin_investigation()
 	update_label()
 	return true
@@ -317,6 +350,8 @@ func _physics_process(delta: float) -> void:
 		combat.tick(delta)
 		if not combat.weapon.enabled:
 			return
+	else:
+		threat_monitor.tick(delta)
 	decision_remaining -= delta
 	if decision_remaining <= 0:
 		decision_remaining = 0.15
@@ -343,9 +378,9 @@ func _physics_process(delta: float) -> void:
 			combat.on_arrived(delta)
 		if state == State.SCAVENGING and task_elapsed >= scavenge_seconds:
 			collection_requested.emit()
-			if carried_materials > 0:
+			if loot_progress() > 0:
 				cargo_collected.emit(carried_materials)
-				if dynamic_ai and carried_materials < profile.cargo_target:
+				if dynamic_ai and loot_progress() < profile.cargo_target:
 					transition(State.SELECTING)
 				elif not dynamic_ai or _choose_exit():
 					transition(State.EXTRACTING)
@@ -374,21 +409,38 @@ func _physics_process(delta: float) -> void:
 			agent.target_position = position_target
 			_progress_elapsed = 0
 			_progress_origin = global_position
+			_progress_best_remaining = INF
+			_progress_checkpoint_remaining = INF
 		var next_position := agent.get_next_path_position()
 		if not agent.is_navigation_finished():
 			direction = next_position - global_position
 			direction.y = 0
 			direction = direction.normalized()
 		if dynamic_ai:
+			var cover_route := state in [State.TAKING_COVER, State.REPOSITIONING]
+			var remaining := remaining_path_distance(next_position) if cover_route else INF
+			if cover_route:
+				if not is_finite(_progress_checkpoint_remaining):
+					_progress_checkpoint_remaining = remaining
+				_progress_best_remaining = minf(_progress_best_remaining, remaining)
 			_progress_elapsed += delta
 			if _progress_elapsed >= navigation_stall_seconds:
-				if global_position.distance_to(_progress_origin) < 0.2:
+				# Circling a body can produce full-speed displacement without
+				# advancing the accepted route. Preserve its best remaining
+				# length across repaths instead of treating each loop as progress.
+				# Other activities retain their accepted displacement watchdog;
+				# cover work is the route vulnerable to blocked-waypoint circles.
+				var stalled := global_position.distance_to(_progress_origin) < 0.2
+				if cover_route:
+					stalled = _progress_checkpoint_remaining - _progress_best_remaining < 0.2 or not is_finite(remaining)
+				if stalled:
 					recover_navigation(position_target)
 				else:
 					navigation_failures = 0
 					navigation_status = "FOLLOWING PATH"
 				_progress_elapsed = 0
 				_progress_origin = global_position
+				_progress_checkpoint_remaining = _progress_best_remaining
 	else:
 		_progress_elapsed = 0
 	var speed := flee_speed if state == State.FLEEING else walk_speed
@@ -405,6 +457,19 @@ func _physics_process(delta: float) -> void:
 	update_label()
 
 
+func remaining_path_distance(next_position: Vector3) -> float:
+	var path := agent.get_current_navigation_path()
+	if path.is_empty():
+		return INF
+	var index := agent.get_current_navigation_path_index()
+	# get_next_path_position() already includes the actor's bake-height offset;
+	# the remaining path segments retain their original relative elevations.
+	var remaining := global_position.distance_to(next_position)
+	for step in range(index + 1, path.size()):
+		remaining += path[step - 1].distance_to(path[step])
+	return remaining
+
+
 func steer_around_actor(direction: Vector3, destination: Vector3) -> Vector3:
 	if direction.is_zero_approx():
 		_bypass_remaining = 0
@@ -414,9 +479,12 @@ func steer_around_actor(direction: Vector3, destination: Vector3) -> Vector3:
 	if _bypass_remaining > 0 and is_instance_valid(_bypass_actor) and destination.distance_to(_bypass_goal) < 1:
 		var offset := _bypass_actor.global_position - global_position
 		offset.y = 0
-		var forward := (destination - global_position).normalized()
+		# The blocker occupies this navigation segment. A corner can place it
+		# outside the final-goal corridor while it still obstructs our path.
+		var forward := direction.normalized()
 		var lateral := offset - forward * offset.dot(forward)
-		if offset.length() < 2.5 and lateral.length() < 1.0 and offset.dot(forward) > 0 and not test_move(global_transform, _bypass_direction * 0.6):
+		var goal_forward := (destination - global_position).normalized()
+		if offset.length() < 2.5 and lateral.length() < 1.0 and offset.dot(goal_forward) > 0 and not test_move(global_transform, _bypass_direction * 0.6):
 			return _bypass_direction
 	_bypass_remaining = 0
 	var collision := KinematicCollision3D.new()

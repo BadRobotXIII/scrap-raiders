@@ -1,0 +1,8 @@
+import bpy,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()/'tools/art_pipeline'))
+from export_asset import export_asset
+for vertex in bpy.data.objects['processor_guard_2m'].data.vertices:
+ if .45<vertex.co.x<.6 and .5<vertex.co.z<1.1: vertex.co.x+=.015
+bpy.ops.wm.save_as_mainfile(filepath=str(Path.cwd()/'.godot/stage_y/guard_roundtrip_edited.blend'))
+export_asset(Path.cwd()/'assets/environment/exports/machinery/processor_guard_2m.glb')

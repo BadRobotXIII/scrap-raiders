@@ -1,0 +1,11 @@
+from pathlib import Path
+import subprocess,json,time
+root=Path.cwd();out=root/'.godot/stage_x';runs=[]
+entries=[('regression',[r'python',str(out/'validate.py')],None)]
+for label,args,marker in [('audio_native',['--headless','--verbose','--script','res://tests/audio_lifecycle_test.gd','--quit-after','2000'],'Audio lifecycle failures: 0'),('combat_native',['--headless','--script','res://tests/combat_presentation_test.gd','--quit-after','2000'],'Combat presentation failures: 0'),('audio_accelerated',['--headless','--verbose','--fixed-fps','60','--script','res://tests/audio_lifecycle_test.gd','--quit-after','15000'],'Audio lifecycle failures: 0'),('final_bay',['--script','res://.godot/stage_w/performance.gd','--quit-after','20000','--','final_x_bay','res://scenes/levels/expanded_salvage_complex.tscn'],'PERFORMANCE'),('final_overview',['--script','res://.godot/stage_w/performance.gd','--quit-after','20000','--','final_x_overview','res://scenes/levels/expanded_salvage_complex.tscn'],'PERFORMANCE'),('final_peak',['--script','res://.godot/stage_x/peak.gd','--quit-after','15000','--','final_x_peak'],'DEATH_PERFORMANCE')]:
+ entries.append((label,[r'C:\Users\kzulf\bin\godot.cmd','--path','.',*args],marker))
+for label,cmd,marker in entries:
+ file=out/(label+'_final.log.txt');began=time.time()
+ with file.open('w',encoding='utf-8') as stream:
+  result=subprocess.run(cmd,stdout=stream,stderr=subprocess.STDOUT,timeout=300)
+ log=file.read_text(encoding='utf-8',errors='replace');row={'label':label,'exit':result.returncode,'seconds':round(time.time()-began,2),'completed':marker is None or marker in log,'issues':[x for x in log.splitlines() if 'ERROR:' in x or 'WARNING:' in x]};runs.append(row);print(row,flush=True);(out/'final_checks.json').write_text(json.dumps(runs,indent=2))

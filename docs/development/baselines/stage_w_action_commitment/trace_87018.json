@@ -1,0 +1,933 @@
+{
+	"conserved": true,
+	"peak_population": 2,
+	"samples": [
+		{
+			"after": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					11.979959487915,
+					0.0972777754068375,
+					-21.9541912078857
+				],
+				"real": 3.00448322296143,
+				"reason": "greedy: salvage before optional distant fight",
+				"state": "SCAVENGING",
+				"t": 0.55,
+				"target": "ScoutComponents",
+				"velocity": 3.00444316864014,
+				"yaw": 2.72918224334717
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.100000001490116,
+					-22.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 1,
+			"turn": 2.72918224334717
+		},
+		{
+			"after": {
+				"goal": [
+					24.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					31.953577041626,
+					0.0972777754068375,
+					8.01856994628906
+				],
+				"real": 3.00440311431885,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 0.55,
+				"target": "none",
+				"velocity": 3.00444316864014,
+				"yaw": 1.95130264759064
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					32.0,
+					0.100000001490116,
+					8.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 2,
+			"turn": 1.95130264759064
+		},
+		{
+			"after": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					9.99587249755859,
+					0.000839509651996195,
+					-17.4191341400146
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 2.23333333333333,
+				"target": "ScoutComponents",
+				"velocity": 0.0,
+				"yaw": 1.44111979007721
+			},
+			"before": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					9.99587249755859,
+					0.000839509651996195,
+					-17.4191341400146
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 2.21666666666666,
+				"target": "ScoutComponents",
+				"velocity": 0.0,
+				"yaw": 2.72918128967285
+			},
+			"id": 1,
+			"turn": 1.28806149959564
+		},
+		{
+			"after": {
+				"goal": [
+					24.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					23.7624607086182,
+					0.00083948764950037,
+					10.7309446334839
+				],
+				"real": 3.00000357627869,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 3.48333333333333,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": 0.0457650385797024
+			},
+			"before": {
+				"goal": [
+					24.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					23.7647476196289,
+					0.00083948764950037,
+					10.7808923721313
+				],
+				"real": 3.00003290176392,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 3.46666666666666,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": 1.45463418960571
+			},
+			"id": 2,
+			"turn": 1.40886915102601
+		},
+		{
+			"after": {
+				"goal": [
+					11.310583114624,
+					0.0,
+					-14.1263437271118
+				],
+				"pos": [
+					11.0155935287476,
+					0.000839509651996195,
+					-14.8651781082153
+				],
+				"real": 0.0,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "ENGAGING",
+				"t": 7.18333333333331,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": 2.07698583602905
+			},
+			"before": {
+				"goal": [
+					11.310583114624,
+					0.0,
+					-14.1263437271118
+				],
+				"pos": [
+					11.0155935287476,
+					0.000839509651996195,
+					-14.8651781082153
+				],
+				"real": 0.0,
+				"reason": "greedy: salvage before optional distant fight",
+				"state": "SCAVENGING",
+				"t": 7.16666666666665,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -2.76171088218689
+			},
+			"id": 1,
+			"turn": 1.44448858896364
+		},
+		{
+			"after": {
+				"goal": [
+					30.0,
+					0.0,
+					25.0
+				],
+				"pos": [
+					23.9200420379639,
+					1.00084924697876,
+					0.803013026714325
+				],
+				"real": 3.00000524520874,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "EXTRACTING",
+				"t": 9.93333333333341,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 3.04184412956238
+			},
+			"before": {
+				"goal": [
+					24.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					23.9250221252441,
+					1.00084924697876,
+					0.753261566162109
+				],
+				"real": 0.0,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "EXTRACTING",
+				"t": 9.91666666666674,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": -0.0992120504379272
+			},
+			"id": 2,
+			"turn": 3.14105618000031
+		},
+		{
+			"after": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					5.22921705245972,
+					0.000839509651996195,
+					-11.6171941757202
+				],
+				"real": 2.99998736381531,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 22.05,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 2.85688710212708
+			},
+			"before": {
+				"goal": [
+					4.58486652374268,
+					0.0,
+					-11.3001976013184
+				],
+				"pos": [
+					5.24326086044312,
+					0.000839509651996195,
+					-11.6651811599731
+				],
+				"real": 0.0,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SELECTING",
+				"t": 22.0333333333334,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.07698130607605
+			},
+			"id": 1,
+			"turn": 0.779905796051025
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					3.1783275604248,
+					0.000839509651996195,
+					-4.78114748001099
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "EXTRACTING",
+				"t": 27.4666666666664,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": 1.02108883857727
+			},
+			"before": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					3.22096133232117,
+					0.000839509651996195,
+					-4.7550253868103
+				],
+				"real": 0.0,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "EXTRACTING",
+				"t": 27.4499999999997,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.85688805580139
+			},
+			"id": 1,
+			"turn": 1.83579921722412
+		},
+		{
+			"after": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0918333306908607,
+					22.0
+				],
+				"real": 0.326666653156281,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 35.1833333333326,
+				"target": "Robot",
+				"velocity": 0.326666682958603,
+				"yaw": 1.89254689216614
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0972777754068375,
+					22.0
+				],
+				"real": 0.163333550095558,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 35.166666666666,
+				"target": "Robot",
+				"velocity": 0.163333341479301,
+				"yaw": 0.0
+			},
+			"id": 3,
+			"turn": 1.89254689216614
+		},
+		{
+			"after": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					11.9618310928345,
+					0.0001816296717152,
+					21.9677028656006
+				],
+				"real": 2.99998211860657,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 43.1666666666655,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 0.868539452552795
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0001816296717152,
+					22.0
+				],
+				"real": 0.0,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 43.1499999999988,
+				"target": "Robot",
+				"velocity": 0.0,
+				"yaw": 1.89254689216614
+			},
+			"id": 3,
+			"turn": 1.02400743961334
+		},
+		{
+			"after": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					3.12785935401917,
+					0.000846007955260575,
+					-3.22089767456055
+				],
+				"real": 2.99999594688416,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 55.3333333333315,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 2.0790684223175
+			},
+			"before": {
+				"goal": [
+					3.0,
+					0.0,
+					-4.0
+				],
+				"pos": [
+					3.17153859138489,
+					0.000846007955260575,
+					-3.24523115158081
+				],
+				"real": 0.0,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SELECTING",
+				"t": 55.3166666666648,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.223477333784103
+			},
+			"id": 3,
+			"turn": 1.8555910885334
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-25.3105506896973,
+					0.000845973612740636,
+					4.5805230140686
+				],
+				"real": 3.00003981590271,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 68.4666666666641,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -0.824425220489502
+			},
+			"before": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-25.3472595214844,
+					0.000845973612740636,
+					4.61447191238403
+				],
+				"real": 0.0,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 68.4499999999974,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.10429310798645
+			},
+			"id": 3,
+			"turn": 2.92871832847595
+		},
+		{
+			"after": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-20.014368057251,
+					0.0972777754068375,
+					-19.9521083831787
+				],
+				"real": 3.00447154045105,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 70.2999999999973,
+				"target": "none",
+				"velocity": 3.00444293022156,
+				"yaw": 2.85013604164124
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-20.0,
+					0.100000001490116,
+					-20.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 70.2833333333306,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 4,
+			"turn": 2.85013604164124
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.2656631469727,
+					0.000845973612740636,
+					-9.12261486053467
+				],
+				"real": 2.99998879432678,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 73.5499999999971,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 1.94344878196716
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.2190952301025,
+					0.000845973612740636,
+					-9.14081954956055
+				],
+				"real": 2.99999451637268,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 73.5333333333304,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": 0.208350390195847
+			},
+			"id": 3,
+			"turn": 1.73509839177132
+		},
+		{
+			"after": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-22.9659576416016,
+					0.000841984525322914,
+					-10.269983291626
+				],
+				"real": 2.99998760223389,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 73.6833333333304,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": 1.7318708896637
+			},
+			"before": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-22.9166049957275,
+					0.000841984525322914,
+					-10.2780017852783
+				],
+				"real": 3.00002861022949,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 73.6666666666638,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": 2.85013747215271
+			},
+			"id": 4,
+			"turn": 1.11826658248901
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-24.2864017486572,
+					0.000845973612740636,
+					-8.48508358001709
+				],
+				"real": 3.00000500679016,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 74.2833333333304,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -0.296779304742813
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-24.3010234832764,
+					0.000845973612740636,
+					-8.43726921081543
+				],
+				"real": 3.00000524520874,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 74.2666666666637,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": 1.8499071598053
+			},
+			"id": 3,
+			"turn": 2.14668646454811
+		},
+		{
+			"after": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-25.4564437866211,
+					0.000841984525322914,
+					-9.46674537658691
+				],
+				"real": 3.00003790855408,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 74.5999999999971,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -2.42694139480591
+			},
+			"before": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-25.4892120361328,
+					0.000841984525322914,
+					-9.50451183319092
+				],
+				"real": 3.00002121925354,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 74.5833333333304,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 2.29584932327271
+			},
+			"id": 4,
+			"turn": 1.56039458910097
+		},
+		{
+			"after": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-23.9201507568359,
+					0.000841984525322914,
+					-7.64186716079712
+				],
+				"real": 2.99999403953552,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 75.399999999997,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": 3.06536340713501
+			},
+			"before": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-23.9163436889648,
+					0.000841984525322914,
+					-7.69172191619873
+				],
+				"real": 2.99996304512024,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 75.3833333333303,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -2.42695450782776
+			},
+			"id": 4,
+			"turn": 0.790867392216818
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-25.822639465332,
+					0.000841984525322914,
+					4.21466875076294
+				],
+				"real": 3.00001788139343,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 82.4666666666633,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -0.966899812221527
+			},
+			"before": {
+				"goal": [
+					-26.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-25.8637962341309,
+					0.000841984525322914,
+					4.24306154251099
+				],
+				"real": 0.0,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SELECTING",
+				"t": 82.4499999999966,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.96355628967285
+			},
+			"id": 4,
+			"turn": 2.35272920528521
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9222583770752,
+					0.000841984525322914,
+					1.16471922397614
+				],
+				"real": 2.99999833106995,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 84.1333333333298,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": -0.0232278108596802
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9234199523926,
+					0.000841984525322914,
+					1.2147057056427
+				],
+				"real": 3.00001931190491,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 84.1166666666632,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": -0.67942601442337
+			},
+			"id": 4,
+			"turn": 0.65619820356369
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.9593124389648,
+					0.0972777754068375,
+					2.97093796730042
+				],
+				"real": 3.0044903755188,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "EXTRACTING",
+				"t": 105.433333333329,
+				"target": "none",
+				"velocity": 3.00444293022156,
+				"yaw": -0.950545430183411
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-24.0,
+					0.100000001490116,
+					3.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 105.416666666662,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 5,
+			"turn": 0.950545430183411
+		}
+	],
+	"seed": 87018,
+	"time": 118.516666666661,
+	"totals": {
+		"1": {
+			"goals": 5,
+			"same_state_snaps": 2,
+			"snaps": 5,
+			"stalled_frames": 0,
+			"states": 10,
+			"targets": 4
+		},
+		"2": {
+			"goals": 2,
+			"same_state_snaps": 2,
+			"snaps": 3,
+			"stalled_frames": 0,
+			"states": 2,
+			"targets": 0
+		},
+		"3": {
+			"goals": 3,
+			"same_state_snaps": 4,
+			"snaps": 6,
+			"stalled_frames": 0,
+			"states": 5,
+			"targets": 2
+		},
+		"4": {
+			"goals": 2,
+			"same_state_snaps": 4,
+			"snaps": 6,
+			"stalled_frames": 0,
+			"states": 3,
+			"targets": 0
+		},
+		"5": {
+			"goals": 1,
+			"same_state_snaps": 0,
+			"snaps": 1,
+			"stalled_frames": 0,
+			"states": 1,
+			"targets": 0
+		}
+	},
+	"world_finished": true
+}

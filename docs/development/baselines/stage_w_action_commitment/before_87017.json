@@ -1,0 +1,5088 @@
+{
+	"samples": [
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-20.0041522979736,
+					0.0972777754068375,
+					-19.9501724243164
+				],
+				"real": 3.00446009635925,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 0.55,
+				"target": "none",
+				"velocity": 3.00444316864014,
+				"yaw": 3.05845618247986
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-20.0,
+					0.100000001490116,
+					-20.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 1,
+			"turn": 3.05845618247986
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.9389705657959,
+					0.0972777754068375,
+					2.95640707015991
+				],
+				"real": 4.50293731689453,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 0.55,
+				"target": "GuardComponents",
+				"velocity": 4.50296306610107,
+				"yaw": -0.950545430183411
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-24.0,
+					0.100000001490116,
+					3.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 2,
+			"turn": 0.950545430183411
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9122180938721,
+					0.000839489512145519,
+					1.13095355033875
+				],
+				"real": 4.50000190734863,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 1.16666666666667,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.0219743959605694
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9138660430908,
+					0.000839489512145519,
+					1.20593547821045
+				],
+				"real": 4.50003004074097,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 1.15,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.672125041484833
+			},
+			"id": 2,
+			"turn": 0.650150645524263
+		},
+		{
+			"after": {
+				"goal": [
+					-5.44748783111572,
+					0.000839489512145519,
+					-6.47715139389038
+				],
+				"pos": [
+					-20.3238468170166,
+					0.000839507847558707,
+					-15.5117788314819
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "INVESTIGATING",
+				"t": 2.05,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": -1.64564514160156
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-20.373706817627,
+					0.000839507847558707,
+					-15.5155181884766
+				],
+				"real": 3.0000171661377,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 2.03333333333333,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 3.05845594406128
+			},
+			"id": 1,
+			"turn": 1.57908422151674
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-25.7081832885742,
+					0.000839489512145519,
+					-18.3913249969482
+				],
+				"real": 3.00000548362732,
+				"reason": "safe after escape commitment; resume objectives",
+				"state": "SCAVENGING",
+				"t": 5.71666666666665,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.56442403793335
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-25.735466003418,
+					0.000839489512145519,
+					-18.4332256317139
+				],
+				"real": 4.50005054473877,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 5.69999999999999,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 0.572229504585266
+			},
+			"id": 2,
+			"turn": 3.13665354251862
+		},
+		{
+			"after": {
+				"goal": [
+					3.29853177070618,
+					0.000839489512145519,
+					-6.26046562194824
+				],
+				"pos": [
+					-25.4141540527344,
+					0.000839489512145519,
+					-18.0020027160645
+				],
+				"real": 3.00001215934753,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "INVESTIGATING",
+				"t": 5.88333333333332,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -1.81762754917145
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-25.4626388549805,
+					0.000839489512145519,
+					-18.0142192840576
+				],
+				"real": 3.00000548362732,
+				"reason": "safe after escape commitment; resume objectives",
+				"state": "SCAVENGING",
+				"t": 5.86666666666665,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.5644257068634
+			},
+			"id": 2,
+			"turn": 0.746798157691956
+		},
+		{
+			"after": {
+				"goal": [
+					-7.0,
+					0.0,
+					-3.0
+				],
+				"pos": [
+					-5.98031139373779,
+					0.000839507847558707,
+					-6.99449729919434
+				],
+				"real": 3.00000214576721,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 8.78333333333335,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.64230394363403
+			},
+			"before": {
+				"goal": [
+					-5.44748783111572,
+					0.000839489512145519,
+					-6.47715139389038
+				],
+				"pos": [
+					-5.95637130737305,
+					0.000839507847558707,
+					-7.03839349746704
+				],
+				"real": 0.0,
+				"reason": "greedy: salvage before optional distant fight",
+				"state": "INVESTIGATING",
+				"t": 8.76666666666668,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -2.38436532020569
+			},
+			"id": 1,
+			"turn": 1.25651604333986
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-13.8902225494385,
+					0.000839489512145519,
+					-15.1214237213135
+				],
+				"real": 4.49999666213989,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 9.8833333333334,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 1.02072477340698
+			},
+			"before": {
+				"goal": [
+					3.87129926681519,
+					0.000839489512145519,
+					-6.56215572357178
+				],
+				"pos": [
+					-13.826286315918,
+					0.000839489512145519,
+					-15.0822172164917
+				],
+				"real": 3.00002598762512,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "INVESTIGATING",
+				"t": 9.86666666666674,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.81763744354248
+			},
+			"id": 2,
+			"turn": 2.83836221694946
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.94293403625488,
+					0.000839507847558707,
+					4.18757247924805
+				],
+				"real": 2.99999499320984,
+				"reason": "greedy: threat observation expired or resolved",
+				"state": "SCAVENGING",
+				"t": 13.7166666666669,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -1.08562064170837
+			},
+			"before": {
+				"goal": [
+					-7.0,
+					0.0,
+					5.0
+				],
+				"pos": [
+					-6.98716354370117,
+					0.000839507847558707,
+					4.2108907699585
+				],
+				"real": 0.0,
+				"reason": "greedy: complete selected cover route before reconsidering objective",
+				"state": "ENGAGING",
+				"t": 13.7000000000003,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": 3.12532687187195
+			},
+			"id": 1,
+			"turn": 2.07223779359926
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-5.21798324584961,
+					0.000839507847558707,
+					3.27816557884216
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 14.4000000000003,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -0.368009030818939
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-5.21798324584961,
+					0.000839507847558707,
+					3.27816557884216
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 14.3833333333336,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -1.08562111854553
+			},
+			"id": 1,
+			"turn": 0.717612087726593
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					-5.17168378829956,
+					0.000839507847558707,
+					3.29704260826111
+				],
+				"real": 2.99998903274536,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 14.916666666667,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -1.95793771743774
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-5.21798324584961,
+					0.000839507847558707,
+					3.27816557884216
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 14.9000000000003,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -0.368009030818939
+			},
+			"id": 1,
+			"turn": 1.5899286866188
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					8.50375080108643,
+					0.000839507847558707,
+					7.32382965087891
+				],
+				"real": 3.00001311302185,
+				"reason": "greedy: complete selected cover route before reconsidering objective",
+				"state": "TAKING_COVER",
+				"t": 19.8000000000002,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.226365149021149
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					8.49252891540527,
+					0.000839507847558707,
+					7.37255430221558
+				],
+				"real": 3.00002980232239,
+				"reason": "greedy: complete selected cover route before reconsidering objective",
+				"state": "TAKING_COVER",
+				"t": 19.7833333333335,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -1.12653851509094
+			},
+			"id": 1,
+			"turn": 0.900173366069794
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					8.94027423858643,
+					0.000839507847558707,
+					-0.234100237488747
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: threat observation expired or resolved",
+				"state": "SCAVENGING",
+				"t": 23.3833333333333,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 1.60027241706848
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					-1.0
+				],
+				"pos": [
+					8.99025249481201,
+					0.000839507847558707,
+					-0.235573828220367
+				],
+				"real": 0.0,
+				"reason": "greedy: complete selected cover route before reconsidering objective",
+				"state": "ENGAGING",
+				"t": 23.3666666666666,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -0.0127513119950891
+			},
+			"id": 1,
+			"turn": 1.61302372906357
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					4.54165315628052,
+					0.000839507847558707,
+					-0.0955207049846649
+				],
+				"real": 3.00000882148743,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 27.4499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.72012317180634
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					4.49220943450928,
+					0.000839507847558707,
+					-0.102959334850311
+				],
+				"real": 0.0,
+				"reason": "greedy: defend nearby opportunity",
+				"state": "ENGAGING",
+				"t": 27.4333333333331,
+				"target": "ScoutComponents",
+				"velocity": 0.0,
+				"yaw": 0.723275601863861
+			},
+			"id": 1,
+			"turn": 2.4433987736702
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68213272094727,
+					0.000839507847558707,
+					0.176459074020386
+				],
+				"real": 2.99999642372131,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.183333333333,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.292132347822189
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.66773319244385,
+					0.000839507847558707,
+					0.224340677261353
+				],
+				"real": 3.00000882148743,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.1666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -1.7201235294342
+			},
+			"id": 1,
+			"turn": 1.42799118161201
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69599914550781,
+					0.000839507847558707,
+					0.12826843559742
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.233333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74950981140137
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7151050567627,
+					0.000839507847558707,
+					0.0820626690983772
+				],
+				"real": 3.00000286102295,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350683122873306
+			},
+			"id": 1,
+			"turn": 3.10019293427467
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71317768096924,
+					0.000839507847558707,
+					0.0813120380043983
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2499999999997,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350713312625885
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69599914550781,
+					0.000839507847558707,
+					0.12826843559742
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.233333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74950981140137
+			},
+			"id": 1,
+			"turn": 3.10022312402725
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69407367706299,
+					0.000839507847558707,
+					0.12751841545105
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.7495424747467
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71317768096924,
+					0.000839507847558707,
+					0.0813120380043983
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2499999999997,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350713312625885
+			},
+			"id": 1,
+			"turn": 3.10025578737259
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71125364303589,
+					0.000839507847558707,
+					0.0805625319480896
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.283333333333,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.350743442773819
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69407367706299,
+					0.000839507847558707,
+					0.12751841545105
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.7495424747467
+			},
+			"id": 1,
+			"turn": 3.10028591752052
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69215106964111,
+					0.000839507847558707,
+					0.126769542694092
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74957466125488
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71125364303589,
+					0.000839507847558707,
+					0.0805625319480896
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.283333333333,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.350743442773819
+			},
+			"id": 1,
+			"turn": 3.1003181040287
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70933246612549,
+					0.000839507847558707,
+					0.0798141807317734
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350773394107819
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69215106964111,
+					0.000839507847558707,
+					0.126769542694092
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.2999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74957466125488
+			},
+			"id": 1,
+			"turn": 3.1003480553627
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69023132324219,
+					0.000839507847558707,
+					0.126021787524223
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.333333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74960684776306
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70933246612549,
+					0.000839507847558707,
+					0.0798141807317734
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350773394107819
+			},
+			"id": 1,
+			"turn": 3.10038024187088
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70741415023804,
+					0.000839507847558707,
+					0.0790669322013855
+				],
+				"real": 3.00000476837158,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.350803226232529
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69023132324219,
+					0.000839507847558707,
+					0.126021787524223
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.333333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74960684776306
+			},
+			"id": 1,
+			"turn": 3.10041007399559
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68831443786621,
+					0.000839507847558707,
+					0.125275164842606
+				],
+				"real": 2.99999976158142,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74963903427124
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70741415023804,
+					0.000839507847558707,
+					0.0790669322013855
+				],
+				"real": 3.00000476837158,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.350803226232529
+			},
+			"id": 1,
+			"turn": 3.10044226050377
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70549821853638,
+					0.000839507847558707,
+					0.0783208310604095
+				],
+				"real": 2.99999475479126,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.383333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350832968950272
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68831443786621,
+					0.000839507847558707,
+					0.125275164842606
+				],
+				"real": 2.99999976158142,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74963903427124
+			},
+			"id": 1,
+			"turn": 3.10047200322151
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68639993667603,
+					0.000839507847558707,
+					0.124529674649239
+				],
+				"real": 3.00000095367432,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74967098236084
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70549821853638,
+					0.000839507847558707,
+					0.0783208310604095
+				],
+				"real": 2.99999475479126,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.383333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350832968950272
+			},
+			"id": 1,
+			"turn": 3.10050395131111
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70358514785767,
+					0.000839507847558707,
+					0.0775758475065231
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350862413644791
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68639993667603,
+					0.000839507847558707,
+					0.124529674649239
+				],
+				"real": 3.00000095367432,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.3999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74967098236084
+			},
+			"id": 1,
+			"turn": 3.10053339600563
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68448829650879,
+					0.000839507847558707,
+					0.123785294592381
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.433333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74970293045044
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70358514785767,
+					0.000839507847558707,
+					0.0775758475065231
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.350862413644791
+			},
+			"id": 1,
+			"turn": 3.10056534409523
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7016749382019,
+					0.000839507847558707,
+					0.0768319666385651
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350891828536987
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68448829650879,
+					0.000839507847558707,
+					0.123785294592381
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.433333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74970293045044
+			},
+			"id": 1,
+			"turn": 3.10059475898743
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6825795173645,
+					0.000839507847558707,
+					0.123042032122612
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74973464012146
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7016749382019,
+					0.000839507847558707,
+					0.0768319666385651
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350891828536987
+			},
+			"id": 1,
+			"turn": 3.10062646865845
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69976758956909,
+					0.000839507847558707,
+					0.0760892033576965
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.483333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350921034812927
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6825795173645,
+					0.000839507847558707,
+					0.123042032122612
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74973464012146
+			},
+			"id": 1,
+			"turn": 3.10065567493439
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68067359924316,
+					0.000839507847558707,
+					0.122299864888191
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74976634979248
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69976758956909,
+					0.000839507847558707,
+					0.0760892033576965
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.483333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350921034812927
+			},
+			"id": 1,
+			"turn": 3.10068738460541
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69786310195923,
+					0.000839507847558707,
+					0.0753475427627563
+				],
+				"real": 2.99999952316284,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.3509501516819
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68067359924316,
+					0.000839507847558707,
+					0.122299864888191
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.4999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74976634979248
+			},
+			"id": 1,
+			"turn": 3.10071650147438
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67877054214478,
+					0.000839507847558707,
+					0.121558800339699
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.533333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74979782104492
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69786310195923,
+					0.000839507847558707,
+					0.0753475427627563
+				],
+				"real": 2.99999952316284,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.3509501516819
+			},
+			"id": 1,
+			"turn": 3.10074797272682
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69596147537231,
+					0.000839507847558707,
+					0.0746069699525833
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350979179143906
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67877054214478,
+					0.000839507847558707,
+					0.121558800339699
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.533333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74979782104492
+			},
+			"id": 1,
+			"turn": 3.10077700018883
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67687034606934,
+					0.000839507847558707,
+					0.120818831026554
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5666666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74982929229736
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69596147537231,
+					0.000839507847558707,
+					0.0746069699525833
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.350979179143906
+			},
+			"id": 1,
+			"turn": 3.10080847144127
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69406270980835,
+					0.000839507847558707,
+					0.0738674998283386
+				],
+				"real": 3.00000286102295,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.583333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.351007997989655
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67687034606934,
+					0.000839507847558707,
+					0.120818831026554
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5666666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74982929229736
+			},
+			"id": 1,
+			"turn": 3.10083729028702
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67497301101685,
+					0.000839507847558707,
+					0.120079964399338
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74986052513123
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69406270980835,
+					0.000839507847558707,
+					0.0738674998283386
+				],
+				"real": 3.00000286102295,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.583333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.351007997989655
+			},
+			"id": 1,
+			"turn": 3.10086852312088
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69216680526733,
+					0.000839507847558707,
+					0.0731291323900223
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.6166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.351036816835403
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67497301101685,
+					0.000839507847558707,
+					0.120079964399338
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.5999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74986052513123
+			},
+			"id": 1,
+			"turn": 3.10089734196663
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74082851409912,
+					0.000839507847558707,
+					0.0846193134784698
+				],
+				"real": 2.99999141693115,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.633333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.80267214775085
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69216680526733,
+					0.000839507847558707,
+					0.0731291323900223
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.6166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.351036816835403
+			},
+			"id": 1,
+			"turn": 1.45163533091545
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72151136398315,
+					0.000839507847558707,
+					0.13073705136776
+				],
+				"real": 2.99999856948853,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74492788314819
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74082851409912,
+					0.000839507847558707,
+					0.0846193134784698
+				],
+				"real": 2.99999141693115,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.633333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.80267214775085
+			},
+			"id": 1,
+			"turn": 1.73558527628054
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73886632919312,
+					0.000839507847558707,
+					0.0838455855846405
+				],
+				"real": 3.00000238418579,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354473829269409
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72151136398315,
+					0.000839507847558707,
+					0.13073705136776
+				],
+				"real": 2.99999856948853,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6499999999997,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74492788314819
+			},
+			"id": 1,
+			"turn": 3.0994017124176
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71955060958862,
+					0.000839507847558707,
+					0.129963979125023
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.683333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74496245384216
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73886632919312,
+					0.000839507847558707,
+					0.0838455855846405
+				],
+				"real": 3.00000238418579,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354473829269409
+			},
+			"id": 1,
+			"turn": 3.09943628311157
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73690700531006,
+					0.000839507847558707,
+					0.0830730646848679
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354505628347397
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71955060958862,
+					0.000839507847558707,
+					0.129963979125023
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.683333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74496245384216
+			},
+			"id": 1,
+			"turn": 3.09946808218956
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7175931930542,
+					0.000839507847558707,
+					0.129192128777504
+				],
+				"real": 2.99999475479126,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74499678611755
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73690700531006,
+					0.000839507847558707,
+					0.0830730646848679
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 28.6999999999997,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354505628347397
+			},
+			"id": 1,
+			"turn": 3.09950241446495
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73495101928711,
+					0.000839507847558707,
+					0.0823017656803131
+				],
+				"real": 3.00000023841858,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.733333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354537308216095
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7175931930542,
+					0.000839507847558707,
+					0.129192128777504
+				],
+				"real": 2.99999475479126,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74499678611755
+			},
+			"id": 1,
+			"turn": 3.09953409433365
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71563863754272,
+					0.000839507847558707,
+					0.128421485424042
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74503087997437
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73495101928711,
+					0.000839507847558707,
+					0.0823017656803131
+				],
+				"real": 3.00000023841858,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.733333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354537308216095
+			},
+			"id": 1,
+			"turn": 3.09956818819046
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73299789428711,
+					0.000839507847558707,
+					0.0815316662192345
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354568839073181
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71563863754272,
+					0.000839507847558707,
+					0.128421485424042
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74503087997437
+			},
+			"id": 1,
+			"turn": 3.09959971904755
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7136869430542,
+					0.000839507847558707,
+					0.127652049064636
+				],
+				"real": 3.00000143051147,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.783333333333,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74506497383118
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73299789428711,
+					0.000839507847558707,
+					0.0815316662192345
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354568839073181
+			},
+			"id": 1,
+			"turn": 3.09963381290436
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73104763031006,
+					0.000839507847558707,
+					0.0807627737522125
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354600071907043
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7136869430542,
+					0.000839507847558707,
+					0.127652049064636
+				],
+				"real": 3.00000143051147,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.783333333333,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74506497383118
+			},
+			"id": 1,
+			"turn": 3.09966504573822
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71173810958862,
+					0.000839507847558707,
+					0.126883804798126
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74509882926941
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73104763031006,
+					0.000839507847558707,
+					0.0807627737522125
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.7999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354600071907043
+			},
+			"id": 1,
+			"turn": 3.09969890117645
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72910022735596,
+					0.000839507847558707,
+					0.0799950808286667
+				],
+				"real": 2.99999713897705,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.833333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354631215333939
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71173810958862,
+					0.000839507847558707,
+					0.126883804798126
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74509882926941
+			},
+			"id": 1,
+			"turn": 3.09973004460335
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70979261398315,
+					0.000839507847558707,
+					0.126116767525673
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74513244628906
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72910022735596,
+					0.000839507847558707,
+					0.0799950808286667
+				],
+				"real": 2.99999713897705,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.833333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354631215333939
+			},
+			"id": 1,
+			"turn": 3.099763661623
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72715616226196,
+					0.000839507847558707,
+					0.0792285725474358
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354662299156189
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70979261398315,
+					0.000839507847558707,
+					0.126116767525673
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74513244628906
+			},
+			"id": 1,
+			"turn": 3.09979474544525
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70784997940063,
+					0.000839507847558707,
+					0.125350907444954
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.883333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74516606330872
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72715616226196,
+					0.000839507847558707,
+					0.0792285725474358
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354662299156189
+			},
+			"id": 1,
+			"turn": 3.0998283624649
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72521495819092,
+					0.000839507847558707,
+					0.0784632563591003
+				],
+				"real": 2.99999642372131,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354693204164505
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70784997940063,
+					0.000839507847558707,
+					0.125350907444954
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.883333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74516606330872
+			},
+			"id": 1,
+			"turn": 3.09985926747322
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70591020584106,
+					0.000839507847558707,
+					0.12458623945713
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74519944190979
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72521495819092,
+					0.000839507847558707,
+					0.0784632563591003
+				],
+				"real": 2.99999642372131,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.8999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354693204164505
+			},
+			"id": 1,
+			"turn": 3.0998926460743
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72327661514282,
+					0.000839507847558707,
+					0.0776991248130798
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.933333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354723960161209
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70591020584106,
+					0.000839507847558707,
+					0.12458623945713
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74519944190979
+			},
+			"id": 1,
+			"turn": 3.099923402071
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70397329330444,
+					0.000839507847558707,
+					0.123822748661041
+				],
+				"real": 3.00000381469727,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74523282051086
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72327661514282,
+					0.000839507847558707,
+					0.0776991248130798
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.933333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354723960161209
+			},
+			"id": 1,
+			"turn": 3.09995678067207
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72134113311768,
+					0.000839507847558707,
+					0.0769361555576324
+				],
+				"real": 2.99999642372131,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354754507541656
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70397329330444,
+					0.000839507847558707,
+					0.123822748661041
+				],
+				"real": 3.00000381469727,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74523282051086
+			},
+			"id": 1,
+			"turn": 3.09998732805252
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70203971862793,
+					0.000839507847558707,
+					0.123060420155525
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.983333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74526596069336
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72134113311768,
+					0.000839507847558707,
+					0.0769361555576324
+				],
+				"real": 2.99999642372131,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354754507541656
+			},
+			"id": 1,
+			"turn": 3.10002046823502
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71940898895264,
+					0.000839507847558707,
+					0.0761743634939194
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354785084724426
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70203971862793,
+					0.000839507847558707,
+					0.123060420155525
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.983333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74526596069336
+			},
+			"id": 1,
+			"turn": 3.10005104541779
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70010900497437,
+					0.000839507847558707,
+					0.122299268841743
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74529910087585
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71940898895264,
+					0.000839507847558707,
+					0.0761743634939194
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 28.9999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354785084724426
+			},
+			"id": 1,
+			"turn": 3.10008418560028
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71747970581055,
+					0.000839507847558707,
+					0.0754137337207794
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.033333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354815483093262
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70010900497437,
+					0.000839507847558707,
+					0.122299268841743
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74529910087585
+			},
+			"id": 1,
+			"turn": 3.10011458396912
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69818115234375,
+					0.000839507847558707,
+					0.121539264917374
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74533176422119
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71747970581055,
+					0.000839507847558707,
+					0.0754137337207794
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.033333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354815483093262
+			},
+			"id": 1,
+			"turn": 3.10014724731445
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71555328369141,
+					0.000839507847558707,
+					0.074654258787632
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.35484567284584
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69818115234375,
+					0.000839507847558707,
+					0.121539264917374
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74533176422119
+			},
+			"id": 1,
+			"turn": 3.10017743706703
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69625616073608,
+					0.000839507847558707,
+					0.120780423283577
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.083333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74536442756653
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71555328369141,
+					0.000839507847558707,
+					0.074654258787632
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.35484567284584
+			},
+			"id": 1,
+			"turn": 3.10021010041237
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71362972259521,
+					0.000839507847558707,
+					0.0738959386944771
+				],
+				"real": 2.99999713897705,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354875713586807
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69625616073608,
+					0.000839507847558707,
+					0.120780423283577
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.083333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74536442756653
+			},
+			"id": 1,
+			"turn": 3.10024014115334
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69433403015137,
+					0.000839507847558707,
+					0.120022729039192
+				],
+				"real": 3.00000262260437,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74539709091187
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71362972259521,
+					0.000839507847558707,
+					0.0738959386944771
+				],
+				"real": 2.99999713897705,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.0999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.354875713586807
+			},
+			"id": 1,
+			"turn": 3.10027280449867
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71170902252197,
+					0.000839507847558707,
+					0.0731387659907341
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.133333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354905694723129
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69433403015137,
+					0.000839507847558707,
+					0.120022729039192
+				],
+				"real": 3.00000262260437,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1166666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74539709091187
+			},
+			"id": 1,
+			"turn": 3.10030278563499
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6924147605896,
+					0.000839507847558707,
+					0.119266197085381
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74542951583862
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71170902252197,
+					0.000839507847558707,
+					0.0731387659907341
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.133333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354905694723129
+			},
+			"id": 1,
+			"turn": 3.10033521056175
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70979118347168,
+					0.000839507847558707,
+					0.0723827481269836
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354935467243195
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6924147605896,
+					0.000839507847558707,
+					0.119266197085381
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74542951583862
+			},
+			"id": 1,
+			"turn": 3.10036498308182
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69049882888794,
+					0.000839507847558707,
+					0.118510790169239
+				],
+				"real": 2.99999451637268,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.183333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74546194076538
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70979118347168,
+					0.000839507847558707,
+					0.0723827481269836
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354935467243195
+			},
+			"id": 1,
+			"turn": 3.10039740800858
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70787668228149,
+					0.000839507847558707,
+					0.0716278553009033
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354965299367905
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69049882888794,
+					0.000839507847558707,
+					0.118510790169239
+				],
+				"real": 2.99999451637268,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.183333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74546194076538
+			},
+			"id": 1,
+			"turn": 3.10042724013329
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68858575820923,
+					0.000839507847558707,
+					0.117756515741348
+				],
+				"real": 2.99999570846558,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74549388885498
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70787668228149,
+					0.000839507847558707,
+					0.0716278553009033
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.1999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.354965299367905
+			},
+			"id": 1,
+			"turn": 3.10045918822289
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70596504211426,
+					0.000839507847558707,
+					0.0708741024136543
+				],
+				"real": 3.0,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.233333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354994982481003
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68858575820923,
+					0.000839507847558707,
+					0.117756515741348
+				],
+				"real": 2.99999570846558,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74549388885498
+			},
+			"id": 1,
+			"turn": 3.10048887133598
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68667554855347,
+					0.000839507847558707,
+					0.117003381252289
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74552583694458
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70596504211426,
+					0.000839507847558707,
+					0.0708741024136543
+				],
+				"real": 3.0,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.233333333333,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.354994982481003
+			},
+			"id": 1,
+			"turn": 3.10052081942558
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70405626296997,
+					0.000839507847558707,
+					0.0701214820146561
+				],
+				"real": 3.00000095367432,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355024486780167
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68667554855347,
+					0.000839507847558707,
+					0.117003381252289
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74552583694458
+			},
+			"id": 1,
+			"turn": 3.10055032372475
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68476819992065,
+					0.000839507847558707,
+					0.116251364350319
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.283333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.7455575466156
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70405626296997,
+					0.000839507847558707,
+					0.0701214820146561
+				],
+				"real": 3.00000095367432,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355024486780167
+			},
+			"id": 1,
+			"turn": 3.10058203339577
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70215034484863,
+					0.000839507847558707,
+					0.0693699717521667
+				],
+				"real": 3.00000214576721,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.355053871870041
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68476819992065,
+					0.000839507847558707,
+					0.116251364350319
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.283333333333,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.7455575466156
+			},
+			"id": 1,
+			"turn": 3.10061141848564
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68286371231079,
+					0.000839507847558707,
+					0.115500465035439
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74558925628662
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70215034484863,
+					0.000839507847558707,
+					0.0693699717521667
+				],
+				"real": 3.00000214576721,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.2999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.355053871870041
+			},
+			"id": 1,
+			"turn": 3.10064312815666
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70024728775024,
+					0.000839507847558707,
+					0.0686195939779282
+				],
+				"real": 3.00000262260437,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355083107948303
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68286371231079,
+					0.000839507847558707,
+					0.115500465035439
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74558925628662
+			},
+			"id": 1,
+			"turn": 3.10067236423492
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68096208572388,
+					0.000839507847558707,
+					0.11475070565939
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74562072753906
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70024728775024,
+					0.000839507847558707,
+					0.0686195939779282
+				],
+				"real": 3.00000262260437,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355083107948303
+			},
+			"id": 1,
+			"turn": 3.10070383548737
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6983470916748,
+					0.000839507847558707,
+					0.0678703337907791
+				],
+				"real": 3.000004529953,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355112344026566
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.68096208572388,
+					0.000839507847558707,
+					0.11475070565939
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74562072753906
+			},
+			"id": 1,
+			"turn": 3.10073307156563
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67906332015991,
+					0.000839507847558707,
+					0.114002048969269
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.7456521987915
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.6983470916748,
+					0.000839507847558707,
+					0.0678703337907791
+				],
+				"real": 3.000004529953,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.355112344026566
+			},
+			"id": 1,
+			"turn": 3.10076454281807
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69644927978516,
+					0.000839507847558707,
+					0.067122183740139
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.355141341686249
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67906332015991,
+					0.000839507847558707,
+					0.114002048969269
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.7456521987915
+			},
+			"id": 1,
+			"turn": 3.10079354047775
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67716693878174,
+					0.000839507847558707,
+					0.113254502415657
+				],
+				"real": 2.99999976158142,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74568343162537
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69644927978516,
+					0.000839507847558707,
+					0.067122183740139
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.3999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.355141341686249
+			},
+			"id": 1,
+			"turn": 3.10082477331162
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72607803344727,
+					0.000839507847558707,
+					0.123631872236729
+				],
+				"real": 2.99999070167542,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.77986335754395
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.67716693878174,
+					0.000839507847558707,
+					0.113254502415657
+				],
+				"real": 2.99999976158142,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74568343162537
+			},
+			"id": 1,
+			"turn": 1.75763851801027
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74366188049316,
+					0.000839507847558707,
+					0.076825886964798
+				],
+				"real": 2.99999499320984,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359366565942764
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72607803344727,
+					0.000839507847558707,
+					0.123631872236729
+				],
+				"real": 2.99999070167542,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.77986335754395
+			},
+			"id": 1,
+			"turn": 1.42049679160118
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7241153717041,
+					0.000839507847558707,
+					0.122846834361553
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.73994708061218
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74366188049316,
+					0.000839507847558707,
+					0.076825886964798
+				],
+				"real": 2.99999499320984,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359366565942764
+			},
+			"id": 1,
+			"turn": 3.09931364655495
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74170112609863,
+					0.000839507847558707,
+					0.0760414153337479
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4833333333329,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359398514032364
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.7241153717041,
+					0.000839507847558707,
+					0.122846834361553
+				],
+				"real": 2.99999594688416,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.73994708061218
+			},
+			"id": 1,
+			"turn": 3.09934559464455
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72215604782104,
+					0.000839507847558707,
+					0.122063040733337
+				],
+				"real": 3.0,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.73998165130615
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.74170112609863,
+					0.000839507847558707,
+					0.0760414153337479
+				],
+				"real": 3.00000357627869,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4833333333329,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359398514032364
+			},
+			"id": 1,
+			"turn": 3.09938016533852
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73974323272705,
+					0.000839507847558707,
+					0.0752581655979156
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359430432319641
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72215604782104,
+					0.000839507847558707,
+					0.122063040733337
+				],
+				"real": 3.0,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.4999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.73998165130615
+			},
+			"id": 1,
+			"turn": 3.09941208362579
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72019958496094,
+					0.000839507847558707,
+					0.121280461549759
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74001598358154
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73974323272705,
+					0.000839507847558707,
+					0.0752581655979156
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359430432319641
+			},
+			"id": 1,
+			"turn": 3.09944641590118
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73778820037842,
+					0.000839507847558707,
+					0.0744761526584625
+				],
+				"real": 3.00000143051147,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359462201595306
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72019958496094,
+					0.000839507847558707,
+					0.121280461549759
+				],
+				"real": 3.00000309944153,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74001598358154
+			},
+			"id": 1,
+			"turn": 3.09947818517685
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71824645996094,
+					0.000839507847558707,
+					0.12049912661314
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74005031585693
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73778820037842,
+					0.000839507847558707,
+					0.0744761526584625
+				],
+				"real": 3.00000143051147,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359462201595306
+			},
+			"id": 1,
+			"turn": 3.09951251745224
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73583650588989,
+					0.000839507847558707,
+					0.0736953765153885
+				],
+				"real": 3.00000023841858,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.35949382185936
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71824645996094,
+					0.000839507847558707,
+					0.12049912661314
+				],
+				"real": 2.99999618530273,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74005031585693
+			},
+			"id": 1,
+			"turn": 3.09954413771629
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71629619598389,
+					0.000839507847558707,
+					0.119718998670578
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74008440971375
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73583650588989,
+					0.000839507847558707,
+					0.0736953765153885
+				],
+				"real": 3.00000023841858,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.35949382185936
+			},
+			"id": 1,
+			"turn": 3.0995782315731
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73388767242432,
+					0.000839507847558707,
+					0.0729158073663712
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359525233507156
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71629619598389,
+					0.000839507847558707,
+					0.119718998670578
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.5999999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74008440971375
+			},
+			"id": 1,
+			"turn": 3.0996096432209
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71434879302979,
+					0.000839507847558707,
+					0.118940100073814
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74011826515198
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73388767242432,
+					0.000839507847558707,
+					0.0729158073663712
+				],
+				"real": 2.99999904632568,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359525233507156
+			},
+			"id": 1,
+			"turn": 3.09964349865913
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73194169998169,
+					0.000839507847558707,
+					0.0721374526619911
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359556525945663
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71434879302979,
+					0.000839507847558707,
+					0.118940100073814
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74011826515198
+			},
+			"id": 1,
+			"turn": 3.09967479109764
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71240425109863,
+					0.000839507847558707,
+					0.118162408471107
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74015235900879
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.73194169998169,
+					0.000839507847558707,
+					0.0721374526619911
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359556525945663
+			},
+			"id": 1,
+			"turn": 3.09970888495445
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72999858856201,
+					0.000839507847558707,
+					0.0713603049516678
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359587639570236
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71240425109863,
+					0.000839507847558707,
+					0.118162408471107
+				],
+				"real": 3.00000500679016,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74015235900879
+			},
+			"id": 1,
+			"turn": 3.09973999857903
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71046304702759,
+					0.000839507847558707,
+					0.117385923862457
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74018597602844
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72999858856201,
+					0.000839507847558707,
+					0.0713603049516678
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359587639570236
+			},
+			"id": 1,
+			"turn": 3.09977361559868
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72805881500244,
+					0.000839507847558707,
+					0.0705843716859818
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359618633985519
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71046304702759,
+					0.000839507847558707,
+					0.117385923862457
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.6999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74018597602844
+			},
+			"id": 1,
+			"turn": 3.09980461001396
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70852470397949,
+					0.000839507847558707,
+					0.116610646247864
+				],
+				"real": 2.99999952316284,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.7402195930481
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72805881500244,
+					0.000839507847558707,
+					0.0705843716859818
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359618633985519
+			},
+			"id": 1,
+			"turn": 3.09983822703362
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72612190246582,
+					0.000839507847558707,
+					0.0698096454143524
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359649538993835
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70852470397949,
+					0.000839507847558707,
+					0.116610646247864
+				],
+				"real": 2.99999952316284,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.7402195930481
+			},
+			"id": 1,
+			"turn": 3.09986913204193
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70658922195435,
+					0.000839507847558707,
+					0.115836568176746
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7666666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74025297164917
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72612190246582,
+					0.000839507847558707,
+					0.0698096454143524
+				],
+				"real": 2.99999690055847,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7499999999996,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359649538993835
+			},
+			"id": 1,
+			"turn": 3.09990251064301
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72418785095215,
+					0.000839507847558707,
+					0.0690360963344574
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359680265188217
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70658922195435,
+					0.000839507847558707,
+					0.115836568176746
+				],
+				"real": 3.00000166893005,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7666666666663,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74025297164917
+			},
+			"id": 1,
+			"turn": 3.09993323683739
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70465660095215,
+					0.000839507847558707,
+					0.115063667297363
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74028635025024
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72418785095215,
+					0.000839507847558707,
+					0.0690360963344574
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7833333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359680265188217
+			},
+			"id": 1,
+			"turn": 3.09996661543846
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72225666046143,
+					0.000839507847558707,
+					0.0682637318968773
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359710782766342
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70465660095215,
+					0.000839507847558707,
+					0.115063667297363
+				],
+				"real": 3.00000405311584,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.7999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74028635025024
+			},
+			"id": 1,
+			"turn": 3.09999713301659
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70272731781006,
+					0.000839507847558707,
+					0.114291951060295
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74031925201416
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72225666046143,
+					0.000839507847558707,
+					0.0682637318968773
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8166666666663,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359710782766342
+			},
+			"id": 1,
+			"turn": 3.1000300347805
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72032880783081,
+					0.000839507847558707,
+					0.0674925521016121
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 29.8499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359741270542145
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70272731781006,
+					0.000839507847558707,
+					0.114291951060295
+				],
+				"real": 2.99999523162842,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74031925201416
+			},
+			"id": 1,
+			"turn": 3.1000605225563
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70080089569092,
+					0.000839507847558707,
+					0.113521419465542
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 29.8666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74035239219666
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.72032880783081,
+					0.000839507847558707,
+					0.0674925521016121
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 29.8499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359741270542145
+			},
+			"id": 1,
+			"turn": 3.1000936627388
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71840381622314,
+					0.000839507847558707,
+					0.0667225569486618
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8833333333329,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359771639108658
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.70080089569092,
+					0.000839507847558707,
+					0.113521419465542
+				],
+				"real": 2.99999737739563,
+				"reason": "greedy: observed attacker interrupts salvage or cargo plans",
+				"state": "TAKING_COVER",
+				"t": 29.8666666666663,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74035239219666
+			},
+			"id": 1,
+			"turn": 3.10012403130531
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69887733459473,
+					0.000839507847558707,
+					0.112752065062523
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74038505554199
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71840381622314,
+					0.000839507847558707,
+					0.0667225569486618
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8833333333329,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.359771639108658
+			},
+			"id": 1,
+			"turn": 3.10015669465065
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71648168563843,
+					0.000839507847558707,
+					0.0659537315368652
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9166666666662,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359801828861237
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69887733459473,
+					0.000839507847558707,
+					0.112752065062523
+				],
+				"real": 2.99999928474426,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.8999999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.74038505554199
+			},
+			"id": 1,
+			"turn": 3.10018688440323
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69695663452148,
+					0.000839507847558707,
+					0.111983872950077
+				],
+				"real": 3.00000071525574,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74041771888733
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71648168563843,
+					0.000839507847558707,
+					0.0659537315368652
+				],
+				"real": 2.99999833106995,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9166666666662,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -0.359801828861237
+			},
+			"id": 1,
+			"turn": 3.10021954774857
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71456241607666,
+					0.000839507847558707,
+					0.0651860684156418
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359831959009171
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69695663452148,
+					0.000839507847558707,
+					0.111983872950077
+				],
+				"real": 3.00000071525574,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9333333333329,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 2.74041771888733
+			},
+			"id": 1,
+			"turn": 3.1002496778965
+		},
+		{
+			"after": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.69503879547119,
+					0.000839507847558707,
+					0.111216843128204
+				],
+				"real": 3.00000214576721,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9666666666662,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": 2.74045038223267
+			},
+			"before": {
+				"goal": [
+					9.0,
+					0.0,
+					4.0
+				],
+				"pos": [
+					6.71456241607666,
+					0.000839507847558707,
+					0.0651860684156418
+				],
+				"real": 2.9999988079071,
+				"reason": "greedy: finish bounded defense before reconsidering cargo",
+				"state": "TAKING_COVER",
+				"t": 29.9499999999996,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -0.359831959009171
+			},
+			"id": 1,
+			"turn": 3.10028234124184
+		}
+	],
+	"seed": 87017,
+	"time": 152.350000000013,
+	"totals": {
+		"1": {
+			"goals": 13,
+			"same_state_snaps": 387,
+			"snaps": 397,
+			"stalled_frames": 0,
+			"states": 19,
+			"targets": 6
+		},
+		"2": {
+			"goals": 5,
+			"same_state_snaps": 1,
+			"snaps": 5,
+			"stalled_frames": 0,
+			"states": 5,
+			"targets": 1
+		},
+		"3": {
+			"goals": 2,
+			"same_state_snaps": 1,
+			"snaps": 3,
+			"stalled_frames": 0,
+			"states": 5,
+			"targets": 3
+		},
+		"4": {
+			"goals": 22,
+			"same_state_snaps": 9,
+			"snaps": 17,
+			"stalled_frames": 0,
+			"states": 36,
+			"targets": 10
+		},
+		"5": {
+			"goals": 6,
+			"same_state_snaps": 2,
+			"snaps": 4,
+			"stalled_frames": 0,
+			"states": 7,
+			"targets": 2
+		}
+	}
+}

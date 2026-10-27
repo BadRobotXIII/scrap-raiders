@@ -1,0 +1,1605 @@
+{
+	"conserved": true,
+	"peak_population": 2,
+	"samples": [
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-20.0041522979736,
+					0.0972777754068375,
+					-19.9501724243164
+				],
+				"real": 3.00446009635925,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 0.55,
+				"target": "none",
+				"velocity": 3.00444316864014,
+				"yaw": 3.05845618247986
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-20.0,
+					0.100000001490116,
+					-20.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 1,
+			"turn": 3.05845618247986
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.9389705657959,
+					0.0972777754068375,
+					2.95640707015991
+				],
+				"real": 4.50293731689453,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 0.55,
+				"target": "GuardComponents",
+				"velocity": 4.50296306610107,
+				"yaw": -0.950545430183411
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-24.0,
+					0.100000001490116,
+					3.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 0.533333333333333,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 2,
+			"turn": 0.950545430183411
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9122180938721,
+					0.000839489512145519,
+					1.13095355033875
+				],
+				"real": 4.50000190734863,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 1.16666666666667,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.0219743959605694
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-21.9138660430908,
+					0.000839489512145519,
+					1.20593547821045
+				],
+				"real": 4.50003004074097,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 1.15,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.672125041484833
+			},
+			"id": 2,
+			"turn": 0.650150645524263
+		},
+		{
+			"after": {
+				"goal": [
+					-5.44748783111572,
+					0.000839489512145519,
+					-6.47715139389038
+				],
+				"pos": [
+					-20.3238468170166,
+					0.000839507847558707,
+					-15.5117788314819
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "INVESTIGATING",
+				"t": 2.05,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": -1.64564514160156
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-20.373706817627,
+					0.000839507847558707,
+					-15.5155181884766
+				],
+				"real": 3.0000171661377,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 2.03333333333333,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 3.05845594406128
+			},
+			"id": 1,
+			"turn": 1.57908422151674
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-12.0283660888672,
+					0.000839507847558707,
+					-13.3629684448242
+				],
+				"real": 2.99999761581421,
+				"reason": "greedy: salvage before optional distant fight",
+				"state": "SCAVENGING",
+				"t": 5.04999999999999,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 3.04048538208008
+			},
+			"before": {
+				"goal": [
+					-5.44748783111572,
+					0.000839489512145519,
+					-6.47715139389038
+				],
+				"pos": [
+					-12.0233192443848,
+					0.000839507847558707,
+					-13.4127130508423
+				],
+				"real": 2.99999785423279,
+				"reason": "greedy: salvage before optional distant fight",
+				"state": "INVESTIGATING",
+				"t": 5.03333333333332,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -2.38081479072571
+			},
+			"id": 1,
+			"turn": 0.8618851343738
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-25.7081832885742,
+					0.000839489512145519,
+					-18.3913249969482
+				],
+				"real": 3.00000548362732,
+				"reason": "safe after escape commitment; resume objectives",
+				"state": "SCAVENGING",
+				"t": 5.71666666666665,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.56442403793335
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-25.735466003418,
+					0.000839489512145519,
+					-18.4332256317139
+				],
+				"real": 4.50005054473877,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 5.69999999999999,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 0.572229504585266
+			},
+			"id": 2,
+			"turn": 3.13665354251862
+		},
+		{
+			"after": {
+				"goal": [
+					4.54782962799072,
+					0.000839489512145519,
+					-6.21857786178589
+				],
+				"pos": [
+					-25.4141540527344,
+					0.000839489512145519,
+					-18.0020027160645
+				],
+				"real": 3.00001215934753,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "INVESTIGATING",
+				"t": 5.88333333333332,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": -1.81762754917145
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-25.4626388549805,
+					0.000839489512145519,
+					-18.0142192840576
+				],
+				"real": 3.00000548362732,
+				"reason": "safe after escape commitment; resume objectives",
+				"state": "SCAVENGING",
+				"t": 5.86666666666665,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.5644257068634
+			},
+			"id": 2,
+			"turn": 0.746798157691956
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-13.2028656005859,
+					0.000839507847558707,
+					-5.47005939483643
+				],
+				"real": 2.99998259544373,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 7.73333333333331,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 1.84015095233917
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-13.1546688079834,
+					0.000839507847558707,
+					-5.48336505889893
+				],
+				"real": 3.00001358985901,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 7.71666666666664,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.75377464294434
+			},
+			"id": 1,
+			"turn": 0.913623690605164
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-16.2997913360596,
+					0.000839489512145519,
+					-15.6845216751099
+				],
+				"real": 2.99994969367981,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 9.05000000000003,
+				"target": "GuardComponents",
+				"velocity": 3.00000023841858,
+				"yaw": 1.74237990379334
+			},
+			"before": {
+				"goal": [
+					4.54782962799072,
+					0.000839489512145519,
+					-6.21857786178589
+				],
+				"pos": [
+					-16.2505264282227,
+					0.000839489512145519,
+					-15.6930589675903
+				],
+				"real": 3.00002598762512,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "INVESTIGATING",
+				"t": 9.03333333333336,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -1.81763660907745
+			},
+			"id": 2,
+			"turn": 2.7231687943088
+		},
+		{
+			"after": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-20.0164394378662,
+					0.000839489512145519,
+					-14.9992389678955
+				],
+				"real": 2.99998593330383,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 10.3166666666668,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 2.69088459014893
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-19.9946594238281,
+					0.000839489512145519,
+					-15.0442457199097
+				],
+				"real": 2.99993991851807,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 10.3000000000001,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 1.74237263202667
+			},
+			"id": 2,
+			"turn": 0.948511958122253
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-18.2121963500977,
+					0.000839507847558707,
+					-6.69683933258057
+				],
+				"real": 3.00002694129944,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 12.5500000000002,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.12179064750671
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-18.2547969818115,
+					0.000839507847558707,
+					-6.72301626205444
+				],
+				"real": 0.0,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SELECTING",
+				"t": 12.5333333333335,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": 1.21493136882782
+			},
+			"id": 1,
+			"turn": 2.94646329084505
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-19.3814888000488,
+					0.000846121227368712,
+					-8.66079044342041
+				],
+				"real": 3.00000214576721,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 12.7166666666669,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.1957380771637
+			},
+			"before": {
+				"goal": [
+					-19.0,
+					0.0,
+					-7.0
+				],
+				"pos": [
+					-19.4220390319824,
+					0.000846121227368712,
+					-8.69004249572754
+				],
+				"real": 0.0,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SELECTING",
+				"t": 12.7000000000002,
+				"target": "GuardComponents",
+				"velocity": 0.0,
+				"yaw": -2.8968768119812
+			},
+			"id": 2,
+			"turn": 0.701138734817505
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-4.9013991355896,
+					0.000839507847558707,
+					0.707978010177612
+				],
+				"real": 4.49998664855957,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 17.7166666666669,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 1.60902810096741
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-4.82645416259766,
+					0.000839507847558707,
+					0.70511132478714
+				],
+				"real": 2.99999189376831,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 17.7000000000003,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -1.62505781650543
+			},
+			"id": 1,
+			"turn": 3.04909938970675
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-5.44813346862793,
+					0.000839507847558707,
+					0.799708783626556
+				],
+				"real": 4.49999952316284,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 17.8500000000003,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 2.84221315383911
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-5.4260139465332,
+					0.000839507847558707,
+					0.728044807910919
+				],
+				"real": 4.49998664855957,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 17.8333333333336,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 1.60902810096741
+			},
+			"id": 1,
+			"turn": 1.2331850528717
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.85566377639771,
+					0.000846121227368712,
+					0.189707517623901
+				],
+				"real": 2.99999523162842,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 17.8500000000003,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.360334187746048
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.87329292297363,
+					0.000846121227368712,
+					0.236496463418007
+				],
+				"real": 2.99999976158142,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 17.8333333333336,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -2.18546390533447
+			},
+			"id": 2,
+			"turn": 1.82512971758842
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-5.79432916641235,
+					0.000839507847558707,
+					1.80106425285339
+				],
+				"real": 4.50000286102295,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.1166666666669,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.193237066268921
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-5.77992630004883,
+					0.000839507847558707,
+					1.87466835975647
+				],
+				"real": 4.49999952316284,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.1000000000003,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 2.84221315383911
+			},
+			"id": 1,
+			"turn": 2.64897608757019
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.5534405708313,
+					0.000846121227368712,
+					-0.555768609046936
+				],
+				"real": 2.99999928474426,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.1500000000003,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -3.09101796150208
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.55596828460693,
+					0.000846121227368712,
+					-0.605704665184021
+				],
+				"real": 2.9999942779541,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.1333333333336,
+				"target": "GuardComponents",
+				"velocity": 2.99999976158142,
+				"yaw": -0.360334187746048
+			},
+			"id": 2,
+			"turn": 2.73068377375603
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.58164358139038,
+					0.000846121227368712,
+					-0.186379700899124
+				],
+				"real": 3.00001168251038,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.2833333333336,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 1.97874665260315
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-6.53574657440186,
+					0.000846121227368712,
+					-0.206216141581535
+				],
+				"real": 3.00000023841858,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.2666666666669,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -3.09101867675781
+			},
+			"id": 2,
+			"turn": 1.21341997781862
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-6.01675844192505,
+					0.000839507847558707,
+					1.03052353858948
+				],
+				"real": 4.49999666213989,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.3166666666669,
+				"target": "ScoutComponents",
+				"velocity": 4.49999952316284,
+				"yaw": 2.11927914619446
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-5.95275974273682,
+					0.000839507847558707,
+					0.991419076919556
+				],
+				"real": 4.49999761581421,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.3000000000002,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.193234965205193
+			},
+			"id": 1,
+			"turn": 1.92604418098927
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-7.18065643310547,
+					0.000846121227368712,
+					0.115903049707413
+				],
+				"real": 3.00000357627869,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.5333333333336,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.08455491065979
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-7.22420167922974,
+					0.000846121227368712,
+					0.0913303419947624
+				],
+				"real": 3.0000114440918,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.5166666666669,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": 1.97874665260315
+			},
+			"id": 2,
+			"turn": 2.21988374391665
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-7.24157333374023,
+					0.000846121227368712,
+					0.0721521824598312
+				],
+				"real": 4.50000238418579,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 18.5500000000002,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.94795560836792
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-7.18065643310547,
+					0.000846121227368712,
+					0.115903049707413
+				],
+				"real": 3.00000357627869,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 18.5333333333336,
+				"target": "GuardComponents",
+				"velocity": 3.0,
+				"yaw": -2.08455491065979
+			},
+			"id": 2,
+			"turn": 3.03251051902771
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-7.00896406173706,
+					0.000839507847558707,
+					1.58825778961182
+				],
+				"real": 4.5000057220459,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.6000000000002,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": -0.437464892864227
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-7.04073762893677,
+					0.000839507847558707,
+					1.65619492530823
+				],
+				"real": 4.49999666213989,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.5833333333336,
+				"target": "ScoutComponents",
+				"velocity": 4.49999952316284,
+				"yaw": 2.11927914619446
+			},
+			"id": 1,
+			"turn": 2.55674403905869
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-6.6559944152832,
+					0.000839507847558707,
+					0.660186290740967
+				],
+				"real": 4.50000429153442,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.8333333333335,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.929148495197296
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-6.59591102600098,
+					0.000839507847558707,
+					0.705075025558472
+				],
+				"real": 4.49999332427979,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 18.8166666666669,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": -0.437464326620102
+			},
+			"id": 1,
+			"turn": 1.3666128218174
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-23.2621192932129,
+					0.000846121227368712,
+					-16.2985858917236
+				],
+				"real": 3.00006151199341,
+				"reason": "safe after escape commitment; resume objectives",
+				"state": "SCAVENGING",
+				"t": 23.7166666666666,
+				"target": "ScoutComponents",
+				"velocity": 3.0,
+				"yaw": -1.70304155349731
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.3116836547852,
+					0.000846121227368712,
+					-16.3051795959473
+				],
+				"real": 4.49999141693115,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 23.6999999999999,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.655693471431732
+			},
+			"id": 2,
+			"turn": 2.35873502492905
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.2804088592529,
+					0.000839507847558707,
+					-14.8419466018677
+				],
+				"real": 4.50001335144043,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 23.7833333333333,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 2.14310169219971
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.2173595428467,
+					0.000839507847558707,
+					-14.8825645446777
+				],
+				"real": 4.50003671646118,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 23.7666666666666,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 0.65569531917572
+			},
+			"id": 1,
+			"turn": 1.48740637302399
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.1496505737305,
+					0.000839507847558707,
+					-14.3470802307129
+				],
+				"real": 4.50002765655518,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 24.0333333333333,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.180287510156631
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-23.1630992889404,
+					0.000839507847558707,
+					-14.2732954025269
+				],
+				"real": 4.50001335144043,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 24.0166666666666,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 2.14310169219971
+			},
+			"id": 1,
+			"turn": 2.32338920235634
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.9771575927734,
+					0.000839507847558707,
+					-15.5893068313599
+				],
+				"real": 4.5000319480896,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 24.3166666666666,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": 0.605431497097015
+			},
+			"before": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-22.9344730377197,
+					0.000839507847558707,
+					-15.5276374816895
+				],
+				"real": 4.50000715255737,
+				"reason": "greedy: preserve cargo or damaged hull",
+				"state": "FLEEING",
+				"t": 24.2999999999999,
+				"target": "GuardComponents",
+				"velocity": 4.5,
+				"yaw": -0.180276989936829
+			},
+			"id": 1,
+			"turn": 0.785708487033844
+		},
+		{
+			"after": {
+				"goal": [
+					-30.0,
+					0.0,
+					-25.0
+				],
+				"pos": [
+					-13.0921363830566,
+					0.000846121227368712,
+					-14.6050872802734
+				],
+				"real": 4.50000715255737,
+				"reason": "cautious: avoid optional fight",
+				"state": "FLEEING",
+				"t": 27.2166666666664,
+				"target": "ScoutComponents",
+				"velocity": 4.5,
+				"yaw": 0.801529407501221
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					-13.038254737854,
+					0.000846121227368712,
+					-14.5529165267944
+				],
+				"real": 3.00002694129944,
+				"reason": "cautious: no immediate threat; independent objective",
+				"state": "SCAVENGING",
+				"t": 27.1999999999997,
+				"target": "ScoutComponents",
+				"velocity": 3.0,
+				"yaw": -2.14175415039063
+			},
+			"id": 2,
+			"turn": 2.94328355789185
+		},
+		{
+			"after": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0918333306908607,
+					22.0
+				],
+				"real": 0.326666653156281,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 35.1833333333326,
+				"target": "Robot",
+				"velocity": 0.326666682958603,
+				"yaw": 1.89254689216614
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0972777754068375,
+					22.0
+				],
+				"real": 0.163333550095558,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 35.166666666666,
+				"target": "Robot",
+				"velocity": 0.163333341479301,
+				"yaw": 0.0
+			},
+			"id": 3,
+			"turn": 1.89254689216614
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					11.9618310928345,
+					0.0001816296717152,
+					21.9677028656006
+				],
+				"real": 2.99998211860657,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "SCAVENGING",
+				"t": 43.1666666666655,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 0.868539452552795
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0001816296717152,
+					22.0
+				],
+				"real": 0.0,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 43.1499999999988,
+				"target": "Robot",
+				"velocity": 0.0,
+				"yaw": 1.89254689216614
+			},
+			"id": 3,
+			"turn": 1.02400743961334
+		},
+		{
+			"after": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0918333306908607,
+					-22.0
+				],
+				"real": 0.326666653156281,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 70.316666666664,
+				"target": "ScoutComponents",
+				"velocity": 0.326666682958603,
+				"yaw": 3.03253269195557
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					12.0,
+					0.0972777754068375,
+					-22.0
+				],
+				"real": 0.163333550095558,
+				"reason": "aggressive: commit to observed opponent",
+				"state": "ENGAGING",
+				"t": 70.2999999999973,
+				"target": "ScoutComponents",
+				"velocity": 0.163333341479301,
+				"yaw": 0.0
+			},
+			"id": 4,
+			"turn": 3.03253269195557
+		},
+		{
+			"after": {
+				"goal": [
+					30.0,
+					0.0,
+					25.0
+				],
+				"pos": [
+					1.27886343002319,
+					0.0001816296717152,
+					0.756375789642334
+				],
+				"real": 3.00000023841858,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 72.3999999999972,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -2.57276463508606
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					1.25193119049072,
+					0.0001816296717152,
+					0.714249134063721
+				],
+				"real": 0.0,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 72.3833333333305,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.339096426963806
+			},
+			"id": 3,
+			"turn": 2.91186106204987
+		},
+		{
+			"after": {
+				"goal": [
+					30.0,
+					0.0,
+					25.0
+				],
+				"pos": [
+					1.48392355442047,
+					0.0001816296717152,
+					-0.602966904640198
+				],
+				"real": 3.00000095367432,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 85.1833333333298,
+				"target": "none",
+				"velocity": 3.00000023841858,
+				"yaw": -2.66939973831177
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					1.46118152141571,
+					0.0001816296717152,
+					-0.647495567798615
+				],
+				"real": 0.0,
+				"reason": "aggressive: no observed enemy; independent objective",
+				"state": "EXTRACTING",
+				"t": 85.1666666666631,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.52268981933594
+			},
+			"id": 4,
+			"turn": 1.09109574953188
+		},
+		{
+			"after": {
+				"goal": [
+					22.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					31.953577041626,
+					0.0972777754068375,
+					8.01856994628906
+				],
+				"real": 3.00440311431885,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 105.433333333329,
+				"target": "none",
+				"velocity": 3.00444316864014,
+				"yaw": 1.95130264759064
+			},
+			"before": {
+				"goal": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					32.0,
+					0.100000001490116,
+					8.0
+				],
+				"real": 0.0,
+				"reason": "baseline combat",
+				"state": "SELECTING",
+				"t": 105.416666666662,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 0.0
+			},
+			"id": 5,
+			"turn": 1.95130264759064
+		},
+		{
+			"after": {
+				"goal": [
+					22.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					23.755672454834,
+					0.00083948764950037,
+					10.7317228317261
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 108.366666666662,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": 0.182531461119652
+			},
+			"before": {
+				"goal": [
+					22.0,
+					1.0,
+					0.0
+				],
+				"pos": [
+					23.7647476196289,
+					0.00083948764950037,
+					10.7808923721313
+				],
+				"real": 3.00003290176392,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 108.349999999995,
+				"target": "none",
+				"velocity": 2.99999976158142,
+				"yaw": 1.45463418960571
+			},
+			"id": 5,
+			"turn": 1.27210272848606
+		},
+		{
+			"after": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					20.7348613739014,
+					0.000699281692504883,
+					-10.5191011428833
+				],
+				"real": 2.99999499320984,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 118.716666666661,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 1.11655926704407
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					20.7797908782959,
+					0.000699281692504883,
+					-10.4971618652344
+				],
+				"real": 3.0000147819519,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SCAVENGING",
+				"t": 118.699999999995,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": 0.117281787097454
+			},
+			"id": 5,
+			"turn": 0.999277479946613
+		},
+		{
+			"after": {
+				"goal": [
+					30.0,
+					0.0,
+					25.0
+				],
+				"pos": [
+					1.68081200122833,
+					0.000699281692504883,
+					-0.34851261973381
+				],
+				"real": 3.0000011920929,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "EXTRACTING",
+				"t": 129.099999999995,
+				"target": "none",
+				"velocity": 3.0,
+				"yaw": -2.67597770690918
+			},
+			"before": {
+				"goal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"pos": [
+					1.65836334228516,
+					0.000699281692504883,
+					-0.393189907073975
+				],
+				"real": 0.0,
+				"reason": "greedy: no immediate threat; independent salvage objective",
+				"state": "SELECTING",
+				"t": 129.083333333328,
+				"target": "none",
+				"velocity": 0.0,
+				"yaw": 2.10917162895203
+			},
+			"id": 5,
+			"turn": 1.49803597131838
+		}
+	],
+	"seed": 87017,
+	"time": 145.000000000008,
+	"totals": {
+		"1": {
+			"goals": 5,
+			"same_state_snaps": 9,
+			"snaps": 14,
+			"stalled_frames": 0,
+			"states": 7,
+			"targets": 3
+		},
+		"2": {
+			"goals": 10,
+			"same_state_snaps": 6,
+			"snaps": 14,
+			"stalled_frames": 0,
+			"states": 12,
+			"targets": 2
+		},
+		"3": {
+			"goals": 4,
+			"same_state_snaps": 2,
+			"snaps": 3,
+			"stalled_frames": 0,
+			"states": 7,
+			"targets": 5
+		},
+		"4": {
+			"goals": 3,
+			"same_state_snaps": 2,
+			"snaps": 2,
+			"stalled_frames": 0,
+			"states": 5,
+			"targets": 2
+		},
+		"5": {
+			"goals": 3,
+			"same_state_snaps": 2,
+			"snaps": 4,
+			"stalled_frames": 0,
+			"states": 5,
+			"targets": 0
+		}
+	},
+	"world_finished": true
+}

@@ -1,0 +1,9 @@
+{
+  "selected_suites": 20,
+  "completed_suites": 20,
+  "all_passed": true,
+  "leak_classes": {
+    "AudioStreamWAV": 28,
+    "AudioStreamPlaybackWAV": 48
+  }
+}

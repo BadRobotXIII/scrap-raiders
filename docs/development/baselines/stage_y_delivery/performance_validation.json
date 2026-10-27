@@ -1,0 +1,20 @@
+[
+  {
+    "label": "full_bay",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "label": "full_overview",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  },
+  {
+    "label": "full_peak",
+    "exit": 0,
+    "completed": true,
+    "issues": []
+  }
+]

@@ -1,0 +1,23 @@
+extends SceneTree
+func _initialize() -> void: call_deferred("run")
+func run() -> void:
+	var scene := load("res://scenes/environment/props/processor_guard_2m.tscn") as PackedScene
+	var a := scene.instantiate()
+	var b := scene.instantiate()
+	var meshes := a.find_children("*", "MeshInstance3D", true, false)
+	var other := b.find_children("*", "MeshInstance3D", true, false)
+	var mesh: Mesh = meshes[0].mesh
+	var context := HashingContext.new()
+	context.start(HashingContext.HASH_SHA256)
+	var materials: Array = []
+	for surface in range(mesh.get_surface_count()):
+		context.update(mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX].to_byte_array())
+		materials.append(mesh.surface_get_material(surface).resource_path)
+	var data := {"vertices": context.finish().hex_encode(), "materials": materials, "shared": mesh == other[0].mesh, "collision_free": a.find_children("*", "CollisionObject3D", true, false).is_empty()}
+	var output := FileAccess.open("res://.godot/stage_y/reimport_%s.json" % OS.get_cmdline_user_args()[0], FileAccess.WRITE)
+	output.store_string(JSON.stringify(data, "\t"))
+	output.close()
+	print("REIMPORT_FINGERPRINT ", data)
+	a.free()
+	b.free()
+	quit()

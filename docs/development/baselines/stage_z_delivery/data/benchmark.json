@@ -1,0 +1,15 @@
+{
+	"current_records": 1044,
+	"durable_transfer_mean_ms": 171.06,
+	"fit_query_mean_ms": 0.46709,
+	"inventory_ui_nodes": 76,
+	"journal_bytes": 1006010,
+	"journal_commits": 5,
+	"legacy_material_units": 10240,
+	"migration_ms": 516.808,
+	"scene_load_with_large_stash_ms": 651.952,
+	"stash_stacks": 1024,
+	"ui_open_ms": 12.278,
+	"ui_refresh_mean_ms": 9.47165,
+	"valid": true
+}

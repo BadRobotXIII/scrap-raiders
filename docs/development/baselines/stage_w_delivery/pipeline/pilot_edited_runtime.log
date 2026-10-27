@@ -1,0 +1,35 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+PASS: Two independent real 20-bone Raider rigs imported
+PASS: Independent walking and idle playback
+MATERIAL 
+MATERIAL 
+MATERIAL 
+MATERIAL 
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+MATERIAL res://resources/characters/materials/protective_polymer.tres
+MATERIAL res://resources/characters/materials/opaque_lens.tres
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+MATERIAL res://resources/characters/materials/protective_polymer.tres
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+PILOT_GEOMETRY 7b3d94dcdcd5fa285922afbe638e627c3f1d4a8efb2007bc68755fa5b4622d95
+MATERIAL 
+MATERIAL 
+MATERIAL 
+MATERIAL 
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+MATERIAL res://resources/characters/materials/protective_polymer.tres
+MATERIAL res://resources/characters/materials/opaque_lens.tres
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+MATERIAL res://resources/characters/materials/protective_polymer.tres
+MATERIAL res://resources/characters/materials/salvaged_metal.tres
+PILOT_GEOMETRY 7b3d94dcdcd5fa285922afbe638e627c3f1d4a8efb2007bc68755fa5b4622d95
+SKIN cargo_indicator 20
+SKIN Hood 20
+SKIN PackRoll 20
+SKIN RaiderBody 20
+SKIN ShoulderPad 20
+CLIPS ["aim", "death", "fire", "idle", "run", "walk"]
+PASS: Clean cosmetic skinned death copy survives actor removal
+PASS: Cosmetic copy has no gameplay health

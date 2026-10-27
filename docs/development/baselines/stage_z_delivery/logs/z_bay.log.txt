@@ -1,0 +1,52 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.303 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Laptop GPU
+
+PERF_STAGE begin
+0.0s SETUP seed 87018 layout u_east
+PERF_STAGE ready
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PERF_STAGE frozen
+PERF_STAGE baked
+R03: SCAVENGING -> SELECTING
+R04: SCAVENGING -> SELECTING
+R05: SCAVENGING -> SELECTING
+PASS: Normal S schedule admits all five finite IDs under its configured live cap
+PASS: One normal mission contains all three accepted armed personality policies
+PERF_STAGE population
+PERF_STAGE draw
+PERF_STAGE sampling
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> ENGAGING
+R04: SELECTING -> SCAVENGING
+R05: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R05: SCAVENGING -> EXTRACTING
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R03: ENGAGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R04: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> EXTRACTING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R04: ENGAGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R04: SCAVENGING -> ENGAGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> FLEEING
+R04: ENGAGING -> INVESTIGATING
+R04: INVESTIGATING -> ENGAGING
+R05: EXTRACTING -> EXTRACTED
+R03: SCAVENGING -> EXTRACTING
+R04: ENGAGING -> INVESTIGATING
+R02: EXTRACTING -> EXTRACTED
+R01: FLEEING -> EXTRACTING
+R04: INVESTIGATING -> SELECTING
+R04: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> SCAVENGING
+PERFORMANCE { "max_draw_calls": 437, "max_rendered_primitives": 159490, "max_texture_bytes": 121981440, "load_ready_ms": 571.733, "repeat_bake_ms": 15.511, "repeat_map_sync_ms": 6.061, "physics_p95_ms": 18.055, "process_p95_ms": 5.086, "static_memory_bytes": 90382814.0, "label": "z_bay", "capture_metrics": false, "frame_samples": 7133, "median_ms": 4.183, "p95_ms": 5.686, "max_ms": 43.953, "five_raiders_two_machines_samples": 1309, "peak_p95_ms": 5.939, "caps_valid": true, "conserved": true, "simulation_seconds_observed": 30.1666666666715, "rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU", "processor": "Intel(R) Core(TM) i7-14700HX", "engine": "4.7.2-stable (official)", "configured_window": (1600, 900), "matched_camera_throughout": true, "camera_restores_after_player_death": 1, "player_destroyed": true, "initial_actor_visual_population": { "visible_actor_meshes": 41, "visible_skinned_meshes": 15, "skeletons": 5, "deform_bones": 100, "animation_players": 10 }, "first_60_frame_ms": [32.27, 22.691, 10.721, 1.93, 1.636, 1.841, 1.512, 4.22, 4.419, 4.248, 3.644, 8.338, 4.06, 4.4, 3.995, 4.082, 4.256, 4.028, 4.369, 4.187, 4.04, 4.159, 4.039, 4.334, 4.046, 4.175, 4.227, 4.209, 3.957, 4.323, 4.153, 4.101, 4.16, 4.084, 4.237, 4.224, 4.191, 4.086, 4.231, 4.32, 4.049, 4.227, 3.965, 4.474, 3.876, 4.223, 4.242, 4.295, 4.192, 4.322, 4.015, 4.266, 4.087, 4.325, 3.996, 4.145, 3.994, 4.516, 4.027, 4.282] }

@@ -1,0 +1,68 @@
+{
+	"accepted_events": 14,
+	"after_restart": {
+		"animation_players": 0,
+		"bones": 0,
+		"cosmetic_bodies": 0,
+		"skeletons": 0,
+		"visible_meshes": 71,
+		"visible_skin_meshes": 0
+	},
+	"burst_metrics": {
+		"draw_calls": 457,
+		"max_ms": 4.787,
+		"p95_ms": 4.51,
+		"rendered_primitives": 239054,
+		"samples": 1081,
+		"static_memory_bytes": 78053612.0,
+		"texture_bytes": 120403456
+	},
+	"configured_window": "(1600, 900)",
+	"conserved": true,
+	"death_window_ms": 4758.576,
+	"engine": "4.7.2-stable (official)",
+	"expired": {
+		"animation_players": 0,
+		"bones": 0,
+		"cosmetic_bodies": 0,
+		"skeletons": 0,
+		"visible_meshes": 62,
+		"visible_skin_meshes": 0
+	},
+	"failures": 0,
+	"immediate_death": {
+		"animation_players": 18,
+		"bones": 200,
+		"cosmetic_bodies": 8,
+		"skeletons": 10,
+		"visible_meshes": 133,
+		"visible_skin_meshes": 30
+	},
+	"independent_terminal": {
+		"animation_players": 8,
+		"bones": 100,
+		"cosmetic_bodies": 8,
+		"skeletons": 5,
+		"visible_meshes": 103,
+		"visible_skin_meshes": 15
+	},
+	"initial": {
+		"animation_players": 10,
+		"bones": 100,
+		"cosmetic_bodies": 0,
+		"skeletons": 5,
+		"visible_meshes": 91,
+		"visible_skin_meshes": 15
+	},
+	"initial_metrics": {
+		"draw_calls": 403,
+		"max_ms": 4.684,
+		"p95_ms": 4.399,
+		"rendered_primitives": 154316,
+		"samples": 241,
+		"static_memory_bytes": 77365631.0,
+		"texture_bytes": 118961664
+	},
+	"label": "after",
+	"rendering_device": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

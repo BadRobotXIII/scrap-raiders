@@ -1,6 +1,6 @@
 # Stage V: environment assets and processing-bay demonstration
 
-Delivered **2026-10-22** against accepted Checkpoint U. The director approved the [proposal](../plans/phase_7_stage_v_environment_art_plan.md) before production. Implementation and validation are complete; **Checkpoint V awaits director visual/play-test acceptance**. No Stage W work, Git commit or publication is included.
+Delivered **2026-10-22** against accepted Checkpoint U. The director approved the [proposal](../plans/phase_7_stage_v_environment_art_plan.md) before production. Implementation and validation are complete; **Checkpoint V was accepted by the director on 2026-10-22**. The director confirmed "previous approved" and requested the next ledger when the approved work was complete. This records acceptance without claiming additional automated or manual test observations. No Stage W work, Git commit or publication is included.
 
 ## Delivered result
 
@@ -82,7 +82,7 @@ The new suite checks hashes, applied transforms, UVs, dimensions, material paths
 
 Two read-only natural observations used accepted west/east seeds and the unchanged schedule; the stationary player remained vulnerable and post-death continuation was permitted. These are simulation observations, not director play-testing:
 
-| Seed | World resolution | Raider shots | Navigation recoveries | Raider exits | Machine deaths | Final materials |
+| Seed | World resolution | Total shots | Navigation recoveries | Raider exits | Machine deaths | Final materials |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | 87017 west | 152.35 s | 87 | 2 | 5 | 2 | 12 extracted, 1 ground, 1 stock |
 | 87018 east | 118.52 s | 29 | 0 | 5 | 2 | 14 extracted |
@@ -122,7 +122,7 @@ Click **Deploy**, then inspect the western processing building's dressed bay nea
 2. Walk, jump and boost through the bay; orbit/aim near panels, roof and machine. Check apparent cover against bullets and the spring arm, including close peeks.
 3. Observe Raiders scavenging, fighting, retreating and exiting through the same routes. Recover loot, Recall, die/spectate and restart; look for visual obstructions or stale presentation.
 4. Open a `.blend`, make a small deliberate edit, export with the guide, reimport and confirm multiple instances/materials survive. Restore the source/export pair afterward.
-5. Decide whether the palette, surface density and modular quality are suitable for further production. Manual visual judgment remains required despite passing automation.
+5. Decide whether the palette, surface density and modular quality are suitable for further production. This checklist is retained for future refinement; acceptance is recorded above.
 
 Known limits: one partial bay; simple shared UV/map treatment; baked mesh bevels rather than live modifier stacks; no LOD system needed at this size; four assets deliberately remain library-only; no character/animation production. The two lights are small unshadowed fills and need review if surrounding architecture changes. Existing debug text and gameplay markers remain accepted presentation.
 

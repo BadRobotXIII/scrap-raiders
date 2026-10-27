@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MissionConfig" load_steps=17 format=3]
+[gd_resource type="Resource" script_class="MissionConfig" load_steps=18 format=3]
 [ext_resource type="Script" path="res://scripts/gameplay/mission_config.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/gameplay/raider_social_config.gd" id="2"]
 [ext_resource type="Resource" path="res://resources/enemies/opportunist_betrayal.tres" id="3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://resources/enemies/q_aggressive.tres" id="10"]
 [ext_resource type="Script" path="res://scripts/ai/raider_profile.gd" id="11"]
 [ext_resource type="Script" path="res://scripts/gameplay/mission_objective_definition.gd" id="12"]
+[ext_resource type="Resource" path="res://resources/inventory/normal_loot.tres" id="z_loot"]
 [sub_resource type="Resource" id="Materials"]
 script = ExtResource("12")
 objective_id = &"secure_materials"
@@ -48,9 +49,11 @@ opportunist_ids = PackedInt32Array(1)
 betrayal_profile = ExtResource("3")
 [resource]
 script = ExtResource("1")
+hybrid_inventory = true
+loot_table = ExtResource("z_loot")
 mission_id = &"asset_recovery"
 display_name = "Operation: Asset Recovery"
-description = "Raiders are stripping the salvage facility. Intercept loaded Raiders and recover dropped cargo, then return to the Recall Dock. Original salvage stock is not directly collectable by your robot."
+description = "Raiders are stripping the salvage facility. Intercept loaded Raiders and recover dropped cargo, then return to the Recall Dock. Search registered salvage caches or recover dropped packs. Prepare a loadout with I; carried equipment is at risk."
 risk_description = "Raiders scavenge, fight and extract independently. Allied machines provide support. Loot is finite; bank only what you can recover."
 briefing_required = true
 concise_hud = true

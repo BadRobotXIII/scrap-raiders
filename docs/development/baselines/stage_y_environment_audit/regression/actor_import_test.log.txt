@@ -1,0 +1,58 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Actor inventory identifies all four source-backed visual identities
+PASS: Editable source and runtime export match actor inventory: flying_scout
+PASS: Editable source and runtime export match actor inventory: ground_machine
+PASS: Editable source and runtime export match actor inventory: player
+PASS: Editable source and runtime export match actor inventory: raider
+PASS: Runtime export loads independently of Blender: raider
+PASS: Imported model root retains metre-scale identity: raider
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: raider
+PASS: Imported actor contains actual render geometry: raider
+PASS: UVs, normals, shared material remaps and skin weights are usable: raider
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: raider
+PASS: Human Raider imports one deform rig and genuinely skinned geometry
+PASS: Raider uses a bounded humanoid deform skeleton
+PASS: Stable named Raider attachment survives import: weapon_grip
+PASS: Stable named Raider attachment survives import: pack_mount
+PASS: Stable named Raider attachment survives import: head_mount
+PASS: Raider exports one explicit animation library
+PASS: Imported repeat/one-shot mode matches clip ownership: aim
+PASS: Imported repeat/one-shot mode matches clip ownership: death
+PASS: Imported repeat/one-shot mode matches clip ownership: fire
+PASS: Imported repeat/one-shot mode matches clip ownership: idle
+PASS: Imported repeat/one-shot mode matches clip ownership: run
+PASS: Imported repeat/one-shot mode matches clip ownership: walk
+PASS: Raider named animation is imported: idle
+PASS: Raider named animation is imported: walk
+PASS: Raider named animation is imported: run
+PASS: Raider named animation is imported: aim
+PASS: Raider named animation is imported: fire
+PASS: Raider named animation is imported: death
+PASS: Imported animations have no method, audio, gameplay-muzzle or authority tracks
+PASS: Instances share mesh resources without sharing mutable scene nodes: raider
+PASS: Runtime export loads independently of Blender: player
+PASS: Imported model root retains metre-scale identity: player
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: player
+PASS: Imported actor contains actual render geometry: player
+PASS: UVs, normals, shared material remaps and skin weights are usable: player
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: player
+PASS: Mechanical actor preserves a rigid articulated hierarchy: player
+PASS: Instances share mesh resources without sharing mutable scene nodes: player
+PASS: Runtime export loads independently of Blender: ground_machine
+PASS: Imported model root retains metre-scale identity: ground_machine
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: ground_machine
+PASS: Imported actor contains actual render geometry: ground_machine
+PASS: UVs, normals, shared material remaps and skin weights are usable: ground_machine
+PASS: Visual barrel socket meets the existing fixed gameplay muzzle: ground_machine
+PASS: Mechanical actor preserves a rigid articulated hierarchy: ground_machine
+PASS: Instances share mesh resources without sharing mutable scene nodes: ground_machine
+PASS: Runtime export loads independently of Blender: flying_scout
+PASS: Imported model root retains metre-scale identity: flying_scout
+PASS: Imported hierarchy has no gameplay, physics, camera or light authority: flying_scout
+PASS: Imported actor contains actual render geometry: flying_scout
+PASS: UVs, normals, shared material remaps and skin weights are usable: flying_scout
+PASS: Mechanical actor preserves a rigid articulated hierarchy: flying_scout
+PASS: Instances share mesh resources without sharing mutable scene nodes: flying_scout
+PASS: Actor-mode pipeline changes preserve every accepted environment asset and shared material byte
+Actor import failures: 0

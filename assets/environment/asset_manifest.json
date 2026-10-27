@@ -37,6 +37,68 @@
       "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
     },
     {
+      "id": "maintenance_panel_1m",
+      "source": "assets/environment/source/machinery/maintenance_panel_1m.blend",
+      "export": "assets/environment/exports/machinery/maintenance_panel_1m.glb",
+      "source_sha256": "f88b600b314ea8ba8e181d73fbdd2deb53876789dd00fe9018d3f7f3cb528639",
+      "export_sha256": "68a0abd1ecab19f2a515b2df01464113b66737227abc76e5a9463fbec5ef53f5",
+      "triangles": 688,
+      "minimum": [
+        -0.4000000059604645,
+        0,
+        -0.17499999701976776
+      ],
+      "maximum": [
+        0.4000000059604645,
+        1.600000023841858,
+        0.17499999701976776
+      ],
+      "dimensions": [
+        0.8,
+        1.6,
+        0.35
+      ],
+      "materials": [
+        "rubber",
+        "painted_steel_bluegray",
+        "galvanized_steel"
+      ],
+      "surfaces": 3,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "processor_guard_2m",
+      "source": "assets/environment/source/machinery/processor_guard_2m.blend",
+      "export": "assets/environment/exports/machinery/processor_guard_2m.glb",
+      "source_sha256": "94ff2563303470818b4ad173bd932206dd5faf2011119d71dc4d720ab4b43b57",
+      "export_sha256": "3719e1c2d4da55dfdd33eaa93a16cd131b35df5e428d13b317309bb7ce83b3d6",
+      "triangles": 660,
+      "minimum": [
+        -1,
+        0,
+        -0.07500000298023224
+      ],
+      "maximum": [
+        1,
+        1.2000000476837158,
+        0.06499999761581421
+      ],
+      "dimensions": [
+        2,
+        1.2,
+        0.14
+      ],
+      "materials": [
+        "rubber",
+        "safety_yellow",
+        "galvanized_steel"
+      ],
+      "surfaces": 3,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
       "id": "sorting_conveyor_base",
       "source": "assets/environment/source/machinery/sorting_conveyor_base.blend",
       "export": "assets/environment/exports/machinery/sorting_conveyor_base.glb",
@@ -65,6 +127,67 @@
         "safety_yellow"
       ],
       "surfaces": 4,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "vent_panel_2m",
+      "source": "assets/environment/source/machinery/vent_panel_2m.blend",
+      "export": "assets/environment/exports/machinery/vent_panel_2m.glb",
+      "source_sha256": "29ee5726cbe75ecc34a8c5995b5ed5b5fdab3cb20d910cefd8561b7d13b092d7",
+      "export_sha256": "08d94b96469ffdd288ee7bf98663fadf6a79afdb54af954c0f07c272cba4c19e",
+      "triangles": 140,
+      "minimum": [
+        -1,
+        0,
+        -0.10000000149011612
+      ],
+      "maximum": [
+        1,
+        2,
+        0.10000000149011612
+      ],
+      "dimensions": [
+        2,
+        2,
+        0.2
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "galvanized_steel"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "pallet_load_1m",
+      "source": "assets/environment/source/props/pallet_load_1m.blend",
+      "export": "assets/environment/exports/props/pallet_load_1m.glb",
+      "source_sha256": "e225500a591cc8ff7da5d4374d47b26374f1fd325842ab01d6b3747b3084b7cd",
+      "export_sha256": "f4de09a80f0dc6a16c8623d04900d5f2ac5c5a438d00ef7a57db80915989bc55",
+      "triangles": 440,
+      "minimum": [
+        -0.5,
+        0,
+        -1
+      ],
+      "maximum": [
+        0.5,
+        1.2000000476837158,
+        1
+      ],
+      "dimensions": [
+        1.0,
+        1.2,
+        2
+      ],
+      "materials": [
+        "weathered_steel",
+        "painted_steel_bluegray",
+        "rubber"
+      ],
+      "surfaces": 3,
       "origin": "floor_center",
       "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
     },
@@ -99,6 +222,96 @@
       "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
     },
     {
+      "id": "scrap_bunker_panel_2m",
+      "source": "assets/environment/source/props/scrap_bunker_panel_2m.blend",
+      "export": "assets/environment/exports/props/scrap_bunker_panel_2m.glb",
+      "source_sha256": "7f91be4474b60aaa9a8162fd228439e889f6a62bf368bc64cddfc3dddb24c307",
+      "export_sha256": "b92cfd7dec24c8fbdc5182dde9b8e2d64a8d273a5566b9865ee81e44d2108801",
+      "triangles": 128,
+      "minimum": [
+        -1,
+        0,
+        -0.09999999403953552
+      ],
+      "maximum": [
+        1,
+        3,
+        0.10000000149011612
+      ],
+      "dimensions": [
+        2,
+        3,
+        0.2
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "weathered_steel"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "scrap_infill_1m",
+      "source": "assets/environment/source/props/scrap_infill_1m.blend",
+      "export": "assets/environment/exports/props/scrap_infill_1m.glb",
+      "source_sha256": "fbbb6b5b8f81f67c281de1032bb8f62d6470f8a5aa91eea4bb08bb4e8f3ee917",
+      "export_sha256": "770cb3a2cb1d7f4b352b8c26f598694ef8bea65982112f712b7718877e422c41",
+      "triangles": 284,
+      "minimum": [
+        -0.5,
+        0,
+        -0.4000000059604645
+      ],
+      "maximum": [
+        0.5,
+        0.14947688579559326,
+        0.4000000059604645
+      ],
+      "dimensions": [
+        1.0,
+        0.149477,
+        0.8
+      ],
+      "materials": [
+        "weathered_steel",
+        "painted_steel_bluegray"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "utility_junction_0p4m",
+      "source": "assets/environment/source/props/utility_junction_0p4m.blend",
+      "export": "assets/environment/exports/props/utility_junction_0p4m.glb",
+      "source_sha256": "378a99348293bc5fce2cfbff52cbb5acf3544357f3753e63cacede550486e667",
+      "export_sha256": "60e3d744a0c67d5b6654fc896a206fba2408b9c9aab4500c7268642be6899a46",
+      "triangles": 200,
+      "minimum": [
+        -0.20000000298023224,
+        0,
+        -0.09000000357627869
+      ],
+      "maximum": [
+        0.20000000298023224,
+        0.4000000059604645,
+        0.07999999821186066
+      ],
+      "dimensions": [
+        0.4,
+        0.4,
+        0.17
+      ],
+      "materials": [
+        "galvanized_steel",
+        "weathered_steel"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
       "id": "utility_run_2m",
       "source": "assets/environment/source/props/utility_run_2m.blend",
       "export": "assets/environment/exports/props/utility_run_2m.glb",
@@ -126,6 +339,36 @@
       ],
       "surfaces": 2,
       "origin": "start",
+      "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
+    },
+    {
+      "id": "freight_panel_2m",
+      "source": "assets/environment/source/structures/freight_panel_2m.blend",
+      "export": "assets/environment/exports/structures/freight_panel_2m.glb",
+      "source_sha256": "451adf48ba3c8e0da4e3082371cb62ae30a9ca3b54e7ed7ada973b811b843122",
+      "export_sha256": "99d37300b15b6e0ee15fd5cef02b149b916bec70709c797a11c24a3d1c4b62a4",
+      "triangles": 188,
+      "minimum": [
+        -1,
+        0,
+        -0.05999999865889549
+      ],
+      "maximum": [
+        1,
+        3,
+        0.05999999865889549
+      ],
+      "dimensions": [
+        2,
+        3,
+        0.12
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "galvanized_steel"
+      ],
+      "surfaces": 2,
+      "origin": "floor_center",
       "provenance": "Original project geometry; tools/art_pipeline/build_asset.py; editable Blender source"
     },
     {

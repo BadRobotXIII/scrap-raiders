@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Texture2D" path="res://resources/presentation/soft_mote.tres" id="soft"]
+[sub_resource type="StandardMaterial3D" id="Material"]
+shading_mode = 0
+transparency = 1
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+albedo_color = Color(0.6, 0.65, 0.68, 0.28)
+albedo_texture = ExtResource("soft")
+[sub_resource type="QuadMesh" id="Quad"]
+material = SubResource("Material")
+size = Vector2(0.12, 0.12)
+[node name="IndustrialMotes" type="CPUParticles3D"]
+emitting = false
+use_fixed_seed = true
+seed = 87017
+amount = 12
+lifetime = 2.0
+local_coords = false
+fixed_fps = 30
+mesh = SubResource("Quad")
+cast_shadow = 0
+emission_shape = 1
+emission_sphere_radius = 0.6
+direction = Vector3(0, 1, 0)
+spread = 45.0
+gravity = Vector3(0, 0.03, 0)
+initial_velocity_min = 0.05
+initial_velocity_max = 0.12
+scale_amount_min = 0.25
+scale_amount_max = 0.7

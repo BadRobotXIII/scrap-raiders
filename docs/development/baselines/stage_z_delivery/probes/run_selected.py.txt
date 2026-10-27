@@ -1,0 +1,9 @@
+import subprocess,sys
+from pathlib import Path
+for name in sys.argv[1:]:
+    p=Path(f'.godot/stage_z_build/{name}.log.txt')
+    with p.open('w',encoding='utf-8') as output:
+        r=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--path','.','--fixed-fps','60','--script',f'res://tests/{name}.gd','--quit-after','20000'],stdout=output,stderr=subprocess.STDOUT,timeout=240)
+    log=p.read_text(encoding='utf-8')
+    print(name,r.returncode,flush=True)
+    print('\n'.join(x for x in log.splitlines() if 'FAIL:' in x or 'ERROR:' in x or 'at: GDScript' in x),flush=True)

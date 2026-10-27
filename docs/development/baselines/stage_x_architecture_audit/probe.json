@@ -1,0 +1,28 @@
+{
+	"audio_listener_api": [
+		"make_current",
+		"clear_current",
+		"is_current"
+	],
+	"authored_local_unchanged": true,
+	"buses": [
+		"Master"
+	],
+	"engine": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"health_after": 99.0,
+	"ledger_conserved": true,
+	"muzzle_world_drift_m": 0.130939200520515,
+	"raider_muzzle_after": "(-18.622, 1.135, 9.243999)",
+	"raider_muzzle_before": "(-18.65, 1.25, 9.3)",
+	"visuals_scale_after": "(1.08, 0.9, 1.08)"
+}

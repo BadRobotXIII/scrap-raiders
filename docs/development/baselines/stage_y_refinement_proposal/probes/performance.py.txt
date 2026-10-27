@@ -1,0 +1,11 @@
+from pathlib import Path
+import subprocess,json,shutil
+out=Path('.godot/stage_y_refinement');rows=[]
+for variant in ['control','proposed']:
+ for view in ['bay','overview']:
+  label='yr_'+variant+'_'+view;file=out/(label+'.log.txt')
+  with file.open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.','--script','res://.godot/stage_y_refinement/performance.gd','--quit-after','20000','--',label,'res://scenes/levels/expanded_salvage_complex.tscn'],stdout=f,stderr=subprocess.STDOUT,timeout=120)
+  log=file.read_text(errors='replace');row={'case':label,'exit':r.returncode,'completed':'PERFORMANCE ' in log,'issues':[x for x in log.splitlines() if 'ERROR:' in x or 'WARNING:' in x]};rows.append(row);print(row,flush=True)
+  if r.returncode or not row['completed']:break
+  shutil.copy2(Path('.godot/stage_w/performance')/('performance_'+label+'.json'),out/(label+'.json'))
+(out/'performance_validation.json').write_text(json.dumps(rows,indent=2))

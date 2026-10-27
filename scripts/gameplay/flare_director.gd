@@ -22,6 +22,7 @@ var recovery_serial: int = 0
 
 
 func setup() -> void:
+	equipment = EquipmentLedger.new(arena.ledger.inventory)
 	process_physics_priority = 30
 	next_id = arena.raider_count + 1
 	arena.robot.get_node("Health").damaged.connect(func(_amount: float) -> void:
@@ -38,12 +39,13 @@ func accepted_death(actor: Raider) -> void:
 		return
 	handled_deaths[actor.raider_id] = true
 	var position := actor.global_position
-	var drop := EquipmentDrop.new()
-	drop.ledger = equipment
-	drop.owner_id = actor.raider_id
-	drop.position = arena.to_local(position)
-	equipment_drops[actor.raider_id] = drop
-	arena.add_child(drop)
+	if not arena.hybrid_inventory:
+		var drop := EquipmentDrop.new()
+		drop.ledger = equipment
+		drop.owner_id = actor.raider_id
+		drop.position = arena.to_local(position)
+		equipment_drops[actor.raider_id] = drop
+		arena.add_child(drop)
 	var flare := FLARE.new() as Node3D
 	flare.position = arena.to_local(position)
 	arena.add_child(flare)
@@ -133,6 +135,7 @@ func cancel_recovery() -> void:
 
 
 func update_recovery(delta: float) -> void:
+	if arena.hybrid_inventory: return
 	var selected := selected_drop()
 	var input: RobotInput = arena.robot.input_adapter
 	if selected == null or arena.selected_drop() != null or not input.recover_held or input.fire_intent or not input.move_intent.is_zero_approx():

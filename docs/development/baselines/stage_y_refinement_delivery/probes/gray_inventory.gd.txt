@@ -1,0 +1,88 @@
+extends "res://tests/asset_pipeline_test.gd"
+## Final Stage Y runtime inventory, including shared static batches.
+
+func run() -> void:
+	test_directory = "res://.godot/stage_y_refinement/delivery/full_saves_" + Crypto.new().generate_random_bytes(8).hex_encode()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+	var observations: Array = []
+	for seed_value in [87017, 87018]:
+		var arena := load("res://scenes/levels/expanded_salvage_complex_graybox.tscn").instantiate() as Node3D
+		arena.stash_path = test_directory + "/gray_%d.json" % seed_value
+		arena.seed_override = seed_value
+		root.add_child(arena)
+		current_scene = arena
+		var contract := snapshot_contract(arena)
+		var zones: Dictionary = {}
+		var world_materials: Dictionary = {}
+		for zone in arena.get_node("Geometry").get_children():
+			var bodies: Array = []
+			var meshes := 0
+			var primitives := 0
+			var imported := 0
+			var batch_nodes := 0
+			var batch_instances := 0
+			var batch_triangles := 0
+			var material_paths: Dictionary = {}
+			var material_ids: Dictionary = {}
+			var shadow_casters := 0
+			for node in zone.find_children("*", "", true, false):
+				if node is CollisionShape3D:
+					bodies.append({"path": str(arena.get_path_to(node.get_parent())), "position": node.global_position, "size": node.shape.size, "rotation": node.global_rotation_degrees})
+				elif node is MeshInstance3D and node.is_visible_in_tree():
+					meshes += 1
+					primitives += int(node.mesh is PrimitiveMesh)
+					imported += int(node.mesh.resource_path.contains(".glb"))
+					shadow_casters += int(node.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF)
+					for surface in range(node.mesh.get_surface_count()):
+						var material: Material = node.get_active_material(surface)
+						if material != null:
+							material_paths[material.resource_path] = true
+							material_ids[material.get_instance_id()] = true
+							world_materials[material.get_instance_id()] = true
+			for node in zone.find_children("*", "MultiMeshInstance3D", true, false):
+				if not node.is_visible_in_tree() or node.multimesh == null: continue
+				batch_nodes += 1
+				batch_instances += node.multimesh.instance_count
+				var source: Mesh = node.multimesh.mesh
+				for surface in range(source.get_surface_count()):
+					batch_triangles += int(source.surface_get_array_index_len(surface)/3) * node.multimesh.instance_count
+					var mat := source.surface_get_material(surface)
+					material_paths[mat.resource_path] = true
+					material_ids[mat.get_instance_id()] = true
+					world_materials[mat.get_instance_id()] = true
+			zones[zone.name] = {"batch_nodes": batch_nodes, "batch_instances": batch_instances, "instanced_source_triangles":batch_triangles, "colliders": bodies, "visible_meshes": meshes, "primitive_meshes": primitives, "imported_meshes": imported, "materials": material_paths.keys(), "distinct_active_materials": material_ids.size(), "shadow_casting_meshes": shadow_casters}
+		await start_frozen(arena)
+		var sites: Array = []
+		for marker in arena.get_node("EncounterSites").get_children():
+			sites.append({"path": str(arena.get_path_to(marker)), "position": marker.global_position, "ground_valid": arena.encounter.ground_valid(marker.global_position), "geometry_clear": arena.encounter.geometry_clear(marker.global_position, false)})
+		var data := {"seed": seed_value, "layout": arena.encounter.snapshot, "zones": zones, "distinct_geometry_materials": world_materials.size(), "sites": sites, "physical_contract": contract, "navigation_validation": arena.encounter.validate_navigation(), "total_materials": arena.ledger.total_materials, "conserved": arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid(), "renderer": RenderingServer.get_video_adapter_name(), "sign_nodes":arena.get_node("Geometry").find_children("*","Label3D",true,false).size(), "static_marking_instances":arena.get_node("EnvironmentalPresentation/Details/PaintedStagingLocations").instance_transforms.size()}
+		observations.append(data)
+		if DisplayServer.get_name() != "headless":
+			arena.spectator.enter()
+			arena.spectator.set_process(false)
+			var cameras := {
+				"overview": [Vector3(48, 58, 56), Vector3.ZERO],
+				"ground": [Vector3(3, 2.1, 17), Vector3(0, 0.4, -5)],
+				"connections": [Vector3(-16, 2.5, 19), Vector3(-19, 1.7, 16.4)],
+				"receiving_cluster": [Vector3(10, 3.5, -29), Vector3(5, 0.6, -24)],
+				"shipping_cluster": [Vector3(34, 3.5, 20), Vector3(30, 0.6, 15)],
+				"maintenance_cluster": [Vector3(-34, 3.5, 19), Vector3(-32, 0.6, 14)],
+				"processing": [Vector3(-21, 3.4, 7), Vector3(-15.2, 1.8, 3)],
+				"yard": [Vector3(2, 3, 16), Vector3(0, 1.4, -5)],
+				"yard_top": [Vector3(2, 7, 15), Vector3(0, 2, -3)],
+				"storage": [Vector3(13, 3.6, -6), Vector3(25, 1.5, 0)],
+				"service": [Vector3(-8, 3, 28), Vector3(-19, 1.5, 16)]}
+			for label in cameras:
+				arena.spectator.camera.global_position = cameras[label][0]
+				arena.spectator.camera.look_at(cameras[label][1])
+				await create_timer(0.15).timeout
+				await RenderingServer.frame_post_draw
+				root.get_texture().get_image().save_png("res://.godot/stage_y_refinement/delivery/gray_%d_%s.png" % [seed_value, label])
+		check(data.navigation_validation.is_empty() and data.conserved, "Accepted layout navigation/accounting valid during world inventory")
+		arena.queue_free()
+		await frames(30)
+	var output := FileAccess.open("res://.godot/stage_y_refinement/delivery/gray_inventory_%s.json" % DisplayServer.get_name(), FileAccess.WRITE)
+	output.store_string(JSON.stringify(DeploymentMetrics.serializable(observations), "\t"))
+	output.close()
+	print("Stage Y inventory failures: ", failures)
+	quit(1 if failures else 0)

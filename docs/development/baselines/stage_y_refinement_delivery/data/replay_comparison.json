@@ -1,0 +1,51 @@
+{
+  "surface_only_exact_match": true,
+  "final_spectator_exact_match": true,
+  "final_cases": [
+    {
+      "seed": 87017,
+      "conserved": true,
+      "counters": {
+        "admissions": 3.0,
+        "equipment_assign_loadout_events": 3.0,
+        "equipment_assign_loadout_items": 6.0,
+        "equipment_resolve_events": 2.0,
+        "equipment_resolve_items": 4.0,
+        "material_collect_events": 1.0,
+        "material_collect_units": 3.0,
+        "material_extract_events": 2.0,
+        "material_extract_units": 3.0
+      },
+      "shots": 0,
+      "transfers": 6,
+      "navigation_vertices": 287,
+      "navigation_polygons": 294
+    },
+    {
+      "seed": 87018,
+      "conserved": true,
+      "counters": {
+        "admissions": 3.0,
+        "damaging_shots": 19.0,
+        "equipment_assign_loadout_events": 3.0,
+        "equipment_assign_loadout_items": 6.0,
+        "equipment_resolve_events": 2.0,
+        "equipment_resolve_items": 4.0,
+        "machine_deaths": 2.0,
+        "material_collect_events": 2.0,
+        "material_collect_ground_events": 1.0,
+        "material_collect_ground_units": 1.0,
+        "material_collect_units": 8.0,
+        "material_extract_events": 2.0,
+        "material_extract_units": 9.0,
+        "material_release_source_events": 2.0,
+        "material_release_source_units": 2.0,
+        "shots": 19.0
+      },
+      "shots": 19,
+      "transfers": 10,
+      "navigation_vertices": 287,
+      "navigation_polygons": 294
+    }
+  ]
+}

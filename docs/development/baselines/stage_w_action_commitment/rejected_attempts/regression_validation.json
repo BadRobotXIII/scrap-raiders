@@ -1,0 +1,306 @@
+[
+  {
+    "suite": "editor",
+    "exit": 0,
+    "seconds": 3.47,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "action_commitment_test",
+    "exit": 0,
+    "seconds": 16.19,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "actor_import_test",
+    "exit": 0,
+    "seconds": 0.49,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "actor_visual_test",
+    "exit": 0,
+    "seconds": 4.58,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "asset_pipeline_test",
+    "exit": 1,
+    "seconds": 2.15,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "ERROR: Accepted U sources outside the explicit V/W presentation seams remain byte-identical"
+    ]
+  },
+  {
+    "suite": "awareness_test",
+    "exit": 0,
+    "seconds": 0.96,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "betrayal_test",
+    "exit": 0,
+    "seconds": 8.91,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "combat_movement_test",
+    "exit": 0,
+    "seconds": 12.53,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "combat_stability_test",
+    "exit": 0,
+    "seconds": 1.89,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "combat_test",
+    "exit": 0,
+    "seconds": 2.79,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "deployment_flow_test",
+    "exit": 0,
+    "seconds": 5.59,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "destruction_test",
+    "exit": 0,
+    "seconds": 1.7,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "dynamic_ai_test",
+    "exit": 0,
+    "seconds": 19.67,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "encounter_generation_test",
+    "exit": 0,
+    "seconds": 43.36,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "expanded_world_test",
+    "exit": 0,
+    "seconds": 59.95,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "seconds": 5.44,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "seconds": 4.4,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "gameplay_integration_test",
+    "exit": 1,
+    "seconds": 51.25,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "ERROR: Surviving Raider physically approaches and scavenges conflict cargo through the unchanged S selector"
+    ]
+  },
+  {
+    "suite": "hostile_combat_test",
+    "exit": 0,
+    "seconds": 9.96,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "integrated_extraction_test",
+    "exit": 0,
+    "seconds": 15.34,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "machine_ecosystem_test",
+    "exit": 0,
+    "seconds": 5.86,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_objectives_test",
+    "exit": 0,
+    "seconds": 0.31,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_test",
+    "exit": 0,
+    "seconds": 1.96,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_variety_test",
+    "exit": 0,
+    "seconds": 38.95,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "multi_raider_test",
+    "exit": 0,
+    "seconds": 18.09,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "personality_combat_test",
+    "exit": 0,
+    "seconds": 18.0,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "personality_integration_test",
+    "exit": 0,
+    "seconds": 40.81,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "post_death_spectator_test",
+    "exit": 0,
+    "seconds": 15.04,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "raider_decision_stability_test",
+    "exit": 0,
+    "seconds": 12.72,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "raider_test",
+    "exit": 0,
+    "seconds": 13.45,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "recovery_feedback_test",
+    "exit": 0,
+    "seconds": 1.32,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "refined_extraction_test",
+    "exit": 0,
+    "seconds": 4.75,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "robot_controller_test",
+    "exit": 0,
+    "seconds": 4.66,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "social_cooperation_test",
+    "exit": 0,
+    "seconds": 17.81,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "social_rivalry_test",
+    "exit": 0,
+    "seconds": 6.97,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "spectator_test",
+    "exit": 0,
+    "seconds": 5.7,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "traversal_test",
+    "exit": 0,
+    "seconds": 14.02,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  }
+]

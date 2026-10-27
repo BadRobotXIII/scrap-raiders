@@ -1,0 +1,152 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: TAKING_COVER -> REPOSITIONING
+R01: SCAVENGING -> EXTRACTING
+R02: REPOSITIONING -> ENGAGING
+R02: ENGAGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+R01: ENGAGING -> TAKING_COVER
+R02: ENGAGING -> TAKING_COVER
+R01: TAKING_COVER -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: TAKING_COVER -> REPOSITIONING
+R01: SCAVENGING -> EXTRACTING
+R02: REPOSITIONING -> ENGAGING
+R02: ENGAGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+R02: SCAVENGING -> SELECTING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+PASS: Seed 87017: effects on/off retain the same physical trajectory, state/event sequence, shots and transfers
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: EXTRACTING -> EXTRACTED
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> FLEEING
+R01: FLEEING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: EXTRACTING -> EXTRACTED
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> FLEEING
+R01: FLEEING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+R01: EXTRACTING -> EXTRACTED
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+PASS: Seed 87018: effects on/off retain the same physical trajectory, state/event sequence, shots and transfers
+0.0s SETUP seed 87018 layout u_east
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> EXTRACTING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+0.0s SETUP seed 87018 layout u_east
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> ENGAGING
+R02: SCAVENGING -> EXTRACTING
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: EXTRACTING -> EXTRACTED
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> SELECTING
+R03: SELECTING -> SCAVENGING
+PASS: On/off autonomous replay preserves both conservation invariants on every physics tick
+PASS: Replay exercises real autonomous firing rather than an idle presentation fixture
+PASS: Expanded seed 87018: atmosphere and combat presentation retain identical autonomous replay
+PASS: Inspection creates no gameplay Health, weapons or Raider controllers
+PASS: Inspection uses production presenters for discharge, damage and impact
+PASS: Inspection previews the accepted terminal visual and world destruction
+PASS: Reset removes the preview terminal, effects and audition audio
+PASS: Flying scout preview remains unarmed
+PASS: Inspection exits without a stale listener or presentation owner
+Presentation integrity failures: 0

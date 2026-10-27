@@ -1,0 +1,7 @@
+{
+  "scripts/ai/raider.gd": "93f2db4f957734d71c9cee2597f7ee064d9fbb3aa8ae8e5aa9f31ca50ee665e7",
+  "scripts/ai/raider_combat.gd": "bfcd5d7d27ffe2b48834351ae976a10682cc3aac8ced665f6c36e58f2af3d43f",
+  "tests/personality_combat_test.gd": "1c194b60175ed2940f0eb3f65dd9b76cf579e07a6a0b7b3fcf0ed3b73559361b",
+  "tests/personality_integration_test.gd": "246434b73393146e4072ba14dbb526f310e48c3530b5afccefb6d07e8c9bdaac",
+  "tests/raider_decision_stability_test.gd": "3e4570d00f6cdbc245b1e99d9c79a06d1b92162d403d3e1b4c183a5224cc6b77"
+}

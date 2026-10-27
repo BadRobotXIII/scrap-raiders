@@ -1,0 +1,53 @@
+from pathlib import Path
+import hashlib,json,re,shutil
+
+source=Path('.godot/stage_z_build')
+target=Path('docs/development/baselines/stage_z_delivery')
+for name in ['logs/regression','data','screenshots','probes']:
+    (target/name).mkdir(parents=True,exist_ok=True)
+validation=json.loads((source/'regression/validation.json').read_text(encoding='utf-8'))
+assert len(validation)==47 and all(row['exit']==0 for row in validation)
+allowed=re.compile(r'^(?:WARNING: \d+ ObjectDB instances were leaked at exit.*|ERROR: \d+ resources still in use at exit.*)$')
+classes=set()
+for row in validation:
+    assert all(allowed.fullmatch(issue) for issue in row['issues']),row
+    log=(source/'regression'/f"{row['suite']}.log.txt").read_text(encoding='utf-8')
+    assert 'SCRIPT ERROR:' not in log and 'FAIL:' not in log,row['suite']
+    classes.update(re.findall(r'Leaked instance: ([^:]+):',log))
+    shutil.copy2(source/'regression'/f"{row['suite']}.log.txt", target/'logs/regression'/f"{row['suite']}.log.txt")
+assert classes <= {'AudioStreamWAV','AudioStreamPlaybackWAV'}, classes
+shutil.copy2(source/'regression/validation.json', target/'data/validation.json')
+for name in ['editor_integration','graphical','natural','benchmark','z_bay','z_overview']:
+    raw=(source/f'{name}.log.txt').read_bytes()
+    log=raw.decode('utf-16' if raw.startswith(b'\xff\xfe') else 'utf-8')
+    assert 'SCRIPT ERROR:' not in log and 'FAIL:' not in log, name
+    if name in ['editor_integration','graphical','benchmark','z_bay','z_overview']:
+        assert 'ERROR:' not in log and 'WARNING:' not in log,name
+    (target/'logs'/f'{name}.log.txt').write_text(log,encoding='utf-8')
+for name in ['natural','benchmark','performance_z_bay','performance_z_overview']:
+    shutil.copy2(source/f'{name}.json',target/'data'/f'{name}.json')
+for name in ['briefing','prepared','source','looted','result','post_death','overview_z_bay','overview_z_overview']:
+    shutil.copy2(source/f'{name}.png',target/'screenshots'/f'{name}.png')
+for name in ['regress.py','run_selected.py','run_graphical.py','run_natural.py','run_performance.py','graphical.gd','natural.gd','performance.gd','benchmark.gd','archive.py','validate_increment.py']:
+    shutil.copy2(source/name,target/'probes'/(name+'.txt'))
+
+def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+before=json.loads(Path('docs/development/baselines/stage_z_architecture_audit/data/sources_before.json').read_text(encoding='utf-8'))
+after={}
+for directory in ['scripts','resources','scenes','tests','tools']:
+    for path in Path(directory).rglob('*'):
+        if path.is_file(): after[path.as_posix()]=sha(path)
+for name in ['project.godot','default_bus_layout.tres','assets/environment/asset_manifest.json']:
+    after[name]=sha(Path(name))
+(target/'data/sources_after.json').write_text(json.dumps(after,indent=2)+'\n',encoding='utf-8')
+changes={'changed':{p:{'before':h,'after':after[p]} for p,h in before.items() if p in after and after[p]!=h},'added':{p:h for p,h in after.items() if p not in before},'removed':[p for p in before if p not in after]}
+(target/'data/source_changes.json').write_text(json.dumps(changes,indent=2)+'\n',encoding='utf-8')
+for path,h in json.loads((target/'reviewed_sources.json').read_text(encoding='utf-8')).items(): assert sha(Path(path))==h,path
+ledger_hash=sha(Path('docs/development/ledgers/phase_7_stage_z_hybrid_inventory.md'))
+assert ledger_hash=='1f7a363443dacd9e1ea13baa78c0abce7293046d9ccd5b2a2cd7a1946304bc75'
+assert not changes['removed'],changes['removed']
+missing_uids=[p for p in after if p.endswith('.gd') and not Path(p+'.uid').exists()]
+assert not missing_uids,missing_uids
+summary={'suites':47,'passed':47,'warning_suites':sum(bool(row['issues']) for row in validation),'leaked_types':sorted(classes),'editor_clean':True,'graphical_clean':True,'natural_exit':0,'graphical_exit':0,'performance_exit':[0,0],'director_save_used':False,'ledger_sha256':ledger_hash,'reviewed_changed_source_pins':22,'preserved_baseline_sources':len(before),'runtime_files_removed':0}
+(target/'final_checks.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(summary,indent=2))

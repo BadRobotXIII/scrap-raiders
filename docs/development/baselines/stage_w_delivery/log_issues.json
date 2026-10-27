@@ -1,0 +1,18 @@
+[
+  {
+    "file": "before/extraction_test.log.txt",
+    "line": "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+  },
+  {
+    "file": "regression/extraction_test.log.txt",
+    "line": "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+  },
+  {
+    "file": "regression/flare_loot_test.log.txt",
+    "line": "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+  },
+  {
+    "file": "regression/flare_loot_test_verbose.log.txt",
+    "line": "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+  }
+]

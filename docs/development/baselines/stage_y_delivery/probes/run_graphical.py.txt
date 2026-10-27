@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess,json
+out=Path('.godot/stage_y');rows=[]
+for label,args,marker in [('full_inventory',['--script','res://.godot/stage_y/full_inspect.gd','--quit-after','3000'],'Stage Y inventory failures: 0'),('full_graphical',['--script','res://.godot/stage_y/graphical.gd','--quit-after','3500'],'Stage Y graphical failures: 0'),('asset_inspection',['res://scenes/environment/asset_inspection.tscn','--quit-after','180'],None),('default_startup',['--quit-after','180'],None),('world_native',['--headless','--verbose','--script','res://tests/world_population_test.gd','--quit-after','3000'],'World population failures: 0'),('world_accelerated_verbose',['--headless','--verbose','--fixed-fps','60','--script','res://tests/world_population_test.gd','--quit-after','8000'],'World population failures: 0')]:
+ log=out/(label+'.log.txt')
+ with log.open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.',*args],stdout=f,stderr=subprocess.STDOUT,timeout=100)
+ text=log.read_text(errors='replace');row=dict(label=label,exit=r.returncode,completed=marker is None or marker in text,issues=[x for x in text.splitlines() if 'ERROR:' in x or 'WARNING:' in x]);rows.append(row);print(row,flush=True);(out/'graphical_validation.json').write_text(json.dumps(rows,indent=2))

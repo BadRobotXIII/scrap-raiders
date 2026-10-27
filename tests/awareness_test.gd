@@ -23,6 +23,7 @@ func frames(count: int) -> void:
 
 func run() -> void:
 	var arena := load("res://scenes/levels/test_arena.tscn").instantiate() as Node3D
+	arena.production_actor_visuals = false # This fixture verifies the original pack emission cue.
 	root.add_child(arena)
 	current_scene = arena
 	arena.robot.input_adapter.set_physics_process(false)

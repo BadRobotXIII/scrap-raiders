@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="1_g11hq"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="2_eldtk"]
+[ext_resource type="Material" path="res://resources/materials/environment/safety_yellow.tres" id="3_1qhnf"]
+
+
+
+[sub_resource type="BoxMesh" id="BoxMesh_1das5"]
+material = ExtResource("3_1qhnf")
+
+[node name="EnvironmentalPresentation" type="Node3D"]
+script = ExtResource("1_g11hq")
+production_visuals = Array[NodePath]([NodePath("Details")])
+
+[node name="Details" type="Node3D" parent="."]
+
+[node name="PaintedStagingLocations" type="MultiMeshInstance3D" parent="Details"]
+cast_shadow = 0
+script = ExtResource("2_eldtk")
+source_mesh = SubResource("BoxMesh_1das5")
+instance_transforms = Array[Transform3D]([Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 0, 0.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 1, 0.007, -1), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 2, 0.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 1, 0.007, 1), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, -20, 0.007, -7), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, -19, 0.007, -8), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, -18, 0.007, -7), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, -19, 0.007, -6), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 21, 1.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 22, 1.007, -1), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 23, 1.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 22, 1.007, 1), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 2, 0.007, -4), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 3, 0.007, -5), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 4, 0.007, -4), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 3, 0.007, -3), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, -27, 0.007, 5), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, -26, 0.007, 4), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, -25, 0.007, 5), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, -26, 0.007, 6), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 23, 1.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 24, 1.007, -1), Transform3D(0.025, 0, 0, 0, 0.002, 0, 0, 0, 2, 25, 1.007, 0), Transform3D(2, 0, 0, 0, 0.002, 0, 0, 0, 0.025, 24, 1.007, 1), Transform3D(0.06, 0, 0, 0, 0.002, 0, 0, 0, 2, 0, 0.007, 4), Transform3D(0.06, 0, 0, 0, 0.002, 0, 0, 0, 2, 0, 0.007, 12), Transform3D(0.06, 0, 0, 0, 0.002, 0, 0, 0, 2, 11, 0.007, -10)])

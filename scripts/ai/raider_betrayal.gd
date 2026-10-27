@@ -18,11 +18,11 @@ func _ready() -> void:
 
 
 func can_assess() -> bool:
-	return not spent and not stopped and actor.combat != null and actor.combat.weapon.enabled and actor.combat.retreat_remaining <= 0 and not encounter.arena.mission.is_world_finished() and actor.ledger.is_active(actor.raider_id) and actor.health.current > actor.health.maximum * profile.minimum_health_fraction and actor.carried_materials < actor.profile.cargo_target and actor.state in [Raider.State.SELECTING, Raider.State.SCAVENGING, Raider.State.ASSESSING_BETRAYAL] and encounter.choose_target(actor) == null
+	return not spent and not stopped and actor.combat != null and actor.combat.weapon.enabled and actor.combat.retreat_remaining <= 0 and not encounter.arena.mission.is_world_finished() and actor.ledger.is_active(actor.raider_id) and actor.health.current > actor.health.maximum * profile.minimum_health_fraction and actor.loot_progress() < actor.profile.cargo_target and actor.state in [Raider.State.SELECTING, Raider.State.SCAVENGING, Raider.State.ASSESSING_BETRAYAL] and encounter.choose_target(actor) == null
 
 
 func qualifies(other: Raider) -> bool:
-	return is_instance_valid(other) and other != actor and encounter.arena.raiders.get(other.raider_id) == other and actor.ledger.is_active(other.raider_id) and other.health.current > 0 and encounter.relations.attitude(actor.raider_id, other.raider_id) == RaiderRelations.Attitude.ALLIED and other.carried_materials >= profile.minimum_victim_cargo and other.carried_materials > actor.carried_materials and actor.global_position.distance_to(other.global_position) <= profile.range_limit and actor.detects_actor(other)
+	return is_instance_valid(other) and other != actor and encounter.arena.raiders.get(other.raider_id) == other and actor.ledger.is_active(other.raider_id) and other.health.current > 0 and encounter.relations.attitude(actor.raider_id, other.raider_id) == RaiderRelations.Attitude.ALLIED and other.loot_progress() >= profile.minimum_victim_cargo and other.loot_progress() > actor.loot_progress() and actor.global_position.distance_to(other.global_position) <= profile.range_limit and actor.detects_actor(other)
 
 
 func decide() -> bool:
@@ -39,14 +39,14 @@ func decide() -> bool:
 		if not is_instance_valid(other) or not qualifies(other):
 			continue
 		var distance := actor.global_position.distance_squared_to(other.global_position)
-		if selected == null or other.carried_materials > selected.carried_materials or (other.carried_materials == selected.carried_materials and (distance < nearest - 0.000001 or (is_equal_approx(distance, nearest) and other.raider_id < selected.raider_id))):
+		if selected == null or other.loot_progress() > selected.loot_progress() or (other.loot_progress() == selected.loot_progress() and (distance < nearest - 0.000001 or (is_equal_approx(distance, nearest) and other.raider_id < selected.raider_id))):
 			selected = other
 			nearest = distance
 	if selected == null:
 		return false
 	candidate = selected
 	elapsed = 0
-	reason = "eyeing R%02d cargo %d versus %d" % [selected.raider_id, selected.carried_materials, actor.carried_materials]
+	reason = "eyeing R%02d cargo %d versus %d" % [selected.raider_id, selected.loot_progress(), actor.loot_progress()]
 	actor.transition(Raider.State.ASSESSING_BETRAYAL)
 	return true
 
@@ -61,7 +61,7 @@ func tick(delta: float) -> void:
 	if elapsed + 0.000001 < profile.assessment_seconds:
 		return
 	var target := candidate
-	var event_reason := "betrayal: R%02d wants R%02d cargo (%d > %d)" % [actor.raider_id, target.raider_id, target.carried_materials, actor.carried_materials]
+	var event_reason := "betrayal: R%02d wants R%02d cargo (%d > %d)" % [actor.raider_id, target.raider_id, target.loot_progress(), actor.loot_progress()]
 	if not encounter.relations.set_attitude(actor.raider_id, target.raider_id, RaiderRelations.Attitude.HOSTILE, event_reason, encounter.arena.elapsed):
 		cancel("relation change rejected")
 		return

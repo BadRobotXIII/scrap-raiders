@@ -1,0 +1,87 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Only authored opportunist gets a component; deployment grants no cargo
+PASS: Fixture moves finite stock through the authoritative ledger
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: Visible two-second hesitation uses Raider FSM without requiring a threat alert
+PASS: Assessment grants no hostility, damage or material transfer
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Leaving range interrupts and resets continuous assessment
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Physical obstruction cancels betrayal rather than using remembered ally positions
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Fresh visible machine threat cancels greed before relation mutation
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> FLEEING
+PASS: Accepted damage interrupts assessment; half health and cover/retreat prohibit reentry
+R01: FLEEING -> SELECTING
+PASS: Retreat cooldown cannot be overridden by a new greed decision
+R01: SELECTING -> ENGAGING
+PASS: Active combat cannot start opportunistic assessment
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Neutral salvage competition alone cannot trigger betrayal
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: Interrupted time is not carried into the next assessment
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Exactly two continuous valid seconds commit hostility and ordinary combat intent
+PASS: Betrayal changes only the victim pair; third-party alliances and empty squads remain independent
+PASS: One accepted initiation cannot oscillate or transfer cargo through hostility
+PASS: Normal rifle aim warning follows the betrayal warning
+R02: SELECTING -> TAKING_COVER
+PASS: Shared shot execution applies ordinary damage and instigator attribution
+R02: TAKING_COVER -> SELECTING
+R02: SELECTING -> ENGAGING
+PASS: Victim independently perceives and retaliates against its new hostile
+R02: ENGAGING -> TAKING_COVER
+R02: TAKING_COVER -> FLEEING
+R02: FLEEING -> DEAD
+PASS: Ordinary lethal shots create one finite death drop with conserved materials
+R01: ENGAGING -> SCAVENGING
+PASS: Opportunist must physically collect defeated ally cargo through normal loot validation
+PASS: Mission completion stops pending social assessment
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+PASS: Restart rebuilds unspent opportunist, authored alliances and fresh finite stock
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Empty allies provide no betrayal incentive
+PASS: Malformed social tuning is rejected
+PASS: Incomplete authored entry configuration is rejected
+R01: SELECTING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+PASS: Victim extraction invalidates an ongoing assessment without late hostility
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: New candidate starts a fresh assessment
+PASS: Deadline stops pending assessment without a late relation or material change
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> SCAVENGING
+R03: SELECTING -> SCAVENGING
+R02: SCAVENGING -> EXTRACTING
+R03: SCAVENGING -> EXTRACTING
+R01: SCAVENGING -> ASSESSING_BETRAYAL
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: EXTRACTING -> ENGAGING
+PASS: Authored entries naturally scavenge, warn and initiate betrayal without free materials
+PASS: Natural encounter preserves accounting, observer relationships and distant robot separation
+Stage M betrayal checks complete; failures: 0
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

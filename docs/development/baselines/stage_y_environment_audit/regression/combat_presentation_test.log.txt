@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87018 layout north_contest
+PASS: Deploy starts exactly once
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> FLEEING
+PASS: Accepted damage flinches cosmetic meshes without changing actual muzzle or collider
+PASS: The complete flinch/restoration leaves the fixed muzzle invariant
+PASS: Rejected disabled fire produces no discharge or impact
+PASS: Real accepted muzzle shot executes
+PASS: One accepted shot has exactly one discharge and one tagged physical impact
+PASS: Impact carries physical position/normal while original damage calculation remains exact
+PASS: Hit confirmation follows actual accepted damage
+PASS: Same-tick cooldown rejection cannot duplicate effects
+PASS: An actual intervening metal wall receives impact and blocks target damage
+PASS: Accepted sky miss has a discharge but never fabricates a surface impact
+PASS: Registering the same actor twice cannot duplicate subscriptions
+R01: FLEEING -> DEAD
+PASS: Authoritative death presents once after the source actor is removed
+PASS: Death presentation leaves existing finite loot settlement authoritative
+PASS: Impact variation cannot consume the global or gameplay random stream
+PASS: Simultaneous world effects honor burst, particle, light and voice caps
+PASS: Invalid geometry is rejected and untagged surfaces use the reliable generic fallback
+PASS: Impact/destruction and tracer lifetimes end independently of actor lifetime
+PASS: Presentation admission, randomness and expiry cannot create transfers
+PASS: Scene removal releases the presentation world and all transients
+Combat presentation failures: 0
+WARNING: 27 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 8 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

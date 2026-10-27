@@ -1,0 +1,206 @@
+[
+  {
+    "suite": "editor",
+    "exit": 0,
+    "seconds": 4.14,
+    "errors": 0
+  },
+  {
+    "suite": "asset_pipeline_test",
+    "exit": 0,
+    "seconds": 2.23,
+    "errors": 0
+  },
+  {
+    "suite": "awareness_test",
+    "exit": 0,
+    "seconds": 0.86,
+    "errors": 0
+  },
+  {
+    "suite": "betrayal_test",
+    "exit": 0,
+    "seconds": 8.85,
+    "errors": 0
+  },
+  {
+    "suite": "combat_movement_test",
+    "exit": 0,
+    "seconds": 12.45,
+    "errors": 0
+  },
+  {
+    "suite": "combat_stability_test",
+    "exit": 0,
+    "seconds": 1.8,
+    "errors": 0
+  },
+  {
+    "suite": "combat_test",
+    "exit": 0,
+    "seconds": 2.81,
+    "errors": 0
+  },
+  {
+    "suite": "deployment_flow_test",
+    "exit": 0,
+    "seconds": 5.49,
+    "errors": 0
+  },
+  {
+    "suite": "destruction_test",
+    "exit": 0,
+    "seconds": 1.61,
+    "errors": 0
+  },
+  {
+    "suite": "dynamic_ai_test",
+    "exit": 0,
+    "seconds": 18.94,
+    "errors": 0
+  },
+  {
+    "suite": "encounter_generation_test",
+    "exit": 0,
+    "seconds": 43.11,
+    "errors": 0
+  },
+  {
+    "suite": "expanded_world_test",
+    "exit": 0,
+    "seconds": 59.9,
+    "errors": 0
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "seconds": 5.31,
+    "errors": 1
+  },
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "seconds": 4.39,
+    "errors": 0
+  },
+  {
+    "suite": "gameplay_integration_test",
+    "exit": 0,
+    "seconds": 49.63,
+    "errors": 0
+  },
+  {
+    "suite": "hostile_combat_test",
+    "exit": 0,
+    "seconds": 9.86,
+    "errors": 0
+  },
+  {
+    "suite": "integrated_extraction_test",
+    "exit": 0,
+    "seconds": 15.25,
+    "errors": 0
+  },
+  {
+    "suite": "machine_ecosystem_test",
+    "exit": 0,
+    "seconds": 5.86,
+    "errors": 0
+  },
+  {
+    "suite": "mission_objectives_test",
+    "exit": 0,
+    "seconds": 0.31,
+    "errors": 0
+  },
+  {
+    "suite": "mission_test",
+    "exit": 0,
+    "seconds": 1.98,
+    "errors": 0
+  },
+  {
+    "suite": "mission_variety_test",
+    "exit": 0,
+    "seconds": 38.83,
+    "errors": 0
+  },
+  {
+    "suite": "multi_raider_test",
+    "exit": 0,
+    "seconds": 18.12,
+    "errors": 0
+  },
+  {
+    "suite": "personality_combat_test",
+    "exit": 0,
+    "seconds": 14.65,
+    "errors": 0
+  },
+  {
+    "suite": "personality_integration_test",
+    "exit": 0,
+    "seconds": 40.65,
+    "errors": 0
+  },
+  {
+    "suite": "post_death_spectator_test",
+    "exit": 0,
+    "seconds": 15.06,
+    "errors": 0
+  },
+  {
+    "suite": "raider_decision_stability_test",
+    "exit": 0,
+    "seconds": 11.81,
+    "errors": 0
+  },
+  {
+    "suite": "raider_test",
+    "exit": 0,
+    "seconds": 13.42,
+    "errors": 0
+  },
+  {
+    "suite": "recovery_feedback_test",
+    "exit": 0,
+    "seconds": 1.25,
+    "errors": 0
+  },
+  {
+    "suite": "refined_extraction_test",
+    "exit": 0,
+    "seconds": 4.58,
+    "errors": 0
+  },
+  {
+    "suite": "robot_controller_test",
+    "exit": 0,
+    "seconds": 4.68,
+    "errors": 0
+  },
+  {
+    "suite": "social_cooperation_test",
+    "exit": 0,
+    "seconds": 17.82,
+    "errors": 0
+  },
+  {
+    "suite": "social_rivalry_test",
+    "exit": 0,
+    "seconds": 6.99,
+    "errors": 0
+  },
+  {
+    "suite": "spectator_test",
+    "exit": 0,
+    "seconds": 5.61,
+    "errors": 0
+  },
+  {
+    "suite": "traversal_test",
+    "exit": 0,
+    "seconds": 13.83,
+    "errors": 0
+  }
+]

@@ -23,6 +23,7 @@ func frames(count: int) -> void:
 
 func run() -> void:
 	var arena := load("res://scenes/levels/single_raider_arena.tscn").instantiate() as Node3D
+	arena.production_actor_visuals = false # Preserve the accepted primitive-copy regression.
 	root.add_child(arena)
 	current_scene = arena
 	arena.get_node("Robot/Input").set_physics_process(false)

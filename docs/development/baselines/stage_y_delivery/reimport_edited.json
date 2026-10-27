@@ -1,0 +1,10 @@
+{
+	"collision_free": true,
+	"materials": [
+		"res://resources/materials/environment/rubber.tres",
+		"res://resources/materials/environment/safety_yellow.tres",
+		"res://resources/materials/environment/galvanized_steel.tres"
+	],
+	"shared": true,
+	"vertices": "111a0d1e07e365b2b4a1f03d805172f2f43a3dd05badfdae691803962088fecd"
+}

@@ -1,0 +1,201 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/raider_test.gd remapped: res://tests/raider_test.gd
+Completed load for: 'res://tests/raider_test.gd' remapped 'res://tests/raider_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://scenes/levels/single_raider_arena.tscn remapped: res://scenes/levels/single_raider_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scripts/player/combat_feedback.gd remapped: res://scripts/player/combat_feedback.gd
+Completed load for: 'res://scripts/player/combat_feedback.gd' remapped 'res://scripts/player/combat_feedback.gd' at thread -1
+Loading resource: res://scripts/components/death_tumble.gd remapped: res://scripts/components/death_tumble.gd
+Completed load for: 'res://scripts/components/death_tumble.gd' remapped 'res://scripts/components/death_tumble.gd' at thread -1
+Loading resource: res://scripts/player/player_damage_feedback.gd remapped: res://scripts/player/player_damage_feedback.gd
+Completed load for: 'res://scripts/player/player_damage_feedback.gd' remapped 'res://scripts/player/player_damage_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://scripts/presentation/actor_visual.gd remapped: res://scripts/presentation/actor_visual.gd
+Completed load for: 'res://scripts/presentation/actor_visual.gd' remapped 'res://scripts/presentation/actor_visual.gd' at thread -1
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Loading resource: res://scripts/gameplay/practice_target.gd remapped: res://scripts/gameplay/practice_target.gd
+Completed load for: 'res://scripts/gameplay/practice_target.gd' remapped 'res://scripts/gameplay/practice_target.gd' at thread -1
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scripts/gameplay/raider_arena.gd remapped: res://scripts/gameplay/raider_arena.gd
+Loading resource: res://scenes/effects/deployment_effect.tscn remapped: res://scenes/effects/deployment_effect.tscn
+Loading resource: res://scripts/presentation/deployment_effect.gd remapped: res://scripts/presentation/deployment_effect.gd
+Completed load for: 'res://scripts/presentation/deployment_effect.gd' remapped 'res://scripts/presentation/deployment_effect.gd' at thread -1
+Completed load for: 'res://scenes/effects/deployment_effect.tscn' remapped 'res://scenes/effects/deployment_effect.tscn' at thread -1
+Loading resource: res://scenes/raiders/raider.tscn remapped: res://scenes/raiders/raider.tscn
+Loading resource: res://scripts/components/hit_reaction.gd remapped: res://scripts/components/hit_reaction.gd
+Completed load for: 'res://scripts/components/hit_reaction.gd' remapped 'res://scripts/components/hit_reaction.gd' at thread -1
+Loading resource: res://scripts/presentation/raider_feedback.gd remapped: res://scripts/presentation/raider_feedback.gd
+Completed load for: 'res://scripts/presentation/raider_feedback.gd' remapped 'res://scripts/presentation/raider_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/raider_visual.tscn remapped: res://scenes/characters/visuals/raider_visual.tscn
+Loading resource: res://assets/characters/exports/raider/raider.glb remapped: res://assets/characters/exports/raider/raider.glb
+Loading resource: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn remapped: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn
+Loading resource: res://resources/characters/materials/cloth_olive.tres remapped: res://resources/characters/materials/cloth_olive.tres
+Completed load for: 'res://resources/characters/materials/cloth_olive.tres' remapped 'res://resources/characters/materials/cloth_olive.tres' at thread -1
+Loading resource: res://resources/characters/materials/protective_polymer.tres remapped: res://resources/characters/materials/protective_polymer.tres
+Completed load for: 'res://resources/characters/materials/protective_polymer.tres' remapped 'res://resources/characters/materials/protective_polymer.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/raider/raider.glb' remapped 'res://assets/characters/exports/raider/raider.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/raider_visual.tscn' remapped 'res://scenes/characters/visuals/raider_visual.tscn' at thread -1
+Completed load for: 'res://scenes/raiders/raider.tscn' remapped 'res://scenes/raiders/raider.tscn' at thread -1
+Loading resource: res://scenes/loot/material_drop.tscn remapped: res://scenes/loot/material_drop.tscn
+Completed load for: 'res://scenes/loot/material_drop.tscn' remapped 'res://scenes/loot/material_drop.tscn' at thread -1
+Loading resource: res://resources/enemies/greedy.tres remapped: res://resources/enemies/greedy.tres
+Completed load for: 'res://resources/enemies/greedy.tres' remapped 'res://resources/enemies/greedy.tres' at thread -1
+Loading resource: res://resources/enemies/cowardly.tres remapped: res://resources/enemies/cowardly.tres
+Completed load for: 'res://resources/enemies/cowardly.tres' remapped 'res://resources/enemies/cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/aggressive.tres remapped: res://resources/enemies/aggressive.tres
+Completed load for: 'res://resources/enemies/aggressive.tres' remapped 'res://resources/enemies/aggressive.tres' at thread -1
+Loading resource: res://resources/weapons/guard_pulse.tres remapped: res://resources/weapons/guard_pulse.tres
+Completed load for: 'res://resources/weapons/guard_pulse.tres' remapped 'res://resources/weapons/guard_pulse.tres' at thread -1
+Completed load for: 'res://scripts/gameplay/raider_arena.gd' remapped 'res://scripts/gameplay/raider_arena.gd' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/single_raider_arena.tscn' remapped 'res://scenes/levels/single_raider_arena.tscn' at thread -1
+PASS: Navigation map synchronized
+PASS: Raider follows navigation toward salvage
+PASS: Distant robot does not trigger fleeing
+PASS: Shoulder reticle clears robot capsule at pitch -60
+PASS: Shoulder reticle clears robot capsule at pitch -8
+PASS: Shoulder reticle clears robot capsule at pitch 0
+PASS: Shoulder reticle clears robot capsule at pitch 25
+PASS: Solid cover blocks threat detection
+PASS: Nearby visible robot is detected
+R01: SCAVENGING -> FLEEING
+PASS: Visible threat transitions scavenging to fleeing
+R01: FLEEING -> EXTRACTING
+PASS: Fleeing Raider begins extraction at exit
+R01: EXTRACTING -> DEAD
+PASS: Empty Raider drops no invented materials
+Loading resource: res://scenes/levels/single_raider_arena.tscn remapped: res://scenes/levels/single_raider_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/single_raider_arena.tscn' remapped 'res://scenes/levels/single_raider_arena.tscn' at thread -1
+R01: SCAVENGING -> EXTRACTING
+PASS: Scavenging grants cargo once and selects extraction
+R01: EXTRACTING -> EXTRACTED
+PASS: Loaded Raider navigates around obstacles and extracts cargo
+PASS: Successful extraction produces no loot drop
+Loading resource: res://scenes/levels/single_raider_arena.tscn remapped: res://scenes/levels/single_raider_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/single_raider_arena.tscn' remapped 'res://scenes/levels/single_raider_arena.tscn' at thread -1
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> FLEEING
+PASS: Nonlethal damage causes fleeing
+R01: FLEEING -> DEAD
+PASS: Death is terminal and transfers cargo out of Raider
+PASS: Dead Raider cannot re-enter active states
+PASS: Loaded Raider drops exactly one cargo stack
+PASS: HUD confirms actual cargo dropped
+Loading resource: res://scenes/levels/single_raider_arena.tscn remapped: res://scenes/levels/single_raider_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/single_raider_arena.tscn' remapped 'res://scenes/levels/single_raider_arena.tscn' at thread -1
+R01: SCAVENGING -> EXTRACTING
+PASS: Default Raider reaches salvage and collects cargo without teleporting
+PASS: HUD announces cargo ready for interception
+R01: EXTRACTING -> FLEEING
+R01: FLEEING -> DEAD
+PASS: Actual blaster shots kill a loaded Raider
+PASS: Normal scavenging followed by blaster death drops cargo
+PASS: Cargo spawns at death location
+PASS: Cargo mesh remains visible after Raider removal
+Raider checks complete; failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamWAV:9223372129934771826 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372129867663000 - Reference count: 4
+Leaked instance: AudioStreamPlaybackWAV:9223372162180581148 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372164546168629 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372164562945846 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372163086550860 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372161274611550 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Orphan StringName: Master (static: 0, total: 8)
+StringName: 1 unclaimed string names at exit.
+WARNING: 7 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

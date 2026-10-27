@@ -25,20 +25,9 @@ func _ready() -> void:
 	label.font_size = 36
 	label.position.y = 0.6
 	beacon.add_child(label)
-	var audio := AudioStreamPlayer3D.new()
-	var sound := AudioStreamWAV.new()
-	sound.mix_rate = 22050
-	sound.format = AudioStreamWAV.FORMAT_8_BITS
-	var samples := PackedByteArray()
-	for index in range(11025):
-		var time := float(index) / 22050
-		samples.append(int(sin(TAU * (400 * time + 700 * time * time)) * 75 * (1 - time * 2)) & 255)
-	sound.data = samples
-	audio.stream = sound
-	audio.volume_db = -12
-	audio.max_distance = 45
-	add_child(audio)
-	audio.play()
+	var world := MissionPresentation.find_world(self)
+	if world != null: world.play_spatial("signals/death_flare", global_position, &"Machines", -20)
+
 
 
 func _process(delta: float) -> void:

@@ -1,0 +1,96 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Integrated preset deploys three valid scheduled Raiders
+PASS: Recall, traversal, spectator, social AI and support machines coexist
+PASS: Nine salvage units plus two installed components are allocated once upfront
+PASS: Existing personalities stay distinct with one opportunist and local cooperation
+R01: SELECTING -> ENGAGING
+PASS: Social target selection still recognizes nearby machine threats alongside human rivals
+PASS: Relation-aware weapon predicate permits ordinary damage to support machines
+PASS: Brief loss of guard sight preserves the integrated engagement
+PASS: Rival selection and allied damage protection remain active with machine support enabled
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: An actual quiet opportunity can start assessment in the combined mission
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Betrayal changes only hostility while loaded victim retains ledger cargo
+R02: SELECTING -> DEAD
+PASS: Loaded social death produces ordinary material cargo, equipment and one bounded response
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+PASS: Integrated flare admits a finite cooperating responder without granting a new betrayal capability
+PASS: Responder initialization does not reconcile betrayed pair and retains explicit rival policy
+PASS: Overlapping material cargo blocks equipment channel until material recovery
+PASS: Existing material pickup and timed equipment hold recover separate finite allocations
+PASS: Support destruction releases its preallocated component into the same recovery and banking ledger
+R03: SELECTING -> DEAD
+PASS: Further death consumes the final response budget without replenishment
+PASS: Nonlethal damage preserves extraction progress in the combined mission
+PASS: Recall fixture retains active Raiders and an outstanding response
+PASS: Five-second recall banks combined cargo and equipment while threats remain
+PASS: Extraction seals ownership and stops all systems without duplicate rewards
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Restart preserves isolated stash and reconstructs fresh integrated deployment
+PASS: Restart restores authored alliances independently of prior betrayal
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+PASS: deadline fixture recovers deployment cargo through physical eligibility
+PASS: deadline preserves forfeited cargo versus unrecovered ground versus actual extraction loss
+PASS: deadline cannot bank loot or accept a late extraction
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+PASS: destruction fixture recovers deployment cargo through physical eligibility
+PASS: destruction preserves forfeited cargo versus unrecovered ground versus actual extraction loss
+PASS: destruction cannot bank loot or accept a late extraction
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+R03: SELECTING -> DEAD
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+R04: INVESTIGATING -> DEAD
+R05: INVESTIGATING -> DEAD
+PASS: All Raiders and bounded responders resolving with no ground loot still requires player recall
+PASS: Untouched salvage/components neither duplicate nor prevent voluntary recall
+PASS: Player can choose extraction after the arena becomes quiet
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Integrated mission supports spectator observation during normal simulation
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+R02: ENGAGING -> TAKING_COVER
+R03: SCAVENGING -> ENGAGING
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R03: ENGAGING -> TAKING_COVER
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Natural combined run advances support patrol, AI combat/scavenging and finite transfers
+PASS: Natural combined run maintains both ledgers and finite response budget
+PASS: Natural simulation can finish through ordinary grounded recall
+Stage N integrated extraction checks complete; failures: 0
+WARNING: 33 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 12 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

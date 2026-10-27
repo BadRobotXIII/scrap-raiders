@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+0.0s SETUP seed 87017 layout south_patrol
+PASS: Preparation presents five mounts and a four-column twelve-slot cargo grid
+PASS: Preparation shows storage actions and includes mounted mass
+PASS: Unavailable preparation Drop cannot silently transfer an item
+PASS: Real T input stores selected mounted equipment safely
+PASS: Real F input equips directly from base storage in one persistent operation
+PASS: Shift-click moves the full selected stack through durable preparation
+PASS: Double-click equips a compatible stored weapon directly
+PASS: Typing in the quantity field cannot activate transfer shortcuts
+PASS: Human rifle restriction is explained without changing cargo ownership
+PASS: Catalog supplies a distinct original item icon: Scrap steel
+PASS: Catalog supplies a distinct original item icon: Copper winding
+PASS: Catalog supplies a distinct original item icon: Servo motor
+PASS: Catalog supplies a distinct original item icon: Industrial sensor
+PASS: Catalog supplies a distinct original item icon: Control PCB
+PASS: Catalog supplies a distinct original item icon: Industrial blaster
+PASS: Catalog supplies a distinct original item icon: Raider rifle
+PASS: Catalog supplies a distinct original item icon: Worn response rifle
+PASS: Catalog supplies a distinct original item icon: Electronics kit
+PASS: Catalog supplies a distinct original item icon: Armor plating
+PASS: Catalog supplies a distinct original item icon: Power module
+PASS: Catalog supplies a distinct original item icon: Mobility actuator
+PASS: Unequipping preparation is a durable ownership operation
+PASS: An unarmed prepared loadout can deploy
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R02: SELECTING -> ENGAGING
+PASS: Cargo weapon presence does not grant firing without a mount
+PASS: Developer camera enters through its existing permission path
+PASS: Leaving spectator resolves ownership instead of restoring stale weapon flags
+PASS: Inventory opens during active play
+PASS: Overlay suppresses intents while robot physics remains active
+PASS: Inventory does not pause deployment time
+PASS: Equipping inside inventory does not enable firing through the overlay
+PASS: Closing inventory resolves the mounted weapon and suppresses a held click
+PASS: Stationary held E completes searchable-source access before opening
+PASS: Real T input takes fitting source loot through physical access validation
+PASS: Nonlethal damage revokes loot access and closes the overlay
+PASS: Death wins over inventory and normal post-death spectators cannot transfer
+PASS: UI and spectator transitions preserve authoritative inventory totals
+Inventory UI failures: 0
+WARNING: 16 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 8 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

@@ -1,0 +1,50 @@
+extends SceneTree
+var arena: Node3D
+var history: Dictionary = {}
+var samples: Array = []
+var records: Dictionary = {}
+var conserved := true
+var peak_population := 0
+func _initialize() -> void: call_deferred("run")
+func run() -> void:
+ var args := OS.get_cmdline_user_args()
+ var seed_value := int(args[0]) if args.size()>0 else 87017
+ arena = load("res://scenes/levels/expanded_salvage_complex.tscn").instantiate() as Node3D
+ arena.seed_override = seed_value
+ arena.stash_path = "res://.godot/w_decision_followup/stash_" + Crypto.new().generate_random_bytes(8).hex_encode() + ".json"
+ root.add_child(arena)
+ current_scene = arena
+ await process_frame
+ arena.start_deployment()
+ for index in range(13000):
+  await physics_frame
+  await process_frame
+  conserved = conserved and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+  var live := 0
+  for id in arena.raiders:
+   if not is_instance_valid(arena.raiders[id]):continue
+   var actor: Raider = arena.raiders[id]
+   live += 1
+   var now := {"t":arena.elapsed,"state":Raider.State.keys()[actor.state],"target":str(actor.combat_target.name) if is_instance_valid(actor.combat_target) else "none","goal":actor.agent.target_position,"yaw":actor.visuals.rotation.y,"pos":actor.position,"real":actor.get_real_velocity().length(),"velocity":actor.velocity.length(),"reason":actor.combat.decision_reason if actor.combat!=null else "none"}
+   if not records.has(id):records[id]={"snaps":0,"same_state_snaps":0,"targets":0,"states":0,"goals":0,"stalled_frames":0}
+   var total:Dictionary = records[id]
+   if history.has(id):
+    var previous:Dictionary = history[id]
+    var turn := absf(angle_difference(previous.yaw,now.yaw))
+    if now.target != previous.target:total.targets+=1
+    if now.state != previous.state:total.states+=1
+    if now.goal.distance_to(previous.goal)>.2:total.goals+=1
+    if turn > .65:
+     total.snaps+=1
+     if now.state==previous.state:total.same_state_snaps+=1
+     if samples.size()<120:samples.append({"id":id,"turn":turn,"before":previous,"after":now})
+   if now.velocity>1 and now.real<.2:total.stalled_frames+=1
+   history[id]=now
+  peak_population = maxi(peak_population, live)
+  if arena.mission.is_world_finished():break
+ var output := FileAccess.open("res://.godot/w_decision_followup/trace_%d.json" % seed_value,FileAccess.WRITE)
+ output.store_string(JSON.stringify(DeploymentMetrics.serializable({"seed":seed_value,"time":arena.elapsed,"conserved":conserved,"peak_population":peak_population,"world_finished":arena.mission.is_world_finished(),"totals":records,"samples":samples}),"	"))
+ print("TRACE ",seed_value," ",records)
+ arena.queue_free()
+ await process_frame
+ quit()

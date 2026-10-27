@@ -1,0 +1,32 @@
+[
+  {
+    "seed": 87017,
+    "expanded": false,
+    "seconds": 40,
+    "accepted_w_vs_corrected_equal": true,
+    "corrected_vs_x_off_equal": true,
+    "x_off_vs_on_equal": true,
+    "shots": 14.0,
+    "transfers": 5
+  },
+  {
+    "seed": 87018,
+    "expanded": false,
+    "seconds": 40,
+    "accepted_w_vs_corrected_equal": true,
+    "corrected_vs_x_off_equal": true,
+    "x_off_vs_on_equal": true,
+    "shots": 11.0,
+    "transfers": 5
+  },
+  {
+    "seed": 87018,
+    "expanded": true,
+    "seconds": 40,
+    "accepted_w_vs_corrected_equal": true,
+    "corrected_vs_x_off_equal": true,
+    "x_off_vs_on_equal": true,
+    "shots": 19.0,
+    "transfers": 7
+  }
+]

@@ -1,0 +1,6 @@
+import subprocess
+from pathlib import Path
+for name, args in [('editor_integration', ['--editor', '--quit'])]:
+    with Path(f'.godot/stage_z_build/{name}.log.txt').open('w', encoding='utf-8') as output:
+        result = subprocess.run(['C:/Users/kzulf/bin/godot.cmd', '--headless', '--path', '.', *args], stdout=output, stderr=subprocess.STDOUT)
+    print(name, result.returncode)

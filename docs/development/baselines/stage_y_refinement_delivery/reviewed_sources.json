@@ -1,0 +1,15 @@
+{
+  "scenes/levels/expanded_salvage_complex.tscn": "e82dc48e337930ec2f02d3de173c06dc96e533e7a44b93960b658cc18694f109",
+  "scenes/levels/expanded_salvage_complex_graybox.tscn": "521bcadb657f9ca02c8c0d50f6a39de49a68fecf625d0c3909c3530435329d7b",
+  "scenes/levels/environment/processing_facility_art.tscn": "66b61f651e1dd6e992d23b1c09a2a34abca98a1dfde46098055516583ca946e2",
+  "scenes/levels/environment/salvage_yard_art.tscn": "3bc675dce92af1efc0238428e349200b7c23bb4910d19e895df0f6edba74d2d3",
+  "scenes/levels/environment/service_perimeter_art.tscn": "f67c001906d1738094f077bc57e7e9e020e50eba1ca1248ac6f171628e4a609e",
+  "tests/README.md": "963585eff436f2df75e0952f41aee4c7cddfc228a65ee9e981a75845f10341e7",
+  "tests/world_population_test.gd": "3a43cdefcd3bb530ebe752a194455a7cc8c24b1151342a30aad9a46c4fc731a5",
+  "resources/presentation/industrial_ground.gdshader": "61ad6f3dbfe7fcaba99d6b66743db230a66cdca642c962fe94532821ad883d4a",
+  "resources/presentation/industrial_ground.gdshader.uid": "f2d4b46f6acb51f1c9e97f1ce405e6662fd3c4955cee5273c30b03a45996f9f8",
+  "resources/presentation/industrial_ground.tres": "d0ba4a52f4cce8572caa122877f4284bd5425c3ba7887cc06fd5df8312550acf",
+  "scenes/levels/environment/staging_clusters.tscn": "bc17e91582b8d17411894e94593ac6fee9bfa404d4481bc22125edd4eae97b74",
+  "tests/environment_refinement_test.gd": "a69bf826d196158c6daa7bfaddda51ae152f23b6f1de57f09e1b274baeb20700",
+  "tests/environment_refinement_test.gd.uid": "822927fb7d0b6ff7284300085de3804b6b8664e82c8d5111d160c82139a6f064"
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "seed": 87017,
+    "duration_before": 152.350000000013,
+    "duration_after": 145.000000000008,
+    "heading_turn_threshold_radians": 0.65,
+    "turns_before": 426,
+    "turns_after": 37,
+    "conserved": true,
+    "world_finished": true,
+    "peak_live_raiders": 2,
+    "engagement_search_flips_before": 15,
+    "engagement_search_flips_after": 0
+  },
+  {
+    "seed": 87018,
+    "duration_before": 118.516666666661,
+    "duration_after": 118.516666666661,
+    "heading_turn_threshold_radians": 0.65,
+    "turns_before": 21,
+    "turns_after": 21,
+    "conserved": true,
+    "world_finished": true,
+    "peak_live_raiders": 2,
+    "engagement_search_flips_before": 0,
+    "engagement_search_flips_after": 0
+  }
+]

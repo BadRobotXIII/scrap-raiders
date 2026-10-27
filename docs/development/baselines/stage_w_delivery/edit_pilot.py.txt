@@ -1,0 +1,15 @@
+from pathlib import Path
+import sys,bpy,json
+root=Path(bpy.data.filepath).resolve().parents[4]
+obj=bpy.data.objects["RaiderBody"]
+changed=[]
+for vertex in obj.data.vertices:
+    if 1.19 < vertex.co.z < 1.46 and vertex.co.y > .148 and abs(vertex.co.x) < .18:
+        vertex.co.y += .01
+        changed.append(vertex.index)
+assert len(changed)>3,changed
+bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath)
+sys.path.insert(0,str(root/"tools/art_pipeline"))
+from export_asset import export_asset
+export_asset(root/"assets/characters/exports/raider/raider.glb","actor")
+print("PILOT_SOURCE_EDIT "+json.dumps({"vertices":changed,"change":"chest plate front +10mm BlenderY"}))

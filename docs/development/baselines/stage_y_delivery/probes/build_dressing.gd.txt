@@ -1,0 +1,223 @@
+extends SceneTree
+## Offline scene authoring only. Outputs static visual resources, no game code.
+var authored: Node3D
+var gray: Array[NodePath] = []
+var production: Array[NodePath] = []
+var library: Dictionary = {}
+var mesh_links: Dictionary = {}
+
+func _initialize() -> void: call_deferred("run")
+func material(id: String) -> Material:
+	return load("res://resources/materials/environment/" + id + ".tres") as Material
+func own(parent: Node, child: Node) -> void:
+	parent.add_child(child, true)
+	child.owner = authored
+func pose(position: Vector3, yaw: float = 0, size_scale: Vector3 = Vector3.ONE) -> Transform3D:
+	return Transform3D(Basis(Vector3.UP, deg_to_rad(yaw)) * Basis.from_scale(size_scale), position)
+func asset(id: String) -> Mesh:
+	if not library.has(id):
+		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/asset_manifest.json"))
+		for row in manifest.assets:
+			if row.id == id:
+				var model: Node = load("res://" + row.export).instantiate()
+				library[id] = model.find_children("*", "MeshInstance3D", true, false)[0].mesh
+				mesh_links[id] = library[id].resource_path
+				model.free()
+	return library[id] as Mesh
+func model_scene(id: String) -> PackedScene:
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/asset_manifest.json"))
+	for row in manifest.assets:
+		if row.id == id: return load("res://" + row.export) as PackedScene
+	return null
+func batch(parent: Node3D, id: String, transforms: Array) -> void:
+	if transforms.is_empty(): return
+	var node := MultiMeshInstance3D.new()
+	node.name = id
+	node.set_script(load("res://scripts/presentation/environment_mesh_batch.gd"))
+	node.set("model_scene", model_scene(id))
+	var typed: Array[Transform3D] = []
+	typed.assign(transforms)
+	node.set("instance_transforms", typed)
+	node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	own(parent, node)
+func box(parent: Node3D, size: Vector3, center: Vector3, surface: String, shadows: int = 0) -> MeshInstance3D:
+	var node := MeshInstance3D.new()
+	node.name = "Surface"
+	node.mesh = BoxMesh.new()
+	node.mesh.size = size
+	node.mesh.material = material(surface)
+	node.position = center
+	node.cast_shadow = shadows
+	own(parent, node)
+	return node
+func placard(parent: Node3D, text: String, at: Vector3, yaw: float = 0, small: bool = false) -> void:
+	var label := load("res://scenes/environment/props/facility_sign.tscn").instantiate() as Label3D
+	label.name = "Identification"
+	label.text = text
+	label.position = at
+	label.rotation_degrees.y = yaw
+	label.font_size = 28 if small else 44
+	label.pixel_size = 0.004
+	label.outline_size = 4
+	label.modulate = Color(.88, .85, .67)
+	label.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	own(parent, label)
+func begin(name: String) -> void:
+	authored = Node3D.new()
+	authored.name = name
+	authored.set_script(load("res://scripts/presentation/environment_art_view.gd"))
+	gray.clear()
+	production.clear()
+func body(name: String, size: Vector3) -> Node3D:
+	var placeholder := Node3D.new()
+	placeholder.name = name
+	own(authored, placeholder)
+	var dressing := Node3D.new()
+	dressing.name = "Dressing"
+	own(placeholder, dressing)
+	gray.append(NodePath(name + "/Mesh"))
+	production.append(NodePath(name + "/Dressing"))
+	var proxy := box(dressing, size, Vector3.ZERO, "weathered_steel", GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY)
+	proxy.name = "ShadowProxy"
+	return dressing
+func finish(file: String) -> void:
+	authored.set("graybox_visuals", gray.duplicate())
+	authored.set("production_visuals", production.duplicate())
+	var packed := PackedScene.new()
+	assert(packed.pack(authored) == OK)
+	assert(ResourceSaver.save(packed, "res://.godot/stage_y/generated_" + file + ".tscn") == OK)
+	authored.free()
+	print("DRESSING_AUTHORED ", file)
+func panels(size: Vector3, depth: float, id: String) -> Array:
+	var result: Array = []
+	var pitch := 4.0 if id == "freight_panel_2m" else 2.0
+	var nx := ceili(size.x / pitch)
+	var nz := ceili(size.z / pitch)
+	for index in range(nx):
+		var x := -size.x*.5 + (index+.5)*size.x/nx
+		for side in [-1, 1]: result.append(pose(Vector3(x, -size.y*.5, side*(size.z*.5-depth*.5)), 180 if side == 1 else 0, Vector3(size.x/nx/2, size.y/3, 1)))
+	for index in range(nz):
+		var z := -size.z*.5 + (index+.5)*size.z/nz
+		for side in [-1, 1]: result.append(pose(Vector3(side*(size.x*.5-depth*.5), -size.y*.5, z), -90 if side == 1 else 90, Vector3(size.z/nz/2, size.y/3, 1)))
+	return result
+func yard() -> void:
+	begin("SalvageYardArt")
+	for name in ["WestBay", "EastBay"]:
+		var d := body(name, Vector3(2,3,6))
+		box(d, Vector3(1.92,2.85,5.92), Vector3(0,-.075,0), "weathered_steel")
+		batch(d, "scrap_bunker_panel_2m", panels(Vector3(2,3,6), .2, "scrap_bunker_panel_2m"))
+		var tops: Array = []
+		for z in [-1.5,1.5]: tops.append(pose(Vector3(0,1.35,z),0,Vector3(2,1,3.75)))
+		batch(d, "scrap_infill_1m", tops)
+		if name == "WestBay": placard(d, "FERROUS / BULK ONLY", Vector3(1.002,.55,0), 90, true)
+	var low := body("LowCrates", Vector3(5,1.2,2))
+	var loads: Array = []
+	for x in [-2,-1,0,1,2]: loads.append(pose(Vector3(x,-.6,0)))
+	batch(low, "pallet_load_1m", loads)
+	placard(low, "YD-01 / SECURED LOADS", Vector3(0,.1,1.002), 0, true)
+	var screen := body("NorthScreen", Vector3(8,3,1))
+	box(screen, Vector3(7.92,3,.92), Vector3.ZERO, "painted_steel_bluegray")
+	batch(screen, "scrap_bunker_panel_2m", panels(Vector3(8,3,1),.2,"scrap_bunker_panel_2m"))
+	placard(screen, "YD-01 / RECEIVING", Vector3(0,.6,.502))
+	finish("salvage_yard")
+func storage() -> void:
+	begin("StorageAreaArt")
+	for row in [["NorthContainer",Vector3(12,3,3)],["EastContainer",Vector3(3,3,12)],["SouthContainer",Vector3(3,3,8)]]:
+		var d := body(row[0],row[1])
+		box(d,row[1]-Vector3(.1,0,.1),Vector3.ZERO,"painted_steel_bluegray")
+		batch(d,"freight_panel_2m",panels(row[1],.12,"freight_panel_2m"))
+		if row[0] == "NorthContainer": placard(d,"WH-03 / SHIPPING\n07-218 / DISPATCH HELD",Vector3(0,.4,1.502))
+		elif row[0] == "EastContainer": placard(d,"SEALED / 07-219",Vector3(-1.502,.3,0),-90,true)
+		else: placard(d,"07-220 / PART LOAD",Vector3(1.502,.3,0),90,true)
+	var original: Node3D = load("res://scenes/levels/environment/storage_area.tscn").instantiate()
+	for name in ["Platform","NorthRamp","SouthRamp","RampRail0","RampRail1","RampRail2","RampRail3"]:
+		var size: Vector3 = original.get_node(name+"/Collision").shape.size
+		var d := body(name,size)
+		box(d,size,Vector3.ZERO,"painted_steel_bluegray" if name.begins_with("RampRail") else "concrete")
+	original.free()
+	finish("storage_area")
+func service() -> void:
+	begin("ServicePerimeterArt")
+	var original: Node3D = load("res://scenes/levels/environment/service_perimeter.tscn").instantiate()
+	for name in ["WestServiceScreen","EastServiceScreen","NorthPerimeterScreen","RecallScreen"]:
+		var size: Vector3 = original.get_node(name+"/Collision").shape.size
+		var d := body(name,size)
+		box(d,Vector3(size.x,3,.65),Vector3(0,0,-.175),"painted_steel_bluegray")
+		var cabinets: Array = []
+		var vents: Array = []
+		var runs: Array = []
+		var ends: Array = []
+		var count := int(size.x/2)
+		for index in range(count):
+			var x := -size.x*.5 + 1 + index*2
+			if index % 3 == 1: vents.append(pose(Vector3(x,-1.2,.4),180))
+			else: cabinets.append(pose(Vector3(x,-1.1,.297),180))
+			runs.append(pose(Vector3(x-1,1.1,.4)))
+		ends.append(pose(Vector3(-size.x*.5+.4,.9,.4)))
+		ends.append(pose(Vector3(size.x*.5-.4,.9,.4)))
+		batch(d,"control_cabinet",cabinets)
+		batch(d,"vent_panel_2m",vents)
+		batch(d,"utility_run_2m",runs)
+		batch(d,"utility_junction_0p4m",ends)
+		placard(d,"RIVET RECLAMATION WORKS / SITE 07" if name == "RecallScreen" else "UT-04 / ISOLATED SERVICES",Vector3(0,1.05,.505))
+	# One shared batch per service asset; body-sized opaque cores retain physical truth.
+	var grouped: Dictionary = {}
+	var original_batches := authored.find_children("*", "MultiMeshInstance3D", true, false)
+	for item in original_batches:
+		var key := String(item.name)
+		if not grouped.has(key): grouped[key] = []
+		var body_transform: Transform3D = original.get_node(NodePath(String(item.get_parent().get_parent().name))).transform
+		for transform in item.get("instance_transforms"): grouped[key].append(body_transform * transform)
+		item.free()
+	var details := Node3D.new()
+	details.name = "ServiceDetails"
+	own(authored,details)
+	production.append(NodePath("ServiceDetails"))
+	for key in grouped: batch(details,key,grouped[key])
+	original.free()
+	finish("service_perimeter")
+func processing() -> void:
+	begin("ProcessingExtension")
+	var original: Node3D = load("res://scenes/levels/environment/processing_facility.tscn").instantiate()
+	for name in ["WestWall","NorthWest","NorthEast","SouthWest","EastNorth","Partition"]:
+		var size: Vector3 = original.get_node(name+"/Collision").shape.size
+		var d := body(name,size)
+		var long_z := size.z > size.x
+		var length: float = size.z if long_z else size.x
+		var at := Vector3(0,-size.y*.5,0)
+		batch(d,"industrial_wall_4m",[pose(at,90 if long_z else 0,Vector3(length/4,size.y/4,1))])
+	original.free()
+	finish("processing_extension")
+func markings() -> void:
+	begin("EnvironmentalPresentation")
+	var details := Node3D.new()
+	details.name = "Details"
+	own(authored,details)
+	production.append(NodePath("Details"))
+	var line_mesh := BoxMesh.new()
+	line_mesh.size = Vector3.ONE
+	line_mesh.material = material("safety_yellow")
+	var lines: Array[Transform3D] = []
+	for at in [Vector3(1,0,0),Vector3(-19,0,-7),Vector3(22,1,0),Vector3(3,0,-4),Vector3(-26,0,5),Vector3(24,1,0)]:
+		for side in [-1,1]:
+			lines.append(pose(at+Vector3(side,.007,0),0,Vector3(.025,.002,2)))
+			lines.append(pose(at+Vector3(0,.007,side),0,Vector3(2,.002,.025)))
+	for at in [Vector3(0,0,4),Vector3(0,0,12),Vector3(11,0,-10)]: lines.append(pose(at+Vector3.UP*.007,0,Vector3(.06,.002,2)))
+	var node := MultiMeshInstance3D.new()
+	node.name = "PaintedStagingLocations"
+	node.set_script(load("res://scripts/presentation/environment_mesh_batch.gd"))
+	node.set("source_mesh",line_mesh)
+	node.set("instance_transforms",lines)
+	node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	own(details,node)
+	finish("markings")
+func run() -> void:
+	yard()
+	storage()
+	service()
+	processing()
+	markings()
+	var output := FileAccess.open("res://.godot/stage_y/mesh_links.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(mesh_links))
+	output.close()
+	quit()

@@ -1,0 +1,75 @@
+[
+  {
+    "check": "editor",
+    "exit": 0,
+    "seconds": 2.93,
+    "issues": []
+  },
+  {
+    "check": "actor_import",
+    "exit": 0,
+    "seconds": 0.41,
+    "issues": []
+  },
+  {
+    "check": "actor_visual",
+    "exit": 0,
+    "seconds": 4.57,
+    "issues": []
+  },
+  {
+    "check": "actor_visual_forward",
+    "exit": 0,
+    "seconds": 6.33,
+    "issues": []
+  },
+  {
+    "check": "gui",
+    "exit": 0,
+    "seconds": 4.04,
+    "issues": [],
+    "diagnostic_label_refresh": true
+  },
+  {
+    "check": "inspection",
+    "exit": 0,
+    "seconds": 4.76,
+    "issues": []
+  },
+  {
+    "check": "default_headless",
+    "exit": 0,
+    "seconds": 1.43,
+    "issues": []
+  },
+  {
+    "check": "default_forward",
+    "exit": 0,
+    "seconds": 2.35,
+    "issues": []
+  },
+  {
+    "check": "expanded_headless",
+    "exit": 0,
+    "seconds": 1.5,
+    "issues": []
+  },
+  {
+    "check": "expanded_forward",
+    "exit": 0,
+    "seconds": 2.32,
+    "issues": []
+  },
+  {
+    "check": "clean_import",
+    "exit": 0,
+    "seconds": 2.84,
+    "issues": []
+  },
+  {
+    "check": "clean_check",
+    "exit": 0,
+    "seconds": 0.29,
+    "issues": []
+  }
+]

@@ -1,0 +1,83 @@
+extends "res://tests/world_population_test.gd"
+const CANDIDATES: Array[Vector3] = [Vector3(5,0,-24),Vector3(30,0,15),Vector3(-32,0,14)]
+func apply_preview(arena: Node3D) -> void:
+ var floor_mesh:MeshInstance3D=arena.get_node("Geometry/ServicePerimeter/Floor/Mesh")
+ var surface:=ShaderMaterial.new()
+ surface.shader=load("res://.godot/stage_y_refinement/ground.gdshader")
+ surface.set_shader_parameter("paths",PackedVector4Array([Vector4(-22,-26,-22,-14),Vector4(-22,-18,22,-18),Vector4(22,-18,22,-10.5),Vector4(22,10.5,22,19),Vector4(-10,14,9,14),Vector4(-11,0,14,0)]))
+ surface.set_shader_parameter("chases",PackedVector4Array([Vector4(-14.5,5,-15,5),Vector4(-15,5,-15,3),Vector4(-15,3,-16,3),Vector4(-19,16.5,-24.7,16.5),Vector4(-24.7,16.5,-24.7,10.8),Vector4(-24.7,10.8,-22,10.8),Vector4(-22,10.8,-22,5),Vector4(-22,5,-20,5),Vector4(-20,5,-20,3)]))
+ floor_mesh.material_override=surface
+ arena.get_node("Geometry/ProcessingFacility/Visuals/BayFloor").material_override=surface
+ var utility:EnvironmentMeshBatch=arena.get_node("Geometry/ServicePerimeter/ServiceDetails/utility_run_2m")
+ var wires:Array[Transform3D]=utility.instance_transforms.duplicate()
+ for position in [Vector3(-19,.15,16.4),Vector3(14,.15,18.4)]:
+  wires.append(Transform3D(Basis(Vector3.BACK,PI*.5)*Basis.from_scale(Vector3(1.2,1,1)),position))
+ utility.instance_transforms=wires
+ utility.rebuild()
+ var junctions:EnvironmentMeshBatch=arena.get_node("Geometry/ServicePerimeter/ServiceDetails/utility_junction_0p4m")
+ var junction_transforms:Array[Transform3D]=junctions.instance_transforms.duplicate()
+ junction_transforms[-2]=Transform3D(Basis(Vector3.UP,PI),Vector3(-19,2.4,16.4))
+ junction_transforms[-1]=Transform3D(Basis(Vector3.UP,PI),Vector3(14,2.4,18.4))
+ junctions.instance_transforms=junction_transforms
+ junctions.rebuild()
+ var pallets:EnvironmentMeshBatch=arena.get_node("Geometry/SalvageYard/LowCrates/Dressing/pallet_load_1m")
+ var instances:Array[Transform3D]=pallets.instance_transforms.duplicate()
+ var props:=Node3D.new()
+ props.name="ProposedStagingClusters"
+ arena.get_node("Geometry").add_child(props)
+ for index in range(CANDIDATES.size()):
+  var body:=StaticBody3D.new()
+  body.name="StagedLoad%d" % index
+  props.add_child(body)
+  body.position=CANDIDATES[index]+Vector3.UP*.6
+  var collision:=CollisionShape3D.new()
+  collision.name="Collision"
+  collision.shape=BoxShape3D.new()
+  collision.shape.size=Vector3(2,1.2,2)
+  body.add_child(collision)
+  var shadow:=MeshInstance3D.new()
+  shadow.mesh=BoxMesh.new()
+  shadow.mesh.size=Vector3(2,1.2,2)
+  shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+  body.add_child(shadow)
+  for offset in [-.5,.5]:
+   instances.append(pallets.global_transform.affine_inverse()*Transform3D(Basis.IDENTITY,CANDIDATES[index]+Vector3(offset,0,0)))
+ pallets.instance_transforms=instances
+ pallets.rebuild()
+func capture(arena:Node3D,label:String) -> void:
+ var views:Dictionary={"overview":[Vector3(37,26,39),Vector3(0,0,0)],"ground":[Vector3(3,2.1,17),Vector3(0,.4,-5)],"connections":[Vector3(-9,3,21),Vector3(-19,1.3,16)],"processing":[Vector3(-21,3.4,7),Vector3(-15.2,1.8,3)],"connections_detail":[Vector3(-16,2.5,19),Vector3(-19,1.7,16.4)]}
+ for view in views:
+  arena.spectator.camera.global_position=views[view][0]
+  arena.spectator.camera.look_at(views[view][1])
+  await create_timer(.15).timeout
+  await RenderingServer.frame_post_draw
+  root.get_texture().get_image().save_png("res://.godot/stage_y_refinement/"+label+"_"+view+".png")
+func run() -> void:
+ test_directory="res://.godot/stage_y_refinement/saves_"+Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var observations:Array=[]
+ for seed_value in [87017,87018]:
+  var arena:=create_u("preview_%d" % seed_value,seed_value)
+  await start_frozen(arena)
+  arena.spectator.enter()
+  arena.spectator.set_process(false)
+  if seed_value==87017 and DisplayServer.get_name()!="headless":await capture(arena,"before")
+  var original:Dictionary=snapshot_contract(arena)
+  apply_preview(arena)
+  arena.get_node("NavigationRegion3D").bake_navigation_mesh(false)
+  await frames(12)
+  var validation:String=arena.encounter.validate_navigation()
+  var sites_clear:=true
+  for marker in arena.get_node("EncounterSites").get_children():sites_clear=sites_clear and arena.encounter.geometry_clear(marker.position,false)
+  var now:Dictionary=snapshot_contract(arena)
+  var kept:=true
+  for key in original:kept=kept and original[key]==now[key]
+  check(kept and validation.is_empty() and sites_clear,"Prototype retains original physical contracts and both layouts' objective/patrol navigation")
+  observations.append({"seed":seed_value,"original_contract_preserved":kept,"navigation_error":validation,"all_sites_clear":sites_clear,"new_clusters":CANDIDATES})
+  if seed_value==87017 and DisplayServer.get_name()!="headless":await capture(arena,"proposed")
+  arena.queue_free()
+  await frames(30)
+ var file:=FileAccess.open("res://.godot/stage_y_refinement/proposal_validation.json",FileAccess.WRITE)
+ file.store_string(JSON.stringify(DeploymentMetrics.serializable(observations),"\t"));file.close()
+ print("REFINEMENT PROTOTYPE COMPLETE ",failures)
+ quit(1 if failures else 0)

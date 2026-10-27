@@ -1,0 +1,211 @@
+{
+  "author": "Original project synthesis",
+  "source": "tools/audio_pipeline/generate_audio.py",
+  "sample_rate": 22050,
+  "license": "Original project assets; no third-party recordings or samples.",
+  "assets": [
+    {
+      "path": "assets/audio/weapons/player_01.wav",
+      "kind": "player",
+      "duration": 0.13,
+      "loop": false,
+      "sha256": "dd7361d9ea7917df4fc4a3bf97b1412731fbc725fbf5091b03cd12ce5ac190a1"
+    },
+    {
+      "path": "assets/audio/weapons/player_02.wav",
+      "kind": "player",
+      "duration": 0.13,
+      "loop": false,
+      "sha256": "59990e2fa4c00e504a0fc6d21ea2dd9245001e4e1ec6c65900d79aca1437fe85"
+    },
+    {
+      "path": "assets/audio/weapons/raider_01.wav",
+      "kind": "rifle",
+      "duration": 0.15,
+      "loop": false,
+      "sha256": "7e1ca5f87ec0c6b79b726121a2124a4f32360e1d252ace43a794712bcbab34c2"
+    },
+    {
+      "path": "assets/audio/weapons/raider_02.wav",
+      "kind": "rifle",
+      "duration": 0.15,
+      "loop": false,
+      "sha256": "052a190de2d4574289c4b98ec8b2e7b20617811b0f447d17ef1edcb5d87e9457"
+    },
+    {
+      "path": "assets/audio/weapons/guard_01.wav",
+      "kind": "guard",
+      "duration": 0.16,
+      "loop": false,
+      "sha256": "8ac6d6eaa4071f951ad4f3d86f1b93dbeda214ab69bfb5fdec2fd781b7d78db4"
+    },
+    {
+      "path": "assets/audio/weapons/guard_02.wav",
+      "kind": "guard",
+      "duration": 0.16,
+      "loop": false,
+      "sha256": "1ffaaa5eb7b5ab8751b4821dd231c506641b4df1d652f95db8727b907e014058"
+    },
+    {
+      "path": "assets/audio/impacts/metal.wav",
+      "kind": "metal",
+      "duration": 0.2,
+      "loop": false,
+      "sha256": "33cc997ccceaf78cf54d8979b1b6125980f2dc0d4c4016879eaedd5c260e73ac"
+    },
+    {
+      "path": "assets/audio/impacts/concrete.wav",
+      "kind": "dust",
+      "duration": 0.17,
+      "loop": false,
+      "sha256": "90d3de1651af9d742ab785a83135651bb396ddd6882a960997c5bc413d36fcc6"
+    },
+    {
+      "path": "assets/audio/impacts/equipment.wav",
+      "kind": "metal",
+      "duration": 0.22,
+      "loop": false,
+      "sha256": "d5e4c136ca494589409bc6f703805962719b1f633e61f23301fc60079faadf97"
+    },
+    {
+      "path": "assets/audio/impacts/machine_armor.wav",
+      "kind": "armor",
+      "duration": 0.19,
+      "loop": false,
+      "sha256": "77a45357a4d4303ba369694cc5e174ab1b41fd13b4620ed029f9c32cfbfbac68"
+    },
+    {
+      "path": "assets/audio/impacts/raider_gear.wav",
+      "kind": "gear",
+      "duration": 0.13,
+      "loop": false,
+      "sha256": "23c87c5fd3823ca43f8cb4bf84f797b195f701831ac46a0d9d28d12734da73b2"
+    },
+    {
+      "path": "assets/audio/impacts/hard_surface.wav",
+      "kind": "dust",
+      "duration": 0.12,
+      "loop": false,
+      "sha256": "ea79c0b038ee8a1c9cb748f9eac839164b52096dd9cda998910892739c205881"
+    },
+    {
+      "path": "assets/audio/actors/raider_hurt.wav",
+      "kind": "gear",
+      "duration": 0.18,
+      "loop": false,
+      "sha256": "d24a8356241b4132a2006e6c51a5fd703b7612546b3f06a2460d7529f7669098"
+    },
+    {
+      "path": "assets/audio/actors/player_hurt.wav",
+      "kind": "armor",
+      "duration": 0.22,
+      "loop": false,
+      "sha256": "7151003d0c92d81ae1bed344b11197c0d167d548d1a80a23deee48b9a6b6c224"
+    },
+    {
+      "path": "assets/audio/actors/machine_hurt.wav",
+      "kind": "armor",
+      "duration": 0.23,
+      "loop": false,
+      "sha256": "73c49811ec4cf8b8d7f7b338b21f900cfcc55e8eeca113014a5bfc798484c82d"
+    },
+    {
+      "path": "assets/audio/actors/machine_destroy.wav",
+      "kind": "destroy",
+      "duration": 0.6,
+      "loop": false,
+      "sha256": "17d2f9327ffcfa3df2fc8c9896e7f302bc306cb939d25a3b25d1103c008f9ff5"
+    },
+    {
+      "path": "assets/audio/actors/raider_death.wav",
+      "kind": "gear",
+      "duration": 0.3,
+      "loop": false,
+      "sha256": "f1b75a5c08f96f45d1e166a2a13d59d1a55acb8dc29868bf38f22b5823b6f02c"
+    },
+    {
+      "path": "assets/audio/machines/player_servo_loop.wav",
+      "kind": "servo",
+      "duration": 2,
+      "loop": true,
+      "sha256": "681cc2da2d93d80ad220f2455b7d502247cfc6a5ae56dadc63d6aea7e3753d8e"
+    },
+    {
+      "path": "assets/audio/machines/guard_drive_loop.wav",
+      "kind": "drive",
+      "duration": 2,
+      "loop": true,
+      "sha256": "0bb2b37bbddc307058a0bcd6a4feb50e94e75cd440c292bad8c3f4c282493802"
+    },
+    {
+      "path": "assets/audio/machines/scout_rotor_loop.wav",
+      "kind": "rotor",
+      "duration": 2,
+      "loop": true,
+      "sha256": "b89f11caf4b83b7f750a19797a2bd9dfef0b929a9e51b6ae522b54c48997118b"
+    },
+    {
+      "path": "assets/audio/environment/yard_wind_loop.wav",
+      "kind": "wind",
+      "duration": 3,
+      "loop": true,
+      "sha256": "f1a999f13ae812f76b85edd77125bac917d932b75a0a73b510adc5ff432539a1"
+    },
+    {
+      "path": "assets/audio/environment/vent_loop.wav",
+      "kind": "vent",
+      "duration": 3,
+      "loop": true,
+      "sha256": "b0d4390c49feb6192c45141846cd86464392bce29aeaf789fdad51f4fcda5402"
+    },
+    {
+      "path": "assets/audio/environment/machinery_loop.wav",
+      "kind": "machinery",
+      "duration": 3,
+      "loop": true,
+      "sha256": "4f57aa30e7bdd74eb85c9c440738d2111e2d42c9cfe0f52b5bf7ba2e3637d6a9"
+    },
+    {
+      "path": "assets/audio/interface/hit_confirm.wav",
+      "kind": "hit",
+      "duration": 0.065,
+      "loop": false,
+      "sha256": "768b90d8a774e2958e59d57a2c774a67f1cfbd800600b5d27d9d37b55a8fe25a"
+    },
+    {
+      "path": "assets/audio/interface/recovered.wav",
+      "kind": "recover",
+      "duration": 0.16,
+      "loop": false,
+      "sha256": "32315575707717d0676c9f71a68824194f35100cdd640eeacd1a96b05f7e4f38"
+    },
+    {
+      "path": "assets/audio/interface/objective_complete.wav",
+      "kind": "complete",
+      "duration": 0.24,
+      "loop": false,
+      "sha256": "49be1fdb2ced923a78929df0b958dd56065db616e5564905587ea9b50269c5f8"
+    },
+    {
+      "path": "assets/audio/interface/recall_complete.wav",
+      "kind": "complete",
+      "duration": 0.35,
+      "loop": false,
+      "sha256": "7b7f53a942e14cac45d7f1c34ddbf4d4fe8e5baa6dfc58ccf0695d66cbaa9b54"
+    },
+    {
+      "path": "assets/audio/interface/deployment_failed.wav",
+      "kind": "failed",
+      "duration": 0.3,
+      "loop": false,
+      "sha256": "058cb9610357291238c3c34083ad0044260a1a17536a03bddba5ed49759ac129"
+    },
+    {
+      "path": "assets/audio/signals/death_flare.wav",
+      "kind": "flare",
+      "duration": 0.5,
+      "loop": false,
+      "sha256": "ea09faa029a24ff9ca2932a1e28c72e3d6f24192df47934503c8a87d3a04b4c1"
+    }
+  ]
+}

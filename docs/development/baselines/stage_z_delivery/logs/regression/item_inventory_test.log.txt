@@ -1,0 +1,71 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/item_inventory_test.gd remapped: res://tests/item_inventory_test.gd
+Completed load for: 'res://tests/item_inventory_test.gd' remapped 'res://tests/item_inventory_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://resources/items/catalog.tres remapped: res://resources/items/catalog.tres
+Loading resource: res://resources/items/scrap_steel.tres remapped: res://resources/items/scrap_steel.tres
+Completed load for: 'res://resources/items/scrap_steel.tres' remapped 'res://resources/items/scrap_steel.tres' at thread -1
+Loading resource: res://resources/items/copper_winding.tres remapped: res://resources/items/copper_winding.tres
+Completed load for: 'res://resources/items/copper_winding.tres' remapped 'res://resources/items/copper_winding.tres' at thread -1
+Loading resource: res://resources/items/servo_motor.tres remapped: res://resources/items/servo_motor.tres
+Completed load for: 'res://resources/items/servo_motor.tres' remapped 'res://resources/items/servo_motor.tres' at thread -1
+Loading resource: res://resources/items/industrial_sensor.tres remapped: res://resources/items/industrial_sensor.tres
+Completed load for: 'res://resources/items/industrial_sensor.tres' remapped 'res://resources/items/industrial_sensor.tres' at thread -1
+Loading resource: res://resources/items/control_pcb.tres remapped: res://resources/items/control_pcb.tres
+Completed load for: 'res://resources/items/control_pcb.tres' remapped 'res://resources/items/control_pcb.tres' at thread -1
+Loading resource: res://resources/items/industrial_blaster.tres remapped: res://resources/items/industrial_blaster.tres
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Completed load for: 'res://resources/items/industrial_blaster.tres' remapped 'res://resources/items/industrial_blaster.tres' at thread -1
+Loading resource: res://resources/items/raider_rifle.tres remapped: res://resources/items/raider_rifle.tres
+Loading resource: res://resources/weapons/raider_rifle.tres remapped: res://resources/weapons/raider_rifle.tres
+Completed load for: 'res://resources/weapons/raider_rifle.tres' remapped 'res://resources/weapons/raider_rifle.tres' at thread -1
+Completed load for: 'res://resources/items/raider_rifle.tres' remapped 'res://resources/items/raider_rifle.tres' at thread -1
+Loading resource: res://resources/items/worn_response_rifle.tres remapped: res://resources/items/worn_response_rifle.tres
+Completed load for: 'res://resources/items/worn_response_rifle.tres' remapped 'res://resources/items/worn_response_rifle.tres' at thread -1
+Loading resource: res://resources/items/electronics_kit.tres remapped: res://resources/items/electronics_kit.tres
+Completed load for: 'res://resources/items/electronics_kit.tres' remapped 'res://resources/items/electronics_kit.tres' at thread -1
+Loading resource: res://resources/items/armor_plating.tres remapped: res://resources/items/armor_plating.tres
+Completed load for: 'res://resources/items/armor_plating.tres' remapped 'res://resources/items/armor_plating.tres' at thread -1
+Loading resource: res://resources/items/power_module.tres remapped: res://resources/items/power_module.tres
+Completed load for: 'res://resources/items/power_module.tres' remapped 'res://resources/items/power_module.tres' at thread -1
+Loading resource: res://resources/items/mobility_actuator.tres remapped: res://resources/items/mobility_actuator.tres
+Completed load for: 'res://resources/items/mobility_actuator.tres' remapped 'res://resources/items/mobility_actuator.tres' at thread -1
+Completed load for: 'res://resources/items/catalog.tres' remapped 'res://resources/items/catalog.tres' at thread -1
+PASS: Compact catalog has stable valid definitions
+PASS: Authorized supply creates finite stacks
+PASS: Supply permit cannot issue twice
+PASS: Oversized exact transfer rejects without changing state or IDs
+PASS: Explicit partial transfer reports its remainder and respects weight
+PASS: Identical command retry cannot collect twice
+PASS: Conflicting reuse of command ID rejects
+PASS: Stack split preserves quantities and mass while occupying a slot
+PASS: Invalid split leaves authoritative state unchanged
+PASS: Split and partial transfers conserve every generated unit
+PASS: Snapshots cannot mutate live ownership
+PASS: Legacy interfaces share one authoritative inventory
+PASS: Actor death atomically moves mixed cargo and equipment
+PASS: Repeated actor resolution cannot create another drop
+PASS: Both compatibility recovery paths use shared transfers
+PASS: Combined player settlement conserves both projected economies
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+PASS: Compatible equipment mounts through the same transfer boundary
+PASS: Incompatible human weapon cannot replace robot equipment
+PASS: Mounted equipment counts toward mass without consuming cargo slots
+PASS: Fit query includes existing mounted mass without consuming identity or changing ownership
+Item inventory failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

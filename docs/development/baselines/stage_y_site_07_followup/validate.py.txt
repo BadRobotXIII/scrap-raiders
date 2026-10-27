@@ -1,0 +1,8 @@
+from pathlib import Path
+import subprocess,json
+out=Path('.godot/stage_y_site_07');rows=[]
+for label,args,marker in [('assets',['--headless','--fixed-fps','60','--script','res://tests/asset_pipeline_test.gd','--quit-after','12000'],'Asset pipeline failures: 0'),('expanded',['--headless','--fixed-fps','60','--script','res://tests/expanded_world_test.gd','--quit-after','20000'],'Expanded world failures: 0'),('graphical',['--script','res://.godot/stage_y_site_07/view.gd','--quit-after','2500'],'SITE 07 GRAPHICAL COMPLETE 0')]:
+ file=out/(label+'.log.txt')
+ with file.open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd','--path','.',*args],stdout=f,stderr=subprocess.STDOUT,timeout=100)
+ text=file.read_text(errors='replace');row={'case':label,'exit':r.returncode,'completed':marker in text,'issues':[line for line in text.splitlines() if 'ERROR:' in line or 'WARNING:' in line]};rows.append(row);print(row,flush=True);(out/'validation.json').write_text(json.dumps(rows,indent=2))
+ if r.returncode or not row['completed']:raise SystemExit(1)

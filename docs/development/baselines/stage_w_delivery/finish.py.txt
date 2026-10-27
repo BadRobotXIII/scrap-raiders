@@ -1,0 +1,17 @@
+from pathlib import Path
+import subprocess,json,re,time
+root=Path.cwd();out=root/'.godot/stage_w/final_checks';out.mkdir(exist_ok=True)
+godot=r'C:\Users\kzulf\bin\godot.cmd'
+checks=[('editor',['--headless','--editor','--quit']),('actor_import',['--headless','--script','res://tests/actor_import_test.gd','--quit-after','2400']),('actor_visual',['--headless','--script','res://tests/actor_visual_test.gd','--quit-after','3600']),('actor_visual_forward',['--script','res://tests/actor_visual_test.gd','--quit-after','3600']),('gui',['--script','res://.godot/stage_w/gui.gd','--quit-after','3600']),('inspection',['--script','res://.godot/stage_w/capture_inspection.gd','--quit-after','1800']),('default_headless',['--headless','--quit-after','120']),('default_forward',['--quit-after','120']),('expanded_headless',['--headless','res://scenes/levels/expanded_salvage_complex.tscn','--quit-after','120']),('expanded_forward',['res://scenes/levels/expanded_salvage_complex.tscn','--quit-after','120'])]
+results=[]
+for label,args in checks:
+ t=time.time();r=subprocess.run([godot,'--path','.',*args],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace',timeout=180)
+ (out/(label+'.log.txt')).write_text(r.stdout,encoding='utf-8')
+ issues=[line for line in r.stdout.splitlines() if re.search(r'ERROR|WARNING|FAIL:',line)]
+ results.append({'check':label,'exit':r.returncode,'seconds':round(time.time()-t,2),'issues':issues})
+ (out/'validation.json').write_text(json.dumps(results,indent=2),encoding='utf-8');print(label,r.returncode,issues,flush=True)
+ if r.returncode or any('ERROR' in line for line in issues):raise SystemExit(1)
+for label,args in [('clean_import',['--editor','--quit']),('clean_check',['--script','res://check.gd','--quit-after','1200'])]:
+ t=time.time();r=subprocess.run([godot,'--headless','--path',str(root/'.godot/stage_w/clean_project'),*args],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace',timeout=180)
+ (out/(label+'.log.txt')).write_text(r.stdout,encoding='utf-8');issues=[line for line in r.stdout.splitlines() if re.search(r'ERROR|WARNING|FAIL:',line)]
+ results.append({'check':label,'exit':r.returncode,'seconds':round(time.time()-t,2),'issues':issues});(out/'validation.json').write_text(json.dumps(results,indent=2),encoding='utf-8');print(label,r.returncode,issues,flush=True)

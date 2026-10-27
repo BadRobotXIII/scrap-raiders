@@ -1,0 +1,51 @@
+extends "res://tests/gameplay_integration_test.gd"
+## Actual autonomous deployment replay plus simulation-free inspection controls.
+
+func deployment(enabled: bool, seed_value: int, expanded: bool = false) -> Dictionary:
+	seed(90210)
+	var arena := load("res://scenes/levels/expanded_salvage_complex.tscn" if expanded else "res://scenes/levels/asset_recovery_arena.tscn").instantiate() as Node3D
+	arena.stash_path = test_directory + "/%d_%s_%s.json" % [seed_value, enabled, expanded]
+	arena.seed_override = seed_value
+	arena.capture_metrics = true
+	root.add_child(arena)
+	current_scene = arena
+	await start_frozen(arena)
+	# Keep the player stationary and out of this autonomous comparison. Only
+	# the test fixture does this; presentation has no actor-position API.
+	arena.robot.position = Vector3(100, 0.1, 100)
+	arena.set_physics_process(true)
+	arena.flare_director.set_physics_process(true)
+	for actor in arena.raiders.values():
+		actor.set_physics_process(true)
+		actor.combat.weapon.set_physics_process(true)
+	for machine in arena.ecosystem.machines:
+		machine.set_physics_process(true)
+		if machine.weapon != null: machine.weapon.set_physics_process(true)
+	var timeline: Array = []
+	var conserved := true
+	for tick in range(2400):
+		await frames(1)
+		conserved = conserved and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+		if tick % 30 == 0:
+			var sample: Array = []
+			for id in arena.raiders:
+				var actor = arena.raiders[id]
+				if is_instance_valid(actor): sample.append([id, actor.state, actor.position.snapped(Vector3.ONE * 0.001), actor.health.current, actor.carried_materials])
+			timeline.append(sample)
+	var data := {"timeline": timeline, "counters": arena.metrics.counters.duplicate(true), "events": arena.metrics.events.duplicate(true), "transfers": arena.ledger.accepted_transfers}
+	var output := FileAccess.open(test_directory + "/replay_%d_%s_%s.json" % [seed_value, enabled, expanded], FileAccess.WRITE)
+	output.store_string(JSON.stringify(DeploymentMetrics.serializable(data), "\t"))
+	output.close()
+	check(conserved, "On/off autonomous replay preserves both conservation invariants on every physics tick")
+	check(float(data.counters.get("shots", 0)) > 0, "Replay exercises real autonomous firing rather than an idle presentation fixture")
+	arena.queue_free()
+	await frames(30)
+	return data
+
+func run() -> void:
+	test_directory = "res://.godot/stage_x_replay"
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+	for value in [87017, 87018]: await deployment(false, value)
+	await deployment(false, 87018, true)
+	print("Baseline replay failures: ", failures)
+	quit(1 if failures else 0)

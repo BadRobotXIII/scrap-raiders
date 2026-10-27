@@ -1,0 +1,83 @@
+--- before/scripts/ai/raider_combat.gd
++++ after/scripts/ai/raider_combat.gd
+@@ -71,6 +71,7 @@
+ 
+ 
+ func stop() -> void:
++	actor.threat_monitor.reset()
+ 	commit_remaining = 0
+ 	escape_remaining = 0
+ 	observation_remaining = 0
+@@ -108,6 +109,11 @@
+ 			actor.transition(Raider.State.EXTRACTING)
+ 		elif actor.state != Raider.State.FLEEING and actor._choose_exit():
+ 			actor.transition(Raider.State.FLEEING)
++		return true
++	if actor.profile.combat_policy != RaiderProfile.CombatPolicy.BASELINE and actor.state == Raider.State.ENGAGING and not actor.threat_visible and observation_valid() and actor.threat_monitor.retain_engagement():
++		# Personality and survival decisions have already run. Brief occlusion
++		# must not cancel an accepted defense; firing still checks actual LOS.
++		decision_reason = "retain committed defense through brief sight loss; no blind fire"
+ 		return true
+ 	if actor.state in [Raider.State.TAKING_COVER, Raider.State.REPOSITIONING]:
+ 		# Finish the selected route using the stored observation. Shooting still
+@@ -170,6 +176,10 @@
+ 
+ 
+ func tick(delta: float) -> void:
++	actor.threat_monitor.tick(delta)
++	var target := actor.current_target()
++	var visible := actor.detects_current_target()
++	actor.threat_monitor.observe_visibility(visible, delta, target.get_instance_id() if is_instance_valid(target) else 0)
+ 	attacker_focus_remaining = maxf(0, attacker_focus_remaining - delta)
+ 	commit_remaining = maxf(0, commit_remaining - delta)
+ 	escape_remaining = maxf(0, escape_remaining - delta)
+@@ -181,7 +191,7 @@
+ 		aim_elapsed = 0
+ 		return
+ 	# Recheck visibility at firing time, not just the slower perception interval.
+-	if not actor.detects_current_target() or actor.global_position.distance_to(actor.current_target().global_position) > profile.engagement_range:
++	if not visible or actor.global_position.distance_to(target.global_position) > profile.engagement_range:
+ 		aim_elapsed = 0
+ 		return
+ 	var facing := actor.current_target().global_position - actor.global_position
+@@ -219,7 +229,13 @@
+ 
+ func remember_visible_target() -> void:
+ 	if actor.detects_current_target():
+-		observed_target_id = actor.current_target().get_instance_id()
++		var visible_id := actor.current_target().get_instance_id()
++		if observed_target_id != visible_id:
++			# Continuity belongs to one opponent. A newly eligible target or
++			# visible attacker must not inherit another opponent's pursuit gate.
++			pursuing = false
++			actor.threat_monitor.observe_visibility(true, 0, visible_id)
++		observed_target_id = visible_id
+ 		observed_position = actor.current_target().global_position
+ 		observation_remaining = actor.profile.threat_memory
+ 
+@@ -330,6 +346,9 @@
+ 		decision_reason = "greedy: defend nearby opportunity"
+ 		return PolicyDecision.COMBAT
+ 	if actor.threat_visible:
++		if pursuing and not actor.threat_monitor.reacquired():
++			decision_reason = "aggressive: confirm reacquisition before replacing pursuit route"
++			return PolicyDecision.HANDLED
+ 		if not owns_state() and not pursuing:
+ 			commit_remaining = actor.profile.combat_commit_seconds
+ 		pursuing = false
+@@ -339,6 +358,9 @@
+ 		decision_reason = "aggressive: complete selected cover route; no unseen tracking"
+ 		return PolicyDecision.COMBAT
+ 	if observation_valid():
++		if actor.state == Raider.State.ENGAGING and actor.threat_monitor.retain_engagement():
++			decision_reason = "aggressive: retain engagement through brief sight loss; no blind fire"
++			return PolicyDecision.HANDLED
+ 		if pursuing and actor.state != Raider.State.INVESTIGATING:
+ 			return release_interest("aggressive: pursuit route blocked or search completed")
+ 		if not pursuing:
+@@ -380,4 +402,4 @@
+ 
+ 
+ func describe_policy() -> String:
+-	return "Policy %s | %s | commit %.1fs | escape %.1fs | observation %.1fs" % [RaiderProfile.CombatPolicy.keys()[actor.profile.combat_policy], decision_reason, commit_remaining, escape_remaining, observation_remaining]
++	return "Policy %s | %s | commit %.1fs | escape %.1fs | observation %.1fs\nInterrupt >= %s | sight lost %.2fs | visible %.2fs | route %.1fs" % [RaiderProfile.CombatPolicy.keys()[actor.profile.combat_policy], decision_reason, commit_remaining, escape_remaining, observation_remaining, RaiderThreatMonitor.Level.keys()[actor.minimum_interrupt()], actor.threat_monitor.unseen_seconds, actor.threat_monitor.visible_seconds, actor.threat_monitor.investigation_remaining]

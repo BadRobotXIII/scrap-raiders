@@ -1,0 +1,146 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/presentation/environment_art_view.gd" id="1_sifs2"]
+[ext_resource type="Material" path="res://resources/materials/environment/weathered_steel.tres" id="2_2rcr4"]
+[ext_resource type="Script" path="res://scripts/presentation/environment_mesh_batch.gd" id="3_y2sm3"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/scrap_bunker_panel_2m.glb" id="4_epui0"]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/scrap_infill_1m.glb" id="5_fwtt1"]
+[ext_resource type="PackedScene" path="res://scenes/environment/props/facility_sign.tscn" id="6_0vcsp"]
+[ext_resource type="Material" path="res://resources/materials/environment/painted_steel_bluegray.tres" id="8_c0n0j"]
+
+
+
+[ext_resource type="PackedScene" path="res://scenes/levels/environment/salvage_yard.tscn" id="y_geometry"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5u7q"]
+material = ExtResource("2_2rcr4")
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hron6"]
+material = ExtResource("2_2rcr4")
+size = Vector3(1.92, 2.85, 5.92)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mp6hg"]
+material = ExtResource("2_2rcr4")
+size = Vector3(2, 3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_us1pj"]
+material = ExtResource("2_2rcr4")
+size = Vector3(1.92, 2.85, 5.92)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8mxto"]
+material = ExtResource("2_2rcr4")
+size = Vector3(5, 1.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yjnea"]
+material = ExtResource("2_2rcr4")
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r1j0e"]
+material = ExtResource("8_c0n0j")
+size = Vector3(7.92, 3, 0.92)
+
+[node name="SalvageYardArt" instance=ExtResource("y_geometry")]
+script = ExtResource("1_sifs2")
+graybox_visuals = Array[NodePath]([NodePath("WestBay/Mesh"), NodePath("EastBay/Mesh"), NodePath("LowCrates/Mesh"), NodePath("NorthScreen/Mesh")])
+production_visuals = Array[NodePath]([NodePath("WestBay/Dressing"), NodePath("EastBay/Dressing"), NodePath("LowCrates/Dressing"), NodePath("NorthScreen/Dressing")])
+
+[node name="WestBay" parent="."]
+
+[node name="Dressing" type="Node3D" parent="WestBay"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="WestBay/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_t5u7q")
+
+[node name="Surface" type="MeshInstance3D" parent="WestBay/Dressing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_hron6")
+
+[node name="scrap_bunker_panel_2m" type="MultiMeshInstance3D" parent="WestBay/Dressing"]
+cast_shadow = 0
+script = ExtResource("3_y2sm3")
+model_scene = ExtResource("4_epui0")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -2.9), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.5, 2.9), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, -2), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, -2), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, 0), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, 0), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, 2), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, 2)])
+
+[node name="scrap_infill_1m" type="MultiMeshInstance3D" parent="WestBay/Dressing"]
+cast_shadow = 0
+script = ExtResource("3_y2sm3")
+model_scene = ExtResource("5_fwtt1")
+instance_transforms = Array[Transform3D]([Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3.75, 0, 1.35, -1.5), Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3.75, 0, 1.35, 1.5)])
+
+[node name="Identification" type="Label3D" parent="WestBay/Dressing" instance=ExtResource("6_0vcsp")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.002, 0.55, 0)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "FERROUS / BULK ONLY"
+font_size = 28
+outline_size = 4
+
+[node name="EastBay" parent="."]
+
+[node name="Dressing" type="Node3D" parent="EastBay"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="EastBay/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_mp6hg")
+
+[node name="Surface" type="MeshInstance3D" parent="EastBay/Dressing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_us1pj")
+
+[node name="scrap_bunker_panel_2m" type="MultiMeshInstance3D" parent="EastBay/Dressing"]
+cast_shadow = 0
+script = ExtResource("3_y2sm3")
+model_scene = ExtResource("4_epui0")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -2.9), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.5, 2.9), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, -2), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, -2), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, 0), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, 0), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9, -1.5, 2), Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9, -1.5, 2)])
+
+[node name="scrap_infill_1m" type="MultiMeshInstance3D" parent="EastBay/Dressing"]
+cast_shadow = 0
+script = ExtResource("3_y2sm3")
+model_scene = ExtResource("5_fwtt1")
+instance_transforms = Array[Transform3D]([Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3.75, 0, 1.35, -1.5), Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3.75, 0, 1.35, 1.5)])
+
+[node name="LowCrates" parent="."]
+
+[node name="Dressing" type="Node3D" parent="LowCrates"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="LowCrates/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_8mxto")
+
+[node name="Identification" type="Label3D" parent="LowCrates/Dressing" instance=ExtResource("6_0vcsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 1.002)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "YD-01 / SECURED LOADS"
+font_size = 28
+outline_size = 4
+
+[node name="NorthScreen" parent="."]
+
+[node name="Dressing" type="Node3D" parent="NorthScreen"]
+
+[node name="ShadowProxy" type="MeshInstance3D" parent="NorthScreen/Dressing"]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_yjnea")
+
+[node name="Surface" type="MeshInstance3D" parent="NorthScreen/Dressing"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_r1j0e")
+
+[node name="scrap_bunker_panel_2m" type="MultiMeshInstance3D" parent="NorthScreen/Dressing"]
+cast_shadow = 0
+script = ExtResource("3_y2sm3")
+model_scene = ExtResource("4_epui0")
+instance_transforms = Array[Transform3D]([Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.5, -0.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, -1.5, 0.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.5, -0.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -1.5, 0.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.5, -0.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -1.5, 0.4), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1.5, -0.4), Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3, -1.5, 0.4), Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, -3.9, -1.5, 0), Transform3D(-2.1855694e-08, 0, -1, 0, 1, 0, 0.5, 0, -4.371139e-08, 3.9, -1.5, 0)])
+
+[node name="Identification" type="Label3D" parent="NorthScreen/Dressing" instance=ExtResource("6_0vcsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.502)
+pixel_size = 0.004
+modulate = Color(0.88, 0.85, 0.67, 1)
+text = "YD-01 / RECEIVING"
+font_size = 44
+outline_size = 4

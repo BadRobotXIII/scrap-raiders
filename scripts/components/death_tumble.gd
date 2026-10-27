@@ -32,19 +32,28 @@ func _on_died() -> void:
 	collision.shape = body_collision.shape.duplicate() as Shape3D
 	body.add_child(collision)
 
-	var source_meshes: Array[Node] = visuals.find_children("*", "MeshInstance3D", true, false)
-	if visuals is MeshInstance3D:
-		source_meshes.append(visuals)
-	for node in source_meshes:
-		var original := node as MeshInstance3D
-		if not original.is_visible_in_tree():
-			continue
-		var copy := MeshInstance3D.new()
-		copy.mesh = original.mesh
-		copy.material_override = original.material_override
-		copy.cast_shadow = original.cast_shadow
-		copy.transform = body_collision.global_transform.affine_inverse() * original.global_transform
-		body.add_child(copy)
+	var visual_factory := _find_visual_factory(visuals)
+	var terminal: Node3D
+	if visual_factory != null:
+		terminal = visual_factory.call("create_death_visual") as Node3D
+	if terminal != null:
+		terminal.transform = body_collision.global_transform.affine_inverse() * visual_factory.global_transform
+		body.add_child(terminal)
+	else:
+		# Primitive fixtures retain their original static-mesh presentation.
+		var source_meshes: Array[Node] = visuals.find_children("*", "MeshInstance3D", true, false)
+		if visuals is MeshInstance3D:
+			source_meshes.append(visuals)
+		for node in source_meshes:
+			var original := node as MeshInstance3D
+			if not original.is_visible_in_tree():
+				continue
+			var copy := MeshInstance3D.new()
+			copy.mesh = original.mesh
+			copy.material_override = original.material_override
+			copy.cast_shadow = original.cast_shadow
+			copy.transform = body_collision.global_transform.affine_inverse() * original.global_transform
+			body.add_child(copy)
 
 	var timer := Timer.new()
 	timer.wait_time = lifetime
@@ -53,3 +62,14 @@ func _on_died() -> void:
 	timer.timeout.connect(body.queue_free)
 	body.add_child(timer)
 	world.add_child(body)
+
+
+func _find_visual_factory(root: Node3D) -> Node3D:
+	if root.has_method("create_death_visual"):
+		return root
+	for child in root.get_children():
+		if child is Node3D:
+			var found := _find_visual_factory(child)
+			if found != null:
+				return found
+	return null

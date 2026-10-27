@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/item_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/electronics_kit.svg" id="icon"]
+[resource]
+script = ExtResource("1")
+icon = ExtResource("icon")
+definition_id = &"electronics_kit"
+display_name = "Electronics kit"
+description = "Equipment foundation; no stat effect in Stage Z."
+category = 7
+unit_weight_g = 1000
+max_stack = 1
+base_value = 2
+material_units = 0
+mount = &"utility"
+compatible_actors = PackedStringArray("robot", "human")

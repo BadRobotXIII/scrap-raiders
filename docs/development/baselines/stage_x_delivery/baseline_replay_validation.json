@@ -1,0 +1,22 @@
+[
+  {
+    "case": "accepted_w_import",
+    "exit": 0,
+    "issues": []
+  },
+  {
+    "case": "accepted_w_replay",
+    "exit": 0,
+    "issues": []
+  },
+  {
+    "case": "corrected_w_import",
+    "exit": 0,
+    "issues": []
+  },
+  {
+    "case": "corrected_w_replay",
+    "exit": 0,
+    "issues": []
+  }
+]

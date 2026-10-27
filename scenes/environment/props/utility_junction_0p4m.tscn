@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://assets/environment/exports/props/utility_junction_0p4m.glb" id="1"]
+[node name="utility_junction_0p4m" type="Node3D"]
+[node name="Visual" parent="." instance=ExtResource("1")]
+[node name="utility_junction_0p4m" parent="Visual"]
+cast_shadow = 0

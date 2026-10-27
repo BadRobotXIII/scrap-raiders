@@ -14,6 +14,9 @@ const PROFILES: Array[RaiderProfile] = [preload("res://resources/enemies/greedy.
 @export var mission_duration: float = 180.0
 @export var pickup_distance: float = 1.8
 @export var dynamic_ai: bool = true
+@export var production_actor_visuals: bool = true
+@export var enhanced_presentation: bool = true
+var presentation: MissionPresentation
 @export var debug_seed: int = 4711
 @export var combat_profile: RaiderCombatProfile
 @export var flare_rules: FlareConfig
@@ -34,6 +37,10 @@ var death_elapsed: float = 0
 var social: SocialEncounter
 var cover_reservations: Dictionary[int, Node3D] = {}
 var ledger: MaterialLedger
+var hybrid_inventory: bool = false
+var loot_table: LootTable
+var inventory_interaction: InventoryInteraction
+var interaction_mode: PlayerInteractionMode
 var mission := MissionRules.new()
 var elapsed: float = 0.0
 var action_notice: String = ""
@@ -57,6 +64,11 @@ var max_active_raiders: int = 5
 
 func _ready() -> void:
 	process_physics_priority = 20
+	presentation = MissionPresentation.new()
+	presentation.name = "Presentation"
+	presentation.arena = self
+	presentation.enabled = enhanced_presentation
+	add_child(presentation)
 	var stock := {}
 	var candidates: Array[Node3D] = [$Salvage, $Salvage2, $Salvage3]
 	for index in range(candidates.size()):
@@ -70,7 +82,12 @@ func _ready() -> void:
 	if ecosystem_enabled:
 		stock[&"ScoutComponents"] = 1
 		stock[&"GuardComponents"] = 1
-	ledger = MaterialLedger.new(stock, ids, initial_ground_stock())
+	var authority := InventoryLedger.new()
+	authority.hybrid = hybrid_inventory
+	if hybrid_inventory: authority.identity_prefix = Crypto.new().generate_random_bytes(16).hex_encode()
+	ledger = MaterialLedger.new(stock, ids, initial_ground_stock(), authority)
+	if hybrid_inventory: setup_hybrid_inventory()
+	setup_actor_visual(robot, &"player", robot.get_node("Weapon") as ShotExecutor, &"player")
 	if not setup_error.is_empty():
 		mission.fail_setup(setup_error)
 		finish_mission()
@@ -103,6 +120,7 @@ func _ready() -> void:
 	$Robot/Weapon.fired.connect(_on_weapon_fired)
 	$Robot/Health.died.connect(_on_player_destroyed)
 	setup_mission_objectives()
+	presentation.bind_accounting(ledger, flare_director.equipment if flare_director != null else null, get("mission_objectives") as MissionObjectives)
 	setup_observer()
 	deploy_raiders()
 	if OS.is_debug_build() or mission.post_death_spectating:
@@ -126,6 +144,43 @@ func _ready() -> void:
 		$Overlay.add_child(feedback)
 	if deployment_started:
 		present_arrival()
+	if hybrid_inventory:
+		interaction_mode = PlayerInteractionMode.new()
+		interaction_mode.arena = self
+		$Overlay.add_child(interaction_mode)
+		interaction_mode.setup()
+		inventory_interaction.setup()
+
+func setup_hybrid_inventory() -> void:
+	var authority := ledger.inventory
+	authority.configure_container("player", load("res://resources/inventory/player.tres"))
+	for id in authority.actor_outcomes: authority.configure_container("actor:%d" % id, load("res://resources/inventory/raider.tres"))
+	var layout_id := str(get("encounter").layout.layout_id) if get("encounter") != null else "default"
+	var mission_id: StringName = get("config").mission_id
+	for index in salvage_points.size():
+		var anchor := salvage_points[index]
+		var source := "stock:" + str(anchor.name)
+		var manifest := loot_table.manifest(mission_id, debug_seed, layout_id, source, ledger.available(anchor.name))
+		var resolved := authority.retype_source(source, manifest)
+		assert(resolved)
+		var view := load("res://scenes/loot/tool_cabinet.tscn" if index == 0 else "res://scenes/loot/salvage_cache.tscn").instantiate() as WorldLoot
+		view.name = "LootSource%d" % (index + 1)
+		view.container_id = source
+		view.drop_id = -index - 1
+		view.title = "Tool cabinet" if index == 0 else "Salvage cache"
+		view.ledger = ledger
+		view.position = anchor.position
+		drops[view.drop_id] = view
+		add_child(view)
+		# Existing stock marker remains the cache cue; no new collision geometry.
+	for index in 4:
+		var definition: StringName = [&"industrial_blaster", &"armor_plating", &"power_module", &"mobility_actuator"][index]
+		var destination := "stock:" + str(salvage_points[index % salvage_points.size()].name)
+		var issued := authority.issue("world_equipment:%d" % index, definition, 1, destination)
+		assert(issued.ok)
+	inventory_interaction = InventoryInteraction.new()
+	inventory_interaction.arena = self
+	add_child(inventory_interaction)
 
 
 func present_arrival() -> void:
@@ -195,6 +250,7 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	actor.name = "Raider" if id == 1 else "Raider%d" % id
 	actor.raider_id = id
 	actor.ledger = ledger
+	if hybrid_inventory: ledger.inventory.configure_container("actor:%d" % id, load("res://resources/inventory/raider.tres"))
 	actor.dynamic_ai = dynamic_ai
 	actor.profile = resolved_profiles[id - 1] if id <= resolved_profiles.size() else PROFILES[(id - 1) % PROFILES.size()]
 	if id > resolved_profiles.size() and not fallback_profiles.is_empty():
@@ -229,10 +285,32 @@ func spawn_raider(id: int, world_position: Vector3) -> Raider:
 	if flare_director != null:
 		actor.is_flare_responder = flare_director.responder_ids.has(id)
 		flare_director.register_actor(actor)
+	if hybrid_inventory and actor.combat != null:
+		var binding := EquipmentBinding.new()
+		actor.add_child(binding)
+		binding.bind(ledger.inventory, "actor:%d" % id, actor.combat.weapon)
 	if social != null:
 		social.register_actor(actor)
+	setup_actor_visual(actor, &"raider", actor.combat.weapon if actor.combat != null else null, StringName(str(id)))
 	actor_entered(actor)
 	return actor
+
+
+func setup_actor_visual(actor: Node3D, kind: StringName, weapon: ShotExecutor = null, identity: StringName = &"") -> void:
+	# Cosmetic composition only; fixed physics/aim/muzzle nodes retain ownership.
+	if presentation != null:
+		presentation.register_actor(actor, kind, weapon)
+	var adapter := actor.get_node_or_null("Visuals/ActorVisual") as ActorVisual
+	if adapter == null:
+		return
+	adapter.production_enabled = production_actor_visuals and adapter.model_scene != null
+	adapter.configure(actor, weapon, debug_seed, identity)
+	adapter.set_armed(weapon != null)
+	var legacy := ["Body", "FrontVisor", "LeftFoot", "RightFoot", "Blaster"] if kind == &"player" else ["Body", "Head", "Backpack", "Rifle"]
+	for name in legacy:
+		var visual := actor.get_node_or_null(NodePath("Visuals/" + name)) as Node3D
+		if visual != null:
+			visual.visible = not adapter.production_enabled and (name != "Rifle" or weapon != null)
 
 
 func actor_entered(_actor: Raider) -> void:
@@ -300,7 +378,13 @@ func choose_salvage(id: int) -> Node3D:
 	if dynamic_ai and is_instance_valid(actor):
 		var selected: Node3D
 		var best := INF
-		var candidates: Array[Node3D] = salvage_points.duplicate()
+		var candidates: Array[Node3D] = []
+		if not hybrid_inventory: candidates.append_array(salvage_points)
+		else:
+			# Preserve the authored stock routes as known cache locations. An
+			# unobserved cache offers a route, never knowledge of its contents.
+			for source in drops.values():
+				if source is WorldLoot and source.drop_id < 0: candidates.append(source)
 		if ecosystem != null:
 			candidates.append_array(ecosystem.component_drops())
 		if actor.social != null:
@@ -309,17 +393,21 @@ func choose_salvage(id: int) -> Node3D:
 					candidates.append(drop)
 		for index in range(candidates.size()):
 			var point := candidates[index]
-			if not is_instance_valid(point) or available_salvage(point) <= 0 or actor.blocked_salvage.has(point.name):
+			if not is_instance_valid(point) or actor.blocked_salvage.has(point.name):
 				continue
-			if point is MaterialDrop and actor.social != null and not actor.social.knows_drop(point):
+			var unobserved_cache: bool = hybrid_inventory and point is WorldLoot and point.drop_id < 0 and actor.social != null and not actor.social.knows_drop(point) and not actor.social.searched_empty_cache(point)
+			if not unobserved_cache and point is MaterialDrop and actor.social != null and not actor.social.knows_drop(point):
 				continue
+			if not unobserved_cache and available_salvage(point) <= 0: continue
+			if hybrid_inventory and not unobserved_cache and point is MaterialDrop and ledger.inventory.fit_value(point.inventory_container(), "actor:%d" % id) <= 0: continue
 			var cost := route_cost(actor, point)
 			if is_inf(cost):
 				continue
 			for other in raiders.values():
 				if is_instance_valid(other) and other != actor and other.state == Raider.State.SCAVENGING and other.salvage == point:
 					cost += 4.0
-			cost -= minf(available_salvage(point), actor.profile.cargo_target - actor.carried_materials) * 0.25
+			var collectible := 0 if unobserved_cache else (ledger.inventory.fit_value(point.inventory_container(), "actor:%d" % id) if hybrid_inventory and point is MaterialDrop else available_salvage(point))
+			cost -= minf(collectible, actor.profile.cargo_target - actor.loot_progress()) * 0.25
 			cost += selection_jitter(id, index)
 			if cost < best:
 				best = cost
@@ -333,6 +421,7 @@ func choose_salvage(id: int) -> Node3D:
 
 
 func available_salvage(point: Node3D) -> int:
+	if hybrid_inventory and point is MaterialDrop: return point.content_count()
 	return ledger.ground_for(point.drop_id) if point is MaterialDrop else ledger.available(point.name)
 
 
@@ -419,6 +508,10 @@ func _on_collection_requested(actor: Raider) -> void:
 		return
 	if actor.task_elapsed < actor.scavenge_seconds or actor.global_position.distance_to(actor.salvage.global_position) >= 0.8:
 		return
+	if hybrid_inventory:
+		if actor.salvage is MaterialDrop: inventory_interaction.collect(actor, actor.salvage)
+		after_event()
+		return
 	var target := actor.profile.cargo_target if actor.dynamic_ai else materials_per_point
 	var amount: int
 	if actor.salvage is MaterialDrop:
@@ -457,7 +550,11 @@ func _on_defeated(_reported_amount: int, actor: Raider) -> void:
 
 
 func present_drop(id: int, world_position: Vector3) -> MaterialDrop:
-	var drop := DROP_SCENE.instantiate() as MaterialDrop
+	var drop := WorldLoot.new() if hybrid_inventory else DROP_SCENE.instantiate() as MaterialDrop
+	if drop is WorldLoot:
+		drop.container_id = "ground:%d" % id
+		drop.title = "Recovered components" if ledger.drop_source(id) == 0 else "Raider salvage pack"
+		drop.access_seconds = 0 if ledger.inventory.quantity(drop.container_id, true) == ledger.inventory.quantity(drop.container_id) else 1.5
 	drop.ledger = ledger
 	drop.drop_id = id
 	drop.position = to_local(world_position)
@@ -500,6 +597,7 @@ func pending_world_entries() -> int:
 
 
 func eligible_drop(drop: MaterialDrop) -> bool:
+	if hybrid_inventory: return drop is WorldLoot and inventory_interaction.player_access(drop)
 	if not deployment_started or mission.is_finished() or not is_instance_valid(drop):
 		return false
 	if drop.is_queued_for_deletion() or drop.ledger != ledger or drops.get(drop.drop_id) != drop or drop.materials <= 0:
@@ -531,6 +629,7 @@ func can_recover() -> bool:
 
 
 func try_recover() -> bool:
+	if hybrid_inventory: return false # Search/open is handled by InventoryInteraction's dwell.
 	var drop := selected_drop()
 	if drop == null:
 		return false
@@ -631,6 +730,7 @@ func finalize_player_result() -> void:
 
 func terminate_player() -> void:
 	player_terminated = true
+	if interaction_mode != null: interaction_mode.refresh()
 	if is_instance_valid(spectator):
 		spectator.leave(false)
 	if recall != null:

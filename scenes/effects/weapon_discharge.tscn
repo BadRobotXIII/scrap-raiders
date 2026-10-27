@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3]
+[sub_resource type="CylinderMesh" id="Flash"]
+top_radius = 0.005
+bottom_radius = 0.085
+height = 0.32
+radial_segments = 6
+rings = 1
+[sub_resource type="SphereMesh" id="Core"]
+radius = 0.055
+height = 0.11
+radial_segments = 8
+rings = 4
+[node name="Discharge" type="Node3D"]
+[node name="Jet" type="MeshInstance3D" parent="."]
+rotation_degrees = Vector3(90, 0, 0)
+position = Vector3(0, 0, -0.12)
+mesh = SubResource("Flash")
+cast_shadow = 0
+[node name="Core" type="MeshInstance3D" parent="."]
+mesh = SubResource("Core")
+cast_shadow = 0
+[node name="Light" type="OmniLight3D" parent="."]
+omni_range = 2.4
+shadow_enabled = false

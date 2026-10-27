@@ -1,0 +1,34 @@
+extends "res://tests/world_population_test.gd"
+func capture(arena: Node3D, label: String) -> void:
+ for view in ["side","end"]:
+  arena.spectator.camera.global_position=Vector3(2,4,28) if view=="side" else Vector3(-2,3,32)
+  arena.spectator.camera.look_at(Vector3(-5,1.7,24))
+  await create_timer(0.1).timeout
+  await RenderingServer.frame_post_draw
+  root.get_texture().get_image().save_png("res://.godot/stage_y_site_07/"+label+"_"+view+".png")
+func run() -> void:
+ test_directory="res://.godot/stage_y_site_07/saves_"+Crypto.new().generate_random_bytes(8).hex_encode()
+ DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
+ var arena:=create_u("visual")
+ await start_frozen(arena)
+ park_world(arena)
+ arena.spectator.enter()
+ arena.spectator.set_process(false)
+ var surface:MeshInstance3D=arena.get_node("Geometry/ServicePerimeter/RecallScreen/Dressing/Surface")
+ var sign_node:Label3D=arena.get_node("Geometry/ServicePerimeter/RecallScreen/Dressing/Identification")
+ # Reproduce the old visual in this frozen fixture only; source/collision unchanged.
+ surface.mesh=surface.mesh.duplicate()
+ surface.mesh.size=Vector3(1,3,.65)
+ surface.position=Vector3(0,0,-.175)
+ sign_node.position=Vector3(0,1.05,.505)
+ sign_node.rotation=Vector3.ZERO
+ await capture(arena,"before")
+ surface.mesh.size=Vector3(1,3,6)
+ surface.position=Vector3.ZERO
+ sign_node.position=Vector3(.505,1.05,0)
+ sign_node.rotation_degrees=Vector3(0,90,0)
+ await capture(arena,"after")
+ arena.queue_free()
+ await frames(30)
+ print("SITE 07 GRAPHICAL COMPLETE ",failures)
+ quit(1 if failures else 0)

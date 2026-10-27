@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Navigation map synchronized
+PASS: Raider follows navigation toward salvage
+PASS: Distant robot does not trigger fleeing
+PASS: Shoulder reticle clears robot capsule at pitch -60
+PASS: Shoulder reticle clears robot capsule at pitch -8
+PASS: Shoulder reticle clears robot capsule at pitch 0
+PASS: Shoulder reticle clears robot capsule at pitch 25
+PASS: Solid cover blocks threat detection
+PASS: Nearby visible robot is detected
+R01: SCAVENGING -> FLEEING
+PASS: Visible threat transitions scavenging to fleeing
+R01: FLEEING -> EXTRACTING
+PASS: Fleeing Raider begins extraction at exit
+R01: EXTRACTING -> DEAD
+PASS: Empty Raider drops no invented materials
+R01: SCAVENGING -> EXTRACTING
+PASS: Scavenging grants cargo once and selects extraction
+R01: EXTRACTING -> EXTRACTED
+PASS: Loaded Raider navigates around obstacles and extracts cargo
+PASS: Successful extraction produces no loot drop
+R01: SCAVENGING -> EXTRACTING
+R01: EXTRACTING -> FLEEING
+PASS: Nonlethal damage causes fleeing
+R01: FLEEING -> DEAD
+PASS: Death is terminal and transfers cargo out of Raider
+PASS: Dead Raider cannot re-enter active states
+PASS: Loaded Raider drops exactly one cargo stack
+PASS: HUD confirms actual cargo dropped
+R01: SCAVENGING -> EXTRACTING
+PASS: Default Raider reaches salvage and collects cargo without teleporting
+PASS: HUD announces cargo ready for interception
+R01: EXTRACTING -> FLEEING
+R01: FLEEING -> DEAD
+PASS: Actual blaster shots kill a loaded Raider
+PASS: Normal scavenging followed by blaster death drops cargo
+PASS: Cargo spawns at death location
+PASS: Cargo mesh remains visible after Raider removal
+Raider checks complete; failures: 0

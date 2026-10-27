@@ -1,0 +1,524 @@
+{
+  "schema": 2,
+  "kind": "actors",
+  "blender": "4.5.10 LTS",
+  "godot": "4.7.2 Standard",
+  "units": "metres",
+  "front": "Blender +Y exported to Godot -Z",
+  "assets": [
+    {
+      "id": "flying_scout",
+      "source": "assets/characters/source/flying_scout/flying_scout.blend",
+      "export": "assets/characters/exports/flying_scout/flying_scout.glb",
+      "source_sha256": "5de5f2b8f8dd7921f2ca0ec3a7e72918423eb12f543715e38969ddf1af30daaf",
+      "export_sha256": "61f4c9aa83782170f2ff4c042a7b835fbf0002e8785782bbd1f33e401bc74d9c",
+      "triangles": 1204,
+      "minimum": [
+        -0.578,
+        0.43,
+        -0.3
+      ],
+      "maximum": [
+        0.578,
+        0.77,
+        0.218
+      ],
+      "dimensions": [
+        1.156,
+        0.34,
+        0.518
+      ],
+      "meshes": [
+        {
+          "name": "Chassis",
+          "triangles": 792,
+          "surfaces": 2,
+          "skinned": false
+        },
+        {
+          "name": "left_rotor_mesh",
+          "triangles": 132,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "right_rotor_mesh",
+          "triangles": 132,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "SensorMesh",
+          "triangles": 148,
+          "surfaces": 2,
+          "skinned": false
+        }
+      ],
+      "materials": [
+        "rubber",
+        "salvaged_metal",
+        "opaque_lens"
+      ],
+      "skin_count": 0,
+      "bones": [],
+      "clips": {},
+      "sockets": {
+        "head_mount": [
+          0,
+          0.77,
+          0
+        ]
+      },
+      "nodes": [
+        "Chassis",
+        "left_rotor_mesh",
+        "left_rotor",
+        "right_rotor_mesh",
+        "right_rotor",
+        "SensorMesh",
+        "sensor_head",
+        "head_mount"
+      ],
+      "animation_owner": "Godot actor visual adapter",
+      "origin": "route_root_model_center_y_0.6",
+      "provenance": "Original project geometry/rig/actions; build_actor.py; editable Blender source"
+    },
+    {
+      "id": "ground_machine",
+      "source": "assets/characters/source/ground_machine/ground_machine.blend",
+      "export": "assets/characters/exports/ground_machine/ground_machine.glb",
+      "source_sha256": "e6ee20a9b6528c9715671e2943f8b2ff8d064a29054373e705334dc370809526",
+      "export_sha256": "ddb501305e79b450118ba32f3a4b09fc592e2bd92a3bc3dd2d93c1e62914afb2",
+      "triangles": 2000,
+      "minimum": [
+        -0.4305,
+        0.0355,
+        -0.65
+      ],
+      "maximum": [
+        0.4305,
+        1.1,
+        0.44
+      ],
+      "dimensions": [
+        0.861,
+        1.0645,
+        1.09
+      ],
+      "meshes": [
+        {
+          "name": "Chassis",
+          "triangles": 1408,
+          "surfaces": 2,
+          "skinned": false
+        },
+        {
+          "name": "left_wheel_mesh",
+          "triangles": 148,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "right_wheel_mesh",
+          "triangles": 148,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "SensorMesh",
+          "triangles": 208,
+          "surfaces": 3,
+          "skinned": false
+        },
+        {
+          "name": "PulseReceiver",
+          "triangles": 44,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "FixedBarrel",
+          "triangles": 44,
+          "surfaces": 1,
+          "skinned": false
+        }
+      ],
+      "materials": [
+        "painted_steel_bluegray",
+        "rubber",
+        "opaque_lens"
+      ],
+      "skin_count": 0,
+      "bones": [],
+      "clips": {},
+      "sockets": {
+        "weapon_grip": [
+          0,
+          0.7,
+          -0.25
+        ],
+        "head_mount": [
+          0,
+          1.1,
+          0.06
+        ],
+        "visual_muzzle": [
+          0,
+          0.7,
+          -0.65
+        ]
+      },
+      "nodes": [
+        "Chassis",
+        "left_wheel_mesh",
+        "left_wheel",
+        "right_wheel_mesh",
+        "right_wheel",
+        "SensorMesh",
+        "sensor_head",
+        "PulseReceiver",
+        "recoil",
+        "FixedBarrel",
+        "visual_muzzle",
+        "weapon_grip",
+        "head_mount"
+      ],
+      "animation_owner": "Godot actor visual adapter",
+      "origin": "floor_center",
+      "provenance": "Original project geometry/rig/actions; build_actor.py; editable Blender source"
+    },
+    {
+      "id": "player",
+      "source": "assets/characters/source/player/player.blend",
+      "export": "assets/characters/exports/player/player.glb",
+      "source_sha256": "9753f8681ca76f5bbb5c7e00ef94755cb3dedd409c14d1d5b406d61f0b04ee5c",
+      "export_sha256": "f751652e598cb9753bfc8e8a2824fee335b239dc063bbed7b9c0f6ccec1a3f90",
+      "triangles": 2432,
+      "minimum": [
+        -0.51,
+        0.0,
+        -0.7
+      ],
+      "maximum": [
+        0.705,
+        1.78,
+        0.34
+      ],
+      "dimensions": [
+        1.215,
+        1.78,
+        1.04
+      ],
+      "meshes": [
+        {
+          "name": "Chassis",
+          "triangles": 636,
+          "surfaces": 3,
+          "skinned": false
+        },
+        {
+          "name": "SensorMesh",
+          "triangles": 240,
+          "surfaces": 2,
+          "skinned": false
+        },
+        {
+          "name": "left_foot_mesh",
+          "triangles": 88,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "left_shin_mesh",
+          "triangles": 264,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "left_thigh_mesh",
+          "triangles": 176,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "right_foot_mesh",
+          "triangles": 88,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "right_shin_mesh",
+          "triangles": 264,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "right_thigh_mesh",
+          "triangles": 176,
+          "surfaces": 1,
+          "skinned": false
+        },
+        {
+          "name": "ToolArms",
+          "triangles": 352,
+          "surfaces": 3,
+          "skinned": false
+        },
+        {
+          "name": "BlasterReceiver",
+          "triangles": 88,
+          "surfaces": 2,
+          "skinned": false
+        },
+        {
+          "name": "FixedBarrel",
+          "triangles": 60,
+          "surfaces": 1,
+          "skinned": false
+        }
+      ],
+      "materials": [
+        "safety_yellow",
+        "rubber",
+        "salvaged_metal",
+        "opaque_lens"
+      ],
+      "skin_count": 0,
+      "bones": [],
+      "clips": {},
+      "sockets": {
+        "weapon_grip": [
+          0.6,
+          1.15,
+          -0.34
+        ],
+        "pack_mount": [
+          0,
+          1.35,
+          0.31
+        ],
+        "head_mount": [
+          0,
+          1.62,
+          0
+        ],
+        "visual_muzzle": [
+          0.6,
+          1.15,
+          -0.7
+        ]
+      },
+      "nodes": [
+        "Chassis",
+        "SensorMesh",
+        "sensor_head",
+        "left_foot_mesh",
+        "left_foot",
+        "left_shin_mesh",
+        "left_shin",
+        "left_thigh_mesh",
+        "left_thigh",
+        "right_foot_mesh",
+        "right_foot",
+        "right_shin_mesh",
+        "right_shin",
+        "right_thigh_mesh",
+        "right_thigh",
+        "ToolArms",
+        "BlasterReceiver",
+        "recoil",
+        "FixedBarrel",
+        "visual_muzzle",
+        "weapon_grip",
+        "pack_mount",
+        "head_mount"
+      ],
+      "animation_owner": "Godot actor visual adapter",
+      "origin": "floor_center",
+      "provenance": "Original project geometry/rig/actions; build_actor.py; editable Blender source"
+    },
+    {
+      "id": "raider",
+      "source": "assets/characters/source/raider/raider.blend",
+      "export": "assets/characters/exports/raider/raider.glb",
+      "source_sha256": "d95c6355a0f9cc26015da6fa57a7174dc72a074ddc11a067a87cf32c71e10cd8",
+      "export_sha256": "b046cbce21bd8aaec5de129042e2624e3d362d193619d0b3871a7b6d8289d955",
+      "triangles": 4412,
+      "minimum": [
+        -0.345,
+        0.0,
+        -0.7
+      ],
+      "maximum": [
+        0.413413,
+        1.825,
+        0.2935
+      ],
+      "dimensions": [
+        0.758413,
+        1.825,
+        0.9935
+      ],
+      "meshes": [
+        {
+          "name": "cargo_indicator",
+          "triangles": 44,
+          "surfaces": 1,
+          "skinned": true
+        },
+        {
+          "name": "Hood",
+          "triangles": 268,
+          "surfaces": 1,
+          "skinned": true
+        },
+        {
+          "name": "PackRoll",
+          "triangles": 132,
+          "surfaces": 1,
+          "skinned": true
+        },
+        {
+          "name": "RaiderBody",
+          "triangles": 3580,
+          "surfaces": 4,
+          "skinned": true
+        },
+        {
+          "name": "ShoulderPad",
+          "triangles": 168,
+          "surfaces": 1,
+          "skinned": true
+        },
+        {
+          "name": "RifleMesh",
+          "triangles": 220,
+          "surfaces": 2,
+          "skinned": false
+        }
+      ],
+      "materials": [
+        "opaque_lens",
+        "cloth_olive",
+        "salvaged_metal",
+        "protective_polymer"
+      ],
+      "skin_count": 1,
+      "bones": [
+        "root",
+        "pelvis",
+        "spine",
+        "chest",
+        "neck",
+        "head",
+        "left_clavicle",
+        "left_upper_arm",
+        "left_forearm",
+        "left_hand",
+        "right_clavicle",
+        "right_upper_arm",
+        "right_forearm",
+        "right_hand",
+        "left_thigh",
+        "left_shin",
+        "left_foot",
+        "right_thigh",
+        "right_shin",
+        "right_foot"
+      ],
+      "clips": {
+        "aim": {
+          "seconds": 1,
+          "channels": 60
+        },
+        "death": {
+          "seconds": 0.7,
+          "channels": 60
+        },
+        "fire": {
+          "seconds": 0.2,
+          "channels": 60
+        },
+        "idle": {
+          "seconds": 2,
+          "channels": 60
+        },
+        "run": {
+          "seconds": 0.6,
+          "channels": 60
+        },
+        "walk": {
+          "seconds": 1,
+          "channels": 60
+        }
+      },
+      "sockets": {
+        "weapon_grip": [
+          0.35,
+          1.15,
+          -0.38
+        ],
+        "pack_mount": [
+          0.0,
+          1.32,
+          0.18
+        ],
+        "head_mount": [
+          0.0,
+          1.79,
+          0.0
+        ],
+        "visual_muzzle": [
+          0.35,
+          1.15,
+          -0.7
+        ]
+      },
+      "nodes": [
+        "head_mount",
+        "head",
+        "neck",
+        "left_hand",
+        "left_forearm",
+        "left_upper_arm",
+        "left_clavicle",
+        "weapon_grip",
+        "right_hand",
+        "right_forearm",
+        "right_upper_arm",
+        "right_clavicle",
+        "pack_mount",
+        "chest",
+        "spine",
+        "left_foot",
+        "left_shin",
+        "left_thigh",
+        "right_foot",
+        "right_shin",
+        "right_thigh",
+        "pelvis",
+        "root",
+        "cargo_indicator",
+        "Hood",
+        "PackRoll",
+        "RaiderBody",
+        "ShoulderPad",
+        "RaiderRig",
+        "RifleMesh",
+        "Rifle",
+        "visual_muzzle"
+      ],
+      "animation_owner": "Blender actions",
+      "origin": "floor_center",
+      "provenance": "Original project geometry/rig/actions; build_actor.py; editable Blender source"
+    }
+  ],
+  "new_materials": [
+    "cloth_olive",
+    "opaque_lens",
+    "protective_polymer",
+    "salvaged_metal"
+  ],
+  "shared_texture_manifest": "assets/environment/asset_manifest.json",
+  "new_textures": []
+}

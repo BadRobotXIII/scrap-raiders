@@ -1,0 +1,338 @@
+[
+  {
+    "suite": "editor",
+    "exit": 0,
+    "seconds": 3.25,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "action_commitment_test",
+    "exit": 0,
+    "seconds": 1.17,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 5 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "actor_import_test",
+    "exit": 0,
+    "seconds": 0.42,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "actor_visual_test",
+    "exit": 0,
+    "seconds": 1.08,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "asset_pipeline_test",
+    "exit": 0,
+    "seconds": 1.07,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "awareness_test",
+    "exit": 0,
+    "seconds": 0.6,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "betrayal_test",
+    "exit": 0,
+    "seconds": 1.04,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "combat_movement_test",
+    "exit": 0,
+    "seconds": 0.98,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "combat_stability_test",
+    "exit": 0,
+    "seconds": 0.69,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "combat_test",
+    "exit": 0,
+    "seconds": 0.61,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 13 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "deployment_flow_test",
+    "exit": 0,
+    "seconds": 1.25,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "destruction_test",
+    "exit": 0,
+    "seconds": 0.59,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "dynamic_ai_test",
+    "exit": 0,
+    "seconds": 1.24,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "encounter_generation_test",
+    "exit": 0,
+    "seconds": 2.55,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "expanded_world_test",
+    "exit": 0,
+    "seconds": 2.29,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "seconds": 1.16,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "seconds": 0.9,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "gameplay_integration_test",
+    "exit": 0,
+    "seconds": 2.35,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "hostile_combat_test",
+    "exit": 0,
+    "seconds": 0.91,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "integrated_extraction_test",
+    "exit": 0,
+    "seconds": 1.63,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "machine_ecosystem_test",
+    "exit": 0,
+    "seconds": 0.87,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_objectives_test",
+    "exit": 0,
+    "seconds": 0.31,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_test",
+    "exit": 0,
+    "seconds": 0.59,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "mission_variety_test",
+    "exit": 0,
+    "seconds": 2.25,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "multi_raider_test",
+    "exit": 0,
+    "seconds": 1.33,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "personality_combat_test",
+    "exit": 0,
+    "seconds": 1.05,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "personality_integration_test",
+    "exit": 0,
+    "seconds": 2.63,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "post_death_spectator_test",
+    "exit": 0,
+    "seconds": 1.45,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "raider_decision_stability_test",
+    "exit": 0,
+    "seconds": 1.08,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "raider_test",
+    "exit": 0,
+    "seconds": 0.89,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 10 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "recovery_feedback_test",
+    "exit": 0,
+    "seconds": 0.69,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "refined_extraction_test",
+    "exit": 0,
+    "seconds": 0.97,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "robot_controller_test",
+    "exit": 0,
+    "seconds": 0.58,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "social_cooperation_test",
+    "exit": 0,
+    "seconds": 1.06,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "social_rivalry_test",
+    "exit": 0,
+    "seconds": 0.95,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  },
+  {
+    "suite": "spectator_test",
+    "exit": 0,
+    "seconds": 0.88,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "suite": "traversal_test",
+    "exit": 0,
+    "seconds": 1.53,
+    "timed_out": false,
+    "completion_marker_seen": true,
+    "issues": []
+  }
+]

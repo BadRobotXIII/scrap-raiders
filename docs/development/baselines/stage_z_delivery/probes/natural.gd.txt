@@ -1,0 +1,67 @@
+extends "res://tests/inventory_world_test.gd"
+
+func deployment(seed_value: int, expanded: bool, observing: bool, label: String) -> Dictionary:
+	seed(90210)
+	var arena := create_arena(label, expanded, seed_value)
+	arena.capture_metrics = true # setup hook already ran; attach explicitly below.
+	var metrics := DeploymentMetrics.new()
+	arena.add_child(metrics)
+	metrics.attach(arena)
+	await frames(12)
+	arena.start_deployment()
+	await frames(12)
+	arena.robot.set_physics_process(false)
+	arena.robot.input_adapter.set_physics_process(false)
+	arena.robot.input_adapter.clear_intent()
+	if observing:
+		arena.spectator.enter()
+		arena.spectator.set_process(false)
+	var timeline: Array = []
+	var max_raiders := 0
+	var conserved := true
+	for tick in 10900:
+		await frames(1)
+		max_raiders = maxi(max_raiders, arena.flare_director.living_count())
+		if observing and tick % 120 == 0: arena.spectator.camera.position = Vector3(30 - tick % 50, 20, 25)
+		if tick % 60 == 0:
+			conserved = conserved and arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()
+			var sample: Array = []
+			for id in arena.raiders:
+				if is_instance_valid(arena.raiders[id]):
+					var actor: Raider = arena.raiders[id]
+					sample.append([id, actor.state, str(actor.position.snapped(Vector3.ONE * 0.01)), actor.health.current, actor.loot_progress()])
+			timeline.append(sample)
+		if arena.mission.is_world_finished(): break
+	var contents: Array = []
+	for item in arena.ledger.inventory.records(): contents.append([item.container, item.definition, item.quantity, item.cohort, item.slot])
+	contents.sort_custom(func(a: Array, b: Array) -> bool: return str(a) < str(b))
+	var result := {"seed": seed_value, "expanded": expanded, "spectator": observing, "elapsed": arena.elapsed, "max_raiders": max_raiders, "reinforcements": arena.flare_director.committed, "world_finished": arena.mission.is_world_finished(), "conserved": conserved, "counters": metrics.counters.duplicate(true), "objectives": arena.mission_objectives.snapshot(), "timeline": timeline, "contents": contents, "actor_outcomes": arena.ledger.inventory.actor_outcomes.duplicate()}
+	check(result.world_finished and max_raiders <= 5 and result.reinforcements <= 2 and conserved, "Full bounded normal deployment preserves lifetime and conservation: " + label)
+	arena.queue_free()
+	await frames(20)
+	return result
+
+func run() -> void:
+	var cases: Array = []
+	for expanded in [false, true]:
+		for seed_value in [87017, 87018]: cases.append(await deployment(seed_value, expanded, false, "%s_%d" % [expanded, seed_value]))
+	var observed := await deployment(87017, true, true, "observed")
+	var same_decisions: bool = observed.timeline.size() == cases[2].timeline.size()
+	var max_position_delta := 0.0
+	for index in mini(observed.timeline.size(), cases[2].timeline.size()):
+		var a: Array = cases[2].timeline[index]
+		var b: Array = observed.timeline[index]
+		same_decisions = same_decisions and a.size() == b.size()
+		for row in mini(a.size(), b.size()):
+			same_decisions = same_decisions and a[row][0] == b[row][0] and a[row][1] == b[row][1] and a[row][3] == b[row][3] and a[row][4] == b[row][4]
+			var p: PackedStringArray = str(a[row][2]).trim_prefix("(").trim_suffix(")").split(",")
+			var q: PackedStringArray = str(b[row][2]).trim_prefix("(").trim_suffix(")").split(",")
+			max_position_delta = maxf(max_position_delta, Vector3(float(p[0]), float(p[1]), float(p[2])).distance_to(Vector3(float(q[0]), float(q[1]), float(q[2]))))
+	observed["comparison"] = {"same_decisions_health_and_loot": same_decisions, "max_position_delta_m": max_position_delta, "position_tolerance_m": 0.02, "same_contents_and_counters": observed.contents == cases[2].contents and observed.counters == cases[2].counters}
+	check(same_decisions and max_position_delta <= 0.02 and observed.contents == cases[2].contents and observed.counters == cases[2].counters, "Moving developer camera preserves decisions, health, loot and outcomes (2 cm position tolerance)")
+	cases.append(observed)
+	var output := FileAccess.open("res://.godot/stage_z_build/natural.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(DeploymentMetrics.serializable(cases), "\t"))
+	output.close()
+	print("Stage Z natural failures: ", failures)
+	quit(1 if failures else 0)

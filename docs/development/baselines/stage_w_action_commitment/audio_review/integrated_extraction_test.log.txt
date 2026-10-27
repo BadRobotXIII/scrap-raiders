@@ -1,0 +1,413 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/integrated_extraction_test.gd remapped: res://tests/integrated_extraction_test.gd
+Loading resource: res://resources/weapons/guard_pulse.tres remapped: res://resources/weapons/guard_pulse.tres
+Completed load for: 'res://resources/weapons/guard_pulse.tres' remapped 'res://resources/weapons/guard_pulse.tres' at thread -1
+Completed load for: 'res://tests/integrated_extraction_test.gd' remapped 'res://tests/integrated_extraction_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://scripts/gameplay/hitscan_weapon.gd remapped: res://scripts/gameplay/hitscan_weapon.gd
+Completed load for: 'res://scripts/gameplay/hitscan_weapon.gd' remapped 'res://scripts/gameplay/hitscan_weapon.gd' at thread -1
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scripts/player/combat_feedback.gd remapped: res://scripts/player/combat_feedback.gd
+Completed load for: 'res://scripts/player/combat_feedback.gd' remapped 'res://scripts/player/combat_feedback.gd' at thread -1
+Loading resource: res://scripts/player/player_damage_feedback.gd remapped: res://scripts/player/player_damage_feedback.gd
+Completed load for: 'res://scripts/player/player_damage_feedback.gd' remapped 'res://scripts/player/player_damage_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Loading resource: res://scripts/gameplay/practice_target.gd remapped: res://scripts/gameplay/practice_target.gd
+Completed load for: 'res://scripts/gameplay/practice_target.gd' remapped 'res://scripts/gameplay/practice_target.gd' at thread -1
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scripts/gameplay/raider_arena.gd remapped: res://scripts/gameplay/raider_arena.gd
+Loading resource: res://scenes/effects/deployment_effect.tscn remapped: res://scenes/effects/deployment_effect.tscn
+Loading resource: res://scripts/presentation/deployment_effect.gd remapped: res://scripts/presentation/deployment_effect.gd
+Completed load for: 'res://scripts/presentation/deployment_effect.gd' remapped 'res://scripts/presentation/deployment_effect.gd' at thread -1
+Completed load for: 'res://scenes/effects/deployment_effect.tscn' remapped 'res://scenes/effects/deployment_effect.tscn' at thread -1
+Loading resource: res://scenes/raiders/raider.tscn remapped: res://scenes/raiders/raider.tscn
+Loading resource: res://scripts/components/hit_reaction.gd remapped: res://scripts/components/hit_reaction.gd
+Completed load for: 'res://scripts/components/hit_reaction.gd' remapped 'res://scripts/components/hit_reaction.gd' at thread -1
+Loading resource: res://scripts/presentation/raider_feedback.gd remapped: res://scripts/presentation/raider_feedback.gd
+Completed load for: 'res://scripts/presentation/raider_feedback.gd' remapped 'res://scripts/presentation/raider_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/raider_visual.tscn remapped: res://scenes/characters/visuals/raider_visual.tscn
+Loading resource: res://assets/characters/exports/raider/raider.glb remapped: res://assets/characters/exports/raider/raider.glb
+Loading resource: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn remapped: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn
+Loading resource: res://resources/characters/materials/cloth_olive.tres remapped: res://resources/characters/materials/cloth_olive.tres
+Completed load for: 'res://resources/characters/materials/cloth_olive.tres' remapped 'res://resources/characters/materials/cloth_olive.tres' at thread -1
+Loading resource: res://resources/characters/materials/protective_polymer.tres remapped: res://resources/characters/materials/protective_polymer.tres
+Completed load for: 'res://resources/characters/materials/protective_polymer.tres' remapped 'res://resources/characters/materials/protective_polymer.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/raider/raider.glb' remapped 'res://assets/characters/exports/raider/raider.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/raider_visual.tscn' remapped 'res://scenes/characters/visuals/raider_visual.tscn' at thread -1
+Completed load for: 'res://scenes/raiders/raider.tscn' remapped 'res://scenes/raiders/raider.tscn' at thread -1
+Loading resource: res://scenes/loot/material_drop.tscn remapped: res://scenes/loot/material_drop.tscn
+Completed load for: 'res://scenes/loot/material_drop.tscn' remapped 'res://scenes/loot/material_drop.tscn' at thread -1
+Loading resource: res://resources/enemies/greedy.tres remapped: res://resources/enemies/greedy.tres
+Completed load for: 'res://resources/enemies/greedy.tres' remapped 'res://resources/enemies/greedy.tres' at thread -1
+Loading resource: res://resources/enemies/cowardly.tres remapped: res://resources/enemies/cowardly.tres
+Completed load for: 'res://resources/enemies/cowardly.tres' remapped 'res://resources/enemies/cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/aggressive.tres remapped: res://resources/enemies/aggressive.tres
+Completed load for: 'res://resources/enemies/aggressive.tres' remapped 'res://resources/enemies/aggressive.tres' at thread -1
+Completed load for: 'res://scripts/gameplay/raider_arena.gd' remapped 'res://scripts/gameplay/raider_arena.gd' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Loading resource: res://scripts/gameplay/mission_arena.gd remapped: res://scripts/gameplay/mission_arena.gd
+Loading resource: res://resources/missions/intercept.tres remapped: res://resources/missions/intercept.tres
+Loading resource: res://scripts/gameplay/mission_config.gd remapped: res://scripts/gameplay/mission_config.gd
+Completed load for: 'res://scripts/gameplay/mission_config.gd' remapped 'res://scripts/gameplay/mission_config.gd' at thread -1
+Completed load for: 'res://resources/missions/intercept.tres' remapped 'res://resources/missions/intercept.tres' at thread -1
+Loading resource: res://resources/missions/swarm.tres remapped: res://resources/missions/swarm.tres
+Completed load for: 'res://resources/missions/swarm.tres' remapped 'res://resources/missions/swarm.tres' at thread -1
+Loading resource: res://resources/missions/recovery.tres remapped: res://resources/missions/recovery.tres
+Completed load for: 'res://resources/missions/recovery.tres' remapped 'res://resources/missions/recovery.tres' at thread -1
+Loading resource: res://resources/missions/survival.tres remapped: res://resources/missions/survival.tres
+Completed load for: 'res://resources/missions/survival.tres' remapped 'res://resources/missions/survival.tres' at thread -1
+Loading resource: res://resources/missions/loot_pressure.tres remapped: res://resources/missions/loot_pressure.tres
+Completed load for: 'res://resources/missions/loot_pressure.tres' remapped 'res://resources/missions/loot_pressure.tres' at thread -1
+Loading resource: res://resources/missions/extraction.tres remapped: res://resources/missions/extraction.tres
+Completed load for: 'res://resources/missions/extraction.tres' remapped 'res://resources/missions/extraction.tres' at thread -1
+Loading resource: res://resources/missions/ecosystem.tres remapped: res://resources/missions/ecosystem.tres
+Completed load for: 'res://resources/missions/ecosystem.tres' remapped 'res://resources/missions/ecosystem.tres' at thread -1
+Loading resource: res://resources/missions/traversal.tres remapped: res://resources/missions/traversal.tres
+Completed load for: 'res://resources/missions/traversal.tres' remapped 'res://resources/missions/traversal.tres' at thread -1
+Loading resource: res://resources/missions/social_rivalry.tres remapped: res://resources/missions/social_rivalry.tres
+Completed load for: 'res://resources/missions/social_rivalry.tres' remapped 'res://resources/missions/social_rivalry.tres' at thread -1
+Loading resource: res://resources/missions/social_cooperation.tres remapped: res://resources/missions/social_cooperation.tres
+Completed load for: 'res://resources/missions/social_cooperation.tres' remapped 'res://resources/missions/social_cooperation.tres' at thread -1
+Loading resource: res://resources/missions/social_pressure.tres remapped: res://resources/missions/social_pressure.tres
+Completed load for: 'res://resources/missions/social_pressure.tres' remapped 'res://resources/missions/social_pressure.tres' at thread -1
+Loading resource: res://resources/missions/social_betrayal.tres remapped: res://resources/missions/social_betrayal.tres
+Loading resource: res://resources/enemies/opportunist_betrayal.tres remapped: res://resources/enemies/opportunist_betrayal.tres
+Completed load for: 'res://resources/enemies/opportunist_betrayal.tres' remapped 'res://resources/enemies/opportunist_betrayal.tres' at thread -1
+Completed load for: 'res://resources/missions/social_betrayal.tres' remapped 'res://resources/missions/social_betrayal.tres' at thread -1
+Loading resource: res://resources/missions/integrated_extraction.tres remapped: res://resources/missions/integrated_extraction.tres
+Completed load for: 'res://resources/missions/integrated_extraction.tres' remapped 'res://resources/missions/integrated_extraction.tres' at thread -1
+Loading resource: res://resources/missions/emergent_encounters.tres remapped: res://resources/missions/emergent_encounters.tres
+Loading resource: res://resources/missions/encounter_north.tres remapped: res://resources/missions/encounter_north.tres
+Completed load for: 'res://resources/missions/encounter_north.tres' remapped 'res://resources/missions/encounter_north.tres' at thread -1
+Loading resource: res://resources/missions/encounter_south.tres remapped: res://resources/missions/encounter_south.tres
+Completed load for: 'res://resources/missions/encounter_south.tres' remapped 'res://resources/missions/encounter_south.tres' at thread -1
+Completed load for: 'res://resources/missions/emergent_encounters.tres' remapped 'res://resources/missions/emergent_encounters.tres' at thread -1
+Loading resource: res://resources/missions/personality_encounters.tres remapped: res://resources/missions/personality_encounters.tres
+Loading resource: res://resources/missions/q_encounter_north.tres remapped: res://resources/missions/q_encounter_north.tres
+Loading resource: res://resources/enemies/q_greedy.tres remapped: res://resources/enemies/q_greedy.tres
+Completed load for: 'res://resources/enemies/q_greedy.tres' remapped 'res://resources/enemies/q_greedy.tres' at thread -1
+Loading resource: res://resources/enemies/q_cowardly.tres remapped: res://resources/enemies/q_cowardly.tres
+Completed load for: 'res://resources/enemies/q_cowardly.tres' remapped 'res://resources/enemies/q_cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/q_aggressive.tres remapped: res://resources/enemies/q_aggressive.tres
+Completed load for: 'res://resources/enemies/q_aggressive.tres' remapped 'res://resources/enemies/q_aggressive.tres' at thread -1
+Completed load for: 'res://resources/missions/q_encounter_north.tres' remapped 'res://resources/missions/q_encounter_north.tres' at thread -1
+Loading resource: res://resources/missions/q_encounter_south.tres remapped: res://resources/missions/q_encounter_south.tres
+Completed load for: 'res://resources/missions/q_encounter_south.tres' remapped 'res://resources/missions/q_encounter_south.tres' at thread -1
+Completed load for: 'res://resources/missions/personality_encounters.tres' remapped 'res://resources/missions/personality_encounters.tres' at thread -1
+Loading resource: res://resources/missions/refined_extraction.tres remapped: res://resources/missions/refined_extraction.tres
+Completed load for: 'res://resources/missions/refined_extraction.tres' remapped 'res://resources/missions/refined_extraction.tres' at thread -1
+Loading resource: res://resources/missions/asset_recovery.tres remapped: res://resources/missions/asset_recovery.tres
+Loading resource: res://resources/missions/s_encounter_north.tres remapped: res://resources/missions/s_encounter_north.tres
+Completed load for: 'res://resources/missions/s_encounter_north.tres' remapped 'res://resources/missions/s_encounter_north.tres' at thread -1
+Completed load for: 'res://resources/missions/asset_recovery.tres' remapped 'res://resources/missions/asset_recovery.tres' at thread -1
+Loading resource: res://resources/enemies/armed_scavenger.tres remapped: res://resources/enemies/armed_scavenger.tres
+Loading resource: res://resources/weapons/raider_rifle.tres remapped: res://resources/weapons/raider_rifle.tres
+Completed load for: 'res://resources/weapons/raider_rifle.tres' remapped 'res://resources/weapons/raider_rifle.tres' at thread -1
+Completed load for: 'res://resources/enemies/armed_scavenger.tres' remapped 'res://resources/enemies/armed_scavenger.tres' at thread -1
+Loading resource: res://resources/missions/death_flare_rules.tres remapped: res://resources/missions/death_flare_rules.tres
+Completed load for: 'res://resources/missions/death_flare_rules.tres' remapped 'res://resources/missions/death_flare_rules.tres' at thread -1
+Completed load for: 'res://scripts/gameplay/mission_arena.gd' remapped 'res://scripts/gameplay/mission_arena.gd' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Integrated preset deploys three valid scheduled Raiders
+PASS: Recall, traversal, spectator, social AI and support machines coexist
+PASS: Nine salvage units plus two installed components are allocated once upfront
+PASS: Existing personalities stay distinct with one opportunist and local cooperation
+R01: SELECTING -> ENGAGING
+PASS: Social target selection still recognizes nearby machine threats alongside human rivals
+PASS: Relation-aware weapon predicate permits ordinary damage to support machines
+PASS: Brief loss of guard sight preserves the integrated engagement
+PASS: Rival selection and allied damage protection remain active with machine support enabled
+R01: ENGAGING -> SELECTING
+R01: SELECTING -> ASSESSING_BETRAYAL
+PASS: An actual quiet opportunity can start assessment in the combined mission
+R01: ASSESSING_BETRAYAL -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Betrayal changes only hostility while loaded victim retains ledger cargo
+R02: SELECTING -> DEAD
+PASS: Loaded social death produces ordinary material cargo, equipment and one bounded response
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+PASS: Integrated flare admits a finite cooperating responder without granting a new betrayal capability
+PASS: Responder initialization does not reconcile betrayed pair and retains explicit rival policy
+PASS: Overlapping material cargo blocks equipment channel until material recovery
+PASS: Existing material pickup and timed equipment hold recover separate finite allocations
+PASS: Support destruction releases its preallocated component into the same recovery and banking ledger
+R03: SELECTING -> DEAD
+PASS: Further death consumes the final response budget without replenishment
+PASS: Nonlethal damage preserves extraction progress in the combined mission
+PASS: Recall fixture retains active Raiders and an outstanding response
+PASS: Five-second recall banks combined cargo and equipment while threats remain
+PASS: Extraction seals ownership and stops all systems without duplicate rewards
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+PASS: Restart preserves isolated stash and reconstructs fresh integrated deployment
+PASS: Restart restores authored alliances independently of prior betrayal
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+PASS: deadline fixture recovers deployment cargo through physical eligibility
+PASS: deadline preserves forfeited cargo versus unrecovered ground versus actual extraction loss
+PASS: deadline cannot bank loot or accept a late extraction
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+PASS: destruction fixture recovers deployment cargo through physical eligibility
+PASS: destruction preserves forfeited cargo versus unrecovered ground versus actual extraction loss
+PASS: destruction cannot bank loot or accept a late extraction
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+R01: SELECTING -> DEAD
+R02: SELECTING -> DEAD
+R03: SELECTING -> DEAD
+R04: SCAVENGING -> SELECTING
+R04: SELECTING -> INVESTIGATING
+R05: SCAVENGING -> SELECTING
+R05: SELECTING -> INVESTIGATING
+R04: INVESTIGATING -> DEAD
+R05: INVESTIGATING -> DEAD
+PASS: All Raiders and bounded responders resolving with no ground loot still requires player recall
+PASS: Untouched salvage/components neither duplicate nor prevent voluntary recall
+PASS: Player can choose extraction after the arena becomes quiet
+Loading resource: res://scenes/levels/integrated_extraction_arena.tscn remapped: res://scenes/levels/integrated_extraction_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/integrated_extraction_arena.tscn' remapped 'res://scenes/levels/integrated_extraction_arena.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R03: SCAVENGING -> SELECTING
+PASS: Integrated mission supports spectator observation during normal simulation
+R01: SELECTING -> SCAVENGING
+R02: SELECTING -> ENGAGING
+R03: SELECTING -> SCAVENGING
+R02: ENGAGING -> TAKING_COVER
+R03: SCAVENGING -> ENGAGING
+R02: TAKING_COVER -> REPOSITIONING
+R02: REPOSITIONING -> ENGAGING
+R03: ENGAGING -> TAKING_COVER
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Natural combined run advances support patrol, AI combat/scavenging and finite transfers
+PASS: Natural combined run maintains both ledgers and finite response budget
+PASS: Natural simulation can finish through ordinary grounded recall
+Stage N integrated extraction checks complete; failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

@@ -1,0 +1,100 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Q configuration validates without changing P fallback profiles
+PASS: Q preserves P layout, stock, entries and patrols
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Q preserves P layout, stock, entries and patrols
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Only copied Q profiles opt into personality combat
+PASS: Nonfinite commitment tuning is rejected
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Greedy prioritizes salvage over the same optional seven-metre fight
+R01: SCAVENGING -> TAKING_COVER
+PASS: Greedy finishes selected cover work instead of switching to salvage during occlusion
+R01: TAKING_COVER -> SELECTING
+R01: SELECTING -> FLEEING
+PASS: Cowardly initiates and retains escape rather than repeatedly restarting it
+PASS: Cautious intent executes actual physical escape movement
+PASS: Brief loss of sight does not cancel escape commitment
+PASS: Fresh audible danger retains escape without restarting its commitment timer
+R01: FLEEING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Safe empty Raider resumes independent objectives after escape and observation expire
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> STRANDED
+R01: STRANDED -> ENGAGING
+PASS: No reachable exit makes cautious Raider defend without forgetting escape
+PASS: Blocked escape permits a real defensive rifle hit
+R01: ENGAGING -> TAKING_COVER
+PASS: Failed escape retry preserves active defensive cover work
+PASS: Repeated damage does not restart blocked-exit retry timing
+R01: TAKING_COVER -> FLEEING
+PASS: Reopened escape resumes physical retreat instead of remaining in combat
+R01: FLEEING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Aggressive engages the same optional visible opponent
+R01: ENGAGING -> INVESTIGATING
+PASS: Aggressive pursues a saved sighting after physical occlusion
+PASS: Unseen movement and gunfire cannot relocate the pursuit snapshot
+PASS: Lower-priority allied and flare reports cannot replace committed pursuit
+PASS: Occluded pursuit cannot fire a tracking shot
+R01: INVESTIGATING -> SELECTING
+R01: SELECTING -> SCAVENGING
+PASS: Pursuit expires despite unrelated gunfire memory
+R01: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+R01: ENGAGING -> FLEEING
+PASS: Critical survival overrides aggressive commitment
+PASS: Developer inspection explains policy and authoritative commitment timers
+PASS: Policy-only decisions cannot alter ownership or stash
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> SCAVENGING
+R01: SCAVENGING -> EXTRACTING
+PASS: Natural Greedy scavenging physically collects the finite six-unit stock
+R01: EXTRACTING -> SELECTING
+R01: SELECTING -> FLEEING
+PASS: The same visible threat makes loaded Greedy preserve its actual cargo
+R01: FLEEING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Observed attacker triggers bounded Greedy defense even while carrying cargo
+PASS: Repeated hits cannot extend Greedy defense indefinitely
+PASS: Bounded defense fires actual shots without transferring carried materials
+R01: ENGAGING -> FLEEING
+PASS: Greedy disengages to preserve cargo after completing defense
+R01: FLEEING -> EXTRACTING
+R01: EXTRACTING -> EXTRACTED
+PASS: Physical escape and timed extraction settle exactly the six stolen units once
+PASS: AI extraction never banks player rewards
+0.0s SETUP seed 87017 layout south_patrol
+R01: SCAVENGING -> SELECTING
+R02: SCAVENGING -> SELECTING
+PASS: Greedy visibility fixture carries one existing finite material
+R01: SELECTING -> ENGAGING
+PASS: Observed attacker starts Greedy bounded defense despite actual carried cargo
+Greedy defense LOS transitions: 0
+PASS: Greedy bounded defense retains its action through repeated physical LOS flicker
+R01: ENGAGING -> FLEEING
+PASS: Completed defense immediately yields to loaded Greedy cargo preservation despite LOS grace
+R01: FLEEING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Critical-response fixture is defending inside a real occluded grace window
+R01: ENGAGING -> FLEEING
+PASS: Critical incoming damage applies fully and immediately overrides Greedy visibility grace
+PASS: Greedy continuity, cargo retreat and critical escape preserve finite authoritative ownership
+Stage Q personality combat checks complete; failures: 0
+WARNING: 9 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

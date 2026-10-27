@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/world_loot.gd" id="1"]
+[node name="SalvageCache" type="Node3D"]
+script = ExtResource("1")
+title = "Salvage cache"
+cue_color = Color(0.3, 0.8, 0.85, 1)

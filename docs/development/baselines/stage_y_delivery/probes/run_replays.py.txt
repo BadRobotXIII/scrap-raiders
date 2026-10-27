@@ -1,0 +1,16 @@
+from pathlib import Path
+import subprocess,json,shutil
+out=Path('.godot/stage_y');rows=[]
+for label,root,script in [('baseline_import',out/'accepted_x',None),('baseline_replay',out/'accepted_x','res://.godot/replay.gd'),('final_replay',Path('.'),'res://.godot/stage_y/replay.gd'),('repeat_replay',Path('.'),'res://.godot/stage_y/replay.gd')]:
+ args=['--headless','--path',str(root)]+(['--editor','--quit'] if script is None else ['--fixed-fps','60','--script',script,'--quit-after','15000'])
+ log=out/(label+'.log.txt')
+ with log.open('w') as f:r=subprocess.run([r'C:\Users\kzulf\bin\godot.cmd',*args],stdout=f,stderr=subprocess.STDOUT,timeout=180)
+ text=log.read_text(errors='replace');row=dict(case=label,exit=r.returncode,completed=script is None or 'Y REPLAY COMPLETE 0' in text,issues=[x for x in text.splitlines() if 'ERROR:' in x or 'WARNING:' in x]);rows.append(row);print(row,flush=True)
+ if script is not None and (root/'.godot/y_replay.json').exists():shutil.copy2(root/'.godot/y_replay.json',out/(label+'.json'))
+ if r.returncode or not row['completed']:break
+(out/'replay_validation.json').write_text(json.dumps(rows,indent=2))
+if all(x['completed'] for x in rows) and len(rows)==4:
+ a=json.loads((out/'baseline_replay.json').read_text());b=json.loads((out/'final_replay.json').read_text());c=json.loads((out/'repeat_replay.json').read_text())
+ result={'before_after_equal':a==b,'repeat_equal':b==c,'seeds':[]}
+ for x,y,z in zip(a,b,c):result['seeds'].append({'seed':x['seed'],'same_before_after':[k for k in x if x[k]==y[k]],'different':[k for k in x if x[k]!=y[k]],'repeat_equal':y==z,'shots':len(y['shots']),'transfers':len(y['transfers']),'nav_vertices':len(y['navigation']['vertices']),'nav_polygons':len(y['navigation']['polygons'])})
+ (out/'replay_comparison.json').write_text(json.dumps(result,indent=2));print(result,flush=True)

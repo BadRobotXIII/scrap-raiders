@@ -1,0 +1,20 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: S configuration validates against both finite layouts
+PASS: Impossible material targets rejected
+PASS: Duplicate objective IDs rejected
+PASS: Invalid target rejected
+PASS: Required extraction cannot be omitted
+PASS: Banking requires recall support
+PASS: Deterministic empty objective initialization
+PASS: Possession shows readiness without banked completion
+PASS: Kill credit rejects duplicates, old deployments and other instigators
+PASS: Objective inspection is detached
+PASS: Banked loot cannot substitute for extraction
+PASS: Explicit terminal reconciliation reads both settled owners
+PASS: Settled result is truthful without counting pickup and bank twice
+PASS: Frozen results and completion are idempotent
+PASS: New deployment resets objectives and credit identities
+PASS: Early extraction is terminal and distinct from mission success
+PASS: Objective queries preserve accounting invariants
+Stage S objective failures: 0

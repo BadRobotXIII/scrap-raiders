@@ -1,4 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 [ext_resource type="PackedScene" path="res://scenes/levels/refined_extraction_arena.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/presentation/compact_atmosphere.tscn" id="x_atmosphere"]
+[ext_resource type="Environment" path="res://resources/presentation/industrial_day.tres" id="x_environment"]
+
 [node name="AssetRecoveryArena" instance=ExtResource("1")]
 scenario_index = 16
+
+[node name="WorldEnvironment" parent="."]
+environment = ExtResource("x_environment")
+[node name="Atmosphere" parent="." instance=ExtResource("x_atmosphere")]
+
+[node name="Floor" parent="Geometry"]
+metadata/feedback_surface = &"concrete"

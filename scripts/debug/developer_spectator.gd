@@ -63,6 +63,7 @@ func enter() -> bool:
 	pitch = camera.global_rotation.x
 	camera.make_current()
 	active = true
+	if arena.interaction_mode != null: arena.interaction_mode.refresh()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	indicator.show()
 	refresh_indicator()
@@ -91,6 +92,7 @@ func leave(restore_controls: bool = true) -> void:
 	else:
 		robot.input_adapter.gameplay_enabled = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if arena.interaction_mode != null: arena.interaction_mode.refresh()
 
 
 func apply_look(relative: Vector2) -> void:
