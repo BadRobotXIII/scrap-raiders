@@ -1,0 +1,13 @@
+﻿from pathlib import Path
+import json,re,hashlib,statistics
+work=Path('.godot/stage_aa_build');rows=json.loads((work/'regression/validation.json').read_text(encoding='utf-8'))
+print('Suites:',len(rows),'nonzero:',[(r['suite'],r['exit']) for r in rows if r['exit']])
+types=set();bad=[]
+for row in rows:
+ t=(work/'regression'/(row['suite']+'.log.txt')).read_text(encoding='utf-8',errors='replace')
+ types.update(re.findall(r'Leaked instance: ([^:]+):',t))
+ if 'SCRIPT ERROR:' in t or 'FAIL:' in t:bad.append(row['suite'])
+print('Script/assert failures:',bad,'leaked types:',sorted(types),'audio warning suites:',sum(bool(r['issues']) for r in rows))
+print('Missing UIDs:',[str(p) for p in Path('scripts').rglob('*.gd') if not p.with_suffix('.gd.uid').exists()])
+print('Pin match:',all(hashlib.sha256(Path(k).read_bytes()).hexdigest()==v for k,v in json.loads(Path('docs/development/baselines/stage_aa_playable/reviewed_sources.json').read_text()).items()))
+print('Profile mean ms:',statistics.mean(json.loads((work/'graphical_metrics.json').read_text())['ordinary_profile_commit_ms']))

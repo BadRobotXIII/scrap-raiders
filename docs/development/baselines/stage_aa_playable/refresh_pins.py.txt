@@ -1,0 +1,6 @@
+﻿from pathlib import Path
+import json,hashlib
+p=Path('docs/development/baselines/stage_aa_playable/reviewed_sources.json');approved=json.loads(p.read_text(encoding='utf-8'));before=json.loads(Path('docs/development/baselines/stage_aa_architecture_audit/source_manifest.json').read_text(encoding='utf-8'))
+changed={name for name,digest in before.items() if hashlib.sha256(Path(name).read_bytes()).hexdigest()!=digest}
+assert changed==set(approved),(changed^set(approved))
+p.write_text(json.dumps({name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in approved},indent=2)+'\n',encoding='utf-8')

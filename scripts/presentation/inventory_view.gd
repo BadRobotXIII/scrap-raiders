@@ -3,6 +3,7 @@ extends PanelContainer
 ## Event-driven Controls only. IDs/revisions are requests, never trusted ownership.
 const PAGE_SIZE := 24
 var mode: PlayerInteractionMode
+var context: InventoryContext
 var source: WorldLoot
 var selected_id: String = ""
 var source_revision: int = -1
@@ -13,6 +14,10 @@ var rows: HBoxContainer
 var equipment_box: VBoxContainer
 var cargo_grid: GridContainer
 var other_list: VBoxContainer
+var source_scroll: ScrollContainer
+var source_items: VBoxContainer
+var source_caption: Label
+var list_context: String = ""
 var title: Label
 var weight_label: Label
 var details: Label
@@ -26,7 +31,8 @@ var weapon_status: Label
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	ledger = mode.arena.ledger.inventory
+	if context == null: context = InventoryContext.for_arena(mode)
+	ledger = context.inventory()
 	set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	offset_left = -580
 	offset_right = 580
@@ -57,6 +63,13 @@ func _ready() -> void:
 	other_list = VBoxContainer.new()
 	other_list.custom_minimum_size = Vector2(355, 305)
 	_section(rows, "STORAGE / SEARCHED SOURCE", other_list)
+	source_scroll = ScrollContainer.new()
+	source_scroll.custom_minimum_size = Vector2(355, 305)
+	other_list.add_child(source_scroll)
+	source_items = VBoxContainer.new()
+	source_scroll.add_child(source_items)
+	source_caption = Label.new()
+	other_list.add_child(source_caption)
 	weight_label = Label.new()
 	content.add_child(weight_label)
 	weight_bar = ProgressBar.new()
@@ -119,6 +132,7 @@ func _ready() -> void:
 	hide()
 
 func _fit_viewport() -> void:
+	if not is_inside_tree(): return
 	pivot_offset = size * 0.5
 	var available := get_viewport_rect().size - Vector2(24, 24)
 	var factor := minf(1.0, minf(available.x / maxf(size.x, 1), available.y / maxf(size.y, 1)))
@@ -129,7 +143,8 @@ func open(loot: WorldLoot = null) -> void:
 	selected_id = ""
 	page = 0
 	inspect_quarantine = false
-	notice.text = "World simulation continues. Damage closes inventory." if mode.arena.deployment_started else "Safe preparation. Equipped and carried items become at risk only when you Deploy. [I] closes."
+	list_context = ""
+	notice.text = "World simulation continues. Damage closes inventory." if context.active() else "Safe preparation. Equipped and carried items become at risk only when you Deploy. [I] closes."
 	show()
 	refresh()
 
@@ -200,14 +215,14 @@ func _item_input(event: InputEvent, id: String) -> void:
 func primary_action() -> String:
 	var item := ledger.record(selected_id)
 	var definition := ledger.catalog.find(StringName(item.get("definition", "")))
-	var owner := "player" if mode.arena.deployment_started else "prepared"
-	if definition != null and not definition.mount.is_empty() and definition.compatible_actors.has("robot") and (item.get("container") == owner or (not mode.arena.deployment_started and item.get("container") == "stash")):
+	var owner := "player" if context.active() else "prepared"
+	if definition != null and not definition.mount.is_empty() and definition.compatible_actors.has("robot") and (item.get("container") == owner or (not context.active() and item.get("container") == "stash")):
 		return "Equip / Unequip"
 	return quick_action()
 
 func quick_action() -> String:
 	var item := ledger.record(selected_id)
-	if mode.arena.deployment_started and is_instance_valid(source) and item.get("container") == source.container_id: return "Take fitting"
+	if context.active() and is_instance_valid(source) and item.get("container") == source.container_id: return "Take fitting"
 	return "Transfer"
 
 func shortcut(event: InputEventKey) -> bool:
@@ -259,13 +274,16 @@ func _update_actions(active: bool, owner: String, other: String, item: Dictionar
 func refresh() -> void:
 	pending = false
 	if not visible: return
-	var active: bool = mode.arena.deployment_started
+	var active: bool = context.active()
 	var owner := "player" if active else "prepared"
 	var policy := ledger.container(owner)
 	var other := source.container_id if is_instance_valid(source) else ("" if active else "stash")
 	if not active and inspect_quarantine: other = "quarantine"
 	title.text = "INVENTORY | %s" % (source.title if is_instance_valid(source) else ("Deployment cargo" if active else "Stash / Prepared loadout"))
-	for parent in [equipment_box, cargo_grid, other_list]: clear_children(parent)
+	# Keep the scroller alive so selection and ownership refreshes retain its offset.
+	for parent in [equipment_box, cargo_grid, source_items]: clear_children(parent)
+	source_scroll.visible = not other.is_empty()
+	source_caption.visible = not other.is_empty()
 	var items := ledger.records(owner)
 	for mount in policy.mounts:
 		var found := {}
@@ -280,20 +298,17 @@ func refresh() -> void:
 	if not other.is_empty():
 		var all := ledger.records(other)
 		page = clampi(page, 0, maxi(0, (all.size() - 1) / PAGE_SIZE))
-		var scroll := ScrollContainer.new()
-		scroll.custom_minimum_size = Vector2(355, 305)
-		other_list.add_child(scroll)
-		var list := VBoxContainer.new()
-		scroll.add_child(list)
+		var context := "%s:%d" % [other, page]
+		if context != list_context:
+			source_scroll.scroll_vertical = 0
+			list_context = context
 		for index in range(page * PAGE_SIZE, mini(all.size(), (page + 1) * PAGE_SIZE)):
-			item_button(all[index], "", list, Vector2(330, 48))
+			item_button(all[index], "", source_items, Vector2(330, 48))
 		if all.is_empty():
 			var empty := Label.new()
 			empty.text = "No items in this source." if active else "Base storage is empty.\nStore prepared items here, or\nextract recovered equipment."
-			list.add_child(empty)
-		var label := Label.new()
-		label.text = "%s | page %d | %d items" % ["Unsupported legacy items" if other == "quarantine" else (source.title if is_instance_valid(source) else "Base storage"), page + 1, all.size()]
-		other_list.add_child(label)
+			source_items.add_child(empty)
+		source_caption.text = "%s | page %d | %d items" % ["Unsupported legacy items" if other == "quarantine" else (source.title if is_instance_valid(source) else "Base storage"), page + 1, all.size()]
 	weight_label.text = "Cargo %d / %d slots   |   Total weight %.1f / %.1f kg   |   New salvage value %d   |   Quarantined %d" % [ledger.occupied(owner), int(policy.slots), ledger.weight(owner) / 1000.0, int(policy.weight) / 1000.0, ledger.loot_value(owner), ledger.quantity("quarantine")]
 	weight_bar.max_value = maxi(1, int(policy.weight))
 	weight_bar.value = ledger.weight(owner)
@@ -319,8 +334,8 @@ func select(id: String) -> void:
 	refresh()
 
 func perform(action: String) -> void:
-	if not visible or mode.current != PlayerInteractionMode.Mode.INVENTORY or mode.arena.mission.is_finished(): return
-	if action == "Close": mode.close_inventory(); return
+	if not visible or not context.permitted(): return
+	if action == "Close": context.close(); return
 	if action in ["Previous", "Next"]:
 		page += -1 if action == "Previous" else 1
 		refresh()
@@ -330,52 +345,10 @@ func perform(action: String) -> void:
 		page = 0
 		refresh()
 		return
-	var active: bool = mode.arena.deployment_started
-	var owner := "player" if active else "prepared"
-	var item := ledger.record(selected_id)
-	var command: String = mode.arena.inventory_interaction.next_command()
-	var amount := int(quantity.value)
-	var result := {"ok": false, "reason": "Select an item and an available action."}
-	if action == "Take All" and is_instance_valid(source):
-		var total := 0
-		var rejected := 0
-		var outcomes := PackedStringArray()
-		for entry in ledger.records(source.container_id):
-			var one: Dictionary = mode.arena.inventory_interaction.take(source, entry.id, entry.quantity, true, mode.arena.inventory_interaction.next_command(), -1, -1)
-			if one.ok: total += int(one.amount)
-			else: rejected += 1
-			outcomes.append("%s: %s" % [ledger.catalog.find(StringName(entry.definition)).display_name, "%d accepted, %d remaining" % [one.get("amount", 0), int(entry.quantity) - int(one.get("amount", 0))] if one.ok else one.get("reason", "Unavailable")])
-		result = {"ok": total > 0, "amount": total, "reason": "%d units accepted; %d stacks could not fit. Remainders stay in the source.\n%s" % [total, rejected, "\n".join(outcomes)]}
-	elif not active:
-		var payload := {"action": action, "id": selected_id, "amount": amount, "revision": player_revision}
-		result = mode.arena.recall.stash.persistent_command(command, payload, func(candidate: InventoryLedger) -> Dictionary:
-			if action == "Cancel loadout": return candidate.transfer_group("prepared", "stash")
-			if item.is_empty() or item.container not in ["stash", "prepared"]: return {"ok": false, "reason": "Select a stash or prepared item."}
-			if action not in ["Split", "Equip / Unequip", "Transfer", "Take fitting"]: return {"ok": false, "reason": "This action is unavailable in preparation."}
-			if action == "Split": return candidate.split(selected_id, amount)
-			if action == "Equip / Unequip": return _equip(candidate, item, owner)
-			return candidate.transfer(selected_id, amount, "prepared" if item.container == "stash" else "stash", action == "Take fitting", "", source_revision if item.container == "stash" else player_revision))
-	elif action in ["Take", "Take fitting"] and is_instance_valid(source):
-		result = mode.arena.inventory_interaction.take(source, selected_id, amount, action == "Take fitting", command, source_revision, player_revision)
-	elif item.get("container") == owner:
-		if action == "Split": result = ledger.split(selected_id, amount, command)
-		elif action == "Equip / Unequip": result = _equip(ledger, item, owner)
-		elif action == "Drop": result = mode.arena.inventory_interaction.drop(selected_id, amount, command)
-		elif action == "Transfer" and is_instance_valid(source): result = mode.arena.inventory_interaction.put(source, selected_id, amount, command, source_revision, player_revision)
+	var result := context.execute(action, selected_id, int(quantity.value), source, source_revision, player_revision)
 	notice.text = str(result.get("reason", ""))
 	if result.ok and notice.text.is_empty(): notice.text = "Accepted %d. Inventory updated." % int(result.get("amount", 0))
 	refresh()
 
 func _equip(authority: InventoryLedger, item: Dictionary, owner: String) -> Dictionary:
-	var definition := authority.catalog.find(StringName(item.definition))
-	if definition.mount.is_empty(): return {"ok": false, "reason": "This item is salvage cargo."}
-	if not definition.compatible_actors.has("robot"): return {"ok": false, "reason": "Raider-only equipment. The robot can carry and extract it, but cannot equip it. Disassembly is not available yet."}
-	if item.container != owner:
-		if item.container != "stash" or owner != "prepared": return {"ok": false, "reason": "Take this equipment into your cargo first."}
-		# Preparation already runs on a durable candidate: replacement is all-or-nothing.
-		for equipped in authority.records(owner):
-			if equipped.slot == "e:" + str(definition.mount):
-				var stored := authority.transfer(equipped.id, 1, "stash")
-				if not stored.ok: return stored
-		return authority.transfer(item.id, 1, owner, false, "", -1, -1, str(definition.mount))
-	return authority.transfer(item.id, 1, owner, false, "", -1, -1, "" if str(item.slot).begins_with("e:") else str(definition.mount))
+	return PreparationService.equip(authority, item, owner)

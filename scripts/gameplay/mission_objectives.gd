@@ -59,18 +59,18 @@ func accepted_defeat(event: Dictionary) -> void:
 	refresh()
 
 
-func evaluated_rows(extracted: bool = false) -> Array[Dictionary]:
+func evaluated_rows(extracted: bool = false, authority: InventoryLedger = null) -> Array[Dictionary]:
 	var rows: Array[Dictionary] = []
 	for definition in _definitions:
 		var progress := 0
 		var carried := 0
 		match definition.kind:
 			MissionObjectiveDefinition.Kind.BANK_MATERIALS:
-				progress = _ledger.banked_materials
-				carried = _ledger.recovered_materials
+				progress = _ledger.banked_materials if authority == null else authority.quantity("stash", true, "world") + authority.quantity("banked", true, "world")
+				carried = _ledger.recovered_materials if authority == null else authority.quantity("player", true, "world")
 			MissionObjectiveDefinition.Kind.BANK_EQUIPMENT:
-				progress = _equipment.count_at(EquipmentLedger.Location.BANKED)
-				carried = _equipment.count_at(EquipmentLedger.Location.RECOVERED)
+				progress = _equipment.count_at(EquipmentLedger.Location.BANKED) if authority == null else authority.equipment_summary(EquipmentLedger.Location.BANKED).x
+				carried = _equipment.count_at(EquipmentLedger.Location.RECOVERED) if authority == null else authority.equipment_summary(EquipmentLedger.Location.RECOVERED).x
 			MissionObjectiveDefinition.Kind.EXTRACT:
 				progress = int(extracted)
 			MissionObjectiveDefinition.Kind.DEFEAT_HOSTILE_RAIDERS:
@@ -96,17 +96,44 @@ func required_satisfied(extraction_confirmed: bool) -> bool:
 	return true
 
 
-func close(mission: MissionRules, duration: float) -> void:
-	if is_closed():
-		return
-	_rows = evaluated_rows(mission.player_extracted)
-	for row in _rows:
-		if row.status != "completed":
-			row.status = "incomplete" if mission.player_extracted else ("expired" if mission.deadline_expired else "failed")
-	var banked_items := _equipment.count_at(EquipmentLedger.Location.BANKED)
-	var forfeited_items := _equipment.count_at(EquipmentLedger.Location.FORFEITED)
-	_result = {"mission_id": str(_mission_id), "mission_name": _mission_name, "deployment_id": _deployment_id, "duration": duration, "extracted": mission.player_extracted, "destroyed": mission.player_destroyed, "expired": mission.deadline_expired, "success": mission.phase == MissionRules.Phase.SUCCEEDED, "reason": mission.reason, "objectives": _rows.duplicate(true), "materials_picked_up": _ledger.recovered_materials + _ledger.banked_materials + _ledger.forfeited_materials, "materials_banked": _ledger.banked_materials, "materials_forfeited": _ledger.forfeited_materials, "equipment_picked_up": _equipment.count_at(EquipmentLedger.Location.RECOVERED) + banked_items + forfeited_items, "equipment_banked": banked_items, "equipment_forfeited": forfeited_items}
+func preview_settlement(authority: InventoryLedger, extracted: bool, mission: MissionRules, duration: float) -> Dictionary:
+	var rows := evaluated_rows(extracted, authority)
+	var required := true
+	for row in rows:
+		if row.required and row.status != "completed": required = false
+	var policy := MissionRules.new()
+	policy.requires_extraction = true
+	if extracted: policy.complete_extraction(required)
+	else:
+		policy.phase = MissionRules.Phase.FAILED
+		policy.player_destroyed = mission.player_destroyed
+		policy.deadline_expired = mission.deadline_expired
+		policy.reason = mission.reason
+	return _build_result(policy, duration, authority)
+
+func _build_result(mission: MissionRules, duration: float, authority: InventoryLedger = null) -> Dictionary:
+	var materials := authority if authority != null else _ledger.inventory
+	var equipment := authority if authority != null else _equipment.inventory
+	var rows := evaluated_rows(mission.player_extracted, authority)
+	for row in rows:
+		if row.status != "completed": row.status = "incomplete" if mission.player_extracted else ("expired" if mission.deadline_expired else "failed")
+	var banked := materials.quantity("stash", true, "world") + materials.quantity("banked", true, "world")
+	var forfeited := materials.quantity("forfeited", true, "world")
+	var banked_items := equipment.equipment_summary(EquipmentLedger.Location.BANKED).x
+	var forfeited_items := equipment.equipment_summary(EquipmentLedger.Location.FORFEITED).x
+	return {"mission_id": str(_mission_id), "mission_name": _mission_name, "deployment_id": _deployment_id, "duration": duration, "extracted": mission.player_extracted, "destroyed": mission.player_destroyed, "expired": mission.deadline_expired, "success": mission.phase == MissionRules.Phase.SUCCEEDED, "reason": mission.reason, "objectives": rows, "materials_picked_up": materials.quantity("player", true, "world") + banked + forfeited, "materials_banked": banked, "materials_forfeited": forfeited, "equipment_picked_up": equipment.equipment_summary(EquipmentLedger.Location.RECOVERED).x + banked_items + forfeited_items, "equipment_banked": banked_items, "equipment_forfeited": forfeited_items}
+
+func publish_committed(result: Dictionary) -> bool:
+	if result.get("deployment_id") != _deployment_id or not result.get("objectives") is Array: return false
+	if is_closed(): return _result == result
+	_result = result.duplicate(true)
+	_rows.assign(result.objectives)
 	changed.emit()
+	return true
+
+func close(mission: MissionRules, duration: float) -> void:
+	if is_closed(): return
+	publish_committed(_build_result(mission, duration))
 
 
 func is_closed() -> bool:

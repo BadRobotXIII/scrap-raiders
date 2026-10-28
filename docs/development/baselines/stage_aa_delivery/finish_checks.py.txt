@@ -1,0 +1,20 @@
+from pathlib import Path
+import subprocess,json,time
+work=Path('.godot/stage_aa_final')
+rows=json.loads((work/'regression/validation.json').read_text())
+for name in ['workshop_test','sanctuary_layout_test']:
+    start=time.time()
+    log=work/'regression'/(name+'.log.txt')
+    with log.open('w',encoding='utf-8') as output:
+        proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://tests/'+name+'.gd','--quit-after','20000'],stdout=output,stderr=subprocess.STDOUT,timeout=180)
+    text=log.read_text(encoding='utf-8')
+    code=proc.returncode
+    if 'SCRIPT ERROR:' in text or 'FAIL:' in text or 'failures: 0' not in text.lower():code=code or 1
+    record={'suite':name,'exit':code,'seconds':round(time.time()-start,2),'issues':[line for line in text.splitlines() if any(term in line for term in ['ERROR:','WARNING:','SCRIPT ERROR:','FAIL:'])],'verification':'Final focused rerun including upgraded app deployment and centered placement camera'}
+    rows=[record if row['suite']==name else row for row in rows]
+    print(name,code,flush=True)
+(work/'regression/validation.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+for label,args in [('editor_import',['--headless','--editor','--quit']),('persistence_metrics',['--headless','--script','res://.godot/stage_aa_final/measure.gd','--quit-after','10000'])]:
+    with (work/(label+'.log.txt')).open('w',encoding='utf-8') as output:
+        proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--path','.']+args,stdout=output,stderr=subprocess.STDOUT,timeout=240)
+    print(label,proc.returncode,flush=True)

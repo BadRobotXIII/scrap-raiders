@@ -24,6 +24,12 @@ var flare_director: FlareDirector
 @export var recall_enabled: bool = false
 @export var stash_path: String = "user://stash.json"
 var recall: RecallController
+var session_profile: PersistentStash
+var session_return: Callable
+var session_attempt: String = ""
+var session_staging: bool = false
+var session_start_authorized: bool = false
+var pending_settlement_result: Dictionary = {}
 @export var ecosystem_enabled: bool = false
 var ecosystem: MachineEcosystem
 var spectator: DeveloperSpectator

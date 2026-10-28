@@ -1,12 +1,18 @@
 # Game code flow and ownership
 
-Repository guide, checked **2026-10-26** against accepted Stage Y and the director-approved Stage Z implementation, pending Checkpoint Z manual review. Stage Z replaces independent material/equipment balances with one common inventory owner. Paths below are relative to the repository root.
+Repository guide, checked **2026-10-27**. Stage Z is accepted, including usability/scroll corrections. **AA-1–AA-5 is implemented for director play-testing; later AA features remain gated.** Stage Z replaces independent material/equipment balances with one common inventory owner. Paths below are relative to the repository root.
 
 ## Start here
 
 ```mermaid
 flowchart TD
-    Project[project.godot] --> Default[asset_recovery_arena.tscn]
+    Project[project.godot] --> App[application.tscn / GameSession]
+    App --> Title[Title screen]
+    Title --> Home[Safe Sanctuary]
+    Title --> Quick[Quick Preparation]
+    Home --> Prep[Shared PreparationService / InventoryContext]
+    Quick --> Prep
+    Prep --> Default[Selected existing MissionArena scene]
     Default --> Controller[mission_arena.gd extends raider_arena.gd]
     Controller --> Config[MissionConfig resource + seeded EncounterSetup]
     Controller --> Briefing[MissionObjectivesView: briefing / Deploy]
@@ -30,14 +36,14 @@ flowchart TD
 
 This is a responsibility/data-flow overview, not a strict call graph. Actors and their signals feed the arena, accounting and rules throughout the deployment. Player failure and world termination are distinct; not every result enters spectating.
 
-The engine entry is [project.godot](../../project.godot): `run/main_scene` points to [asset_recovery_arena.tscn](../../scenes/levels/asset_recovery_arena.tscn). There is no custom `main.gd` entry or persistent gameplay autoload. Godot instantiates the selected scene and calls node lifecycle methods; the arena coordinates runtime systems.
+The engine entry is [project.godot](../../project.godot): `run/main_scene` points to [application.tscn](../../scenes/application/application.tscn). Its GameSession child owns application transitions, one PersistentStash connection and the active inventory binding; there is no gameplay autoload. SceneSlot holds either title, safe Sanctuary, Quick Preparation or an existing arena. The arena continues to coordinate deployment simulation. Explicit standalone arena launches remain supported.
 
 ## Scene hierarchy versus script inheritance
 
 The default scene inherits other scene presets. Those layers supply geometry/markers and configuration overrides; they are **not separate running missions**:
 
 ```text
-asset_recovery_arena.tscn                 default; scenario_index = 16
+asset_recovery_arena.tscn                 compact contract / standalone; scenario_index = 16
 └─ refined_extraction_arena.tscn
    └─ personality_encounters_arena.tscn
       └─ emergent_encounters_arena.tscn
@@ -185,7 +191,7 @@ Existing player/Raider scenes now add `Visuals/ActorVisual`; machine constructio
 | `scripts/components/`, `scripts/presentation/`, `scripts/debug/` | Shared health/reactions, views/effects, developer observation |
 | `resources/` | Mission, personality, weapon and material definitions |
 | `assets/`, `tools/art_pipeline/` | Editable art, runtime exports and authoring tools |
-| `tests/` | 41 active automated regression suites; see the [test index](../../tests/README.md) |
+| `tests/` | 50 active automated regression suites; see the [test index](../../tests/README.md) |
 | `tests/archive/` | Retired-test location; currently no obsolete suites identified |
 | `docs/development/` | Supplied ledgers, approved plans, delivery/acceptance records and evidence |
 | `.godot/` | Ignored engine cache, temporary test saves/probes and generated outputs |
@@ -224,3 +230,53 @@ Normal/expanded missions opt in via MissionConfig. Source generation uses a sepa
 I opens live inventory or safe preparation. PlayerInteractionMode owns device permissions across briefing, gameplay, inventory, developer view, post-death and results. RobotController continues physical movement/gravity/braking while inventory suppresses intents. EquipmentBinding derives weapon availability from a compatible primary mount and current permissions. Other mounts remain data-only in Z. Normal post-death followers cannot transfer items.
 
 Version 2 preserves safe stash/prepared/escrow/quarantine records, stable identities, provenance and a committed sequence/hash chain. Preparation transfers and Deploy debit commit before publication. Recall returns player items durably before success; death/abandon forfeits once. An unresolved crash forfeits escrow once on next attachment. Unknown definitions remain quarantined, oversized migrations refuse expansion, and broken/newer histories block spending. See the [Z report](../development/reports/stage_z_hybrid_inventory.md) for limits, test coverage and manual review.
+
+## Stage AA application and safe preparation branch
+
+```text
+application.tscn
+├─ SceneSlot: one active title / sanctuary / quick preparation / deployment
+├─ Overlay: shared station and preparation interfaces
+└─ GameSession: transitions + one profile connection + dependency injection
+```
+
+`GameSession` opens an isolated-or-real explicitly configured `profile_path` once, attaches a home InventoryLedger and migrates the application profile to v3. `PersistentStash.bind_inventory()` hands the existing verified profile to a fresh staged arena ledger without reopening disk or running abandonment recovery. The outgoing ledger is sealed; it cannot spend the copied checkpoint. Return reconstructs a fresh home ledger from the settled persistent projection. No old world is unsealed.
+
+`Sanctuary` owns only local walking/station/navigation modes, original workshop geometry and player input/camera permissions. `StationRegistry` validates registration, availability, range/LOS and capsule-clear reachable anchors. Physical E and quick Tab navigation invoke the same station entry. The robot scene is inherited from the existing actor, with combat/damage disabled and a sanctuary-only elevated/zoomable camera. There are no mission timers, hostile actors, reinforcement controllers or home upkeep.
+
+`PreparationService` routes inventory, compatible equipment and desired-template commands through the existing durable candidate transaction. `InventoryContext` supplies either safe preparation or the arena's physical loot access to the same InventoryView. Templates contain definition requests, not item ownership; the single `prepared` container reserves actual items. ContractDefinition wraps the two existing normal scenes/configurations; no new objective engine is added. Unknown/missing template entries remain inspectable.
+
+`GameSession.deploy()` stages scene/nav/static-body readiness with participants inert, blocks inventory access during staging, commits the kit as an unstarted attempt, marks it running durably, then calls existing deployment activation. A cancelled/unstarted attempt refunds the same identities; a running crash keeps Z's loss rules. The result builder factors MissionObjectives' existing evaluator, and PersistentStash commits its frozen result under the same receipt as banking/forfeiture. A failed Recall write can be followed by play or death, so only irreversible failure previews are frozen. Post-death observation retains existing permissions and autonomous world continuation until Return.
+
+Normal startup supports v3 metadata and a byte-preserving v2 backup; the same loader still validates historical v2 journal entries and v1 migration. Standalone legacy launch behavior remains available. `snapshot()` remains the legacy material/equipment projection; `home_snapshot()` and `deployment_snapshot()` provide read-only application metadata. PersistentStash alone writes disk. Recipes, functional upgrades, placement and item displays are **not implemented at AA-5**.
+
+In an app-managed deployment, R/summary return routes through GameSession. F-key scenario selection displays a notice rather than silently abandoning cargo; use the explicit standalone diagnostic scenes for those presets. Escape during gameplay opens an abandonment confirmation; cancelling restores input and suppresses held fire. Inventory Escape closes that overlay first. Live world simulation continues while UI is open.
+
+See the [AA-5 delivery and manual checklist](../development/reports/stage_aa_playable_loop.md). That gate was accepted; the AA-9 extension and handoff guides are linked below.
+
+
+## Stage AA completion: workshop, layout and display
+
+AA-5 was accepted and continuation approved. The remainder is implemented for final director review. This section supersedes the early checkpoint's unavailable-feature notes above.
+
+```mermaid
+flowchart TD
+    UI[Physical station or Quick Deploy view] --> WS[WorkshopService / PreparationService]
+    WS --> Preview[Read-only recipe and template previews]
+    WS --> PS[PersistentStash candidate command]
+    PS --> IL[InventoryLedger: atomic transformation or transfer]
+    IL --> Receipt[Exact input identities / outputs / authorized deltas]
+    Receipt --> Commit[One journal commit: inventory + receipt + metadata]
+    Commit --> Live[Install validated live state]
+    Live --> Capacity[Copied player policy from permanent upgrade]
+    Home[Sanctuary placement editor] --> Layout[SanctuaryLayout: bounds / overlap / protected corridors]
+    Layout --> Physics[Standing physics / robot clearance]
+    Physics --> PS
+    Live --> Display[ItemDisplay reads display:workshop identity]
+```
+
+RecipeDefinition explicitly allows the four small recipes and Cargo Rack I's installation cost. InventoryLedger validates recipe debits/credits against original supply and creates output provenance. Persistent projection rebases retained quantities at scene boundaries; durable profile operation receipts retain the transformation record. Fabrication planning accounts for shared/reserved ingredients and validates the resulting kit on a private ledger. It never mutates the live inventory or silently crafts.
+
+UpgradeDefinition derives copied rules for prepared, escrow and deployed player containers after load/binding. Shared player defaults and Raider rules remain unchanged. Layout metadata owns at most eight snapped poses; runtime colliders/visuals reconstruct from it. Preview has no ownership or save effect. One fixed display reserves the original item/stack in `display:workshop`, validates its metadata reference and returns it without merging away its identity. Presentation reads these facts rather than minting another item.
+
+The [extension guide](extension_guide.md), [technical-debt register](technical_debt.md) and [final delivery](../development/reports/stage_aa_sanctuary_gameplay_loop.md) provide exact extension points, tests, measured limits and acceptance checks.

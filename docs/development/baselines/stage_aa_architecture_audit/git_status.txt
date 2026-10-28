@@ -1,0 +1,12 @@
+ M README.md
+ M docs/architecture/game_code_flow.md
+ M docs/development/README.md
+ M docs/development/plans/phase_7_stage_z_hybrid_inventory_plan.md
+ M docs/development/reports/checkpoints.md
+ M docs/development/reports/stage_z_hybrid_inventory.md
+ M docs/development/reports/stage_z_inventory_usability.md
+ M scripts/presentation/inventory_view.gd
+ M tests/inventory_ui_test.gd
+?? docs/development/baselines/stage_aa_architecture_audit/
+?? docs/development/baselines/stage_z_inventory_scroll_fix/
+?? docs/development/ledgers/stage_aa_sanctuary_gameplay_loop.md

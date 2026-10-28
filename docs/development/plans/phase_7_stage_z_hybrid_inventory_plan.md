@@ -1,6 +1,6 @@
 # Stage Z: hybrid inventory, shared ownership and extraction
 
-Prepared **2026-10-26**. **Architecture approved by the director; implemented for Checkpoint Z manual review.** See the [delivery report](../reports/stage_z_hybrid_inventory.md) for final behavior, evidence and limitations. The approved proposal below is retained as the scope record. Stage Y and its refinement are accepted. The [repository audit and fresh baseline](../reports/stage_z_inventory_architecture_audit.md) establish what exists; the [director ledger](../ledgers/phase_7_stage_z_hybrid_inventory.md) and supplied equipment/cargo illustration define the requested scope. This plan proposes actual inventory changes, not an additional AI or mission framework.
+Prepared **2026-10-26**. **Architecture approved and implemented; Checkpoint Z accepted by the director on 2026-10-27, including usability and scroll follow-ups.** See the [delivery report](../reports/stage_z_hybrid_inventory.md) for final behavior, evidence and limitations. The approved proposal below is retained as the scope record. Stage Y and its refinement are accepted. The [repository audit and fresh baseline](../reports/stage_z_inventory_architecture_audit.md) establish what exists; the [director ledger](../ledgers/phase_7_stage_z_hybrid_inventory.md) and supplied equipment/cargo illustration define the requested scope. This plan proposes actual inventory changes, not an additional AI or mission framework.
 
 ## 1. Decision and authority
 

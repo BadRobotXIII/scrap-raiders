@@ -1,0 +1,70 @@
+[
+	{
+		"actor_outcomes": {
+			"1": 2,
+			"2": 2,
+			"3": 2,
+			"4": 2,
+			"5": 2
+		},
+		"admissions": 5,
+		"conserved": true,
+		"contract": "asset_recovery",
+		"duration": 130.899999999996,
+		"maximum_live_raiders": 2,
+		"player_destroyed": true,
+		"seed": 87017,
+		"world_finished": true
+	},
+	{
+		"actor_outcomes": {
+			"1": 2,
+			"2": 2,
+			"3": 2,
+			"4": 2,
+			"5": 2
+		},
+		"admissions": 5,
+		"conserved": true,
+		"contract": "asset_recovery",
+		"duration": 141.066666666671,
+		"maximum_live_raiders": 2,
+		"player_destroyed": true,
+		"seed": 87018,
+		"world_finished": true
+	},
+	{
+		"actor_outcomes": {
+			"1": 2,
+			"2": 2,
+			"3": 2,
+			"4": 2,
+			"5": 2
+		},
+		"admissions": 5,
+		"conserved": true,
+		"contract": "salvage_complex",
+		"duration": 126.233333333327,
+		"maximum_live_raiders": 2,
+		"player_destroyed": true,
+		"seed": 87017,
+		"world_finished": true
+	},
+	{
+		"actor_outcomes": {
+			"1": 2,
+			"2": 2,
+			"3": 2,
+			"4": 2,
+			"5": 2
+		},
+		"admissions": 5,
+		"conserved": true,
+		"contract": "salvage_complex",
+		"duration": 136.966666666668,
+		"maximum_live_raiders": 2,
+		"player_destroyed": true,
+		"seed": 87018,
+		"world_finished": true
+	}
+]

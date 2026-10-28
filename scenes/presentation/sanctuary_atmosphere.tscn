@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="AudioStream" path="res://assets/audio/environment/vent_loop.wav" id="hum"]
+
+[node name="SanctuaryAtmosphere" type="Node3D"]
+
+[node name="QuietVentilation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("hum")
+volume_db = -34.0
+autoplay = true
+
+[node name="WarmWorkLight" type="OmniLight3D" parent="."]
+position = Vector3(-3.5, 2.8, -5)
+light_color = Color(1, 0.8, 0.58, 1)
+light_energy = 0.5
+omni_range = 6.0
+
+[node name="CoolWorkLight" type="OmniLight3D" parent="."]
+position = Vector3(5, 2.8, 0)
+light_color = Color(0.55, 0.8, 0.9, 1)
+light_energy = 0.3
+omni_range = 5.0

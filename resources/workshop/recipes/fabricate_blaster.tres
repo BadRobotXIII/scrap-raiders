@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RecipeDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/recipe_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+recipe_id = "fabricate_blaster"
+display_name = "Fabricate industrial blaster"
+inputs = {"scrap_steel": 1, "copper_winding": 1}
+outputs = {"industrial_blaster": 1}
+disassembly = false

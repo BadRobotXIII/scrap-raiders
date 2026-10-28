@@ -1,0 +1,24 @@
+from pathlib import Path
+import subprocess,json,time,concurrent.futures
+out=Path('.godot/stage_aa_final/regression');out.mkdir(parents=True,exist_ok=True)
+def run(path):
+ start=time.time();name=path.stem
+ with (out/(name+'.log.txt')).open('w',encoding='utf-8') as f:
+  try:
+   p=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://'+path.as_posix(),'--quit-after','20000'],stdout=f,stderr=subprocess.STDOUT,timeout=240)
+   code=p.returncode
+  except subprocess.TimeoutExpired: code=-1
+ text=(out/(name+'.log.txt')).read_text(encoding='utf-8',errors='replace')
+ issues=[x for x in text.splitlines() if 'ERROR:' in x or 'FAIL:' in x or 'WARNING:' in x or 'SCRIPT ERROR:' in x]
+ if 'SCRIPT ERROR:' in text or 'FAIL:' in text: code=code or 1
+ completion=any(('failures' in line.lower() or 'checks complete' in line.lower() or 'tests passed' in line.lower()) and not line.startswith(('PASS:', 'Loading ', 'Completed load')) for line in text.splitlines())
+ if name=='recovery_feedback_test': completion='Notice retained, expired and restored routine feedback without transfers: true' in text
+ if not completion: issues.append('MISSING_COMPLETION_MARKER'); code=code or 1
+ result=dict(suite=name,exit=code,seconds=round(time.time()-start,2),issues=issues)
+ print(name,code,len(issues),flush=True)
+ return result
+results=[]
+with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+ for result in pool.map(run, sorted(Path('tests').glob('*_test.gd'))):
+  results.append(result)
+  (out/'validation.json').write_text(json.dumps(results,indent=2),encoding='utf-8')

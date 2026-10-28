@@ -1,0 +1,45 @@
+extends "res://tests/inventory_world_test.gd"
+
+func run() -> void:
+	var observations: Array = []
+	for contract in ["asset_recovery", "salvage_complex"]:
+		for seed_value in [87017, 87018]:
+			var app: Node = load("res://scenes/application/application.tscn").instantiate()
+			var session: Node = app.get_node("GameSession")
+			session.profile_path = test_directory + "/natural_" + contract + str(seed_value) + ".json"
+			root.add_child(app)
+			current_scene = app
+			session.preparation.select_contract(contract, seed_value)
+			session.quick_prepare()
+			await frames(3)
+			session.deploy()
+			for index in 180:
+				await frames(1)
+				if session.state != session.State.LOADING: break
+			check(session.state == session.State.DEPLOYMENT, "Natural app deployment activates: " + contract + str(seed_value))
+			if session.state != session.State.DEPLOYMENT:
+				print(session.last_error)
+				quit(1)
+				return
+			var arena: Node = session.active_scene
+			var maximum_live := 0
+			for second in 160:
+				var living := 0
+				for actor in arena.raiders.values():
+					if is_instance_valid(actor) and arena.ledger.is_active(actor.raider_id): living += 1
+				maximum_live = maxi(maximum_live, living)
+				if arena.mission.is_world_finished(): break
+				await frames(60)
+			var row := {"contract": contract, "seed": seed_value, "duration": arena.elapsed, "maximum_live_raiders": maximum_live, "admissions": arena.entry_log.size(), "actor_outcomes": arena.ledger.inventory.actor_outcomes.duplicate(true), "player_destroyed": arena.mission.player_destroyed, "world_finished": arena.mission.is_world_finished(), "conserved": arena.ledger.is_conserved() and arena.flare_director.equipment.is_valid()}
+			check(row.conserved and maximum_live <= 5, "Natural bounded population and conservation")
+			session.return_home()
+			await frames(4)
+			check(session.state == session.State.SANCTUARY, "Natural deployment returns to Sanctuary")
+			observations.append(row)
+			app.queue_free()
+			await frames(30)
+	var output := FileAccess.open("res://.godot/stage_aa_final/natural.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(observations, "\t"))
+	output.close()
+	print("AA natural simulation failures: ", failures)
+	quit(0 if failures == 0 else 1)

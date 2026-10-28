@@ -1,0 +1,16 @@
+{
+  "project.godot": "ab083a21f4622c61f6fbb62b18394beb16a61d062681611a4716ebae36f9fba2",
+  "scripts/components/health.gd": "406bb7698e3180d642e2a8fc3b1141579a93d584b94f97c15330e3617252d746",
+  "scripts/gameplay/mission_arena.gd": "d2ba4bc33702e60a85df71e40891900efb4de8b0dbf1f8bbb46b87b4fb786a28",
+  "scripts/gameplay/mission_objectives.gd": "a512639a667c1b5a23d514b317323398b39d6387482bd1e987425510be8bf964",
+  "scripts/gameplay/persistent_stash.gd": "0abdf07bbf498706d5d222385ee17772a870cafc92e8ada00173b8abb9df4b22",
+  "scripts/gameplay/raider_arena.gd": "613e5a5e9acc9160e3c8c0390cfebaef5f9780530696348868bbb544b82eca0d",
+  "scripts/gameplay/recall_controller.gd": "2a4ffe400f14e0db81dbaa2e202dd1f991e4307a76e34a5ea39325aef5f41e96",
+  "scripts/player/player_interaction_mode.gd": "ce63af8a1d52d257267ea02dd77d994cada86401aa6794c7233f5e94b4ae91c0",
+  "scripts/player/robot_camera.gd": "c61e6337991e0f8f40674c07ae596f812c609c80f1a588ab26682dbaae563a93",
+  "scripts/player/robot_input.gd": "e4f71cbc686ab3205169c07ba1fda6929be5b50982188bc992c3a7cf8d4f38cd",
+  "scripts/presentation/inventory_view.gd": "3b6512ffcd83b80debfba4e4173ab7514f6ecd561b7826f3339ebe08977509f7",
+  "tests/asset_pipeline_test.gd": "c0684e6a209c18973e2375c8fef75c62f48afb4bbc84efedcf57776a336798ca",
+  "tests/inventory_persistence_test.gd": "af2025e821a1c2a6208c0a2d4a23815a7ff6a63c360b1dbc9a9e1244d77d8831",
+  "tests/post_death_spectator_test.gd": "e11f92bab4db860f89a859bb50d69f47893fd003a977fd47591d226add508a1d"
+}

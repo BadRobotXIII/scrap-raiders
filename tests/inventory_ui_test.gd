@@ -82,8 +82,51 @@ func run() -> void:
 	check(arena.ledger.is_conserved(), "UI and spectator transitions preserve authoritative inventory totals")
 	arena.queue_free()
 	await frames(20)
+	await scroll_retention()
 	print("Inventory UI failures: ", failures)
 	quit(1 if failures else 0)
+
+func scroll_retention() -> void:
+	var arena := create_arena("scroll")
+	await frames(10)
+	var stocked: Dictionary = arena.recall.stash.persistent_command("scroll_fixture", {}, func(candidate: InventoryLedger) -> Dictionary:
+		for index in 31:
+			var issued := candidate.issue("scroll_blaster_%d" % index, &"industrial_blaster", 1, "stash", "imported")
+			if not issued.ok: return issued
+		return {"ok": true})
+	check(stocked.ok and arena.interaction_mode.open_inventory(), "Isolated scroll fixture opens a multi-page equipment list")
+	var view: InventoryView = arena.interaction_mode.view
+	await frames(4)
+	var scroll: ScrollContainer = view.other_list.get_child(0)
+	scroll.scroll_vertical = 400
+	await frames(2)
+	var offset := scroll.scroll_vertical
+	check(offset > 0, "Equipment list has a real nonzero scroll offset")
+	var button: Button = scroll.get_child(0).get_child(10)
+	await inventory_click(button, false, false)
+	await frames(3)
+	check(not view.selected_id.is_empty() and view.other_list.get_child(0).scroll_vertical == offset, "Clicking equipment below the fold retains the list scroll position")
+	var selected := view.selected_id
+	await inventory_key(KEY_F)
+	await frames(3)
+	check(arena.ledger.inventory.record(selected).slot == "e:primary" and view.other_list.get_child(0).scroll_vertical == offset, "Equipping and deferred ledger refresh retain the scrolled list")
+	view.refresh()
+	view.refresh()
+	await frames(3)
+	check(view.other_list.get_child(0).scroll_vertical == offset, "Repeated refreshes retain the same scroll position")
+	view.perform("Next")
+	await frames(3)
+	check(view.page == 1 and view.other_list.get_child(0).scroll_vertical == 0, "Changing list pages deliberately starts at the top")
+	view.perform("Previous")
+	await frames(3)
+	view.other_list.get_child(0).scroll_vertical = 400
+	arena.interaction_mode.close_inventory()
+	arena.interaction_mode.open_inventory()
+	await frames(3)
+	check(view.other_list.get_child(0).scroll_vertical == 0, "A newly opened inventory starts at the top")
+	check(arena.ledger.inventory.is_valid(), "Scroll and equip interactions preserve inventory invariants")
+	arena.queue_free()
+	await frames(20)
 
 func inventory_key(code: Key) -> void:
 	for pressed in [true, false]:

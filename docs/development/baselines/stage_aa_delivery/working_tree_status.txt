@@ -1,0 +1,83 @@
+ M README.md
+ M docs/architecture/game_code_flow.md
+ M docs/development/README.md
+ M docs/development/plans/phase_7_stage_z_hybrid_inventory_plan.md
+ M docs/development/reports/checkpoints.md
+ M docs/development/reports/stage_z_hybrid_inventory.md
+ M docs/development/reports/stage_z_inventory_usability.md
+ M project.godot
+ M resources/items/raider_rifle.tres
+ M resources/items/worn_response_rifle.tres
+ M scripts/components/health.gd
+ M scripts/gameplay/inventory_ledger.gd
+ M scripts/gameplay/mission_arena.gd
+ M scripts/gameplay/mission_objectives.gd
+ M scripts/gameplay/persistent_stash.gd
+ M scripts/gameplay/raider_arena.gd
+ M scripts/gameplay/recall_controller.gd
+ M scripts/player/player_interaction_mode.gd
+ M scripts/player/robot_camera.gd
+ M scripts/player/robot_input.gd
+ M scripts/presentation/inventory_view.gd
+ M tests/README.md
+ M tests/asset_pipeline_test.gd
+ M tests/inventory_persistence_test.gd
+ M tests/inventory_ui_test.gd
+ M tests/post_death_spectator_test.gd
+?? docs/architecture/extension_guide.md
+?? docs/architecture/technical_debt.md
+?? docs/development/baselines/stage_aa_architecture_audit/
+?? docs/development/baselines/stage_aa_delivery/
+?? docs/development/baselines/stage_aa_playable/
+?? docs/development/baselines/stage_z_inventory_scroll_fix/
+?? docs/development/ledgers/stage_aa_sanctuary_gameplay_loop.md
+?? docs/development/plans/stage_aa_sanctuary_gameplay_loop_plan.md
+?? docs/development/reports/stage_aa_architecture_audit.md
+?? docs/development/reports/stage_aa_playable_loop.md
+?? docs/development/reports/stage_aa_sanctuary_gameplay_loop.md
+?? resources/contracts/
+?? resources/sanctuary/
+?? resources/workshop/
+?? scenes/application/
+?? scenes/presentation/sanctuary_atmosphere.tscn
+?? scenes/sanctuary/
+?? scripts/application/
+?? scripts/gameplay/contract_definition.gd
+?? scripts/gameplay/contract_definition.gd.uid
+?? scripts/gameplay/inventory_context.gd
+?? scripts/gameplay/inventory_context.gd.uid
+?? scripts/gameplay/loadout_template.gd
+?? scripts/gameplay/loadout_template.gd.uid
+?? scripts/gameplay/preparation_service.gd
+?? scripts/gameplay/preparation_service.gd.uid
+?? scripts/gameplay/recipe_definition.gd
+?? scripts/gameplay/recipe_definition.gd.uid
+?? scripts/gameplay/upgrade_definition.gd
+?? scripts/gameplay/upgrade_definition.gd.uid
+?? scripts/gameplay/workshop_service.gd
+?? scripts/gameplay/workshop_service.gd.uid
+?? scripts/presentation/application_theme.gd
+?? scripts/presentation/application_theme.gd.uid
+?? scripts/presentation/display_view.gd
+?? scripts/presentation/display_view.gd.uid
+?? scripts/presentation/loadout_view.gd
+?? scripts/presentation/loadout_view.gd.uid
+?? scripts/presentation/preparation_view.gd
+?? scripts/presentation/preparation_view.gd.uid
+?? scripts/presentation/quick_preparation.gd
+?? scripts/presentation/quick_preparation.gd.uid
+?? scripts/presentation/title_screen.gd
+?? scripts/presentation/title_screen.gd.uid
+?? scripts/presentation/workshop_view.gd
+?? scripts/presentation/workshop_view.gd.uid
+?? scripts/sanctuary/
+?? tests/application_lifecycle_test.gd
+?? tests/application_lifecycle_test.gd.uid
+?? tests/preparation_test.gd
+?? tests/preparation_test.gd.uid
+?? tests/sanctuary_layout_test.gd
+?? tests/sanctuary_layout_test.gd.uid
+?? tests/sanctuary_test.gd
+?? tests/sanctuary_test.gd.uid
+?? tests/workshop_test.gd
+?? tests/workshop_test.gd.uid

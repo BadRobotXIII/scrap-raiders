@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-27",
+  "head": "e5a9ddb",
+  "suite_processes": 47,
+  "nonzero_exits": [],
+  "script_or_assertion_errors": [
+    {
+      "suite": "post_death_spectator_test",
+      "errors": [
+        "SCRIPT ERROR: Invalid access to property or key '1' on a base object of type 'Dictionary[int, Raider]'."
+      ]
+    }
+  ],
+  "audio_warning_suites": 32,
+  "leaked_instance_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "isolated_post_death_repeat": "passed; failures: 0",
+  "graphical_ui": "passed; failures: 0",
+  "editor": "passed; no errors",
+  "ledger_sha256": "548c09fd4966bedcd84e4bdd9cef4fd6de15036519f2994c92f1503359e908da",
+  "runtime_files_modified_during_audit": []
+}

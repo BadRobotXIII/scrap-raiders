@@ -1,0 +1,62 @@
+from pathlib import Path
+import json,re,hashlib,shutil,subprocess
+
+work=Path('.godot/stage_aa_final');out=Path('docs/development/baselines/stage_aa_delivery')
+rows=json.loads((work/'regression/validation.json').read_text())
+assert len(rows)==52 and all(row['exit']==0 for row in rows)
+types=set()
+for row in rows:
+    source=work/'regression'/(row['suite']+'.log.txt')
+    log=source.read_text(encoding='utf-8')
+    assert 'SCRIPT ERROR:' not in log and 'FAIL:' not in log,row['suite']
+    types.update(re.findall(r'Leaked instance: ([^:]+):',log))
+    target=out/'regression'/source.name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)
+assert types <= {'AudioStreamWAV','AudioStreamPlaybackWAV'},types
+shutil.copy2(work/'regression/validation.json',out/'regression/validation.json')
+for label in ['graphical','editor_import','persistence_metrics','natural']:
+    log=(work/(label+'.log.txt')).read_text(encoding='utf-8')
+    assert 'SCRIPT ERROR:' not in log and 'FAIL:' not in log,label
+    if label in ['graphical','editor_import','persistence_metrics']:assert 'ERROR:' not in log and 'WARNING:' not in log,label
+    if label!='editor_import':assert 'failures: 0' in log.lower(),label
+    shutil.copy2(work/(label+'.log.txt'),out/(label+'.log.txt'))
+for name in ['graphical_metrics.json','persistence_metrics.json','natural.json']:
+    shutil.copy2(work/name,out/name)
+for path in work.glob('*.png'):
+    dest=out/'screenshots'/path.name;dest.parent.mkdir(exist_ok=True);shutil.copy2(path,dest)
+for name in ['graphical.gd','natural.gd','measure.gd','regress.py','finish_checks.py','final_targeted.py','last_checks.py','run_graphical.py']:
+    shutil.copy2(work/name,out/(name+'.txt'))
+shutil.copy2(Path('.godot/stage_aa_build/graphical.gd'),out/'graphical_base.gd.txt')
+
+reviewed=json.loads((out/'reviewed_sources.json').read_text())
+before=json.loads(Path('docs/development/baselines/stage_aa_playable/source_manifest.json').read_text())
+changed={path for path,digest in before.items() if hashlib.sha256(Path(path).read_bytes()).hexdigest()!=digest}
+assert changed==set(reviewed)
+assert all(hashlib.sha256(Path(path).read_bytes()).hexdigest()==digest for path,digest in reviewed.items())
+missing=[str(path) for directory in ['scripts','tests'] for path in Path(directory).rglob('*.gd') if not path.with_suffix('.gd.uid').exists()]
+assert not missing,missing
+manifest={}
+for directory in ['scripts','scenes','resources','tests']:
+    for path in Path(directory).rglob('*'):
+        if path.is_file() and path.suffix in ['.gd','.tscn','.tres','.uid']:manifest[path.as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
+manifest['project.godot']=hashlib.sha256(Path('project.godot').read_bytes()).hexdigest()
+(out/'source_manifest.json').write_text(json.dumps(dict(sorted(manifest.items())),indent=2)+'\n',encoding='utf-8')
+(out/'working_tree_status.txt').write_text(subprocess.check_output(['git','status','--short'],text=True),encoding='utf-8')
+assert hashlib.sha256(Path('docs/development/ledgers/stage_aa_sanctuary_gameplay_loop.md').read_bytes()).hexdigest()=='548c09fd4966bedcd84e4bdd9cef4fd6de15036519f2994c92f1503359e908da'
+warnings=sum(bool(row['issues']) for row in rows)
+summary={'date':'2026-10-27','status':'AA-5 accepted; AA-6 through AA-9 implemented for final director review','suites':52,'failed_suites':0,'audio_cleanup_suites':warnings,'leaked_instance_types':sorted(types),'editor_clean':True,'graphical_clean':True,'natural_observations':json.loads((work/'natural.json').read_text()),'graphical_metrics':json.loads((work/'graphical_metrics.json').read_text()),'persistence_metrics':json.loads((work/'persistence_metrics.json').read_text()),'reviewed_existing_source_changes_after_aa5':len(changed),'missing_script_uids':missing,'real_profile_accessed':False,'committed_or_published':False}
+(out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+
+# Current status supersedes the old approval gate while keeping historical reports.
+replacements={
+ 'README.md': [('**AA-1 through AA-5 is ready for mandatory play-testing**; AA-6 onward remains gated.','**AA-1 through AA-5 was accepted and continuation approved**; the remaining approved scope is now implemented for final review.')],
+ 'docs/development/README.md':[('This is **not full Stage AA completion**: stop for director play-testing before AA-6 processing/upgrades and subsequent customization/handoff.','This early checkpoint was accepted; see the final handoff below for the subsequent approved implementation.')],
+ 'docs/architecture/game_code_flow.md':[('All fifty active suites live under `tests/`','All fifty-two active suites live under `tests/`'),('The complete extension/handoff guides belong to AA-9 after the mandatory AA-5 approval gate.','That gate was accepted; the AA-9 extension and handoff guides are linked below.')],
+}
+for name,pairs in replacements.items():
+ p=Path(name);text=p.read_text(encoding='utf-8')
+ for old,new in pairs:text=text.replace(old,new)
+ p.write_text(text,encoding='utf-8')
+p=Path('docs/development/reports/stage_aa_sanctuary_gameplay_loop.md');text=p.read_text(encoding='utf-8')
+text=re.sub(r'Thirty-four final suite logs',str(warnings)+' final suite logs',text)
+p.write_text(text,encoding='utf-8')
+print(json.dumps({'suites':52,'audio_warning_suites':warnings,'old_source_changes':len(changed),'sources':len(manifest),'screenshots':len(list((out/'screenshots').glob('*.png'))),'all_checks':'passed'}))

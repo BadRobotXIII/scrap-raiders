@@ -42,6 +42,7 @@ func transition(next: Mode) -> void:
 	if binding != null: binding.refresh()
 
 func open_inventory(source: WorldLoot = null) -> bool:
+	if arena.session_staging: return false
 	refresh()
 	if current not in [Mode.GAMEPLAY, Mode.BRIEFING]: return false
 	if source != null and not arena.inventory_interaction.player_access(source): return false

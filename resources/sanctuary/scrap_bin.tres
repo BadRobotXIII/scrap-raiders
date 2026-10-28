@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlaceableDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/sanctuary/placeable_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+definition_id = "scrap_bin"
+display_name = "Scrap bin"
+scene_path = "res://scenes/environment/props/scrap_bin.tscn"
+dimensions = Vector3(1, 0.8, 0.8)

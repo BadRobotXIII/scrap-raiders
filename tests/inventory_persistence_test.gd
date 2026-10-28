@@ -98,7 +98,7 @@ func unknown_and_invalid() -> void:
 	var again := player()
 	check(PersistentStash.new(modern_path).attach_inventory(again) and again.records("quarantine")[0].id == item_id, "Quarantined missing references survive another complete save/load cycle")
 	var future := FileAccess.open(modern_path, FileAccess.WRITE)
-	future.store_string(JSON.stringify({"version": 3}))
+	future.store_string(JSON.stringify({"version": 4}))
 	future.close()
 	check(not PersistentStash.new(modern_path).attach_inventory(player()), "A future primary cannot be overwritten from an older journal")
 	var oversized_path := directory + "/oversized.json"

@@ -7,6 +7,7 @@ signal died
 
 @export_range(1.0, 10000.0) var maximum: float = 100.0
 var current: float = 0.0
+@export var damage_enabled: bool = true
 var last_damage_origin: Vector3 = Vector3.INF
 var last_damage_instigator_id: int = 0
 
@@ -16,7 +17,7 @@ func _ready() -> void:
 
 
 func apply_damage(amount: float, origin: Vector3 = Vector3.INF, instigator_id: int = 0) -> bool:
-	if not is_finite(amount) or amount <= 0.0 or current <= 0.0:
+	if not damage_enabled or not is_finite(amount) or amount <= 0.0 or current <= 0.0:
 		return false
 	var applied := minf(amount, current)
 	last_damage_origin = origin

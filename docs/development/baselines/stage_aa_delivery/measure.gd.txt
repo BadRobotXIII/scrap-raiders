@@ -1,0 +1,29 @@
+extends "res://tests/inventory_world_test.gd"
+
+func run() -> void:
+	var results: Array = []
+	for count in [0, 1000]:
+		var profile := PersistentStash.new(test_directory + "/measure" + str(count) + ".json")
+		var ledger := InventoryLedger.new()
+		check(profile.attach_inventory(ledger) and profile.upgrade_application_profile(), "Measurement uses isolated valid profile")
+		var service := PreparationService.new(profile)
+		if count > 0:
+			check(profile.persistent_command("measurement_supply", {}, func(candidate: InventoryLedger) -> Dictionary: return candidate.issue("measurement_supply", &"electronics_kit", count, "stash", "imported")).ok, "Bounded large-profile fixture is finite")
+		var times: Array = []
+		for index in 5:
+			var start := Time.get_ticks_usec()
+			var result := service.metadata({"settings_sample": index}, func(home: Dictionary) -> Dictionary:
+				home.settings.volume = 0.5 + index * 0.05
+				return {"ok": true})
+			times.append((Time.get_ticks_usec() - start) / 1000.0)
+			check(result.ok, "Measured metadata commit retains inventory")
+		var reopened := PersistentStash.new(profile.path)
+		var restored := InventoryLedger.new()
+		var start := Time.get_ticks_usec()
+		check(reopened.attach_inventory(restored) and restored.is_valid() and restored.quantity("stash") == count, "Large-profile journal reload retains exact quantity")
+		results.append({"stash_records": count, "commit_ms": times, "cold_load_ms": (Time.get_ticks_usec() - start) / 1000.0, "profile_bytes": FileAccess.get_file_as_bytes(profile.path).size()})
+	var output := FileAccess.open("res://.godot/stage_aa_final/persistence_metrics.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(results, "\t"))
+	output.close()
+	print("AA persistence measurement failures: ", failures)
+	quit(1 if failures else 0)

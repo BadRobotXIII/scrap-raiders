@@ -1,0 +1,22 @@
+from pathlib import Path
+import subprocess,json,time
+work=Path('.godot/stage_aa_final')
+rows=json.loads((work/'regression/validation.json').read_text())
+for name in ['workshop_test','preparation_test','inventory_persistence_test','asset_pipeline_test']:
+    start=time.time();log=work/'regression'/(name+'.log.txt')
+    with log.open('w',encoding='utf-8') as output:
+        proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://tests/'+name+'.gd','--quit-after','20000'],stdout=output,stderr=subprocess.STDOUT,timeout=180)
+    text=log.read_text(encoding='utf-8');code=proc.returncode
+    if 'SCRIPT ERROR:' in text or 'FAIL:' in text or 'failures: 0' not in text.lower():code=code or 1
+    record={'suite':name,'exit':code,'seconds':round(time.time()-start,2),'issues':[line for line in text.splitlines() if any(term in line for term in ['ERROR:','WARNING:','SCRIPT ERROR:','FAIL:'])],'verification':'Final focused rerun after exact craftability and quarantine handling'}
+    rows=[record if row['suite']==name else row for row in rows]
+    print(name,code,flush=True)
+(work/'regression/validation.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+source=Path('.godot/stage_aa_build/natural.gd').read_text().replace('.godot/stage_aa_build/natural.json','.godot/stage_aa_final/natural.json')
+(work/'natural.gd').write_text(source,encoding='utf-8')
+with (work/'natural.log.txt').open('w',encoding='utf-8') as output:
+    proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://.godot/stage_aa_final/natural.gd','--quit-after','50000'],stdout=output,stderr=subprocess.STDOUT,timeout=240)
+print('Natural final',proc.returncode,flush=True)
+with (work/'editor_import.log.txt').open('w',encoding='utf-8') as output:
+    proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--path','.','--editor','--quit'],stdout=output,stderr=subprocess.STDOUT,timeout=90)
+print('Editor final',proc.returncode,flush=True)

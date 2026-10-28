@@ -21,6 +21,34 @@ const REVIEWED_X_CORRECTIONS: Array[String] = [
 	"scripts/presentation/death_flare.gd",
 	"scenes/levels/asset_recovery_arena.tscn",
 ]
+# Explicit approved AA application/preparation integration changes; historical hashes remain intact.
+const APPROVED_AA_CORRECTIONS: Array[String] = [
+ "project.godot",
+ "scripts/components/health.gd",
+ "scripts/gameplay/mission_arena.gd",
+ "scripts/gameplay/mission_objectives.gd",
+ "scripts/gameplay/persistent_stash.gd",
+ "scripts/gameplay/raider_arena.gd",
+ "scripts/gameplay/recall_controller.gd",
+ "scripts/player/robot_camera.gd",
+ "scripts/player/player_interaction_mode.gd",
+ "scripts/player/robot_input.gd",
+ "scripts/presentation/inventory_view.gd",
+ "tests/asset_pipeline_test.gd",
+ "tests/inventory_persistence_test.gd",
+ "tests/post_death_spectator_test.gd"
+]
+const APPROVED_AA_FINAL_CORRECTIONS: Array[String] = [
+	"resources/items/raider_rifle.tres",
+	"resources/items/worn_response_rifle.tres",
+	"scripts/gameplay/inventory_ledger.gd",
+	"scripts/gameplay/persistent_stash.gd",
+	"scripts/gameplay/preparation_service.gd",
+	"scripts/presentation/loadout_view.gd",
+	"scripts/presentation/preparation_view.gd",
+	"scripts/sanctuary/sanctuary.gd",
+	"tests/asset_pipeline_test.gd",
+]
 const APPROVED_PRESENTATION_PATHS: Array[String] = [
 	"scenes/levels/expanded_salvage_complex.tscn",
 	"scenes/player/robot.tscn",
@@ -58,14 +86,22 @@ func inspect_imports() -> void:
 	# those reviewed changes, including legacy-content fixture configuration,
 	# while retaining every historical geometry/art/source guard elsewhere.
 	var z_sources: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_z_delivery/reviewed_sources.json"))
-	var unchanged := true
+	var aa_sources: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_aa_playable/reviewed_sources.json"))
+	var unchanged := aa_sources.size() == APPROVED_AA_CORRECTIONS.size()
+	var aa_final: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/development/baselines/stage_aa_delivery/reviewed_sources.json"))
+	unchanged = unchanged and aa_final.size() == APPROVED_AA_FINAL_CORRECTIONS.size()
+	for path in APPROVED_AA_FINAL_CORRECTIONS:
+		unchanged = unchanged and aa_final.has(path) and FileAccess.get_sha256("res://" + path) == aa_final.get(path, "")
+	aa_sources.merge(aa_final, true)
+	for path in APPROVED_AA_CORRECTIONS:
+		unchanged = unchanged and aa_sources.has(path) and FileAccess.get_sha256("res://" + path) == aa_sources.get(path, "")
 	for path in z_sources:
-		unchanged = unchanged and FileAccess.get_sha256("res://" + path) == z_sources[path]
+		unchanged = unchanged and FileAccess.get_sha256("res://" + path) == aa_sources.get(path, z_sources[path])
 	for path in accepted:
 		if not APPROVED_PRESENTATION_PATHS.has(path) and not z_sources.has(path):
 			var expected: String = x_sources.get(path, "") if REVIEWED_X_CORRECTIONS.has(path) else (corrected.get(path, "") if REVIEWED_ACTION_CORRECTIONS.has(path) else accepted[path])
-			unchanged = unchanged and not expected.is_empty() and FileAccess.get_sha256("res://" + path) == expected
-	check(unchanged and z_sources.size() == 22 and corrected.size() == REVIEWED_ACTION_CORRECTIONS.size() and x_sources.size() == REVIEWED_X_CORRECTIONS.size(), "Accepted U sources retain exact identities outside explicit V/W seams and the pinned W/X/Z corrections")
+			unchanged = unchanged and not expected.is_empty() and FileAccess.get_sha256("res://" + path) == aa_sources.get(path, expected)
+	check(unchanged and z_sources.size() == 22 and corrected.size() == REVIEWED_ACTION_CORRECTIONS.size() and x_sources.size() == REVIEWED_X_CORRECTIONS.size(), "Accepted U sources retain exact identities outside explicit V/W seams and the pinned W/X/Z/AA corrections")
 	var total := 0
 	for value in manifest.assets:
 		var definition: Dictionary = value

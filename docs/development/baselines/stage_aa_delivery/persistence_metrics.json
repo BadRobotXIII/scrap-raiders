@@ -1,0 +1,26 @@
+[
+	{
+		"cold_load_ms": 7.982,
+		"commit_ms": [
+			35.702,
+			32.694,
+			44.101,
+			42.1,
+			31.24
+		],
+		"profile_bytes": 2296,
+		"stash_records": 0
+	},
+	{
+		"cold_load_ms": 323.848,
+		"commit_ms": [
+			188.562,
+			184.672,
+			180.786,
+			179.866,
+			191.335
+		],
+		"profile_bytes": 192001,
+		"stash_records": 1000
+	}
+]

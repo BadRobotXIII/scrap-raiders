@@ -102,3 +102,16 @@ The director subsequently approved the [Y ground/connection/density amendment](.
 ## Checkpoint Z - implemented, manual review pending (2026-10-26)
 
 The director approved the complete [hybrid inventory architecture](../plans/phase_7_stage_z_hybrid_inventory_plan.md). Shared item ownership, finite typed loot, player/Raider capacity rules, equipment binding, inventory/preparation and durable version-2 loadout settlement are implemented. The [delivery report](stage_z_hybrid_inventory.md) and [evidence](../baselines/stage_z_delivery/README.md) record validation, migration/fault cases, seeded observations, graphical checks, performance and the A–L manual checklist. Stage Y remains accepted. Checkpoint Z awaits director review; no commit/publication or subsequent stage is included.
+
+## Checkpoint Z — accepted (2026-10-27)
+
+The director explicitly confirmed “z approved.” This accepts the [hybrid inventory delivery](stage_z_hybrid_inventory.md), [usability refinement](stage_z_inventory_usability.md) and subsequent scroll-position correction. Original validation and limitations remain recorded; the scroll correction passed parsing, targeted inventory regressions and native Forward+ input checks. Stage AA begins with repository audit and an architecture proposal, followed by a mandatory approval gate before implementation and a separate AA-5 director play-test checkpoint. No Git commit or publication is authorized.
+
+## Checkpoint AA-5 — implemented, director play-testing pending (2026-10-27)
+
+The director approved the AA architecture. AA-1 through AA-5 now provides application entry, a safe navigable Sanctuary, physical/quick station entry, common inventory/preparation/templates, two existing contracts and durable repeated deployment/results/return. The [delivery](stage_aa_playable_loop.md) records regression, crash/fault, native graphical and ordinary profile-write evidence. **Stop at the mandatory early playable checkpoint.** Recipes, functional upgrades, customization/display and final handoff are not implemented or accepted. Stage Z remains accepted. No commit, publication or subsequent-stage authorization is implied.
+
+
+## Checkpoint AA-5 — accepted; final Stage AA ready for review (2026-10-27)
+
+The director approved AA-5 and instructed continuation. AA-6 through AA-9 is implemented and validated. The [final delivery](stage_aa_sanctuary_gameplay_loop.md) records recipes, Cargo Rack I, placement, real display ownership, 52 passing suites, native Forward+ checks, four final seeded runs and measured persistence costs. Final director acceptance is pending; no next-stage work, commit or publication was performed.

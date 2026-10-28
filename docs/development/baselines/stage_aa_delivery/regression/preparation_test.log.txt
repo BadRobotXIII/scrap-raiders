@@ -1,0 +1,117 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/preparation_test.gd remapped: res://tests/preparation_test.gd
+Completed load for: 'res://tests/preparation_test.gd' remapped 'res://tests/preparation_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://resources/items/catalog.tres remapped: res://resources/items/catalog.tres
+Loading resource: res://resources/items/scrap_steel.tres remapped: res://resources/items/scrap_steel.tres
+Loading resource: res://assets/ui/items/scrap_steel.svg remapped: res://assets/ui/items/scrap_steel.svg
+Loading resource: res://.godot/imported/scrap_steel.svg-2aea3bfbac930504562122d7d875e60d.ctex remapped: res://.godot/imported/scrap_steel.svg-2aea3bfbac930504562122d7d875e60d.ctex
+Completed load for: 'res://assets/ui/items/scrap_steel.svg' remapped 'res://assets/ui/items/scrap_steel.svg' at thread -1
+Completed load for: 'res://resources/items/scrap_steel.tres' remapped 'res://resources/items/scrap_steel.tres' at thread -1
+Loading resource: res://resources/items/copper_winding.tres remapped: res://resources/items/copper_winding.tres
+Loading resource: res://assets/ui/items/copper_winding.svg remapped: res://assets/ui/items/copper_winding.svg
+Loading resource: res://.godot/imported/copper_winding.svg-58a0f6544070a8407861a9c7519b91d2.ctex remapped: res://.godot/imported/copper_winding.svg-58a0f6544070a8407861a9c7519b91d2.ctex
+Completed load for: 'res://assets/ui/items/copper_winding.svg' remapped 'res://assets/ui/items/copper_winding.svg' at thread -1
+Completed load for: 'res://resources/items/copper_winding.tres' remapped 'res://resources/items/copper_winding.tres' at thread -1
+Loading resource: res://resources/items/servo_motor.tres remapped: res://resources/items/servo_motor.tres
+Loading resource: res://assets/ui/items/servo_motor.svg remapped: res://assets/ui/items/servo_motor.svg
+Loading resource: res://.godot/imported/servo_motor.svg-27fa477071f35fb3dc89a33982501b85.ctex remapped: res://.godot/imported/servo_motor.svg-27fa477071f35fb3dc89a33982501b85.ctex
+Completed load for: 'res://assets/ui/items/servo_motor.svg' remapped 'res://assets/ui/items/servo_motor.svg' at thread -1
+Completed load for: 'res://resources/items/servo_motor.tres' remapped 'res://resources/items/servo_motor.tres' at thread -1
+Loading resource: res://resources/items/industrial_sensor.tres remapped: res://resources/items/industrial_sensor.tres
+Loading resource: res://assets/ui/items/industrial_sensor.svg remapped: res://assets/ui/items/industrial_sensor.svg
+Loading resource: res://.godot/imported/industrial_sensor.svg-c261397dcabe664657d1c9f842454ce0.ctex remapped: res://.godot/imported/industrial_sensor.svg-c261397dcabe664657d1c9f842454ce0.ctex
+Completed load for: 'res://assets/ui/items/industrial_sensor.svg' remapped 'res://assets/ui/items/industrial_sensor.svg' at thread -1
+Completed load for: 'res://resources/items/industrial_sensor.tres' remapped 'res://resources/items/industrial_sensor.tres' at thread -1
+Loading resource: res://resources/items/control_pcb.tres remapped: res://resources/items/control_pcb.tres
+Loading resource: res://assets/ui/items/control_pcb.svg remapped: res://assets/ui/items/control_pcb.svg
+Loading resource: res://.godot/imported/control_pcb.svg-7ec60bd6a3a713f814e9ecd915076ea9.ctex remapped: res://.godot/imported/control_pcb.svg-7ec60bd6a3a713f814e9ecd915076ea9.ctex
+Completed load for: 'res://assets/ui/items/control_pcb.svg' remapped 'res://assets/ui/items/control_pcb.svg' at thread -1
+Completed load for: 'res://resources/items/control_pcb.tres' remapped 'res://resources/items/control_pcb.tres' at thread -1
+Loading resource: res://resources/items/industrial_blaster.tres remapped: res://resources/items/industrial_blaster.tres
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://assets/ui/items/industrial_blaster.svg remapped: res://assets/ui/items/industrial_blaster.svg
+Loading resource: res://.godot/imported/industrial_blaster.svg-77c9796639101de2e5ecae9825bfd87c.ctex remapped: res://.godot/imported/industrial_blaster.svg-77c9796639101de2e5ecae9825bfd87c.ctex
+Completed load for: 'res://assets/ui/items/industrial_blaster.svg' remapped 'res://assets/ui/items/industrial_blaster.svg' at thread -1
+Completed load for: 'res://resources/items/industrial_blaster.tres' remapped 'res://resources/items/industrial_blaster.tres' at thread -1
+Loading resource: res://resources/items/raider_rifle.tres remapped: res://resources/items/raider_rifle.tres
+Loading resource: res://resources/weapons/raider_rifle.tres remapped: res://resources/weapons/raider_rifle.tres
+Completed load for: 'res://resources/weapons/raider_rifle.tres' remapped 'res://resources/weapons/raider_rifle.tres' at thread -1
+Loading resource: res://assets/ui/items/raider_rifle.svg remapped: res://assets/ui/items/raider_rifle.svg
+Loading resource: res://.godot/imported/raider_rifle.svg-20eaf7d075913e188fc38696e42d5d74.ctex remapped: res://.godot/imported/raider_rifle.svg-20eaf7d075913e188fc38696e42d5d74.ctex
+Completed load for: 'res://assets/ui/items/raider_rifle.svg' remapped 'res://assets/ui/items/raider_rifle.svg' at thread -1
+Completed load for: 'res://resources/items/raider_rifle.tres' remapped 'res://resources/items/raider_rifle.tres' at thread -1
+Loading resource: res://resources/items/worn_response_rifle.tres remapped: res://resources/items/worn_response_rifle.tres
+Loading resource: res://assets/ui/items/worn_response_rifle.svg remapped: res://assets/ui/items/worn_response_rifle.svg
+Loading resource: res://.godot/imported/worn_response_rifle.svg-ecc82261b3b59461a8f7d0dd040120bc.ctex remapped: res://.godot/imported/worn_response_rifle.svg-ecc82261b3b59461a8f7d0dd040120bc.ctex
+Completed load for: 'res://assets/ui/items/worn_response_rifle.svg' remapped 'res://assets/ui/items/worn_response_rifle.svg' at thread -1
+Completed load for: 'res://resources/items/worn_response_rifle.tres' remapped 'res://resources/items/worn_response_rifle.tres' at thread -1
+Loading resource: res://resources/items/electronics_kit.tres remapped: res://resources/items/electronics_kit.tres
+Loading resource: res://assets/ui/items/electronics_kit.svg remapped: res://assets/ui/items/electronics_kit.svg
+Loading resource: res://.godot/imported/electronics_kit.svg-4b0870486d582e80f7f2d370c537fc27.ctex remapped: res://.godot/imported/electronics_kit.svg-4b0870486d582e80f7f2d370c537fc27.ctex
+Completed load for: 'res://assets/ui/items/electronics_kit.svg' remapped 'res://assets/ui/items/electronics_kit.svg' at thread -1
+Completed load for: 'res://resources/items/electronics_kit.tres' remapped 'res://resources/items/electronics_kit.tres' at thread -1
+Loading resource: res://resources/items/armor_plating.tres remapped: res://resources/items/armor_plating.tres
+Loading resource: res://assets/ui/items/armor_plating.svg remapped: res://assets/ui/items/armor_plating.svg
+Loading resource: res://.godot/imported/armor_plating.svg-dbef48e7b0c51a798a28761fc83f5882.ctex remapped: res://.godot/imported/armor_plating.svg-dbef48e7b0c51a798a28761fc83f5882.ctex
+Completed load for: 'res://assets/ui/items/armor_plating.svg' remapped 'res://assets/ui/items/armor_plating.svg' at thread -1
+Completed load for: 'res://resources/items/armor_plating.tres' remapped 'res://resources/items/armor_plating.tres' at thread -1
+Loading resource: res://resources/items/power_module.tres remapped: res://resources/items/power_module.tres
+Loading resource: res://assets/ui/items/power_module.svg remapped: res://assets/ui/items/power_module.svg
+Loading resource: res://.godot/imported/power_module.svg-ab167df997101ad6b69c00ae3b634c88.ctex remapped: res://.godot/imported/power_module.svg-ab167df997101ad6b69c00ae3b634c88.ctex
+Completed load for: 'res://assets/ui/items/power_module.svg' remapped 'res://assets/ui/items/power_module.svg' at thread -1
+Completed load for: 'res://resources/items/power_module.tres' remapped 'res://resources/items/power_module.tres' at thread -1
+Loading resource: res://resources/items/mobility_actuator.tres remapped: res://resources/items/mobility_actuator.tres
+Loading resource: res://assets/ui/items/mobility_actuator.svg remapped: res://assets/ui/items/mobility_actuator.svg
+Loading resource: res://.godot/imported/mobility_actuator.svg-4ff4f818f6e1e742ba397eb69909e7c6.ctex remapped: res://.godot/imported/mobility_actuator.svg-4ff4f818f6e1e742ba397eb69909e7c6.ctex
+Completed load for: 'res://assets/ui/items/mobility_actuator.svg' remapped 'res://assets/ui/items/mobility_actuator.svg' at thread -1
+Completed load for: 'res://resources/items/mobility_actuator.tres' remapped 'res://resources/items/mobility_actuator.tres' at thread -1
+Completed load for: 'res://resources/items/catalog.tres' remapped 'res://resources/items/catalog.tres' at thread -1
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+PASS: Existing profile upgrades through the same durable writer
+PASS: Template preview is non-mutating and recognizes mounted mass
+PASS: Saving desired definitions reserves no additional item instances
+PASS: Template edit, rename, duplicate and delete persist through one service
+PASS: Unknown definitions remain visible with exact missing quantities
+PASS: Unavailable exact kit does not partially consume or rearrange inventory
+PASS: Explicit partial preparation allocates only available exact definitions
+PASS: Human rifle remains incompatible in loadout validation
+PASS: A failed preparation save leaves ownership unchanged
+PASS: Finite isolated template fixtures provide independent mass and slot limits
+PASS: A fully owned overweight template is rejected atomically by actual inventory capacity
+PASS: A fully owned template exceeding cargo slots cannot partially rearrange the kit
+PASS: Application attempt distinguishes committed-but-unstarted escrow
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+PASS: Startup returns an unstarted committed kit with its original identity
+PASS: Template definitions survive reload independently of kit ownership
+PASS: Running boundary is a durable distinct transition
+Loading resource: res://resources/inventory/player.tres remapped: res://resources/inventory/player.tres
+Completed load for: 'res://resources/inventory/player.tres' remapped 'res://resources/inventory/player.tres' at thread -1
+PASS: Running crash retains accepted forfeiture rules without reissuing starter gear
+PASS: Template, kit and crash operations retain common inventory invariants
+Preparation failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

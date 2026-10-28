@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RecipeDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/recipe_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+recipe_id = "cargo_rack_1"
+display_name = "Install Cargo Rack I (16 slots / 45 kg)"
+inputs = {"servo_motor": 2, "control_pcb": 2}
+outputs = {}
+disassembly = false

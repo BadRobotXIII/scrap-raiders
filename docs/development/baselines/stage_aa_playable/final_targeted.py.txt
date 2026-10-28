@@ -1,0 +1,17 @@
+﻿from pathlib import Path
+import subprocess,json,time
+out=Path('.godot/stage_aa_build/regression')
+rows=json.loads((out/'validation.json').read_text(encoding='utf-8'))
+(out/'validation_before_signal_correction.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+for name in ['application_lifecycle_test','preparation_test','sanctuary_test','inventory_ui_test','asset_pipeline_test']:
+ start=time.time()
+ with (out/(name+'.log.txt')).open('w',encoding='utf-8') as f:
+  p=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--fixed-fps','60','--script','res://tests/'+name+'.gd','--quit-after','20000'],stdout=f,stderr=subprocess.STDOUT,timeout=240)
+ log=(out/(name+'.log.txt')).read_text(encoding='utf-8',errors='replace')
+ issues=[line for line in log.splitlines() if any(x in line for x in ['ERROR:','FAIL:','WARNING:','SCRIPT ERROR:'])]
+ code=p.returncode
+ if 'SCRIPT ERROR:' in log or 'FAIL:' in log or 'failures: 0' not in log.lower(): code=code or 1
+ record=dict(suite=name,exit=code,seconds=round(time.time()-start,2),issues=issues,verification='focused rerun after signal correction / capacity coverage')
+ rows=[record if r['suite']==name else r for r in rows]
+ print(name,code,issues,flush=True)
+(out/'validation.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')

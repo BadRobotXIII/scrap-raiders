@@ -1,6 +1,6 @@
 # Stage Z — hybrid inventory, looting and extraction
 
-Delivered **2026-10-26** against the director-approved [architecture plan](../plans/phase_7_stage_z_hybrid_inventory_plan.md). **Checkpoint Z: implementation complete; director manual review pending.** Stage Y remains accepted. No commit, publication or subsequent stage is included.
+Delivered **2026-10-26** against the director-approved [architecture plan](../plans/phase_7_stage_z_hybrid_inventory_plan.md). **Checkpoint Z: accepted by the director on 2026-10-27**, including inventory usability and scroll-position refinements. Stage Y remains accepted. No commit, publication or subsequent stage is included.
 
 The [original ledger](../ledgers/phase_7_stage_z_hybrid_inventory.md), [repository audit](stage_z_inventory_architecture_audit.md) and [pre-implementation evidence](../baselines/stage_z_architecture_audit/README.md) remain historical records. Final logs, probes, measurements, source identities and screenshots are in the [Z delivery evidence](../baselines/stage_z_delivery/README.md).
 
@@ -124,3 +124,7 @@ Stop at **Checkpoint Z** for feedback. No subsequent stage, commit or publicatio
 ## Director usability follow-up
 
 The director requested clearer visual identity, inventory shortcuts and an explanation of unavailable loadout weapons, then confirmed that Raider rifles should remain human-only cargo. See the [inventory usability refinement](stage_z_inventory_usability.md) for the delivered UI changes, validation and future disassembly proposal. Checkpoint Z manual acceptance remains pending.
+
+## Director acceptance — 2026-10-27
+
+The director explicitly confirmed “z approved,” accepting the hybrid inventory delivery and subsequent usability/scroll corrections. Earlier pending-review statements preserve delivery chronology. Stage AA is authorized for repository inspection and an architecture proposal only; implementation awaits separate approval. No commit or publication is authorized.

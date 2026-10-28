@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlaceableDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/sanctuary/placeable_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+definition_id = "pallet_load"
+display_name = "Pallet load"
+scene_path = "res://scenes/environment/props/pallet_load_1m.tscn"
+dimensions = Vector3(1, 1.2, 2)

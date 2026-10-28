@@ -1,0 +1,12 @@
+from pathlib import Path
+import subprocess,json,time
+work=Path('.godot/stage_aa_final');name='item_inventory_test';start=time.time()
+with (work/'regression'/(name+'.log.txt')).open('w',encoding='utf-8') as output:
+    proc=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--headless','--verbose','--path','.','--script','res://tests/'+name+'.gd','--quit-after','20000'],stdout=output,stderr=subprocess.STDOUT,timeout=120)
+text=(work/'regression'/(name+'.log.txt')).read_text(encoding='utf-8');code=proc.returncode
+if 'SCRIPT ERROR:' in text or 'FAIL:' in text or 'failures: 0' not in text.lower():code=code or 1
+record={'suite':name,'exit':code,'seconds':round(time.time()-start,2),'issues':[line for line in text.splitlines() if any(term in line for term in ['ERROR:','WARNING:','SCRIPT ERROR:','FAIL:'])],'verification':'Final default transfer regression after identity-preserving display path'}
+rows=json.loads((work/'regression/validation.json').read_text())
+(work/'regression/validation.json').write_text(json.dumps([record if row['suite']==name else row for row in rows],indent=2),encoding='utf-8')
+print(name,code,flush=True)
+exec((work/'run_graphical.py').read_text())

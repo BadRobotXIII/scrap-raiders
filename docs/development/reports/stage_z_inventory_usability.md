@@ -46,3 +46,13 @@ Development used randomized ignored saves exclusively. The actual player stash w
 Open preparation with I. Store and re-equip a blaster using the mouse and shortcuts; verify rifles remain transferable cargo with a clear restriction. Search a cache, take fitting loot, equip recovered compatible gear and test dropping cargo during a deployment. Enter a quantity without triggering transfer shortcuts. Confirm the controls are comfortable at your usual window size.
 
 Future scope: disassembly, resource-consuming robot/weapon upgrades and richer equipment effects require a subsequent approved stage. This delivery adds no commit, publication or stage advancement.
+
+## Scroll-position follow-up — 2026-10-26
+
+Director review found that selecting equipment reset the storage list to the top. The refresh rebuilt its ScrollContainer. The scroller now persists through selection, equip and ledger updates, preserving its offset; switching pages or opening a new inventory session resets it deliberately. List shrinkage clamps to the available range.
+
+The [scroll-fix evidence](../baselines/stage_z_inventory_scroll_fix/README.md) records clean editor parsing, passing UI and lifecycle regressions, and a clean bounded Forward+ run with actual mouse selection and keyboard equipping below the fold. The lifecycle headless run retains its existing audio shutdown warning. No accounting or compatibility policy changed; Checkpoint Z still awaits director acceptance.
+
+## Acceptance — 2026-10-27
+
+The director accepted Stage Z with “z approved,” including this refinement and the scroll-position correction. Earlier pending-review notes preserve the delivery chronology. See the [checkpoint register](checkpoints.md).

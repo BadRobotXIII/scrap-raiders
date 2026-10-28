@@ -19,8 +19,10 @@ func setup() -> void:
 	process_physics_priority = 40
 	deployment_id = Crypto.new().generate_random_bytes(16).hex_encode()
 	if arena.hybrid_inventory: deployment_id = arena.ledger.inventory.identity_prefix
-	stash = PersistentStash.new(arena.stash_path)
-	if not (stash.attach_inventory(arena.ledger.inventory) if arena.hybrid_inventory else stash.load_stash()):
+	if not arena.session_attempt.is_empty(): deployment_id = arena.session_attempt
+	stash = arena.session_profile if arena.session_profile != null else PersistentStash.new(arena.stash_path)
+	var loaded := stash.bind_inventory(arena.ledger.inventory) if arena.session_profile != null else (stash.attach_inventory(arena.ledger.inventory) if arena.hybrid_inventory else stash.load_stash())
+	if not loaded:
 		save_error = stash.last_error
 	dock = arena.get_node("RecallDock")
 	var mesh := MeshInstance3D.new()
@@ -112,8 +114,14 @@ func complete() -> bool:
 func settle_failure() -> void:
 	cancel()
 	if not arena.mission.player_extracted:
+		if arena.mission.player_destroyed: arena.mission.reason = "Robot destroyed. Carried loot forfeited; stash unchanged."
+		elif arena.mission.deadline_expired: arena.mission.reason = "Recall deadline expired. Carried loot forfeited; stash unchanged."
 		if arena.hybrid_inventory and arena.deployment_started:
-			if not stash.settle_inventory(deployment_id, false): save_error = stash.last_error
+			if not stash.settle_inventory(deployment_id, false):
+				save_error = stash.last_error
+				refresh_stash()
+				return
+			save_error = ""
 		arena.ledger.settle_player(false)
 		arena.flare_director.equipment.settle_player(false)
 		if arena.mission.player_destroyed:

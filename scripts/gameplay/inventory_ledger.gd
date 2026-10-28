@@ -26,6 +26,7 @@ var _containers: Dictionary = {}
 var _issued: Dictionary = {}
 var _initial: Dictionary = {}
 var _commands: Dictionary = {}
+var _transformations: Dictionary = {}
 var _next_id: int = 1
 var _busy: bool = false
 
@@ -135,7 +136,7 @@ func _free_slot(id: String) -> String:
 	return ""
 
 func _snapshot() -> Dictionary:
-	return {"records": _records.duplicate(true), "containers": _containers.duplicate(true), "issued": _issued.duplicate(true), "initial": _initial.duplicate(true), "next_id": _next_id, "actors": actor_outcomes.duplicate(true), "assigned": equipment_assigned.duplicate(true), "resolved": equipment_resolved.duplicate(true), "sources": drop_sources.duplicate(true), "drops": actor_drops.duplicate(true), "next_drop": next_drop_id, "next_equipment": next_equipment_id, "player_settled": player_settled, "identity_prefix": identity_prefix, "commands": _commands.duplicate(true), "serial": serial, "hybrid": hybrid, "player_summary": settled_player_summary.duplicate(true)}
+	return {"records": _records.duplicate(true), "containers": _containers.duplicate(true), "issued": _issued.duplicate(true), "initial": _initial.duplicate(true), "next_id": _next_id, "actors": actor_outcomes.duplicate(true), "assigned": equipment_assigned.duplicate(true), "resolved": equipment_resolved.duplicate(true), "sources": drop_sources.duplicate(true), "drops": actor_drops.duplicate(true), "next_drop": next_drop_id, "next_equipment": next_equipment_id, "player_settled": player_settled, "identity_prefix": identity_prefix, "commands": _commands.duplicate(true), "serial": serial, "hybrid": hybrid, "player_summary": settled_player_summary.duplicate(true), "transformations": _transformations.duplicate(true)}
 
 func _restore(state: Dictionary) -> void:
 	_records = state.records
@@ -153,6 +154,7 @@ func _restore(state: Dictionary) -> void:
 	player_settled = state.player_settled
 	identity_prefix = state.get("identity_prefix", "local")
 	_commands = state.get("commands", {})
+	_transformations = state.get("transformations", {})
 	serial = int(state.get("serial", 0))
 	hybrid = state.get("hybrid", false)
 	settled_player_summary = state.get("player_summary", {}).duplicate(true)
@@ -238,7 +240,7 @@ func _capacity_valid(id: String) -> bool:
 			if definition == null or not policy.mounts.has(mount) or str(definition.mount) != mount or not definition.compatible_actors.has(policy.actor_kind): return false
 	return true
 
-func _move(id: String, requested: int, destination: String, partial: bool, mount: String = "") -> Dictionary:
+func _move(id: String, requested: int, destination: String, partial: bool, mount: String = "", preserve_identity: bool = false) -> Dictionary:
 	if not _records.has(id) or not _containers.has(destination) or requested <= 0: return _reject("Item or destination unavailable.")
 	var source: Dictionary = _records[id]
 	if requested > int(source.quantity): return _reject("Requested quantity is no longer available.")
@@ -264,7 +266,7 @@ func _move(id: String, requested: int, destination: String, partial: bool, mount
 	var room := 0
 	var merge_ids: Array[String] = []
 	for other in records(destination):
-		if other.id != id and str(other.slot).begins_with("c") and other.definition == source.definition and other.cohort == source.cohort and other.metadata == source.metadata:
+		if not preserve_identity and other.id != id and str(other.slot).begins_with("c") and other.definition == source.definition and other.cohort == source.cohort and other.metadata == source.metadata:
 			room += definition.max_stack - int(other.quantity)
 			merge_ids.append(other.id)
 	var available_slots: int = _containers[destination].slots
@@ -304,6 +306,14 @@ func transfer(id: String, amount: int, destination: String, partial: bool = fals
 		if not _containers.has(destination): return _reject("Unknown destination.")
 		if destination_revision >= 0 and destination_revision != int(_containers[destination].revision): return _reject("Destination changed; refresh the selection.")
 		return _move(id, amount, destination, partial, mount), command)
+
+func transfer_display(id: String, destination: String) -> Dictionary:
+	return _transaction("display_transfer", {"id": id, "destination": destination}, func() -> Dictionary:
+		var item := record(id)
+		if item.is_empty() or item.container not in ["stash", "display:workshop"] or destination not in ["stash", "display:workshop"] or item.container == destination: return _reject("Display item is unavailable.")
+		# A displayed stack remains inspectable by its original identity, including
+		# after return beside another merge-compatible stack in available storage.
+		return _move(id, item.quantity, destination, false, "", true))
 
 func split(id: String, amount: int, command: String = "") -> Dictionary:
 	return _transaction("split", {"id": id, "amount": amount}, func() -> Dictionary:
@@ -495,7 +505,26 @@ func is_valid() -> bool:
 			var mount := str(item.slot).trim_prefix("e:")
 			if item.quantity != 1 or not policy.mounts.has(mount) or str(definition.mount) != mount or not definition.compatible_actors.has(policy.actor_kind): return false
 		else: return false
-	if totals != _initial: return false
+	var expected := _initial.duplicate(true)
+	if not _transformations is Dictionary or _transformations.size() > MAX_RECORDS: return false
+	for receipt in _transformations.values():
+		if not receipt is Dictionary or not receipt.get("recipe") is String or not receipt.get("debits") is Dictionary or not receipt.get("credits") is Dictionary: return false
+		var recipe := RecipeDefinition.approved(receipt.recipe)
+		if recipe == null: return false
+		var consumed := {}
+		for key in receipt.debits:
+			var parts: PackedStringArray = str(key).split("|")
+			if parts.size() != 2 or parts[1] not in ["world", "imported"] or not receipt.debits[key] is int or receipt.debits[key] <= 0: return false
+			consumed[parts[0]] = int(consumed.get(parts[0], 0)) + int(receipt.debits[key])
+			expected[key] = int(expected.get(key, 0)) - int(receipt.debits[key])
+		if consumed != recipe.inputs: return false
+		var credits := {}
+		for id in recipe.outputs: credits[str(id) + "|imported"] = int(recipe.outputs[id])
+		if credits != receipt.credits: return false
+		for key in credits: expected[key] = int(expected.get(key, 0)) + int(credits[key])
+	for key in expected.keys():
+		if expected[key] == 0: expected.erase(key)
+	if totals != expected: return false
 	for id in _containers:
 		var policy: Dictionary = _containers[id]
 		if policy.slots >= 0 and int(cargo_counts.get(id, 0)) > policy.slots: return false
@@ -514,6 +543,7 @@ func import_state(data: Dictionary) -> bool:
 	for key in ["records", "containers", "issued", "initial", "actors", "assigned", "resolved", "sources", "drops"]:
 		if not data[key] is Dictionary: return false
 	var decoded: Dictionary = normalize_json(data)
+	if decoded.has("transformations") and not decoded.transformations is Dictionary: return false
 	if decoded.records.size() > MAX_RECORDS or not decoded.player_settled is bool: return false
 	for key in ["next_id", "next_drop", "next_equipment"]:
 		if not decoded[key] is int or decoded[key] < 1 or decoded[key] > 1000000000: return false
@@ -584,7 +614,10 @@ func persistent_state() -> Dictionary:
 	state.sources = {}
 	state.drops = {}
 	state.player_settled = false
-	for id in ["stash", "prepared", "escrow", "quarantine"]:
+	# Persistent projection is a new admission baseline; durable profile operation
+	# receipts retain transformation provenance while world-only cohorts are retired.
+	state.transformations = {}
+	for id in ["stash", "prepared", "escrow", "quarantine", "display:workshop"]:
 		if _containers.has(id): state.containers[id] = _containers[id].duplicate(true)
 	for item in _records.values():
 		if not state.containers.has(item.container): continue
@@ -599,7 +632,7 @@ func admit_persistent(data: Dictionary) -> bool:
 	if not candidate.import_state(decoded): return false
 	var result := _transaction("admit_persistent", {}, func() -> Dictionary:
 		for id in decoded.containers:
-			if id not in ["stash", "prepared", "escrow", "quarantine"]: return _reject("Invalid persistent location.")
+			if id not in ["stash", "prepared", "escrow", "quarantine", "display:workshop"]: return _reject("Invalid persistent location.")
 			if not _containers.has(id): _containers[id] = decoded.containers[id].duplicate(true)
 		for item in decoded.records.values():
 			if _records.has(item.id): return _reject("Duplicate persistent identity.")
@@ -616,6 +649,40 @@ func admit_persistent(data: Dictionary) -> bool:
 
 func seal_world() -> void:
 	sealed = true
+
+func transform_recipe(recipe_id: String, command: String) -> Dictionary:
+	return _transaction("workshop", {"recipe": recipe_id}, func() -> Dictionary:
+		var recipe := RecipeDefinition.approved(recipe_id)
+		if recipe == null or not recipe.valid(catalog) or command.is_empty(): return _reject("Unapproved recipe.")
+		if not _containers.has("stash") or _containers.stash.closed: return _reject("Stash is closed.")
+		var debits := {}
+		var inputs: Array = []
+		for definition in recipe.inputs:
+			var remaining: int = recipe.inputs[definition]
+			for item in records("stash"):
+				if item.definition != definition or not str(item.slot).begins_with("c"): continue
+				var count := mini(remaining, int(item.quantity))
+				var key := "%s|%s" % [item.definition, item.cohort]
+				debits[key] = int(debits.get(key, 0)) + count
+				inputs.append({"id": item.id, "definition": item.definition, "quantity": count})
+				_records[item.id].quantity -= count
+				if _records[item.id].quantity == 0: _records.erase(item.id)
+				remaining -= count
+				if remaining == 0: break
+			if remaining > 0: return _reject("Missing available stash ingredients: " + str(definition))
+		var outputs: Array = []
+		var credits := {}
+		for definition in recipe.outputs:
+			var amount: int = recipe.outputs[definition]
+			var baseline := _initial.duplicate(true)
+			var issued := _issue_records("workshop:" + command + ":" + str(definition), StringName(definition), amount, "stash", "imported", {"recipe": recipe_id, "operation": command})
+			_initial = baseline
+			if not issued.ok: return issued
+			outputs.append_array(issued.ids)
+			credits[str(definition) + "|imported"] = amount
+		var receipt := {"recipe": recipe_id, "inputs": inputs, "outputs": outputs, "debits": debits, "credits": credits}
+		_transformations[command] = receipt
+		return {"ok": true, "reason": "Workshop operation completed.", "transformation": receipt}, command)
 
 static func quarantine_missing(data: Dictionary, definitions: ItemCatalog) -> Dictionary:
 	var state: Dictionary = normalize_json(data).duplicate(true)

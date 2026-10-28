@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-27",
+  "status": "AA-5 accepted; AA-6 through AA-9 implemented for final director review",
+  "suites": 52,
+  "failed_suites": 0,
+  "audio_cleanup_suites": 34,
+  "leaked_instance_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "editor_clean": true,
+  "graphical_clean": true,
+  "natural_observations": [
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "asset_recovery",
+      "duration": 130.899999999996,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87017,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "asset_recovery",
+      "duration": 141.066666666671,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87018,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "salvage_complex",
+      "duration": 126.233333333327,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87017,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "salvage_complex",
+      "duration": 136.966666666668,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87018,
+      "world_finished": true
+    }
+  ],
+  "graphical_metrics": {
+    "home_draw_calls": 196.0,
+    "home_primitives": 29654.0,
+    "nodes": 149.0
+  },
+  "persistence_metrics": [
+    {
+      "cold_load_ms": 7.982,
+      "commit_ms": [
+        35.702,
+        32.694,
+        44.101,
+        42.1,
+        31.24
+      ],
+      "profile_bytes": 2296,
+      "stash_records": 0
+    },
+    {
+      "cold_load_ms": 323.848,
+      "commit_ms": [
+        188.562,
+        184.672,
+        180.786,
+        179.866,
+        191.335
+      ],
+      "profile_bytes": 192001,
+      "stash_records": 1000
+    }
+  ],
+  "reviewed_existing_source_changes_after_aa5": 9,
+  "missing_script_uids": [],
+  "real_profile_accessed": false,
+  "committed_or_published": false
+}

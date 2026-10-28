@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ContractDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/gameplay/contract_definition.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/missions/expanded_asset_recovery.tres" id="2"]
+[resource]
+script = ExtResource("1")
+contract_id = &"salvage_complex"
+display_name = "Operation: Salvage Complex"
+scene_path = "res://scenes/levels/expanded_salvage_complex.tscn"
+mission = ExtResource("2")

@@ -53,8 +53,16 @@ func create_arena(label: String) -> Node3D:
 	root.add_child(arena)
 	current_scene = arena
 	freeze(arena)
-	await frames(10)
-	arena.process_entries()
+	# Entry admission depends on navigation/static collision readiness, not a fixed
+	# frame count. Bound the wait and report a fixture failure before actor access.
+	for attempt in 120:
+		await frames(1)
+		arena.process_entries()
+		if arena.raiders.has(1): break
+	check(arena.raiders.has(1), "Spectator fixture admits its initial Raider within the readiness bound")
+	if not arena.raiders.has(1):
+		quit(1)
+		return arena
 	freeze(arena)
 	return arena
 

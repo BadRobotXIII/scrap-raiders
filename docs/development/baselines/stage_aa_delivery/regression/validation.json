@@ -1,0 +1,422 @@
+[
+  {
+    "suite": "action_commitment_test",
+    "exit": 0,
+    "seconds": 2.22,
+    "issues": [
+      "WARNING: 25 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 9 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "actor_import_test",
+    "exit": 0,
+    "seconds": 0.63,
+    "issues": []
+  },
+  {
+    "suite": "actor_visual_test",
+    "exit": 0,
+    "seconds": 2.11,
+    "issues": []
+  },
+  {
+    "suite": "application_lifecycle_test",
+    "exit": 0,
+    "seconds": 2.88,
+    "issues": []
+  },
+  {
+    "suite": "asset_pipeline_test",
+    "exit": 0,
+    "seconds": 1.91,
+    "issues": [
+      "WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 11 resources still in use at exit."
+    ],
+    "verification": "Final focused rerun after exact craftability and quarantine handling"
+  },
+  {
+    "suite": "audio_lifecycle_test",
+    "exit": 0,
+    "seconds": 1.65,
+    "issues": []
+  },
+  {
+    "suite": "awareness_test",
+    "exit": 0,
+    "seconds": 1.11,
+    "issues": []
+  },
+  {
+    "suite": "betrayal_test",
+    "exit": 0,
+    "seconds": 1.63,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "combat_movement_test",
+    "exit": 0,
+    "seconds": 1.45,
+    "issues": []
+  },
+  {
+    "suite": "combat_presentation_test",
+    "exit": 0,
+    "seconds": 1.27,
+    "issues": [
+      "WARNING: 27 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 8 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "combat_stability_test",
+    "exit": 0,
+    "seconds": 1.19,
+    "issues": [
+      "WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 8 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "combat_test",
+    "exit": 0,
+    "seconds": 2.83,
+    "issues": [
+      "WARNING: 26 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 5 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "deployment_flow_test",
+    "exit": 0,
+    "seconds": 4.14,
+    "issues": []
+  },
+  {
+    "suite": "destruction_test",
+    "exit": 0,
+    "seconds": 1.1,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "dynamic_ai_test",
+    "exit": 0,
+    "seconds": 2.13,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "encounter_generation_test",
+    "exit": 0,
+    "seconds": 3.8,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "environment_refinement_test",
+    "exit": 0,
+    "seconds": 2.4,
+    "issues": [
+      "WARNING: 29 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 11 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "expanded_world_test",
+    "exit": 0,
+    "seconds": 4.44,
+    "issues": []
+  },
+  {
+    "suite": "extraction_test",
+    "exit": 0,
+    "seconds": 1.73,
+    "issues": [
+      "WARNING: 19 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 7 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "flare_loot_test",
+    "exit": 0,
+    "seconds": 1.34,
+    "issues": [
+      "WARNING: 10 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 5 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "gameplay_integration_test",
+    "exit": 0,
+    "seconds": 3.7,
+    "issues": []
+  },
+  {
+    "suite": "hostile_combat_test",
+    "exit": 0,
+    "seconds": 1.47,
+    "issues": [
+      "WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 3 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "integrated_extraction_test",
+    "exit": 0,
+    "seconds": 2.57,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "inventory_lifecycle_test",
+    "exit": 0,
+    "seconds": 1.75,
+    "issues": [
+      "WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 7 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "inventory_persistence_test",
+    "exit": 0,
+    "seconds": 1.26,
+    "issues": [],
+    "verification": "Final focused rerun after exact craftability and quarantine handling"
+  },
+  {
+    "suite": "inventory_raider_test",
+    "exit": 0,
+    "seconds": 1.66,
+    "issues": [
+      "WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 9 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "inventory_ui_test",
+    "exit": 0,
+    "seconds": 1.94,
+    "issues": []
+  },
+  {
+    "suite": "inventory_world_test",
+    "exit": 0,
+    "seconds": 1.56,
+    "issues": [
+      "WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 7 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "item_inventory_test",
+    "exit": 0,
+    "seconds": 0.42,
+    "issues": [],
+    "verification": "Final default transfer regression after identity-preserving display path"
+  },
+  {
+    "suite": "machine_ecosystem_test",
+    "exit": 0,
+    "seconds": 1.27,
+    "issues": [
+      "WARNING: 24 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 11 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "mission_objectives_test",
+    "exit": 0,
+    "seconds": 0.43,
+    "issues": []
+  },
+  {
+    "suite": "mission_test",
+    "exit": 0,
+    "seconds": 1.09,
+    "issues": [
+      "WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "mission_variety_test",
+    "exit": 0,
+    "seconds": 2.97,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "multi_raider_test",
+    "exit": 0,
+    "seconds": 1.83,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "personality_combat_test",
+    "exit": 0,
+    "seconds": 1.63,
+    "issues": [
+      "WARNING: 9 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 4 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "personality_integration_test",
+    "exit": 0,
+    "seconds": 4.25,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "post_death_spectator_test",
+    "exit": 0,
+    "seconds": 2.21,
+    "issues": [
+      "WARNING: 21 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 8 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "preparation_test",
+    "exit": 0,
+    "seconds": 1.09,
+    "issues": [],
+    "verification": "Final focused rerun after exact craftability and quarantine handling"
+  },
+  {
+    "suite": "presentation_integrity_test",
+    "exit": 0,
+    "seconds": 26.1,
+    "issues": []
+  },
+  {
+    "suite": "raider_decision_stability_test",
+    "exit": 0,
+    "seconds": 1.9,
+    "issues": []
+  },
+  {
+    "suite": "raider_test",
+    "exit": 0,
+    "seconds": 1.44,
+    "issues": [
+      "WARNING: 24 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 6 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "recovery_feedback_test",
+    "exit": 0,
+    "seconds": 1.16,
+    "issues": []
+  },
+  {
+    "suite": "refined_extraction_test",
+    "exit": 0,
+    "seconds": 1.74,
+    "issues": [
+      "WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 4 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "robot_controller_test",
+    "exit": 0,
+    "seconds": 1.09,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "sanctuary_layout_test",
+    "exit": 0,
+    "seconds": 1.19,
+    "issues": [
+      "WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ],
+    "verification": "Final focused rerun including upgraded app deployment and centered placement camera"
+  },
+  {
+    "suite": "sanctuary_test",
+    "exit": 0,
+    "seconds": 1.27,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "social_cooperation_test",
+    "exit": 0,
+    "seconds": 1.72,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "social_rivalry_test",
+    "exit": 0,
+    "seconds": 1.48,
+    "issues": [
+      "WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 6 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "spectator_test",
+    "exit": 0,
+    "seconds": 1.36,
+    "issues": [
+      "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 2 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "traversal_test",
+    "exit": 0,
+    "seconds": 2.28,
+    "issues": [
+      "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 1 resources still in use at exit."
+    ]
+  },
+  {
+    "suite": "workshop_test",
+    "exit": 0,
+    "seconds": 3.07,
+    "issues": [],
+    "verification": "Final focused rerun including upgraded app deployment and centered placement camera"
+  },
+  {
+    "suite": "world_population_test",
+    "exit": 0,
+    "seconds": 2.74,
+    "issues": [
+      "WARNING: 12 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+      "ERROR: 6 resources still in use at exit."
+    ]
+  }
+]

@@ -7,6 +7,7 @@ var last_error: String = ""
 var used_backup: bool = false
 var _state: Dictionary = {}
 var inventory: InventoryLedger
+var result_builder: Callable
 var cache_warning: String = ""
 var _journal_hash: String = ""
 # Deterministic fault seams used by isolated persistence tests, never game UI.
@@ -20,7 +21,7 @@ func _init(save_path: String) -> void:
 
 
 func snapshot() -> Dictionary:
-	if _state.get("version") == 2:
+	if int(_state.get("version", 1)) >= 2:
 		return _legacy_projection()
 	return _state.duplicate(true)
 
@@ -127,7 +128,7 @@ func commit_rewards(token: String, materials: int, items: Array[Dictionary]) -> 
 		return false
 	if not load_stash():
 		return false
-	if _state.get("version") == 2:
+	if int(_state.get("version", 1)) >= 2:
 		return _commit_legacy_v2(token, materials, items)
 	var reward := {"materials": materials, "equipment": {}}
 	for item in items:
@@ -186,17 +187,33 @@ func _legacy_projection() -> Dictionary:
 	return result
 
 func _profile_valid(data: Variant) -> bool:
-	if not data is Dictionary or data.get("version") != 2 or not data.get("profile_id") is String or not _token_valid(data.profile_id): return false
+	if not data is Dictionary or data.get("version") not in [2, 3] or not data.get("profile_id") is String or not _token_valid(data.profile_id): return false
+	if data.version == 3 and not home_valid(data.get("home")): return false
 	if not _natural(data.get("sequence")) or not data.get("inventory") is Dictionary or not data.get("operations") is Dictionary or not data.get("deployments") is Dictionary or not data.get("legacy_receipts") is Dictionary: return false
 	var check := InventoryLedger.new()
+	if data.version == 3:
+		var displayed: Dictionary = data.inventory.get("records", {})
+		var assigned: Dictionary = data.home.display_assignments
+		var display_ids: Array = []
+		for item in displayed.values():
+			if item.get("container") == "display:workshop": display_ids.append(item.get("id"))
+		if display_ids.size() > 1 or (assigned.is_empty() != display_ids.is_empty()): return false
+		if not display_ids.is_empty() and assigned.get("workshop") != display_ids[0]: return false
 	for deployment in data.deployments.values():
-		if not deployment is Dictionary or deployment.get("status") not in ["active", "failed", "extracted"] or not deployment.get("imports") is Array or not deployment.get("returns") is Array: return false
+		if not deployment is Dictionary or deployment.get("status") not in ["active", "failed", "extracted", "cancelled"] or not deployment.get("imports") is Array or not deployment.get("returns") is Array: return false
+		if data.version == 3 and deployment.get("phase", "running") not in ["committed", "running", "settled"]: return false
+		if data.version == 3 and deployment.status == "active" and deployment.get("phase", "running") == "settled": return false
+		if deployment.has("result"):
+			var result: Variant = deployment.result
+			if not result is Dictionary or not result.get("deployment_id") is String or not result.get("success") is bool or not result.get("extracted") is bool or not result.get("objectives") is Array: return false
+			if not result.get("duration") is float and not result.get("duration") is int: return false
+			if not is_finite(float(result.duration)) or result.duration < 0: return false
 	return check.import_state(InventoryLedger.quarantine_missing(data.inventory, check.catalog))
 
 func _load_journal() -> bool:
 	if FileAccess.file_exists(path):
 		var version_parser := JSON.new()
-		if version_parser.parse(FileAccess.get_file_as_string(path)) == OK and version_parser.data is Dictionary and int(version_parser.data.get("version", 0)) > 2:
+		if version_parser.parse(FileAccess.get_file_as_string(path)) == OK and version_parser.data is Dictionary and int(version_parser.data.get("version", 0)) > 3:
 			last_error = "Unsupported newer inventory profile. Existing files preserved."
 			return false
 	var directory := path + ".journal"
@@ -241,6 +258,9 @@ func _load_journal() -> bool:
 func _commit_profile(candidate: Dictionary, operation: String, payload_hash: String) -> bool:
 	last_error = ""
 	cache_warning = ""
+	# Result durations and preferences may contain finite fractional values. Compare
+	# the same canonical JSON representation that will be read from the journal.
+	candidate = InventoryLedger.normalize_json(JSON.parse_string(JSON.stringify(candidate)))
 	if not _profile_valid(candidate):
 		last_error = "Candidate inventory profile is invalid."
 		return false
@@ -313,13 +333,16 @@ func attach_inventory(authority: InventoryLedger) -> bool:
 	if restored != _state.inventory:
 		var candidate := _state.duplicate(true)
 		candidate.inventory = restored
+		if candidate.version == 3 and not candidate.home.display_assignments.is_empty():
+			var displayed: Dictionary = restored.records.get(candidate.home.display_assignments.get("workshop", ""), {})
+			if displayed.get("container") != "display:workshop": candidate.home.display_assignments = {}
 		if not _commit_profile(candidate, "quarantine_missing:%d" % int(candidate.sequence), JSON.stringify(restored).sha256_text()): return false
 	if not _recover_abandoned(): return false
 	if not authority.admit_persistent(_state.inventory):
 		last_error = "Persistent inventory could not be admitted without duplicate ownership."
 		return false
 	inventory = authority
-	return true
+	return apply_player_rules()
 
 func _migrate_v1() -> bool:
 	var old := _state.duplicate(true)
@@ -366,7 +389,7 @@ func _candidate_ledger() -> InventoryLedger:
 	if not candidate.import_state(state): return null
 	return candidate
 
-func persistent_command(operation: String, payload: Dictionary, action: Callable) -> Dictionary:
+func persistent_command(operation: String, payload: Dictionary, action: Callable, metadata_action: Callable = Callable()) -> Dictionary:
 	if inventory == null: return {"ok": false, "reason": "Storage is unavailable."}
 	for deployment in _state.deployments.values():
 		if deployment.status == "active": return {"ok": false, "reason": "Stash transfers are available only during preparation."}
@@ -379,6 +402,10 @@ func persistent_command(operation: String, payload: Dictionary, action: Callable
 	if not result.get("ok", false): return result
 	var profile := _state.duplicate(true)
 	profile.inventory = candidate.persistent_state()
+	if metadata_action.is_valid():
+		if profile.version != 3: return {"ok": false, "reason": "Application profile is unavailable."}
+		var metadata_result: Dictionary = metadata_action.call(profile.home)
+		if not metadata_result.get("ok", false): return metadata_result
 	profile.operations[operation] = {"hash": digest, "result": result.duplicate(true)}
 	if not _commit_profile(profile, operation, digest): return {"ok": false, "reason": last_error}
 	if not inventory.install_state(candidate.export_state(), "persistent_command"):
@@ -386,7 +413,7 @@ func persistent_command(operation: String, payload: Dictionary, action: Callable
 		return {"ok": false, "reason": last_error}
 	return result
 
-func begin_inventory_deployment(token: String) -> bool:
+func begin_inventory_deployment(token: String, staged: bool = false, contract: String = "", seed_value: int = -1) -> bool:
 	if inventory == null or not _token_valid(token): return false
 	if _state.deployments.has(token): return false
 	for deployment in _state.deployments.values():
@@ -400,6 +427,8 @@ func begin_inventory_deployment(token: String) -> bool:
 	var profile := _state.duplicate(true)
 	profile.inventory = candidate.persistent_state()
 	profile.deployments[token] = {"status": "active", "imports": candidate.records("escrow"), "returns": []}
+	if profile.version == 3:
+		profile.deployments[token].merge({"phase": "committed" if staged else "running", "contract": contract, "seed": seed_value})
 	if not _commit_profile(profile, "deploy:" + token, JSON.stringify(profile.deployments[token]).sha256_text()): return false
 	if not inventory.install_state(candidate.export_state(), "deployment_debit"): return false
 	return inventory.transfer_group("escrow", "player", "", true).ok
@@ -417,12 +446,21 @@ func settle_inventory(token: String, extracted: bool) -> bool:
 	profile.deployments[token].status = "extracted" if extracted else "failed"
 	profile.deployments[token].returns = returned if extracted else []
 	profile.deployments[token]["lost"] = [] if extracted else returned
+	if profile.version == 3:
+		profile.deployments[token].phase = "settled"
+		if result_builder.is_valid():
+			var result: Dictionary = result_builder.call(candidate, extracted)
+			if result.is_empty() or result.get("deployment_id") != token: return false
+			profile.deployments[token]["result"] = result
 	if not _commit_profile(profile, "settle:" + token, JSON.stringify(profile.deployments[token]).sha256_text()): return false
 	return inventory.install_state(candidate.export_state(), "deployment_settlement")
 
 func _recover_abandoned() -> bool:
 	for token in _state.deployments:
 		if _state.deployments[token].status != "active": continue
+		if _state.deployments[token].get("phase", "running") == "committed":
+			if not cancel_unstarted(str(token)): return false
+			continue
 		var ledger := InventoryLedger.new()
 		if not ledger.import_state(_state.inventory): return false
 		ledger.ensure_container("forfeited", "forfeited")
@@ -430,6 +468,7 @@ func _recover_abandoned() -> bool:
 		var candidate := _state.duplicate(true)
 		candidate.inventory = ledger.persistent_state()
 		candidate.deployments[token].status = "failed"
+		if candidate.version == 3: candidate.deployments[token].phase = "settled"
 		candidate.deployments[token]["lost"] = candidate.deployments[token].imports
 		if not _commit_profile(candidate, "recover-abandoned:" + str(token), str(token)): return false
 	return true
@@ -453,3 +492,104 @@ func _commit_legacy_v2(token: String, materials: int, items: Array[Dictionary]) 
 	profile.inventory = candidate.persistent_state()
 	profile.legacy_receipts[token] = reward
 	return _commit_profile(profile, "legacy_reward:" + token, JSON.stringify(reward).sha256_text())
+
+static func home_valid(value: Variant) -> bool:
+	if not value is Dictionary or not value.get("templates") is Dictionary or value.templates.size() > 32: return false
+	if value.get("contract") not in ["asset_recovery", "salvage_complex"] or not value.get("seed") is int or value.seed < 0 or value.seed > 2147483647: return false
+	if not value.get("settings") is Dictionary or not value.settings.get("volume") is float and not value.settings.get("volume") is int: return false
+	if not is_finite(float(value.settings.volume)) or value.settings.volume < 0 or value.settings.volume > 1 or not value.settings.get("fullscreen") is bool: return false
+	if not value.get("station_unlocks") is Array or value.station_unlocks.size() > 6: return false
+	for station in value.station_unlocks:
+		if station not in ["storage", "maintenance", "fabrication", "disassembly", "contracts", "deployment"]: return false
+	for id in value.templates:
+		if not id is String or id.is_empty() or id.length() > 64 or not LoadoutTemplate.valid(value.templates[id]): return false
+	if not value.get("upgrades") is Dictionary or value.upgrades.size() > 1: return false
+	for id in value.upgrades:
+		if id != "cargo_rack_1" or not value.upgrades[id] is bool or value.upgrades[id] != true: return false
+	if not SanctuaryLayout.valid(value.get("layout")): return false
+	var assignments: Variant = value.get("display_assignments")
+	if not assignments is Dictionary or assignments.size() > 1: return false
+	for id in assignments:
+		if id != "workshop" or not assignments[id] is String or assignments[id].is_empty() or assignments[id].length() > 256: return false
+	return true
+
+func home_snapshot() -> Dictionary:
+	return _state.get("home", {}).duplicate(true)
+
+func apply_player_rules() -> bool:
+	var rules := UpgradeDefinition.player_rules(home_snapshot())
+	for id in ["player", "prepared", "escrow"]:
+		inventory.ensure_container(id, id, rules)
+		if not inventory.configure_container(id, rules):
+			last_error = "Stored equipment exceeds its validated player policy."
+			return false
+	return true
+
+func deployment_snapshot(token: String) -> Dictionary:
+	return _state.get("deployments", {}).get(token, {}).duplicate(true)
+
+func upgrade_application_profile() -> bool:
+	if _state.get("version") == 3: return true
+	if _state.get("version") != 2 or inventory == null: return false
+	if FileAccess.file_exists(path):
+		var backup := path + ".v2.bak"
+		if not FileAccess.file_exists(backup) and DirAccess.copy_absolute(ProjectSettings.globalize_path(path), ProjectSettings.globalize_path(backup)) != OK:
+			last_error = "Cannot preserve version-2 profile."
+			return false
+	var profile := _state.duplicate(true)
+	profile.version = 3
+	profile.home = {"templates": {}, "contract": "asset_recovery", "seed": 87017, "settings": {"volume": 0.8, "fullscreen": false}, "station_unlocks": ["storage", "maintenance", "fabrication", "disassembly", "contracts", "deployment"], "upgrades": {}, "layout": [], "display_assignments": {}}
+	for deployment in profile.deployments.values(): deployment["phase"] = "running" if deployment.status == "active" else "settled"
+	return _commit_profile(profile, "migrate-v2-v3", JSON.stringify(profile.inventory).sha256_text())
+
+func bind_inventory(authority: InventoryLedger) -> bool:
+	# Binding an already-open session must not run crash recovery or reload disk.
+	if authority == inventory: return true
+	for deployment in _state.deployments.values():
+		if deployment.status == "active":
+			last_error = "Resolve the active deployment before rebinding inventory."
+			return false
+	if not authority.admit_persistent(_state.inventory):
+		last_error = "Inventory handoff failed validation."
+		return false
+	if inventory != null: inventory.seal_world()
+	inventory = authority
+	return apply_player_rules()
+
+func mark_running(token: String) -> bool:
+	var deployment := deployment_snapshot(token)
+	if deployment.get("status") != "active": return false
+	if deployment.get("phase") == "running": return true
+	if deployment.get("phase") != "committed": return false
+	var profile := _state.duplicate(true)
+	profile.deployments[token].phase = "running"
+	return _commit_profile(profile, "start:" + token, token)
+
+func completed_contract_count() -> int:
+	var count := 0
+	for deployment in _state.get("deployments", {}).values():
+		if deployment.get("result", {}).get("success", false): count += 1
+	return count
+
+func cancel_unstarted(token: String) -> bool:
+	var deployment := deployment_snapshot(token)
+	if deployment.get("status") == "cancelled": return true
+	if deployment.get("status") != "active" or deployment.get("phase") != "committed": return false
+	var candidate := _candidate_ledger()
+	if candidate == null: return false
+	var held := candidate.records("player") + candidate.records("escrow")
+	if held.size() != deployment.imports.size():
+		last_error = "Unstarted kit changed; recovery requires reconciliation."
+		return false
+	for expected in deployment.imports:
+		var actual := candidate.record(expected.id)
+		if actual.get("container") not in ["player", "escrow"] or actual.get("quantity") != expected.quantity or actual.get("definition") != expected.definition or actual.get("slot") != expected.slot or actual.get("metadata") != expected.metadata:
+			last_error = "Unstarted kit identity changed; recovery is blocked."
+			return false
+	if not candidate.transfer_group("escrow", "prepared", "", true).ok or not candidate.transfer_group("player", "prepared", "", true).ok: return false
+	var profile := _state.duplicate(true)
+	profile.inventory = candidate.persistent_state()
+	profile.deployments[token].status = "cancelled"
+	profile.deployments[token].phase = "settled"
+	if not _commit_profile(profile, "cancel:" + token, token): return false
+	return inventory == null or inventory.install_state(candidate.export_state(), "cancel_unstarted")

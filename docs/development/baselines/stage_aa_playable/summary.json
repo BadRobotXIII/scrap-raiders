@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-27",
+  "checkpoint": "AA-1 through AA-5; mandatory director review pending",
+  "suites": 50,
+  "failed_suites": 0,
+  "audio_cleanup_suites": 37,
+  "leaked_instance_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "editor_clean": true,
+  "graphical_clean": true,
+  "natural_runs": [
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "asset_recovery",
+      "duration": 130.899999999996,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87017,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "asset_recovery",
+      "duration": 141.066666666671,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87018,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "salvage_complex",
+      "duration": 126.233333333327,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87017,
+      "world_finished": true
+    },
+    {
+      "actor_outcomes": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2
+      },
+      "admissions": 5,
+      "conserved": true,
+      "contract": "salvage_complex",
+      "duration": 136.966666666668,
+      "maximum_live_raiders": 2,
+      "player_destroyed": true,
+      "seed": 87018,
+      "world_finished": true
+    }
+  ],
+  "natural_leaked_instance_types": [
+    "AudioStreamPlaybackWAV",
+    "AudioStreamWAV"
+  ],
+  "reviewed_existing_source_changes": 14,
+  "missing_script_uids": [],
+  "graphical_metrics": {
+    "home_draw_calls": 162.0,
+    "home_primitives": 24750.0,
+    "nodes": 127.0,
+    "ordinary_profile_commit_ms": [
+      17.547,
+      17.318,
+      16.928,
+      16.933,
+      17.091
+    ]
+  },
+  "real_user_profile_accessed": false
+}

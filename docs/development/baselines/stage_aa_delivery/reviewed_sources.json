@@ -1,0 +1,11 @@
+{
+  "resources/items/raider_rifle.tres": "2bfdbecf6438b0d6fb3cdf5760321dbbb8ab61eb25696ee0f1a482929f33661a",
+  "resources/items/worn_response_rifle.tres": "c43bb6a7066df295fa134b550c4541696e08130d00e2e20b1caea4edb0abf06f",
+  "scripts/gameplay/inventory_ledger.gd": "6a2aee6779d7248016c5a03a2bff622579c20a858c7e8587369aaeb4892539be",
+  "scripts/gameplay/persistent_stash.gd": "7332a2a9be538ca49b9f9f33d05a4af104642046cf17eb82c9f123ae48176d0a",
+  "scripts/gameplay/preparation_service.gd": "11e4c414354ce73fd35b7ed667922cbb4885ffac52ba7b0a7f8603ec9adb2a83",
+  "scripts/presentation/loadout_view.gd": "2ed71664b73b4b4e74b3aedc7d75bef0bc1de22a4730a7a1d03c8b3c762f54f7",
+  "scripts/presentation/preparation_view.gd": "02e41010d821d44c8406064dc680cc940f45d8bb7288ce9a143ba1971091f507",
+  "scripts/sanctuary/sanctuary.gd": "70561e129a4d4560f716909a2ac1b271ab7b86066a099a8d8bae13b545844f49",
+  "tests/asset_pipeline_test.gd": "26b4c0f57f21511c7654a236f07939e4d0643781efec7efb6e705096ba8b4ae1"
+}

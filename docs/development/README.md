@@ -1,10 +1,10 @@
 # Development records
 
-Last updated: **2026-10-25**. Internal working title: SCRAP Raiders.
+Last updated: **2026-10-27**. Internal working title: SCRAP Raiders.
 
 ## Current position
 
-The prototype through Checkpoint X is accepted; Stage Y is now delivered for manual review in the [Y report](reports/stage_y_world_population.md). Baseline commit `bac0f6d` preserves accepted pre-P work; accepted P/Q/R/S work also remains in the working tree. The director approved the Stage S plan on 2026-10-21. **The director accepted Checkpoint S on 2026-10-21.** Normal startup now opens Operation: Asset Recovery's briefing. The [S delivery report](reports/stage_s_mission_structure.md) records objectives, deployment/settlement ownership, 29-suite validation, graphical/natural checks, director acceptance and retained refinement checks.
+The prototype through **Checkpoint Z is accepted**, including the inventory usability and scroll corrections. AA-1–AA-5 was accepted and continuation approved. AA-6–AA-9 is implemented and validated for final director review; see the [Stage AA handoff](reports/stage_aa_sanctuary_gameplay_loop.md). Baseline commit `bac0f6d` preserves accepted pre-P work; accepted P/Q/R/S work also remains in the working tree. The director approved the Stage S plan on 2026-10-21. **The director accepted Checkpoint S on 2026-10-21.** Normal startup now opens the title screen; Asset Recovery remains available as an existing contract. The [S delivery report](reports/stage_s_mission_structure.md) records objectives, deployment/settlement ownership, 29-suite validation, graphical/natural checks, director acceptance and retained refinement checks.
 
 The director approved the [Stage T audit/remediation plan](plans/phase_7_stage_t_remediation_plan.md) on 2026-10-21. Its implementation is **accepted at Checkpoint T on 2026-10-21**, with a dead-target eligibility correction, normal-only north entry-placement refinement, physical S integration coverage, 30 passing suites and eight natural observations. The [T delivery report and updated matrix](reports/stage_t_full_gameplay_integration.md) distinguish natural events, constructed fixtures and remaining director review. The [original audit](reports/stage_t_integration_audit.md) remains the historical S baseline. The director explicitly stated "Stage T is approved." No commit is included; Stage U planning is recorded below.
 
@@ -98,8 +98,21 @@ The [delivery report](reports/stage_y_world_population.md) and [evidence](baseli
 
 The director subsequently requested richer ground transitions, connected utilities and denser small-prop groupings. The director approved the [Stage Y refinement amendment](plans/phase_7_stage_y_environment_refinement_plan.md), including three exact collider footprints and the bounded rendering budget. The [refinement delivery](reports/stage_y_environment_refinement.md) and [separate evidence](baselines/stage_y_refinement_delivery/README.md) record integrated ground wear, service connections, shared staged loads, 41 passing suites, actual movement/contact checks, exact spectator replay and graphical validation. The director accepted Stage Y and this refinement on 2026-10-26; recorded performance/audio limitations remain future refinement items.
 
-## Stage Z checkpoint - implemented, manual review pending
+## Stage Z checkpoint - accepted 2026-10-27
 
 The [supplied ledger](ledgers/phase_7_stage_z_hybrid_inventory.md) remains unchanged. The director approved the complete [architecture proposal](plans/phase_7_stage_z_hybrid_inventory_plan.md) after accepting Y. The [audit and baseline](reports/stage_z_inventory_architecture_audit.md) preserve the pre-implementation state.
 
-The [Stage Z delivery report](reports/stage_z_hybrid_inventory.md) records one shared item authority, finite typed sources, Raider value/capacity integration, live inventory/preparation, durable loadout debit and settlement, migration/quarantine, 47-suite validation, seeded deployments, graphical checks and measured costs. See the [delivery evidence](baselines/stage_z_delivery/README.md). Stop at Checkpoint Z for director play-testing; this records implementation readiness, not manual acceptance. No commit, publication or next stage is authorized.
+The [Stage Z delivery report](reports/stage_z_hybrid_inventory.md) records one shared item authority, finite typed sources, Raider value/capacity integration, live inventory/preparation, durable loadout debit and settlement, migration/quarantine, 47-suite validation, seeded deployments, graphical checks and measured costs. See the [delivery evidence](baselines/stage_z_delivery/README.md). The director accepted Checkpoint Z on 2026-10-27, including the inventory usability and scroll corrections. Stage AA architecture is approved; AA-1 through AA-5 is implemented for mandatory play-testing. No commit or publication is authorized.
+
+## Stage AA — approved architecture proposal
+
+The [director ledger](ledgers/stage_aa_sanctuary_gameplay_loop.md) is archived byte-for-byte. The [repository audit](reports/stage_aa_architecture_audit.md), [fresh baseline](baselines/stage_aa_architecture_audit/README.md) and [architecture proposal](plans/stage_aa_sanctuary_gameplay_loop_plan.md) cover application entry, safe sanctuary, shared preparation, templates, one reserved kit, deployment/return, minimal processing/upgrades, placement and handoff. The director approved this architecture; AA-1 through AA-5 is now implemented. The original audit remains the pre-implementation record. The mandatory director play-test stop after AA-5 still applies.
+
+## Stage AA early playable checkpoint — AA-1 through AA-5
+
+The director approved the [architecture plan](plans/stage_aa_sanctuary_gameplay_loop_plan.md). The [early delivery](reports/stage_aa_playable_loop.md) connects title, safe Sanctuary, shared preparation/templates, existing contracts and repeated deployment/results/return. See its validation evidence and manual checklist. This early checkpoint was accepted; see the final handoff below for the subsequent approved implementation. No commit or publication is authorized.
+
+
+## Stage AA final handoff — implementation ready for acceptance
+
+The director accepted the early playable loop and explicitly authorized continuation. AA-6–AA-9 now adds atomic disassembly/fabrication, permanent paid cargo capacity, bounded saved furniture, one identity-preserving item display and the developer handoff. The [final report](reports/stage_aa_sanctuary_gameplay_loop.md) links 52-suite validation, native interaction, seeded observations, performance evidence and the final play-test checklist. The early report/audit remain historical records. Stop for final Stage AA acceptance; no commit/publication or next-stage work is authorized.

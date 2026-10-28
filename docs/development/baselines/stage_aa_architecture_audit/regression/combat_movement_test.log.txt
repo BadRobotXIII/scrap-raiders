@@ -1,0 +1,405 @@
+WorkerThreadPool: 28 threads, 8 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/combat_movement_test.gd remapped: res://tests/combat_movement_test.gd
+Loading resource: res://resources/weapons/guard_pulse.tres remapped: res://resources/weapons/guard_pulse.tres
+Completed load for: 'res://resources/weapons/guard_pulse.tres' remapped 'res://resources/weapons/guard_pulse.tres' at thread -1
+Completed load for: 'res://tests/combat_movement_test.gd' remapped 'res://tests/combat_movement_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://scenes/levels/emergent_encounters_arena.tscn remapped: res://scenes/levels/emergent_encounters_arena.tscn
+Loading resource: res://scenes/levels/mission_arena.tscn remapped: res://scenes/levels/mission_arena.tscn
+Loading resource: res://scenes/levels/test_arena.tscn remapped: res://scenes/levels/test_arena.tscn
+Loading resource: res://scenes/player/robot.tscn remapped: res://scenes/player/robot.tscn
+Loading resource: res://scripts/gameplay/hitscan_weapon.gd remapped: res://scripts/gameplay/hitscan_weapon.gd
+Completed load for: 'res://scripts/gameplay/hitscan_weapon.gd' remapped 'res://scripts/gameplay/hitscan_weapon.gd' at thread -1
+Loading resource: res://resources/weapons/prototype_blaster.tres remapped: res://resources/weapons/prototype_blaster.tres
+Completed load for: 'res://resources/weapons/prototype_blaster.tres' remapped 'res://resources/weapons/prototype_blaster.tres' at thread -1
+Loading resource: res://scripts/player/combat_feedback.gd remapped: res://scripts/player/combat_feedback.gd
+Loading resource: res://scenes/effects/machine_destruction.tscn remapped: res://scenes/effects/machine_destruction.tscn
+Loading resource: res://scripts/presentation/effect_burst.gd remapped: res://scripts/presentation/effect_burst.gd
+Loading resource: res://resources/presentation/soft_mote.tres remapped: res://resources/presentation/soft_mote.tres
+Completed load for: 'res://resources/presentation/soft_mote.tres' remapped 'res://resources/presentation/soft_mote.tres' at thread -1
+Completed load for: 'res://scripts/presentation/effect_burst.gd' remapped 'res://scripts/presentation/effect_burst.gd' at thread -1
+Completed load for: 'res://scenes/effects/machine_destruction.tscn' remapped 'res://scenes/effects/machine_destruction.tscn' at thread -1
+Loading resource: res://scenes/effects/surface_impact.tscn remapped: res://scenes/effects/surface_impact.tscn
+Completed load for: 'res://scenes/effects/surface_impact.tscn' remapped 'res://scenes/effects/surface_impact.tscn' at thread -1
+Loading resource: res://scenes/effects/weapon_discharge.tscn remapped: res://scenes/effects/weapon_discharge.tscn
+Completed load for: 'res://scenes/effects/weapon_discharge.tscn' remapped 'res://scenes/effects/weapon_discharge.tscn' at thread -1
+Loading resource: res://assets/audio/weapons/player_01.wav remapped: res://assets/audio/weapons/player_01.wav
+Loading resource: res://.godot/imported/player_01.wav-1f0f69f8ade8c50e1266e95294113dc3.sample remapped: res://.godot/imported/player_01.wav-1f0f69f8ade8c50e1266e95294113dc3.sample
+Completed load for: 'res://assets/audio/weapons/player_01.wav' remapped 'res://assets/audio/weapons/player_01.wav' at thread -1
+Loading resource: res://assets/audio/weapons/player_02.wav remapped: res://assets/audio/weapons/player_02.wav
+Loading resource: res://.godot/imported/player_02.wav-ebc929833b9061cc63f7d42fb8a9a8f0.sample remapped: res://.godot/imported/player_02.wav-ebc929833b9061cc63f7d42fb8a9a8f0.sample
+Completed load for: 'res://assets/audio/weapons/player_02.wav' remapped 'res://assets/audio/weapons/player_02.wav' at thread -1
+Loading resource: res://assets/audio/weapons/raider_01.wav remapped: res://assets/audio/weapons/raider_01.wav
+Loading resource: res://.godot/imported/raider_01.wav-d9fb3d933a48457464f178fed9414be9.sample remapped: res://.godot/imported/raider_01.wav-d9fb3d933a48457464f178fed9414be9.sample
+Completed load for: 'res://assets/audio/weapons/raider_01.wav' remapped 'res://assets/audio/weapons/raider_01.wav' at thread -1
+Loading resource: res://assets/audio/weapons/raider_02.wav remapped: res://assets/audio/weapons/raider_02.wav
+Loading resource: res://.godot/imported/raider_02.wav-abd4a86602299afcbb650f51007dea1b.sample remapped: res://.godot/imported/raider_02.wav-abd4a86602299afcbb650f51007dea1b.sample
+Completed load for: 'res://assets/audio/weapons/raider_02.wav' remapped 'res://assets/audio/weapons/raider_02.wav' at thread -1
+Loading resource: res://assets/audio/weapons/guard_01.wav remapped: res://assets/audio/weapons/guard_01.wav
+Loading resource: res://.godot/imported/guard_01.wav-34e823ee2f4f182da7e679327267cbe0.sample remapped: res://.godot/imported/guard_01.wav-34e823ee2f4f182da7e679327267cbe0.sample
+Completed load for: 'res://assets/audio/weapons/guard_01.wav' remapped 'res://assets/audio/weapons/guard_01.wav' at thread -1
+Loading resource: res://assets/audio/weapons/guard_02.wav remapped: res://assets/audio/weapons/guard_02.wav
+Loading resource: res://.godot/imported/guard_02.wav-3f2167523ac74bf69b2c96bfb6ddc7d7.sample remapped: res://.godot/imported/guard_02.wav-3f2167523ac74bf69b2c96bfb6ddc7d7.sample
+Completed load for: 'res://assets/audio/weapons/guard_02.wav' remapped 'res://assets/audio/weapons/guard_02.wav' at thread -1
+Loading resource: res://assets/audio/impacts/metal.wav remapped: res://assets/audio/impacts/metal.wav
+Loading resource: res://.godot/imported/metal.wav-a65c4e18516ac0ea5e252e12ecfe5b7c.sample remapped: res://.godot/imported/metal.wav-a65c4e18516ac0ea5e252e12ecfe5b7c.sample
+Completed load for: 'res://assets/audio/impacts/metal.wav' remapped 'res://assets/audio/impacts/metal.wav' at thread -1
+Loading resource: res://assets/audio/impacts/concrete.wav remapped: res://assets/audio/impacts/concrete.wav
+Loading resource: res://.godot/imported/concrete.wav-d83f61af5180225a2a5de0a494dfbc56.sample remapped: res://.godot/imported/concrete.wav-d83f61af5180225a2a5de0a494dfbc56.sample
+Completed load for: 'res://assets/audio/impacts/concrete.wav' remapped 'res://assets/audio/impacts/concrete.wav' at thread -1
+Loading resource: res://assets/audio/impacts/equipment.wav remapped: res://assets/audio/impacts/equipment.wav
+Loading resource: res://.godot/imported/equipment.wav-f8e2b3b4bb60ddbce5ee0be4988d9c72.sample remapped: res://.godot/imported/equipment.wav-f8e2b3b4bb60ddbce5ee0be4988d9c72.sample
+Completed load for: 'res://assets/audio/impacts/equipment.wav' remapped 'res://assets/audio/impacts/equipment.wav' at thread -1
+Loading resource: res://assets/audio/impacts/machine_armor.wav remapped: res://assets/audio/impacts/machine_armor.wav
+Loading resource: res://.godot/imported/machine_armor.wav-f3935961f85fe084f88ad96a402f55eb.sample remapped: res://.godot/imported/machine_armor.wav-f3935961f85fe084f88ad96a402f55eb.sample
+Completed load for: 'res://assets/audio/impacts/machine_armor.wav' remapped 'res://assets/audio/impacts/machine_armor.wav' at thread -1
+Loading resource: res://assets/audio/impacts/raider_gear.wav remapped: res://assets/audio/impacts/raider_gear.wav
+Loading resource: res://.godot/imported/raider_gear.wav-5cb4693bbd07e0182fa0e876a05c1f0a.sample remapped: res://.godot/imported/raider_gear.wav-5cb4693bbd07e0182fa0e876a05c1f0a.sample
+Completed load for: 'res://assets/audio/impacts/raider_gear.wav' remapped 'res://assets/audio/impacts/raider_gear.wav' at thread -1
+Loading resource: res://assets/audio/impacts/hard_surface.wav remapped: res://assets/audio/impacts/hard_surface.wav
+Loading resource: res://.godot/imported/hard_surface.wav-eeb590bf7f59f7ee09cdd7b8267da534.sample remapped: res://.godot/imported/hard_surface.wav-eeb590bf7f59f7ee09cdd7b8267da534.sample
+Completed load for: 'res://assets/audio/impacts/hard_surface.wav' remapped 'res://assets/audio/impacts/hard_surface.wav' at thread -1
+Loading resource: res://assets/audio/actors/raider_hurt.wav remapped: res://assets/audio/actors/raider_hurt.wav
+Loading resource: res://.godot/imported/raider_hurt.wav-dbad5b73b12b24a24c55dfa70d4c52c9.sample remapped: res://.godot/imported/raider_hurt.wav-dbad5b73b12b24a24c55dfa70d4c52c9.sample
+Completed load for: 'res://assets/audio/actors/raider_hurt.wav' remapped 'res://assets/audio/actors/raider_hurt.wav' at thread -1
+Loading resource: res://assets/audio/actors/player_hurt.wav remapped: res://assets/audio/actors/player_hurt.wav
+Loading resource: res://.godot/imported/player_hurt.wav-0798df1df40cedbbdc8fa42e2a0a12da.sample remapped: res://.godot/imported/player_hurt.wav-0798df1df40cedbbdc8fa42e2a0a12da.sample
+Completed load for: 'res://assets/audio/actors/player_hurt.wav' remapped 'res://assets/audio/actors/player_hurt.wav' at thread -1
+Loading resource: res://assets/audio/actors/machine_hurt.wav remapped: res://assets/audio/actors/machine_hurt.wav
+Loading resource: res://.godot/imported/machine_hurt.wav-ad069488eecb2b16779bcfc7f4323834.sample remapped: res://.godot/imported/machine_hurt.wav-ad069488eecb2b16779bcfc7f4323834.sample
+Completed load for: 'res://assets/audio/actors/machine_hurt.wav' remapped 'res://assets/audio/actors/machine_hurt.wav' at thread -1
+Loading resource: res://assets/audio/actors/machine_destroy.wav remapped: res://assets/audio/actors/machine_destroy.wav
+Loading resource: res://.godot/imported/machine_destroy.wav-d52129efc3b53ea4317baa590eab9107.sample remapped: res://.godot/imported/machine_destroy.wav-d52129efc3b53ea4317baa590eab9107.sample
+Completed load for: 'res://assets/audio/actors/machine_destroy.wav' remapped 'res://assets/audio/actors/machine_destroy.wav' at thread -1
+Loading resource: res://assets/audio/actors/raider_death.wav remapped: res://assets/audio/actors/raider_death.wav
+Loading resource: res://.godot/imported/raider_death.wav-ba2f5946e4512f88f30192fee2a9d763.sample remapped: res://.godot/imported/raider_death.wav-ba2f5946e4512f88f30192fee2a9d763.sample
+Completed load for: 'res://assets/audio/actors/raider_death.wav' remapped 'res://assets/audio/actors/raider_death.wav' at thread -1
+Loading resource: res://assets/audio/machines/player_servo_loop.wav remapped: res://assets/audio/machines/player_servo_loop.wav
+Loading resource: res://.godot/imported/player_servo_loop.wav-2b1a755dcf84ed12b6e8df4d9d9fe237.sample remapped: res://.godot/imported/player_servo_loop.wav-2b1a755dcf84ed12b6e8df4d9d9fe237.sample
+Completed load for: 'res://assets/audio/machines/player_servo_loop.wav' remapped 'res://assets/audio/machines/player_servo_loop.wav' at thread -1
+Loading resource: res://assets/audio/machines/guard_drive_loop.wav remapped: res://assets/audio/machines/guard_drive_loop.wav
+Loading resource: res://.godot/imported/guard_drive_loop.wav-326b021b0061b38805725a5e080dca21.sample remapped: res://.godot/imported/guard_drive_loop.wav-326b021b0061b38805725a5e080dca21.sample
+Completed load for: 'res://assets/audio/machines/guard_drive_loop.wav' remapped 'res://assets/audio/machines/guard_drive_loop.wav' at thread -1
+Loading resource: res://assets/audio/machines/scout_rotor_loop.wav remapped: res://assets/audio/machines/scout_rotor_loop.wav
+Loading resource: res://.godot/imported/scout_rotor_loop.wav-41fe0ce124b1c6e8f995e301fd0f0c68.sample remapped: res://.godot/imported/scout_rotor_loop.wav-41fe0ce124b1c6e8f995e301fd0f0c68.sample
+Completed load for: 'res://assets/audio/machines/scout_rotor_loop.wav' remapped 'res://assets/audio/machines/scout_rotor_loop.wav' at thread -1
+Loading resource: res://assets/audio/environment/yard_wind_loop.wav remapped: res://assets/audio/environment/yard_wind_loop.wav
+Loading resource: res://.godot/imported/yard_wind_loop.wav-2af014a77199603036a9ad12430f65b2.sample remapped: res://.godot/imported/yard_wind_loop.wav-2af014a77199603036a9ad12430f65b2.sample
+Completed load for: 'res://assets/audio/environment/yard_wind_loop.wav' remapped 'res://assets/audio/environment/yard_wind_loop.wav' at thread -1
+Loading resource: res://assets/audio/environment/vent_loop.wav remapped: res://assets/audio/environment/vent_loop.wav
+Loading resource: res://.godot/imported/vent_loop.wav-8b0fb9993c48cac4e59c32fe0fe87de8.sample remapped: res://.godot/imported/vent_loop.wav-8b0fb9993c48cac4e59c32fe0fe87de8.sample
+Completed load for: 'res://assets/audio/environment/vent_loop.wav' remapped 'res://assets/audio/environment/vent_loop.wav' at thread -1
+Loading resource: res://assets/audio/environment/machinery_loop.wav remapped: res://assets/audio/environment/machinery_loop.wav
+Loading resource: res://.godot/imported/machinery_loop.wav-4fa23cbdf25b15ec9f5b0dad5cfe67b6.sample remapped: res://.godot/imported/machinery_loop.wav-4fa23cbdf25b15ec9f5b0dad5cfe67b6.sample
+Completed load for: 'res://assets/audio/environment/machinery_loop.wav' remapped 'res://assets/audio/environment/machinery_loop.wav' at thread -1
+Loading resource: res://assets/audio/interface/hit_confirm.wav remapped: res://assets/audio/interface/hit_confirm.wav
+Loading resource: res://.godot/imported/hit_confirm.wav-7a212d2618c053a3349715c16fecdc69.sample remapped: res://.godot/imported/hit_confirm.wav-7a212d2618c053a3349715c16fecdc69.sample
+Completed load for: 'res://assets/audio/interface/hit_confirm.wav' remapped 'res://assets/audio/interface/hit_confirm.wav' at thread -1
+Loading resource: res://assets/audio/interface/recovered.wav remapped: res://assets/audio/interface/recovered.wav
+Loading resource: res://.godot/imported/recovered.wav-7fb1755e5dcb7c1e00fe2496ae4536a5.sample remapped: res://.godot/imported/recovered.wav-7fb1755e5dcb7c1e00fe2496ae4536a5.sample
+Completed load for: 'res://assets/audio/interface/recovered.wav' remapped 'res://assets/audio/interface/recovered.wav' at thread -1
+Loading resource: res://assets/audio/interface/objective_complete.wav remapped: res://assets/audio/interface/objective_complete.wav
+Loading resource: res://.godot/imported/objective_complete.wav-f9bdb6b90709b754a6bce1f395ad1d01.sample remapped: res://.godot/imported/objective_complete.wav-f9bdb6b90709b754a6bce1f395ad1d01.sample
+Completed load for: 'res://assets/audio/interface/objective_complete.wav' remapped 'res://assets/audio/interface/objective_complete.wav' at thread -1
+Loading resource: res://assets/audio/interface/recall_complete.wav remapped: res://assets/audio/interface/recall_complete.wav
+Loading resource: res://.godot/imported/recall_complete.wav-45e486f8753650d22b512e82c212e3c4.sample remapped: res://.godot/imported/recall_complete.wav-45e486f8753650d22b512e82c212e3c4.sample
+Completed load for: 'res://assets/audio/interface/recall_complete.wav' remapped 'res://assets/audio/interface/recall_complete.wav' at thread -1
+Loading resource: res://assets/audio/interface/deployment_failed.wav remapped: res://assets/audio/interface/deployment_failed.wav
+Loading resource: res://.godot/imported/deployment_failed.wav-f965c73e378919cc09241d924dc2a709.sample remapped: res://.godot/imported/deployment_failed.wav-f965c73e378919cc09241d924dc2a709.sample
+Completed load for: 'res://assets/audio/interface/deployment_failed.wav' remapped 'res://assets/audio/interface/deployment_failed.wav' at thread -1
+Loading resource: res://assets/audio/signals/death_flare.wav remapped: res://assets/audio/signals/death_flare.wav
+Loading resource: res://.godot/imported/death_flare.wav-62a7c569c447a91224d42c462e2bc44e.sample remapped: res://.godot/imported/death_flare.wav-62a7c569c447a91224d42c462e2bc44e.sample
+Completed load for: 'res://assets/audio/signals/death_flare.wav' remapped 'res://assets/audio/signals/death_flare.wav' at thread -1
+Loading resource: res://scenes/effects/industrial_ambient.tscn remapped: res://scenes/effects/industrial_ambient.tscn
+Completed load for: 'res://scenes/effects/industrial_ambient.tscn' remapped 'res://scenes/effects/industrial_ambient.tscn' at thread -1
+Completed load for: 'res://scripts/player/combat_feedback.gd' remapped 'res://scripts/player/combat_feedback.gd' at thread -1
+Loading resource: res://scripts/player/player_damage_feedback.gd remapped: res://scripts/player/player_damage_feedback.gd
+Completed load for: 'res://scripts/player/player_damage_feedback.gd' remapped 'res://scripts/player/player_damage_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/player_visual.tscn remapped: res://scenes/characters/visuals/player_visual.tscn
+Loading resource: res://assets/characters/exports/player/player.glb remapped: res://assets/characters/exports/player/player.glb
+Loading resource: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn remapped: res://.godot/imported/player.glb-61140a5d416a84239a372a940c18f5ff.scn
+Loading resource: res://resources/materials/environment/safety_yellow.tres remapped: res://resources/materials/environment/safety_yellow.tres
+Loading resource: res://assets/environment/textures/surface_wear.png remapped: res://assets/environment/textures/surface_wear.png
+Loading resource: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex remapped: res://.godot/imported/surface_wear.png-79ef94c4d045aad6d80e059d14911c61.ctex
+Completed load for: 'res://assets/environment/textures/surface_wear.png' remapped 'res://assets/environment/textures/surface_wear.png' at thread -1
+Loading resource: res://assets/environment/textures/surface_roughness.png remapped: res://assets/environment/textures/surface_roughness.png
+Loading resource: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex remapped: res://.godot/imported/surface_roughness.png-be2003c55f3fe19426806b769c4dbd59.ctex
+Completed load for: 'res://assets/environment/textures/surface_roughness.png' remapped 'res://assets/environment/textures/surface_roughness.png' at thread -1
+Completed load for: 'res://resources/materials/environment/safety_yellow.tres' remapped 'res://resources/materials/environment/safety_yellow.tres' at thread -1
+Loading resource: res://resources/materials/environment/rubber.tres remapped: res://resources/materials/environment/rubber.tres
+Completed load for: 'res://resources/materials/environment/rubber.tres' remapped 'res://resources/materials/environment/rubber.tres' at thread -1
+Loading resource: res://resources/characters/materials/salvaged_metal.tres remapped: res://resources/characters/materials/salvaged_metal.tres
+Completed load for: 'res://resources/characters/materials/salvaged_metal.tres' remapped 'res://resources/characters/materials/salvaged_metal.tres' at thread -1
+Loading resource: res://resources/characters/materials/opaque_lens.tres remapped: res://resources/characters/materials/opaque_lens.tres
+Completed load for: 'res://resources/characters/materials/opaque_lens.tres' remapped 'res://resources/characters/materials/opaque_lens.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/player/player.glb' remapped 'res://assets/characters/exports/player/player.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/player_visual.tscn' remapped 'res://scenes/characters/visuals/player_visual.tscn' at thread -1
+Completed load for: 'res://scenes/player/robot.tscn' remapped 'res://scenes/player/robot.tscn' at thread -1
+Loading resource: res://scenes/targets/practice_target.tscn remapped: res://scenes/targets/practice_target.tscn
+Loading resource: res://scripts/gameplay/practice_target.gd remapped: res://scripts/gameplay/practice_target.gd
+Completed load for: 'res://scripts/gameplay/practice_target.gd' remapped 'res://scripts/gameplay/practice_target.gd' at thread -1
+Completed load for: 'res://scenes/targets/practice_target.tscn' remapped 'res://scenes/targets/practice_target.tscn' at thread -1
+Loading resource: res://scripts/gameplay/raider_arena.gd remapped: res://scripts/gameplay/raider_arena.gd
+Loading resource: res://scenes/effects/deployment_effect.tscn remapped: res://scenes/effects/deployment_effect.tscn
+Loading resource: res://scripts/presentation/deployment_effect.gd remapped: res://scripts/presentation/deployment_effect.gd
+Completed load for: 'res://scripts/presentation/deployment_effect.gd' remapped 'res://scripts/presentation/deployment_effect.gd' at thread -1
+Completed load for: 'res://scenes/effects/deployment_effect.tscn' remapped 'res://scenes/effects/deployment_effect.tscn' at thread -1
+Loading resource: res://scenes/raiders/raider.tscn remapped: res://scenes/raiders/raider.tscn
+Loading resource: res://scripts/components/hit_reaction.gd remapped: res://scripts/components/hit_reaction.gd
+Completed load for: 'res://scripts/components/hit_reaction.gd' remapped 'res://scripts/components/hit_reaction.gd' at thread -1
+Loading resource: res://scripts/presentation/raider_feedback.gd remapped: res://scripts/presentation/raider_feedback.gd
+Completed load for: 'res://scripts/presentation/raider_feedback.gd' remapped 'res://scripts/presentation/raider_feedback.gd' at thread -1
+Loading resource: res://scenes/characters/visuals/raider_visual.tscn remapped: res://scenes/characters/visuals/raider_visual.tscn
+Loading resource: res://assets/characters/exports/raider/raider.glb remapped: res://assets/characters/exports/raider/raider.glb
+Loading resource: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn remapped: res://.godot/imported/raider.glb-78c79a37fd1d44377e1545873e8ddc7a.scn
+Loading resource: res://resources/characters/materials/cloth_olive.tres remapped: res://resources/characters/materials/cloth_olive.tres
+Completed load for: 'res://resources/characters/materials/cloth_olive.tres' remapped 'res://resources/characters/materials/cloth_olive.tres' at thread -1
+Loading resource: res://resources/characters/materials/protective_polymer.tres remapped: res://resources/characters/materials/protective_polymer.tres
+Completed load for: 'res://resources/characters/materials/protective_polymer.tres' remapped 'res://resources/characters/materials/protective_polymer.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/raider/raider.glb' remapped 'res://assets/characters/exports/raider/raider.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/raider_visual.tscn' remapped 'res://scenes/characters/visuals/raider_visual.tscn' at thread -1
+Completed load for: 'res://scenes/raiders/raider.tscn' remapped 'res://scenes/raiders/raider.tscn' at thread -1
+Loading resource: res://scenes/loot/material_drop.tscn remapped: res://scenes/loot/material_drop.tscn
+Completed load for: 'res://scenes/loot/material_drop.tscn' remapped 'res://scenes/loot/material_drop.tscn' at thread -1
+Loading resource: res://resources/enemies/greedy.tres remapped: res://resources/enemies/greedy.tres
+Completed load for: 'res://resources/enemies/greedy.tres' remapped 'res://resources/enemies/greedy.tres' at thread -1
+Loading resource: res://resources/enemies/cowardly.tres remapped: res://resources/enemies/cowardly.tres
+Completed load for: 'res://resources/enemies/cowardly.tres' remapped 'res://resources/enemies/cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/aggressive.tres remapped: res://resources/enemies/aggressive.tres
+Completed load for: 'res://resources/enemies/aggressive.tres' remapped 'res://resources/enemies/aggressive.tres' at thread -1
+Completed load for: 'res://scripts/gameplay/raider_arena.gd' remapped 'res://scripts/gameplay/raider_arena.gd' at thread -1
+Loading resource: res://scenes/presentation/arena_overlay.tscn remapped: res://scenes/presentation/arena_overlay.tscn
+Completed load for: 'res://scenes/presentation/arena_overlay.tscn' remapped 'res://scenes/presentation/arena_overlay.tscn' at thread -1
+Completed load for: 'res://scenes/levels/test_arena.tscn' remapped 'res://scenes/levels/test_arena.tscn' at thread -1
+Loading resource: res://scripts/gameplay/mission_arena.gd remapped: res://scripts/gameplay/mission_arena.gd
+Loading resource: res://resources/missions/intercept.tres remapped: res://resources/missions/intercept.tres
+Completed load for: 'res://resources/missions/intercept.tres' remapped 'res://resources/missions/intercept.tres' at thread -1
+Loading resource: res://resources/missions/swarm.tres remapped: res://resources/missions/swarm.tres
+Completed load for: 'res://resources/missions/swarm.tres' remapped 'res://resources/missions/swarm.tres' at thread -1
+Loading resource: res://resources/missions/recovery.tres remapped: res://resources/missions/recovery.tres
+Completed load for: 'res://resources/missions/recovery.tres' remapped 'res://resources/missions/recovery.tres' at thread -1
+Loading resource: res://resources/missions/survival.tres remapped: res://resources/missions/survival.tres
+Completed load for: 'res://resources/missions/survival.tres' remapped 'res://resources/missions/survival.tres' at thread -1
+Loading resource: res://resources/missions/loot_pressure.tres remapped: res://resources/missions/loot_pressure.tres
+Completed load for: 'res://resources/missions/loot_pressure.tres' remapped 'res://resources/missions/loot_pressure.tres' at thread -1
+Loading resource: res://resources/missions/extraction.tres remapped: res://resources/missions/extraction.tres
+Completed load for: 'res://resources/missions/extraction.tres' remapped 'res://resources/missions/extraction.tres' at thread -1
+Loading resource: res://resources/missions/ecosystem.tres remapped: res://resources/missions/ecosystem.tres
+Completed load for: 'res://resources/missions/ecosystem.tres' remapped 'res://resources/missions/ecosystem.tres' at thread -1
+Loading resource: res://resources/missions/traversal.tres remapped: res://resources/missions/traversal.tres
+Completed load for: 'res://resources/missions/traversal.tres' remapped 'res://resources/missions/traversal.tres' at thread -1
+Loading resource: res://resources/missions/social_rivalry.tres remapped: res://resources/missions/social_rivalry.tres
+Completed load for: 'res://resources/missions/social_rivalry.tres' remapped 'res://resources/missions/social_rivalry.tres' at thread -1
+Loading resource: res://resources/missions/social_cooperation.tres remapped: res://resources/missions/social_cooperation.tres
+Completed load for: 'res://resources/missions/social_cooperation.tres' remapped 'res://resources/missions/social_cooperation.tres' at thread -1
+Loading resource: res://resources/missions/social_pressure.tres remapped: res://resources/missions/social_pressure.tres
+Completed load for: 'res://resources/missions/social_pressure.tres' remapped 'res://resources/missions/social_pressure.tres' at thread -1
+Loading resource: res://resources/missions/social_betrayal.tres remapped: res://resources/missions/social_betrayal.tres
+Loading resource: res://resources/enemies/opportunist_betrayal.tres remapped: res://resources/enemies/opportunist_betrayal.tres
+Completed load for: 'res://resources/enemies/opportunist_betrayal.tres' remapped 'res://resources/enemies/opportunist_betrayal.tres' at thread -1
+Completed load for: 'res://resources/missions/social_betrayal.tres' remapped 'res://resources/missions/social_betrayal.tres' at thread -1
+Loading resource: res://resources/missions/integrated_extraction.tres remapped: res://resources/missions/integrated_extraction.tres
+Completed load for: 'res://resources/missions/integrated_extraction.tres' remapped 'res://resources/missions/integrated_extraction.tres' at thread -1
+Loading resource: res://resources/missions/emergent_encounters.tres remapped: res://resources/missions/emergent_encounters.tres
+Loading resource: res://resources/missions/encounter_north.tres remapped: res://resources/missions/encounter_north.tres
+Completed load for: 'res://resources/missions/encounter_north.tres' remapped 'res://resources/missions/encounter_north.tres' at thread -1
+Loading resource: res://resources/missions/encounter_south.tres remapped: res://resources/missions/encounter_south.tres
+Completed load for: 'res://resources/missions/encounter_south.tres' remapped 'res://resources/missions/encounter_south.tres' at thread -1
+Completed load for: 'res://resources/missions/emergent_encounters.tres' remapped 'res://resources/missions/emergent_encounters.tres' at thread -1
+Loading resource: res://resources/missions/personality_encounters.tres remapped: res://resources/missions/personality_encounters.tres
+Loading resource: res://resources/missions/q_encounter_north.tres remapped: res://resources/missions/q_encounter_north.tres
+Loading resource: res://resources/enemies/q_greedy.tres remapped: res://resources/enemies/q_greedy.tres
+Completed load for: 'res://resources/enemies/q_greedy.tres' remapped 'res://resources/enemies/q_greedy.tres' at thread -1
+Loading resource: res://resources/enemies/q_cowardly.tres remapped: res://resources/enemies/q_cowardly.tres
+Completed load for: 'res://resources/enemies/q_cowardly.tres' remapped 'res://resources/enemies/q_cowardly.tres' at thread -1
+Loading resource: res://resources/enemies/q_aggressive.tres remapped: res://resources/enemies/q_aggressive.tres
+Completed load for: 'res://resources/enemies/q_aggressive.tres' remapped 'res://resources/enemies/q_aggressive.tres' at thread -1
+Completed load for: 'res://resources/missions/q_encounter_north.tres' remapped 'res://resources/missions/q_encounter_north.tres' at thread -1
+Loading resource: res://resources/missions/q_encounter_south.tres remapped: res://resources/missions/q_encounter_south.tres
+Completed load for: 'res://resources/missions/q_encounter_south.tres' remapped 'res://resources/missions/q_encounter_south.tres' at thread -1
+Completed load for: 'res://resources/missions/personality_encounters.tres' remapped 'res://resources/missions/personality_encounters.tres' at thread -1
+Loading resource: res://resources/missions/refined_extraction.tres remapped: res://resources/missions/refined_extraction.tres
+Completed load for: 'res://resources/missions/refined_extraction.tres' remapped 'res://resources/missions/refined_extraction.tres' at thread -1
+Loading resource: res://resources/missions/asset_recovery.tres remapped: res://resources/missions/asset_recovery.tres
+Loading resource: res://resources/missions/s_encounter_north.tres remapped: res://resources/missions/s_encounter_north.tres
+Completed load for: 'res://resources/missions/s_encounter_north.tres' remapped 'res://resources/missions/s_encounter_north.tres' at thread -1
+Loading resource: res://resources/inventory/normal_loot.tres remapped: res://resources/inventory/normal_loot.tres
+Completed load for: 'res://resources/inventory/normal_loot.tres' remapped 'res://resources/inventory/normal_loot.tres' at thread -1
+Completed load for: 'res://resources/missions/asset_recovery.tres' remapped 'res://resources/missions/asset_recovery.tres' at thread -1
+Loading resource: res://resources/enemies/armed_scavenger.tres remapped: res://resources/enemies/armed_scavenger.tres
+Loading resource: res://resources/weapons/raider_rifle.tres remapped: res://resources/weapons/raider_rifle.tres
+Completed load for: 'res://resources/weapons/raider_rifle.tres' remapped 'res://resources/weapons/raider_rifle.tres' at thread -1
+Completed load for: 'res://resources/enemies/armed_scavenger.tres' remapped 'res://resources/enemies/armed_scavenger.tres' at thread -1
+Loading resource: res://resources/missions/death_flare_rules.tres remapped: res://resources/missions/death_flare_rules.tres
+Completed load for: 'res://resources/missions/death_flare_rules.tres' remapped 'res://resources/missions/death_flare_rules.tres' at thread -1
+Completed load for: 'res://scripts/gameplay/mission_arena.gd' remapped 'res://scripts/gameplay/mission_arena.gd' at thread -1
+Completed load for: 'res://scenes/levels/mission_arena.tscn' remapped 'res://scenes/levels/mission_arena.tscn' at thread -1
+Completed load for: 'res://scenes/levels/emergent_encounters_arena.tscn' remapped 'res://scenes/levels/emergent_encounters_arena.tscn' at thread -1
+0.0s SETUP seed 87017 layout south_patrol
+Loading resource: res://resources/items/catalog.tres remapped: res://resources/items/catalog.tres
+Loading resource: res://resources/items/scrap_steel.tres remapped: res://resources/items/scrap_steel.tres
+Loading resource: res://assets/ui/items/scrap_steel.svg remapped: res://assets/ui/items/scrap_steel.svg
+Loading resource: res://.godot/imported/scrap_steel.svg-2aea3bfbac930504562122d7d875e60d.ctex remapped: res://.godot/imported/scrap_steel.svg-2aea3bfbac930504562122d7d875e60d.ctex
+Completed load for: 'res://assets/ui/items/scrap_steel.svg' remapped 'res://assets/ui/items/scrap_steel.svg' at thread -1
+Completed load for: 'res://resources/items/scrap_steel.tres' remapped 'res://resources/items/scrap_steel.tres' at thread -1
+Loading resource: res://resources/items/copper_winding.tres remapped: res://resources/items/copper_winding.tres
+Loading resource: res://assets/ui/items/copper_winding.svg remapped: res://assets/ui/items/copper_winding.svg
+Loading resource: res://.godot/imported/copper_winding.svg-58a0f6544070a8407861a9c7519b91d2.ctex remapped: res://.godot/imported/copper_winding.svg-58a0f6544070a8407861a9c7519b91d2.ctex
+Completed load for: 'res://assets/ui/items/copper_winding.svg' remapped 'res://assets/ui/items/copper_winding.svg' at thread -1
+Completed load for: 'res://resources/items/copper_winding.tres' remapped 'res://resources/items/copper_winding.tres' at thread -1
+Loading resource: res://resources/items/servo_motor.tres remapped: res://resources/items/servo_motor.tres
+Loading resource: res://assets/ui/items/servo_motor.svg remapped: res://assets/ui/items/servo_motor.svg
+Loading resource: res://.godot/imported/servo_motor.svg-27fa477071f35fb3dc89a33982501b85.ctex remapped: res://.godot/imported/servo_motor.svg-27fa477071f35fb3dc89a33982501b85.ctex
+Completed load for: 'res://assets/ui/items/servo_motor.svg' remapped 'res://assets/ui/items/servo_motor.svg' at thread -1
+Completed load for: 'res://resources/items/servo_motor.tres' remapped 'res://resources/items/servo_motor.tres' at thread -1
+Loading resource: res://resources/items/industrial_sensor.tres remapped: res://resources/items/industrial_sensor.tres
+Loading resource: res://assets/ui/items/industrial_sensor.svg remapped: res://assets/ui/items/industrial_sensor.svg
+Loading resource: res://.godot/imported/industrial_sensor.svg-c261397dcabe664657d1c9f842454ce0.ctex remapped: res://.godot/imported/industrial_sensor.svg-c261397dcabe664657d1c9f842454ce0.ctex
+Completed load for: 'res://assets/ui/items/industrial_sensor.svg' remapped 'res://assets/ui/items/industrial_sensor.svg' at thread -1
+Completed load for: 'res://resources/items/industrial_sensor.tres' remapped 'res://resources/items/industrial_sensor.tres' at thread -1
+Loading resource: res://resources/items/control_pcb.tres remapped: res://resources/items/control_pcb.tres
+Loading resource: res://assets/ui/items/control_pcb.svg remapped: res://assets/ui/items/control_pcb.svg
+Loading resource: res://.godot/imported/control_pcb.svg-7ec60bd6a3a713f814e9ecd915076ea9.ctex remapped: res://.godot/imported/control_pcb.svg-7ec60bd6a3a713f814e9ecd915076ea9.ctex
+Completed load for: 'res://assets/ui/items/control_pcb.svg' remapped 'res://assets/ui/items/control_pcb.svg' at thread -1
+Completed load for: 'res://resources/items/control_pcb.tres' remapped 'res://resources/items/control_pcb.tres' at thread -1
+Loading resource: res://resources/items/industrial_blaster.tres remapped: res://resources/items/industrial_blaster.tres
+Loading resource: res://assets/ui/items/industrial_blaster.svg remapped: res://assets/ui/items/industrial_blaster.svg
+Loading resource: res://.godot/imported/industrial_blaster.svg-77c9796639101de2e5ecae9825bfd87c.ctex remapped: res://.godot/imported/industrial_blaster.svg-77c9796639101de2e5ecae9825bfd87c.ctex
+Completed load for: 'res://assets/ui/items/industrial_blaster.svg' remapped 'res://assets/ui/items/industrial_blaster.svg' at thread -1
+Completed load for: 'res://resources/items/industrial_blaster.tres' remapped 'res://resources/items/industrial_blaster.tres' at thread -1
+Loading resource: res://resources/items/raider_rifle.tres remapped: res://resources/items/raider_rifle.tres
+Loading resource: res://assets/ui/items/raider_rifle.svg remapped: res://assets/ui/items/raider_rifle.svg
+Loading resource: res://.godot/imported/raider_rifle.svg-20eaf7d075913e188fc38696e42d5d74.ctex remapped: res://.godot/imported/raider_rifle.svg-20eaf7d075913e188fc38696e42d5d74.ctex
+Completed load for: 'res://assets/ui/items/raider_rifle.svg' remapped 'res://assets/ui/items/raider_rifle.svg' at thread -1
+Completed load for: 'res://resources/items/raider_rifle.tres' remapped 'res://resources/items/raider_rifle.tres' at thread -1
+Loading resource: res://resources/items/worn_response_rifle.tres remapped: res://resources/items/worn_response_rifle.tres
+Loading resource: res://assets/ui/items/worn_response_rifle.svg remapped: res://assets/ui/items/worn_response_rifle.svg
+Loading resource: res://.godot/imported/worn_response_rifle.svg-ecc82261b3b59461a8f7d0dd040120bc.ctex remapped: res://.godot/imported/worn_response_rifle.svg-ecc82261b3b59461a8f7d0dd040120bc.ctex
+Completed load for: 'res://assets/ui/items/worn_response_rifle.svg' remapped 'res://assets/ui/items/worn_response_rifle.svg' at thread -1
+Completed load for: 'res://resources/items/worn_response_rifle.tres' remapped 'res://resources/items/worn_response_rifle.tres' at thread -1
+Loading resource: res://resources/items/electronics_kit.tres remapped: res://resources/items/electronics_kit.tres
+Loading resource: res://assets/ui/items/electronics_kit.svg remapped: res://assets/ui/items/electronics_kit.svg
+Loading resource: res://.godot/imported/electronics_kit.svg-4b0870486d582e80f7f2d370c537fc27.ctex remapped: res://.godot/imported/electronics_kit.svg-4b0870486d582e80f7f2d370c537fc27.ctex
+Completed load for: 'res://assets/ui/items/electronics_kit.svg' remapped 'res://assets/ui/items/electronics_kit.svg' at thread -1
+Completed load for: 'res://resources/items/electronics_kit.tres' remapped 'res://resources/items/electronics_kit.tres' at thread -1
+Loading resource: res://resources/items/armor_plating.tres remapped: res://resources/items/armor_plating.tres
+Loading resource: res://assets/ui/items/armor_plating.svg remapped: res://assets/ui/items/armor_plating.svg
+Loading resource: res://.godot/imported/armor_plating.svg-dbef48e7b0c51a798a28761fc83f5882.ctex remapped: res://.godot/imported/armor_plating.svg-dbef48e7b0c51a798a28761fc83f5882.ctex
+Completed load for: 'res://assets/ui/items/armor_plating.svg' remapped 'res://assets/ui/items/armor_plating.svg' at thread -1
+Completed load for: 'res://resources/items/armor_plating.tres' remapped 'res://resources/items/armor_plating.tres' at thread -1
+Loading resource: res://resources/items/power_module.tres remapped: res://resources/items/power_module.tres
+Loading resource: res://assets/ui/items/power_module.svg remapped: res://assets/ui/items/power_module.svg
+Loading resource: res://.godot/imported/power_module.svg-ab167df997101ad6b69c00ae3b634c88.ctex remapped: res://.godot/imported/power_module.svg-ab167df997101ad6b69c00ae3b634c88.ctex
+Completed load for: 'res://assets/ui/items/power_module.svg' remapped 'res://assets/ui/items/power_module.svg' at thread -1
+Completed load for: 'res://resources/items/power_module.tres' remapped 'res://resources/items/power_module.tres' at thread -1
+Loading resource: res://resources/items/mobility_actuator.tres remapped: res://resources/items/mobility_actuator.tres
+Loading resource: res://assets/ui/items/mobility_actuator.svg remapped: res://assets/ui/items/mobility_actuator.svg
+Loading resource: res://.godot/imported/mobility_actuator.svg-4ff4f818f6e1e742ba397eb69909e7c6.ctex remapped: res://.godot/imported/mobility_actuator.svg-4ff4f818f6e1e742ba397eb69909e7c6.ctex
+Completed load for: 'res://assets/ui/items/mobility_actuator.svg' remapped 'res://assets/ui/items/mobility_actuator.svg' at thread -1
+Completed load for: 'res://resources/items/mobility_actuator.tres' remapped 'res://resources/items/mobility_actuator.tres' at thread -1
+Completed load for: 'res://resources/items/catalog.tres' remapped 'res://resources/items/catalog.tres' at thread -1
+Loading resource: res://resources/presentation/player_discharge.tres remapped: res://resources/presentation/player_discharge.tres
+Completed load for: 'res://resources/presentation/player_discharge.tres' remapped 'res://resources/presentation/player_discharge.tres' at thread -1
+Loading resource: res://scenes/characters/visuals/flying_scout_visual.tscn remapped: res://scenes/characters/visuals/flying_scout_visual.tscn
+Loading resource: res://assets/characters/exports/flying_scout/flying_scout.glb remapped: res://assets/characters/exports/flying_scout/flying_scout.glb
+Loading resource: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn remapped: res://.godot/imported/flying_scout.glb-27f7dbe660cdb37dcaa5a2f88874a0ff.scn
+Completed load for: 'res://assets/characters/exports/flying_scout/flying_scout.glb' remapped 'res://assets/characters/exports/flying_scout/flying_scout.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/flying_scout_visual.tscn' remapped 'res://scenes/characters/visuals/flying_scout_visual.tscn' at thread -1
+Loading resource: res://scenes/characters/visuals/ground_machine_visual.tscn remapped: res://scenes/characters/visuals/ground_machine_visual.tscn
+Loading resource: res://assets/characters/exports/ground_machine/ground_machine.glb remapped: res://assets/characters/exports/ground_machine/ground_machine.glb
+Loading resource: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn remapped: res://.godot/imported/ground_machine.glb-6f4af251b69f605b6bfcab827cc6792d.scn
+Loading resource: res://resources/materials/environment/painted_steel_bluegray.tres remapped: res://resources/materials/environment/painted_steel_bluegray.tres
+Completed load for: 'res://resources/materials/environment/painted_steel_bluegray.tres' remapped 'res://resources/materials/environment/painted_steel_bluegray.tres' at thread -1
+Completed load for: 'res://assets/characters/exports/ground_machine/ground_machine.glb' remapped 'res://assets/characters/exports/ground_machine/ground_machine.glb' at thread -1
+Completed load for: 'res://scenes/characters/visuals/ground_machine_visual.tscn' remapped 'res://scenes/characters/visuals/ground_machine_visual.tscn' at thread -1
+Loading resource: res://resources/presentation/guard_discharge.tres remapped: res://resources/presentation/guard_discharge.tres
+Completed load for: 'res://resources/presentation/guard_discharge.tres' remapped 'res://resources/presentation/guard_discharge.tres' at thread -1
+R01: SCAVENGING -> SELECTING
+Loading resource: res://resources/presentation/raider_discharge.tres remapped: res://resources/presentation/raider_discharge.tres
+Completed load for: 'res://resources/presentation/raider_discharge.tres' remapped 'res://resources/presentation/raider_discharge.tres' at thread -1
+R02: SCAVENGING -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Natural combat movement opens a gap from a contacting stationary guard
+PASS: Spacing movement preserves actual return fire
+R01: ENGAGING -> TAKING_COVER
+PASS: Physical cover route steers around a live blocking guard and reaches its far side
+R01: TAKING_COVER -> SELECTING
+R01: SELECTING -> ENGAGING
+PASS: Armed Greedy acquires scout with its existing rifle detection range
+PASS: Moving scout remains visible within rifle range
+PASS: Unanswered scout engagement continues beyond the old cover interval even with available cover
+PASS: Engagement tracking still rejects opponents beyond rifle range
+R01: ENGAGING -> SELECTING
+PASS: Ordinary perception also rejects the out-of-range scout
+R01: SELECTING -> REPOSITIONING
+R01: REPOSITIONING -> ENGAGING
+PASS: Completed peek returns at least two shots despite repeated noncritical incoming hits
+R01: ENGAGING -> TAKING_COVER
+PASS: Cover reactions resume after the bounded return-fire window
+R01: TAKING_COVER -> FLEEING
+PASS: Critical damage still overrides cover and firing with retreat
+PASS: Physical movement and firing preserve material conservation
+Combat movement checks complete; failures: 0
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamWAV:9223372076432229950 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372076683888191 - Reference count: 2
+Leaked instance: AudioStreamWAV:9223372078193837637 - Reference count: 6
+Leaked instance: AudioStreamWAV:9223372078948812360 - Reference count: 7
+Leaked instance: AudioStreamWAV:9223372079452128842 - Reference count: 6
+Leaked instance: AudioStreamWAV:9223372080207103565 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372080458761806 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372080710420047 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372191859476704 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372186021005537 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372179628886245 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372189711993062 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372181809924327 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372175199701224 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372183705749739 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372124230519048 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372124247296265 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372124264073482 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372166559435019 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372187782613410 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372170787293603 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372185836456357 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372170971842982 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372166374885799 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372185635129768 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372185853233577 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372191171611052 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372175384250797 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372179612109230 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372191154833839 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372179796658608 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372193755302322 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372191339383220 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/audio/weapons/raider_01.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/weapons/raider_02.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/impacts/machine_armor.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/actors/raider_hurt.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/actors/machine_hurt.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/machines/player_servo_loop.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/machines/guard_drive_loop.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/machines/scout_rotor_loop.wav (AudioStreamWAV)
+Orphan StringName: Impacts (static: 0, total: 29)
+Orphan StringName: Weapons (static: 0, total: 4)
+StringName: 2 unclaimed string names at exit.
+WARNING: 33 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 8 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)

@@ -1,0 +1,5 @@
+﻿from pathlib import Path
+import subprocess
+with Path('.godot/stage_aa_build/graphical.log.txt').open('w',encoding='utf-8') as f:
+ p=subprocess.run(['C:/Users/kzulf/bin/godot.cmd','--path','.','--script','res://.godot/stage_aa_build/graphical.gd','--quit-after','4000'],stdout=f,stderr=subprocess.STDOUT,timeout=120)
+print(p.returncode)

@@ -69,3 +69,12 @@ Stage Y final editor and forty-suite logs, source pins, native/accelerated warni
 The [Y refinement report](../docs/development/reports/stage_y_environment_refinement.md) and [separate evidence](../docs/development/baselines/stage_y_refinement_delivery/README.md) record the later 41-suite run, focused final physical suite, clean native-rate checks and retained accelerated WAV warnings. Historical forty-suite Y evidence is preserved.
 
 Stage Z final 47-suite logs, native graphical checks, complete seeded deployments, fault injection and large-stash measurements are in the [Z delivery evidence](../docs/development/baselines/stage_z_delivery/README.md). The director’s real stash was not used by development or validation.
+
+## Stage AA playable-loop coverage
+
+There are now **50 active suites**. `application_lifecycle_test.gd` runs the actual application through shared preparation, success, early extraction, death/save retry, unstarted-kit refunds and death after a failed Recall write. `preparation_test.gd` covers desired templates, missing definitions, exact/partial allocation, atomic mass/slot rejection and unstarted-versus-running crash recovery. `sanctuary_test.gd` exercises actual walking, physical E, safe navigation anchors, blocked quick entry, text-entry hotkey isolation and equivalent item outcomes between physical and Quick Deploy preparation.
+
+All fixtures use randomized ignored profile paths. Run with `godot --headless --path . --fixed-fps 60 --script res://tests/application_lifecycle_test.gd --quit-after 20000` (or the other suite). Check its explicit zero-failure completion and inspect logs, not just exit status. AA source guards add a narrow reviewed manifest while preserving prior baseline evidence. Workshop processing and layout suites are deferred with AA-6/7, not represented as passing or implemented here.
+
+
+Stage AA completion adds `workshop_test.gd` (atomic recipes/replay/faults, upgrade and real larger-kit deployment, craftability and display stack identity) and `sanctuary_layout_test.gd` (physical collision/routes, replacement, cancellation, save failure and reconstruction). All **52 active suites** remain discoverable by `tests/*_test.gd`. See the [final evidence](../docs/development/baselines/stage_aa_delivery/README.md); the AA-5 archive is preserved separately.

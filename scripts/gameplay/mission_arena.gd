@@ -82,6 +82,12 @@ func _ready() -> void:
 func setup_mission_objectives() -> void:
 	if not config.objective_definitions.is_empty():
 		mission_objectives = MissionObjectives.new(config, ledger, flare_director.equipment, robot.get_instance_id(), recall.deployment_id)
+		if session_profile != null:
+			session_profile.result_builder = func(candidate: InventoryLedger, extracted: bool) -> Dictionary:
+				# Uncommitted Recall attempts may be followed by more play or death.
+				# Only freeze the irreversible failure; successful previews re-evaluate.
+				if extracted or pending_settlement_result.is_empty() or pending_settlement_result.get("extracted", false): pending_settlement_result = mission_objectives.preview_settlement(candidate, extracted, mission, elapsed)
+				return pending_settlement_result.duplicate(true)
 		raider_defeat_accepted.connect(mission_objectives.accepted_defeat)
 		objective_view = MissionObjectivesView.new()
 		objective_view.arena = self
@@ -211,6 +217,7 @@ func process_entries() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if session_staging: return
 	super._physics_process(delta)
 	if mission.is_world_finished():
 		return
@@ -301,13 +308,18 @@ func refresh_refined_hud() -> void:
 
 
 func start_deployment() -> bool:
+	if session_profile != null and (session_staging or not session_start_authorized): return false
 	if deployment_started or mission.is_finished():
 		return false
-	if hybrid_inventory and (not recall.save_error.is_empty() or not recall.stash.begin_inventory_deployment(recall.deployment_id)):
+	if hybrid_inventory and (not recall.save_error.is_empty() or (session_profile == null and not recall.stash.begin_inventory_deployment(recall.deployment_id))):
 		recall.save_error = recall.stash.last_error if recall.save_error.is_empty() else recall.save_error
 		recall.refresh_stash()
 		return false
 	deployment_started = true
+	if session_profile != null:
+		robot.set_physics_process(true)
+		robot.get_node("Health").damage_enabled = true
+		for machine in ecosystem.machines: machine.process_mode = Node.PROCESS_MODE_INHERIT
 	robot.input_adapter.clear_intent()
 	robot.input_adapter.gameplay_enabled = true
 	robot.get_node("Weapon").enabled = true
@@ -338,6 +350,10 @@ func complete_player_extraction() -> void:
 
 func finalize_player_result() -> void:
 	if mission_objectives != null:
+		if session_profile != null:
+			var receipt := session_profile.deployment_snapshot(recall.deployment_id)
+			if receipt.has("result"): mission_objectives.publish_committed(receipt.result)
+			return
 		mission_objectives.close(mission, elapsed)
 
 
@@ -397,6 +413,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func select_scenario(index: int, new_seed: int = -1, preserve_level: bool = false) -> void:
+	if session_return.is_valid():
+		show_action_notice("Choose contracts at the Sanctuary. Diagnostic presets remain available as standalone scenes.")
+		return
 	# Replace the scene with an explicit configuration; no persistent singleton state.
 	if mission_objectives != null and not mission.is_finished():
 		mission.fail_abandoned()
@@ -429,6 +448,9 @@ func select_scenario(index: int, new_seed: int = -1, preserve_level: bool = fals
 
 
 func restart_mission() -> void:
+	if session_return.is_valid():
+		session_return.call_deferred()
+		return
 	select_scenario.call_deferred(scenario_index, debug_seed if encounter != null else -1, true)
 
 
@@ -437,6 +459,19 @@ func _exit_tree() -> void:
 		mission_objectives.dispose()
 	if is_instance_valid(metrics) and not metrics.stopped:
 		metrics.finish("Scene closed.")
+
+func stage_for_session() -> void:
+	# Publish static bodies/navigation while keeping all gameplay participants inert.
+	process_mode = Node.PROCESS_MODE_INHERIT
+	robot.input_adapter.gameplay_enabled = false
+	robot.input_adapter.clear_intent()
+	robot.set_physics_process(false)
+	robot.get_node("Weapon").enabled = false
+	robot.get_node("Health").damage_enabled = false
+	if objective_view != null: objective_view.briefing.hide()
+	if ecosystem != null:
+		for machine in ecosystem.machines: machine.process_mode = Node.PROCESS_MODE_DISABLED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _notification(what: int) -> void:

@@ -1,0 +1,100 @@
+extends "res://.godot/stage_aa_build/graphical.gd"
+
+func shot(label: String) -> void:
+	await frames(5)
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png("res://.godot/stage_aa_final/" + label + ".png")
+
+func confirm_recipe(session: GameSession, recipe: String) -> void:
+	var button := button_named(session.panel, "Confirm: " + RecipeDefinition.approved(recipe).display_name)
+	check(button != null and not button.disabled, "Graphical recipe is available: " + recipe)
+	if button == null or button.disabled: return
+	var scroll: ScrollContainer = session.panel.body.get_parent()
+	scroll.ensure_control_visible(button)
+	await frames(3)
+	await click(button)
+	for dialog in session.panel.find_children("*", "ConfirmationDialog", true, false):
+		if dialog.visible:
+			await click(dialog.get_ok_button())
+			break
+	await frames(4)
+
+func run() -> void:
+	root.size = Vector2i(1600, 900)
+	var app: Node = load("res://scenes/application/application.tscn").instantiate()
+	var session: GameSession = app.get_node("GameSession")
+	var path := test_directory + "/final_graphical.json"
+	session.profile_path = path
+	root.add_child(app)
+	current_scene = app
+	await frames(6)
+	await click(button_named(session.active_scene, "Enter Sanctuary"))
+	check(session.stash.persistent_command("graphical_finite_supply", {}, func(candidate: InventoryLedger) -> Dictionary:
+		for pair in [["servo_motor", 3], ["control_pcb", 2], ["raider_rifle", 2]]:
+			var result := candidate.issue("graphical:" + str(pair[0]), StringName(pair[0]), pair[1], "stash", "imported")
+			if not result.ok: return result
+		return {"ok": true}).ok, "Graphical isolated fixture supplies finite processing inputs")
+	var home := session.active_scene as Sanctuary
+	home.navigate(&"disassembly")
+	await frames(4)
+	await confirm_recipe(session, "strip_raider_rifle")
+	await confirm_recipe(session, "recover_servo")
+	await shot("disassembly")
+	session.panel.switch_to("fabrication")
+	await frames(4)
+	await confirm_recipe(session, "fabricate_blaster")
+	await confirm_recipe(session, "cargo_rack_1")
+	check(session.stash.home_snapshot().upgrades.get("cargo_rack_1", false), "Actual confirmation installs paid upgrade")
+	await shot("fabrication_upgrade")
+	home.close_station()
+	home.open_display(true)
+	await frames(4)
+	var view: DisplayView
+	for child in session.panel.body.get_children():
+		if child is DisplayView: view = child
+	var picker: OptionButton
+	for child in view.get_children():
+		if child is OptionButton: picker = child
+	for index in picker.item_count:
+		var identity: String = picker.get_item_metadata(index)
+		if session.stash.inventory.record(identity).get("definition") == "raider_rifle": picker.select(index)
+	await click(button_named(view, "Assign selected item"))
+	check(session.stash.inventory.records("display:workshop").size() == 1, "Actual display controls reserve owned item")
+	await shot("display_controls")
+	home.close_station()
+	home.open_navigation()
+	await frames(4)
+	await click(button_named(home, "Arrange workshop"))
+	await frames(4)
+	var editor: LayoutEditor
+	for child in home.ui_layer.get_children():
+		if child is LayoutEditor: editor = child
+	check(editor != null, "Actual quick-navigation opens placement mode")
+	await shot("placement_preview")
+	await click(button_named(editor, "Confirm and save"))
+	await frames(5)
+	check(session.stash.home_snapshot().layout.size() == 1 and home.mode == Sanctuary.Mode.WALKING, "Actual placement confirmation saves one bounded prop")
+	await shot("furnished_home")
+	root.size = Vector2i(1280, 720)
+	home.navigate(&"fabrication")
+	await shot("fabrication_1280")
+	home.close_station()
+	app.queue_free()
+	await frames(20)
+	app = load("res://scenes/application/application.tscn").instantiate()
+	session = app.get_node("GameSession")
+	session.profile_path = path
+	root.add_child(app)
+	current_scene = app
+	session.enter_sanctuary()
+	await frames(10)
+	check(session.active_scene.placed.get_child_count() == 1 and session.stash.inventory.container("prepared").slots == 16 and session.stash.inventory.records("display:workshop").size() == 1, "Native cold reload reconstructs layout, display and actual upgrade")
+	await shot("reloaded_home_1280")
+	var stats := {"home_draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME), "home_primitives": Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME), "nodes": Performance.get_monitor(Performance.OBJECT_NODE_COUNT)}
+	var output := FileAccess.open("res://.godot/stage_aa_final/graphical_metrics.json", FileAccess.WRITE)
+	output.store_string(JSON.stringify(stats))
+	output.close()
+	app.queue_free()
+	await frames(20)
+	print("AA final graphical failures: ", failures)
+	quit(1 if failures else 0)
